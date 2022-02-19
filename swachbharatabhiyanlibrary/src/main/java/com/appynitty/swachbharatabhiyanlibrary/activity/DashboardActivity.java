@@ -694,7 +694,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 
         menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_horticulture_waste), R.drawable.ic_hort_waste, HorticultureActivity.class, true));
         menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_c_and_d_waste), R.drawable.ic_cad_waste, CandDActivity.class, true));
-//        menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_ctpt_heading), R.drawable.ic_ctpt_toilet, CommunityAndPublicToiletActivity.class, true));
+       menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_ctpt_heading), R.drawable.ic_ctpt_toilet, CommunityAndPublicToiletActivity.class, true));
 
 
         // menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_broadcast_page), R.drawable.ic_broadcast_icon, BroadcastActivity.class, true));
