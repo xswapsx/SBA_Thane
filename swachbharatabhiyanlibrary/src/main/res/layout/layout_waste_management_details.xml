@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/dim_5_dp"
+    android:elevation="@dimen/dim_2_dp"
+    android:layout_margin="@dimen/dim_5_dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/dim_10_dp"
+        android:paddingEnd="@dimen/dim_10_dp"
+        android:paddingTop="@dimen/dim_10_dp"
+        android:paddingBottom="@dimen/dim_5_dp">
+
+        <LinearLayout
+            android:id="@+id/waste_type_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/waste_quantity_layout"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/waste_type_txt"/>
+
+            <TextView
+                android:id="@+id/text_view_waste_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/hyphen"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dim_17_sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/waste_category_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/waste_type_layout"
+            app:layout_constraintEnd_toStartOf="@id/waste_quantity_layout"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dim_10_dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/waste_category_txt"/>
+
+
+            <TextView
+                android:id="@+id/text_view_waste_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dim_17_sp"
+                android:textColor="@android:color/black"
+                android:text="@string/hyphen"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/waste_quantity_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/waste_category_layout"
+            app:layout_constraintBottom_toTopOf="@id/separator_view"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/text_view_waste_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlue"
+                android:textSize="@dimen/dim_20_sp"
+                android:textStyle="bold"
+                android:text="@string/hyphen"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quantity_txt"/>
+
+            <TextView
+                android:id="@+id/waste_entry_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dim_5_dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/separator_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_2_dp"
+            android:layout_marginTop="@dimen/dim_10_dp"
+            android:background="@color/black_alpha_5"
+            app:layout_constraintTop_toBottomOf="@id/waste_category_layout"
+            app:layout_constraintBottom_toTopOf="@id/button_bar_layout"/>
+
+        <LinearLayout
+            android:id="@+id/button_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:weightSum="3"
+            android:paddingTop="@dimen/dim_5_dp">
+
+            <Button
+                android:id="@+id/edit_details_button"
+                android:layout_weight="1.495"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_details_txt"
+                android:textColor="@color/colorBlue"
+                android:background="@drawable/white_ripple_background"
+                android:padding="@dimen/dim_10_dp"
+                style="?attr/borderlessButtonStyle"/>
+
+            <View
+                android:layout_weight="0.01"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/black_alpha_5"/>
+
+            <Button
+                android:id="@+id/button_view_remove"
+                android:layout_weight="1.495"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_txt"
+                android:textColor="@color/colorBlue"
+                android:background="@drawable/white_ripple_background"
+                android:padding="@dimen/dim_10_dp"
+                style="?attr/borderlessButtonStyle"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

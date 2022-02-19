@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SBA_Thane.iml" filepath="$PROJECT_DIR$/.idea/modules/SBA_Thane.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SBA_Thane.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SBA_Thane.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/retrofitconnectionlibrary/SBA_Thane.retrofitconnectionlibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/retrofitconnectionlibrary/SBA_Thane.retrofitconnectionlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/riaylibrary/SBA_Thane.riaylibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/riaylibrary/SBA_Thane.riaylibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/swachbharatabhiyanlibrary/SBA_Thane.swachbharatabhiyanlibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/swachbharatabhiyanlibrary/SBA_Thane.swachbharatabhiyanlibrary.iml" />
+    </modules>
+  </component>
+</project>

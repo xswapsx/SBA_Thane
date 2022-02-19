@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.EmpQRcodeScannerActivity"
+    tools:showIn="@layout/emp_activity_qrcode_scanner"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:id="@+id/qr_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <io.github.kobakei.materialfabspeeddial.FabSpeedDial
+        android:id="@+id/flash_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/dim_6_dp"
+        android:elevation="@dimen/dim_6_dp"
+        app:fab_fabDrawable="@drawable/ic_flash_on_indicator"/>
+
+</FrameLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.WasteHistoryDetailsActivity"
+    android:id="@+id/parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/dim_5_dp"
+        android:id="@+id/recycler_view_history_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/show_error_data"
+        android:layout_marginTop="@dimen/dim_100_dp"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:contentDescription="@string/no_data_error"
+            android:layout_width="@dimen/dim_120_dp"
+            android:layout_height="@dimen/dim_120_dp"
+            android:background="@drawable/icn_no_history"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/no_data_error"
+            android:textColor="@color/text_color_no_data"
+            android:textSize="@dimen/dim_25_sp"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dim_12_dp"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/show_error_internet"
+        android:layout_marginTop="@dimen/dim_100_dp"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:contentDescription="@string/no_data_error"
+            android:layout_width="@dimen/dim_120_dp"
+            android:layout_height="@dimen/dim_120_dp"
+            android:background="@drawable/icn_no_internet"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/no_internet_error"
+            android:textColor="@color/text_color_no_data"
+            android:textSize="@dimen/dim_25_sp"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dim_12_dp"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+</LinearLayout>

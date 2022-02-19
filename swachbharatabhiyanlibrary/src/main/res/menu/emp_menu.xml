@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_change_language"
+        android:icon="@drawable/ic_language_change"
+        android:title="@string/change_language" />
+
+    <item
+        android:id="@+id/action_logout"
+        android:icon="@drawable/ic_logout_white"
+        android:title="@string/logout_txt" />
+
+    <item
+        android:id="@+id/action_rate_app"
+        android:icon="@drawable/ic_star_white_24dp"
+        android:title="@string/rate_this_app"/>
+
+    <item
+        android:id="@+id/action_setting"
+        android:icon="@drawable/ic_settings_white"
+        android:title="@string/setting"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/action_share_app"
+        android:icon="@drawable/ic_share_white_24dp"
+        android:title="@string/share_the_app" />
+
+    <item
+        android:id="@+id/privacy_policy"
+        android:icon="@drawable/ic_share_white_24dp"
+        android:title="@string/privacy_policy" />
+
+</menu>

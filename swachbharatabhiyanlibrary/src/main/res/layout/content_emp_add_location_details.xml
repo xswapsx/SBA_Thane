@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.EmpAddLocationDetailsActivity"
+    tools:showIn="@layout/activity_emp_add_location_details">
+
+    <LinearLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_20_dp"
+            android:layout_marginTop="@dimen/dim_10_dp"
+            android:layout_marginRight="@dimen/dim_20_dp">
+
+            <EditText
+                android:id="@+id/name"
+                style="@style/MyEditTextStyleLight"
+                android:hint="@string/name"
+                android:inputType="text"
+                android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_20_dp"
+            android:layout_marginTop="@dimen/dim_10_dp"
+            android:layout_marginRight="@dimen/dim_20_dp"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/name_mar"
+                style="@style/MyEditTextStyleLight"
+                android:hint="@string/name_mar"
+                android:inputType="text"
+                android:imeOptions="actionNext" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/house_id_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_20_dp"
+            android:layout_marginTop="@dimen/dim_10_dp"
+            android:layout_marginRight="@dimen/dim_20_dp">
+
+            <EditText
+                android:id="@+id/house_id"
+                style="@style/MyEditTextStyleLight"
+                android:hint="@string/hint_house_no"
+                android:inputType="number"
+                android:imeOptions="actionNext" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_20_dp"
+            android:layout_marginTop="@dimen/dim_5_dp"
+            android:layout_marginRight="@dimen/dim_20_dp">
+
+            <Spinner
+                android:id="@+id/select_zone"
+                style="@style/MyEditTextStyleLight"
+                android:hint="@string/hint_zone" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_20_dp"
+            android:layout_marginTop="@dimen/dim_5_dp"
+            android:layout_marginRight="@dimen/dim_20_dp">
+
+            <Spinner
+                android:id="@+id/select_ward"
+                style="@style/MyEditTextStyleLight"
+                android:hint="@string/ward_no" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_20_dp"
+            android:layout_marginTop="@dimen/dim_5_dp"
+            android:layout_marginRight="@dimen/dim_20_dp">
+
+            <Spinner
+                android:id="@+id/select_area"
+                style="@style/MyEditTextStyleLight"
+                android:hint="@string/hint_area" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/contact_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_20_dp"
+            android:layout_marginTop="@dimen/dim_10_dp"
+            android:layout_marginRight="@dimen/dim_20_dp">
+
+            <EditText
+                android:id="@+id/mobile_no"
+                style="@style/MyEditTextStyleLight"
+                android:hint="@string/hint_mobile"
+                android:maxLength="10"
+                android:inputType="text"
+                android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_20_dp"
+            android:layout_marginTop="@dimen/dim_10_dp"
+            android:layout_marginRight="@dimen/dim_20_dp">
+
+            <EditText
+                android:id="@+id/address"
+                style="@style/MyEditTextStyleLight"
+                android:layout_height="@dimen/dim_60_dp"
+                android:hint="@string/hint_address"
+                android:maxLines="2"
+                android:inputType="textMultiLine"
+                android:imeOptions="actionDone"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/save_button"
+            style="@style/MyButtonStyle"
+            android:layout_marginLeft="@dimen/dim_20_dp"
+            android:layout_marginTop="@dimen/dim_20_dp"
+            android:layout_marginRight="@dimen/dim_20_dp"
+            android:layout_marginBottom="@dimen/dim_10_dp"
+            android:text="@string/submit_txt" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+
+    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@android:color/white</item>
+        <item name="android:textColor">#FF01F0</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="myPopupMenuTextAppearanceSmall" parent="@android:style/TextAppearance.DeviceDefault.Widget.PopupMenu.Small">
+        <item name="android:textColor">#545656</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="myPopupMenuTextAppearanceLarge" parent="@android:style/TextAppearance.DeviceDefault.Widget.PopupMenu.Large">
+        <item name="android:textColor">#545656</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/myPopupMenuTextAppearanceLarge
+        </item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/myPopupMenuTextAppearanceSmall
+        </item>
+    </style>
+
+    <style name="MyProgressDialog" parent="Theme.AppCompat.Dialog" />
+
+    <style name="MyEditTextStyleLight" parent="Base.V7.Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/dim_14_sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_orange</item>
+        <!--<item name="android:background">@drawable/rounded_corners_text_view</item>-->
+        <item name="android:layout_marginTop">@dimen/dim_10_dp</item>
+        <item name="android:backgroundTint">@color/colorDefault</item>
+        <item name="android:paddingBottom">@dimen/dim_10_dp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="CustomEditTextStyleLight" parent="Base.V7.Widget.AppCompat.EditText">
+        <item name="android:textSize">@dimen/dim_14_sp</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_orange</item>
+        <!--<item name="android:background">@drawable/rounded_corners_text_view</item>-->
+        <item name="android:layout_marginTop">@dimen/dim_10_dp</item>
+        <item name="android:backgroundTint">@color/colorDefault</item>
+        <item name="android:paddingBottom">@dimen/dim_10_dp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="MyEditTextStyleDark" parent="Base.V7.Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/dim_14_sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_white</item>
+        <!--<item name="android:background">@drawable/rounded_corners_text_view</item>-->
+        <item name="android:layout_marginTop">@dimen/dim_10_dp</item>
+        <item name="android:backgroundTint">@android:color/white</item>
+        <item name="android:paddingBottom">@dimen/dim_10_dp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="MyEditTextStylelight.Dark" parent="Base.V7.Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/dim_14_sp</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_orange</item>
+        <!--<item name="android:background">@drawable/rounded_corners_text_view</item>-->
+        <item name="android:backgroundTint">@android:color/white</item>
+        <item name="android:paddingBottom">@dimen/dim_10_dp</item>
+    </style>
+
+    <style name="MyfabButton" parent="AppTheme.NoActionBar">
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MyTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/dim_15_dp</item>
+        <item name="android:textSize">@dimen/dimen_24_sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@android:color/white</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorControlActivated">@android:color/white</item>
+    </style>
+
+    <style name="MyButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/rounded_primary_button</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="MyAutoEditTextStyleDark" parent="Base.V7.Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:layout_width">match_parent</item>
+        <!--<item name="android:textSize">@dimen/settings_text_size</item>-->
+        <item name="android:layout_height">wrap_content</item>
+        <!--<item name="android:textCursorDrawable">@drawable/cursor_white</item>-->
+        <!--&lt;!&ndash;<item name="android:background">@drawable/rounded_corners_text_view</item>&ndash;&gt;-->
+        <!--<item name="android:layout_marginTop">@dimen/edit_text_margin_padding</item>-->
+        <!--<item name="android:paddingBottom">@dimen/edit_text_margin_padding</item>-->
+        <!--<item name="android:maxLines">1</item>-->
+    </style>
+
+    <style name="TextLabel2" parent="AppTheme">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundTint">@android:color/white</item>
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@android:color/white</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorControlActivated">@android:color/white</item>
+    </style>
+
+    <style name="SBA.AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="SBA.AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_down_animation</item>
+        <item name="android:windowExitAnimation">@anim/slide_up_animation</item>
+    </style>
+
+</resources>

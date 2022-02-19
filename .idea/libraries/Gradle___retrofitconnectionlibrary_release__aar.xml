@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: :retrofitconnectionlibrary-release:@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bd8e22a7a7544986699ef4a9cd4d5824/jetified-retrofitconnectionlibrary-release/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bd8e22a7a7544986699ef4a9cd4d5824/jetified-retrofitconnectionlibrary-release/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bd8e22a7a7544986699ef4a9cd4d5824/jetified-retrofitconnectionlibrary-release/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

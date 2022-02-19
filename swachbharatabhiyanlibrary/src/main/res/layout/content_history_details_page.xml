@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.HistoryDetailsPageActivity"
+    tools:showIn="@layout/activity_history_details_page">
+
+    <View
+        android:id="@+id/line_view"
+        android:layout_width="@dimen/dim_2_dp"
+        android:layout_height="match_parent"
+        android:background="@color/black_alpha_20"
+        android:layout_marginStart="@dimen/dim_40_dp"
+        android:visibility="gone"/>
+
+    <GridView
+        android:id="@+id/history_detail_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:verticalSpacing="15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/show_error_data"
+        android:layout_marginTop="@dimen/dim_100_dp"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:contentDescription="@string/no_data_error"
+            android:layout_width="@dimen/dim_120_dp"
+            android:layout_height="@dimen/dim_120_dp"
+            android:background="@drawable/icn_no_history"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/no_data_error"
+            android:textColor="@color/text_color_no_data"
+            android:textSize="@dimen/dim_25_sp"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dim_12_dp"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

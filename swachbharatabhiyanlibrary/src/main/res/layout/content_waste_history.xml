@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.WasteHistoryActivity"
+    tools:showIn="@layout/activity_waste_history"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/top_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dim_20_dp"
+        android:paddingStart="@dimen/dim_6_dp"
+        android:paddingEnd="@dimen/dim_6_dp">
+
+        <TextView
+            android:id="@+id/display_month"
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/month_txt"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dim_25_sp"/>
+
+        <Spinner
+            android:id="@+id/spinner_month"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical"
+            android:textAlignment="gravity"
+            android:layout_height="wrap_content"
+            android:popupBackground="@color/colorPrimary"
+            android:backgroundTint="@color/white"/>
+
+        <Spinner
+            android:id="@+id/spinner_year"
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:popupBackground="@color/colorPrimary"
+            android:backgroundTint="@color/white"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:id="@+id/grid_history"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/show_error_data"
+        android:layout_marginTop="@dimen/dim_100_dp"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:contentDescription="@string/no_data_error"
+            android:layout_width="@dimen/dim_120_dp"
+            android:layout_height="@dimen/dim_120_dp"
+            android:background="@drawable/icn_no_history"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/no_data_error"
+            android:textColor="@color/text_color_no_data"
+            android:textSize="@dimen/dim_25_sp"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dim_12_dp"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/show_error_internet"
+        android:layout_marginTop="@dimen/dim_100_dp"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:contentDescription="@string/no_data_error"
+            android:layout_width="@dimen/dim_120_dp"
+            android:layout_height="@dimen/dim_120_dp"
+            android:background="@drawable/icn_no_internet"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/no_internet_error"
+            android:textColor="@color/text_color_no_data"
+            android:textSize="@dimen/dim_25_sp"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dim_12_dp"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+</LinearLayout>

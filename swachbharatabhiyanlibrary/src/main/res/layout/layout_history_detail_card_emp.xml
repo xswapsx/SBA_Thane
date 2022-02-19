@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dim_6_dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <Button
+        android:id="@+id/history_details_time"
+        android:layout_width="0dp"
+        android:layout_weight="0.3"
+        android:layout_height="@dimen/dim_20_dp"
+        android:text="@string/hyphen"
+        android:textSize="@dimen/dim_12_sp"
+        android:gravity="center"
+        android:background="@drawable/rounded_blue_button"
+        android:textColor="@color/white"
+        android:padding="0dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="0.7"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/dim_6_dp"
+        android:layout_marginEnd="@dimen/dim_5_dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/history_details_name"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textAllCaps="true"/>
+            <TextView
+                android:id="@+id/house_n"
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textAllCaps="true"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

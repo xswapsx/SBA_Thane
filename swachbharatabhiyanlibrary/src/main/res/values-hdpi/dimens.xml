@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="logo_img_height">120dp</dimen>
+    <dimen name="login_margin">15dp</dimen>
+    <dimen name="login_card_height">150dp</dimen>
+</resources>

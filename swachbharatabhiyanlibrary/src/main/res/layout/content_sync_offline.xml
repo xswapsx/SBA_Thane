@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.SyncOfflineActivity"
+    tools:showIn="@layout/activity_sync_offline"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/dim_50_dp"
+    android:paddingBottom="@dimen/dim_10_dp">
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="1"
+        android:visibility="visible"
+        android:id="@+id/grid_offline_data"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/show_error_offline_data"
+        android:layout_marginTop="@dimen/dim_100_dp"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:contentDescription="@string/no_data_error"
+            android:layout_width="@dimen/dim_120_dp"
+            android:layout_height="@dimen/dim_120_dp"
+            android:background="@drawable/icn_no_history"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/no_offline_data_error"
+            android:textColor="@color/text_color_no_data"
+            android:textSize="@dimen/dim_25_sp"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dim_12_dp"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+</LinearLayout>

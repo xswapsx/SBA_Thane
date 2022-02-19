@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relative_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_login_vector"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dim_20_dp">
+
+            <TextView
+                android:id="@+id/lbl_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dim_20_dp"
+                android:gravity="center_horizontal"
+                android:text="@string/hyphen"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dim_16_dp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/house_owner_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lbl_title"
+                android:layout_marginStart="@dimen/dim_6_dp"
+                android:layout_marginTop="@dimen/dim_20_dp"
+                android:layout_marginEnd="@dimen/dim_6_dp"
+                android:gravity="center_horizontal"
+                android:text="@string/hyphen"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_30_sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/house_owner_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/house_owner_name"
+                android:layout_marginTop="@dimen/dim_10_dp"
+                android:gravity="center_horizontal"
+                android:text="@string/hyphen"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <!--                <TextView-->
+            <!--                    android:id="@+id/house_id"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="@string/hyphen"-->
+            <!--                    android:gravity="center_horizontal"-->
+            <!--                    android:layout_marginTop="@dimen/dim_20_dp"-->
+            <!--                    android:textSize="20sp"-->
+            <!--                    android:textAllCaps="true"-->
+            <!--                    android:visibility="gone"-->
+            <!--                    android:textColor="@color/white"-->
+            <!--                    android:layout_below="@id/house_owner_mobile"/>-->
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/collection_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_20_dp"
+            android:gravity="center_horizontal"
+            android:text="@string/garbage_collection_completed"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/dimen_30_sp" />
+
+        <ImageView
+            android:id="@+id/response_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/dim_12_dp"
+            android:src="@drawable/ic_tick_inside_circle_green" />
+
+        <Button
+            android:id="@+id/done_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dim_12_dp"
+            android:background="@drawable/rounded_primary_button"
+            android:text="@string/done_txt"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dim_20_sp" />
+
+    </LinearLayout>
+
+</ScrollView>

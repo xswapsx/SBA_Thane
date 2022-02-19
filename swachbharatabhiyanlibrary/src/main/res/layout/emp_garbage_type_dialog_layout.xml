@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/lbl_title"
+        style="@style/MyTitle"
+        android:layout_margin="5dp"
+        android:paddingLeft="10dp"
+        android:text="@string/bifurcate_title"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/dim_20_sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/colorDivider" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rb_resident"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dim_10_dp"
+            android:checked="false"
+            android:text="@string/resident"
+            android:textColor="@color/colorGrayList"
+            android:textSize="@dimen/dim_14_sp" />
+
+        <!--<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="33dp"
+            android:layout_marginBottom="@dimen/dim_10_dp"
+            android:gravity="start|top|left"
+            android:text="@string/bifurcate_garbage_hint"
+            android:textSize="@dimen/dim_12_sp" />-->
+
+        <RadioButton
+            android:id="@+id/rb_resident_building_waste"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dim_10_dp"
+            android:checked="false"
+            android:text="@string/residential_building_waste"
+            android:textColor="@color/colorGrayList"
+            android:textSize="@dimen/dim_14_sp" />
+
+        <RadioButton
+            android:id="@+id/rb_resident_slum_waste"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dim_10_dp"
+            android:checked="false"
+            android:text="@string/residential_slum_waste"
+            android:textColor="@color/colorGrayList"
+            android:textSize="@dimen/dim_14_sp" />
+
+        <RadioButton
+            android:id="@+id/rb_commercial_waste"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dim_10_dp"
+            android:checked="false"
+            android:text="@string/commercial_waste"
+            android:textColor="@color/colorGrayList"
+            android:textSize="@dimen/dim_14_sp" />
+    </RadioGroup>
+
+
+    <Button
+        android:id="@+id/btn_empGarbage_submit"
+        style="@style/MyButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/dim_80_dp"
+        android:layout_marginTop="@dimen/dim_10_dp"
+        android:layout_marginRight="@dimen/dim_80_dp"
+        android:layout_marginBottom="@dimen/dim_10_dp"
+        android:text="@string/submit_txt" />
+</LinearLayout>

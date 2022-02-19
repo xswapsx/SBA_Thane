@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_settings"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dim_20_dp"
+    android:paddingBottom="@dimen/dim_5_dp"
+    android:paddingStart="@dimen/dim_20_dp"
+    android:paddingEnd="@dimen/dim_20_dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:text="@string/show_bifurcation_type"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/dim_17_sp"/>
+
+        <Switch
+            android:id="@+id/switch_bifurcation"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+</LinearLayout>

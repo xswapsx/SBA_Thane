@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/dim_5_dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dim_10_dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lbl_title"
+            style="@style/MyTitle"
+            android:layout_margin="5dp"
+            android:paddingStart="@dimen/dim_10_dp"
+            android:paddingEnd="@dimen/dim_10_dp"
+            android:text="@string/bifurcate_title"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/dim_20_sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorDivider" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <!--<RadioButton
+                android:id="@+id/rb_bifurcate_garbage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/bifurcate_garbage"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp" />-->
+
+
+            <RadioButton
+                android:id="@+id/rb_wetWaste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/wetWaste_rbTitle"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp" />
+
+            <RadioButton
+                android:id="@+id/rb_dryWaste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/dryWaste_rbTitle"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp" />
+
+            <RadioButton
+                android:id="@+id/rb_mixedWaste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/mixedWaste_rbTitle"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp" />
+
+            <RadioButton
+                android:id="@+id/rb_sanitaryWaste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/sanitaryWaste_rbTitle"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp" />
+
+            <RadioButton
+                android:id="@+id/rb_domesticHazardWaste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/domesticHazardWaste_rbTitle"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp" />
+        </RadioGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_20_dp"
+            android:layout_marginBottom="@dimen/dim_20_dp">
+
+            <EditText
+                android:id="@+id/txt_garbage_comments"
+                style="@style/MyEditTextStyleLight"
+                android:gravity="top"
+                android:hint="@string/comments"
+                android:maxLines="10"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_garbage_next"
+            style="@style/MyButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dim_80_dp"
+            android:layout_marginRight="@dimen/dim_80_dp"
+            android:layout_marginBottom="@dimen/dim_10_dp"
+            android:text="@string/next" />
+    </LinearLayout>
+
+</ScrollView>

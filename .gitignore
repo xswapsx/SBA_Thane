@@ -1,0 +1,6 @@
+/.project
+
+# Project exclude paths
+/.gradle/
+/riaylibrary/build/
+/riaylibrary/build/intermediates/javac/debug/classes/

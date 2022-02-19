@@ -1,0 +1,282 @@
+<resources>
+    <string name="app_name">Yavatmal Garbage Collection  </string>
+    <string name="title_activity_dashboard">Yavatmal Garbage Collection Van</string>
+    <string name="title_activity_qrcode_scanner">Scaniffy Code</string>
+    <string name="title_activity_take_photo">Taking Photo</string>
+    <string name="title_activity_profile_page">Profile</string>
+    <string name="title_activity_history_page">Work History</string>
+    <string name="title_activity_broadcast_page">Broadcast</string>
+    <string name="title_activity_dump_yard_weight">Dump Yard Details</string>
+
+
+    //UserType array
+    <string-array name="employeetypes">
+        <item>Select Employee Type</item>
+        <item>Household Collection</item>
+        <item>Street Sweeping</item>
+        <item>Liquid Waste Cleaning</item>
+    </string-array>
+
+
+    //intro string
+    <string name="next" translatable="false">NEXT</string>
+    <string name="skip" translatable="false">SKIP</string>
+    <string name="start" translatable="false">GOT IT</string>
+
+
+    <string name="change_language">Change Language</string>
+    <string name="rate_this_app">Rate This App</string>
+    <string name="share_the_app">Share The App</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="about_appynitty">About Appynitty</string>
+    <string name="login_title">LOGIN</string>
+    <string name="login_txt">Login</string>
+    <string name="user_name_txt">User Name</string>
+    <string name="password_txt">Password</string>
+    <string name="forgot_password_txt">Forgot Password?</string>
+
+    <string name="vehicle_no_txt">Enter Vehicle No.</string>
+    <string name="submit_txt">Submit</string>
+    <string name="dialog_title_txt_vehicle">Ghanta Gadi Types</string>
+
+    <string name="lodin_success">Login Successful!</string>
+    <string name="login_error">Unable to Login. Please try again later!</string>
+    <string name="serverError">Oops! We\'re having technical problems. Please try again later.</string>
+
+    <string name="plz_ent_username">Please enter User Name</string>
+    <string name="plz_ent_pwd">Please enter Password</string>
+    <string name="plz_slct_emp_type">Please Select Employee Type</string>
+    <string name="logout_txt">Logout</string>
+
+    <string name="status_off_duty">Off Duty</string>
+    <string name="status_on_duty">On Duty</string>
+
+    <string name="select_area_hint">Select Area</string>
+    <!--<string name="hp_gp_id_hint">Enter House ID/Garbage Point ID</string>-->
+    <string name="hp_gp_id_hint">Enter House ID/Dump Yard ID</string>
+    <string name="house_number_hint">Enter House Number</string>
+    <string name="gp_id_hint">Enter Garbage Point ID</string>
+    <string name="dy_id_hint">Enter Dump Yard ID</string>
+
+    <string name="take_before_photo">Take Before Photo</string>
+    <string name="take_after_photo">Take After Photo</string>
+    <string name="comments">Comments</string>
+
+    <string name="plz_capture_img">Please capture any one image</string>
+    <string name="garbage_collection_completed">Garbage Collection Completed</string>
+    <string name="garbage_deposit_completed">Garbage Deposition Completed</string>
+    <string name="edit_details_txt">Edit Details</string>
+    <string name="save_txt">Save</string>
+    <string name="cancel_txt">Cancel</string>
+    <string name="done_txt">Done</string>
+    <string name="retry_txt">Retry</string>
+    <string name="grant_permission_txt">Grant Permission</string>
+    <string name="emp_id_full">Emp ID :</string>
+    <string name="emp_id_short">Emp ID</string>
+    <string name="month_txt">Month</string>
+    <string name="point_collection_txt">Point Collection</string>
+    <string name="house_collection_txt">House Collection</string>
+    <string name="dump_yard_txt">Dump Yard Trip</string>
+    <string name="cw_dump_yard_txt">CW Dump Trip</string>
+    <string name="house_id_txt">House ID :</string>
+    <string name="point_id_txt">Point ID :</string>
+    <string name="dump_yard_id_txt">Dump Yard ID :</string>
+    <string name="street_sweep_id_txt">Street Sweep ID :</string>
+    <string name="liquid_waste_id_txt">Liquid Waste ID :</string>
+    <string name="vehicle_number_txt">Vehicle No :</string>
+
+    <string name="select_month_year_warn">Please Select Proper Month / Year</string>
+
+    <string name="vehicle_not_found_error">Vehicle List Not Found</string>
+
+    <string name="something_error">Something went wrong!! Please try again later. </string>
+    <string name="no_data_error">No history Found</string>
+    <string name="no_offline_data_error">No Offline Data Found</string>
+    <string name="no_internet_error">No Internet Connection</string>
+    <string name="noVehicleNo">Please Enter Vehicle Number.</string>
+
+    <string name="be_no_duty">Please Mark Your Attendance First!</string>
+    <string name="off_duty_warning">Please End your Duty First</string>
+
+    <string name="logout_confirmation_title">Logout Confirmation</string>
+    <string name="logout_confirmation_msg">Are you sure, you want to Logout?</string>
+
+    <string name="offduty_confirmation_title">End Duty Confirmation</string>
+    <string name="offduty_confirmation_msg">Are you sure, you want to end your Duty?</string>
+
+    <string name="yes_txt">Yes</string>
+    <string name="no_txt">No</string>
+    <string name="ok_txt">OK</string>
+
+    <string name="update_txt" translatable="false">UPDATE</string>
+    <string name="no_thanks_txt" translatable="false">NO, THANKS</string>
+    <string name="update_title" translatable="false">New Version Available</string>
+    <string name="update_message" translatable="false">Please, update app to new version.</string>
+
+    <string name="hyphen" translatable="false">-</string>
+    <string name="opening_round_bracket" translatable="false">(</string>
+    <string name="closing_round_bracket" translatable="false">)</string>
+
+    <string name="area_validation">Please Select Valid Area.</string>
+    <string name="sending_msg">Sending Messages…</string>
+
+    <string name="try_after_sometime">Please try after sometime!</string>
+    <string name="hp_validation">Please Select Valid House Number</string>
+    <string name="gp_validation">Please Select Valid Garbage Point.</string>
+    <string name="dy_validation">Please Select Valid Dump Yard.</string>
+
+    <string name="hp_area_validation">Please Select Valid Area and House Number.</string>
+    <string name="gp_area_validation">Please Select Valid Area and Garbage Point.</string>
+    <string name="dy_area_validation">Please Select Valid Area and Dump Yard.</string>
+
+    <string name="app_id_title">Swach Bharat Abhiyan</string>
+
+    <string name="vehicle_no_validation" translatable="false">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-/ </string>
+
+    <string name="bifurcate_garbage">Bifurcated Garbage</string>
+    <string name="mixed_garbage">Mixed Garbage</string>
+    <string name="no_garbage">Garbage not Received</string>
+    <string name="bifurcate_title">Bifurcated Types</string>
+    <string name="bifurcate_garbage_hint">(Wet/Dried/Fatal)</string>
+
+    <string name="garbage_error">Please select bifurcation type!</string>
+
+    <string name="qr_error">Invalid Scaniffy Code.</string>
+
+    <string name="warning_uni_code" translatable="false">⚠</string>
+
+    <string name="setting">Setting</string>
+
+    <string name="show_bifurcation_type">Show Bifurcation Type</string>
+
+    <string name="total_weight">Total Weight</string>
+    <string name="total_dry_weight">Total Dry Weight</string>
+    <string name="total_wet_weight">Total Wet Weight</string>
+
+    <string name="unit_kg" translatable="false">Kg</string>
+    <string name="unit_ton" translatable="false">Ton</string>
+
+    <string name="plz_ent_all_fields">Please enter all the above fields</string>
+    <string name="plz_ent_only_number">Please enter only numbers</string>
+
+    <string name="hp_area_validation_emp">Please Enter House Number.</string>
+    <string name="gp_area_validation_emp">Please Enter Garbage Point Id.</string>
+    <string name="dy_area_validation_emp">Please Enter Dump Yard Id.</string>
+
+    <string name="choose_option_txt">Choose Option</string>
+    <string name="add_details_txt">Add Details</string>
+    <string name="skip_txt">Skip</string>
+
+    <string name="name">Name</string>
+    <string name="name_mar">Name Marathi</string>
+    <string name="hint_house_no">House Number</string>
+    <string name="hint_zone">Zone</string>
+    <string name="ward_no">Ward No</string>
+    <string name="hint_area">Area</string>
+    <string name="hint_mobile">Mobile Number</string>
+    <string name="hint_address">Address</string>
+
+    <string name="restrict_two_decimal" translatable="false">%.2f</string>
+
+    <string name="invalid_qr_error">Invalid Scaniffy</string>
+
+    <string name="title_activity_house_registration_form_page">Add House Details</string>
+    <string name="title_activity_point_registration_form_page">Add Garbage Point Details</string>
+    <string name="title_activity_dump_registration_form_page">Add Dump Yard Details</string>
+    <string name="title_activity_emp_add_location_details">Add Details</string>
+
+    <string name="waste_type_txt">Waste Type</string>
+    <string name="waste_category_txt">Waste Category</string>
+    <string name="quantity_txt">Quantity</string>
+
+    <string name="slow_internet">Your Internet is slow!</string>
+    <string name="feature_unavailable_error">This feature is unavailable due to slow internet.</string>
+    <string name="success_message">Uploaded successfully</string>
+    <string name="title_activity_sync_offline">Sync Offline</string>
+    <string name="success_offline_sync">Data Sync is Done Successfully</string>
+    <string name="hint_first_sync">Firstly, Please Sync Offline Data</string>
+    <string name="title_activity_waste_add_details">Add Waste Details</string>
+    <string name="title_activity_waste_history">Waste History</string>
+
+    <string name="select_waste_type">--Select Waste Type--</string>
+    <string name="select_waste_category">--Select Waste Category--</string>
+
+    <string name="plz_select_waste_type">Please Select Waste Type</string>
+    <string name="plz_select_waste_category">Please Select Waste Category</string>
+    <string name="plz_enter_waste_quantity">Please Enter Waste Quantity</string>
+    <string name="add_more_txt">Add More</string>
+    <string name="delete_txt">Delete</string>
+    <string name="click_here_to_add_item">Click Here To Add Item</string>
+    <string name="title_activity_waste_sync_offline">Sync Waste Offline</string>
+
+    <string name="waste_management_added_txt">Waste Details</string>
+    <string name="title_activity_waste_history_details" translatable="false">Waste History Details</string>
+    <string name="waste_details_success" translatable="false">Details Saved Successfully</string>
+
+    <string name="image_add_error">Unable to add image</string>
+    <string name="household_collection">Waste Collection Monitoring Technology</string>
+    <string name="street_sweeping">Street Sweeping Monitoring System</string>
+    <string name="liquid_waste_cleaning">Liquid Waste Cleaning Monitoring System</string>
+    <string name="select_employee_type">Select Employee Type</string>
+    <string name="house_qr_alert">For scanning House QR, kindly login with waste collection id.</string>
+    <string name="gp_qr_alert">For scanning Garbage Point QR, kindly login with waste collection id</string>
+    <string name="dy_qr_alert">For scanning Dump Yard QR, kindly login with waste collection id.</string>
+    <string name="lwc_qr_alert">For scanning Liquid Waste QR, kindly login with liquid waste cleaning id</string>
+    <string name="alert">Alert!</string>
+    <string name="liquid_collection">Liquid Collection</string>
+    <string name="street_collection">Street Collection</string>
+    <string name="ssc_qr_warning">For scanning Street QR, Kindly login with Street Sweeping Id!</string>
+    <string name="lwc_title">Liquid Waste Collection</string>
+    <string name="lw_dy_id_hint">Enter Liquid Waste ID</string>
+    <string name="sw_dy_id_hint">Enter Street ID</string>
+    <string name="liquid_number_hint">Enter Liquid Waste ID</string>
+    <string name="street_number_hint">Enter Street Sweep ID</string>
+    <string name="liquid_collection_radio">Liquid Collection</string>
+    <string name="street_collection_radio">Street Collection</string>
+    <string name="waste_collection_radio">Waste Collection</string>
+    <string name="string_horticulture_waste">Horticulture Waste</string>
+    <string name="string_c_and_d_waste">C And D Waste</string>
+    <!--work history updated-->
+    <string name="string_residential_collection">Residential Collection</string>
+    <string name="string_residential_b_collection">Residential Building Collection</string>
+    <string name="string_residential_slum_collection">Residential Slum Collection</string>
+    <string name="string_commercial_collection">Commercial Collection</string>
+    <string name="string_cad_collection">Construction And Demolition Collection</string>
+    <string name="string_hort_collection">Horticulture Collection</string>
+    <!--work history details updated-->
+    <string name="string_res_id">Resident ID :</string>
+    <string name="string_res_b_id">Resident Building ID :</string>
+    <string name="string_comercial_id">Commercial ID :</string>
+    <string name="string_res_s_id">Resident Slum ID :</string>
+    <string name="string_Hort_id">Horticulture Waste ID :</string>
+    <string name="string_CandD_id">C and D ID :</string>
+    <string name="string_house_id">House ID :</string>
+    <string name="string_point_id">Point ID :</string>
+    <string name="string_dump_yard_id">Dump Yard ID :</string>
+    <string name="string_street_sweep_id">Street Sweep ID :</string>
+    <string name="string_liquid_waste_id">Liquid Waste ID :</string>
+
+    <string name="resident">Resident</string>
+    <string name="residential_building_waste">Residential Building Waste</string>
+    <string name="residential_slum_waste">Residential Slum Waste</string>
+    <string name="commercial_waste">Commercial Waste</string>
+    <string name="wetWaste_rbTitle">Wet Waste</string>
+    <string name="dryWaste_rbTitle">Dry Waste</string>
+    <string name="domesticHazardWaste_rbTitle">Domestic Hazardous Waste</string>
+    <string name="sanitaryWaste_rbTitle">Sanitary Waste</string>
+    <string name="id">"ID: "</string>
+    <string name="mixedWaste_rbTitle">Mixed Waste</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="select_the_level_of_segregation">Select the level of segregation :</string>
+    <string name="_45"><![CDATA[>45%]]></string>
+    <string name="_46_75">46-75%</string>
+    <string name="_76_95">76-95%</string>
+    <string name="_95"><![CDATA[>95%]]></string>
+    <string name="pls_slct_garbageType">Please select the garbage type!</string>
+    <string name="pls_slct_segregationLvl">Please select the level of segregation!</string>
+    <string name="app_notification_description" translatable="false">Please don\'t kill the app from background.</string>
+    <string name="commercial_collection">Commercial Collection</string>
+    <string name="string_ctpt_heading">CTPT Toilet</string>
+
+</resources>

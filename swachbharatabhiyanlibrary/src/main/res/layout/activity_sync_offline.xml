@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SyncOfflineActivity"
+    android:id="@+id/parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_sync_offline" />
+
+    <Button
+        android:id="@+id/btn_sync_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginEnd="@dimen/dim_20_dp"
+        android:layout_marginStart="@dimen/dim_20_dp"
+        android:layout_marginBottom="@dimen/dim_10_dp"
+        android:background="@drawable/rounded_primary_button"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dim_20_sp"
+        android:text="@string/title_activity_sync_offline"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

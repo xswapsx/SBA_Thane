@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="5dp">
+
+    <TextView
+        android:id="@+id/lbl_title"
+        style="@style/MyTitle"
+        android:text="@string/login_title"
+        android:textSize="@dimen/dim_20_sp"
+        android:layout_margin="5dp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/colorPrimary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"/>
+
+    <ListView
+        android:id="@+id/dialog_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:listSelector="@color/colorItemSelected"
+        android:visibility="visible"/>
+
+
+    <LinearLayout
+        android:id="@+id/dialog_input_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/login_margin"
+        android:visibility="gone">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_20_dp"
+            android:layout_marginBottom="@dimen/dim_12_dp">
+
+            <EditText
+                android:id="@+id/txt_vehicle_no"
+                style="@style/MyEditTextStyleLight"
+                android:hint="@string/vehicle_no_txt"
+                android:maxLines="1"
+                android:maxLength="12"
+                android:digits="@string/vehicle_no_validation"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            style="@style/MyButtonStyle"
+            android:layout_width="match_parent"
+            android:id="@+id/btn_submit"
+            android:text="@string/submit_txt"
+            />
+    </LinearLayout>
+
+</LinearLayout>

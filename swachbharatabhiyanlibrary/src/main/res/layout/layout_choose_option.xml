@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_option_txt"
+        android:gravity="center_horizontal"
+        android:layout_margin="@dimen/dim_10_dp"
+        android:textStyle="bold"
+        android:textSize="@dimen/dim_18_sp"
+        android:textColor="@color/black"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/black"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:weightSum="3"
+        android:layout_marginTop="@dimen/dim_10_dp"
+        android:layout_marginBottom="@dimen/dim_10_dp">
+
+        <Button
+            android:id="@+id/btn_add_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_details_txt"
+            android:textColor="@color/colorBlue"
+            android:textSize="@dimen/dim_18_sp"
+            style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
+            android:background="@android:color/transparent"/>
+
+        <Button
+            android:id="@+id/btn_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/skip_txt"
+            android:textColor="@color/colorPinkLight"
+            android:textSize="@dimen/dim_18_sp"
+            style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
+            android:background="@android:color/transparent"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">स्वच्छ भारत अभियान</string>
+    <string name="title_activity_dashboard">स्वच्छ भारत अभियान</string>
+    <string name="title_activity_qrcode_scanner">स्कॅनिफाय कोड</string>
+    <string name="title_activity_take_photo">फोटो घ्या</string>
+    <string name="title_activity_profile_page">प्रोफाइल</string>
+    <string name="title_activity_history_page">कामाचा इतिहास</string>
+    <string name="title_activity_broadcast_page">प्रसारण</string>
+    <string name="title_activity_dump_yard_weight">डंप यार्ड तपशील</string>
+
+    <string name="change_language">भाषा बदला</string>
+    <string name="rate_this_app">अँप रेट करा</string>
+    <string name="share_the_app">अँपचा प्रसार करा</string>
+    <string name="privacy_policy">प्राइवेसी पॉलिसी</string>
+
+
+    <string name="about_appynitty">अँपीनीटी बद्दल</string>
+    <string name="login_title">लॉग इन</string>
+    <string name="login_txt">लॉग इन</string>
+    <string name="user_name_txt">यूजरनेम</string>
+    <string name="password_txt">पासवर्ड</string>
+    <string name="forgot_password_txt">फॉरगेट पासवर्ड?</string>
+    <string name="vehicle_no_txt">वाहन नंबर प्रविष्ट करा</string>
+    <string name="submit_txt">सबमिट</string>
+    <string name="dialog_title_txt_vehicle">घंटा गाडी प्रकार</string>
+    <string name="lodin_success">लॉग इन पूर्ण झाले</string>
+    <string name="login_error">लॉगिन करण्यास अक्षम. कृपया पुन्हा प्रयत्न करा!</string>
+    <string name="serverError">टेकनिकल समस्या येत आहेत. कृपया पुन्हा प्रयत्न करा.</string>
+    <string name="plz_ent_username">कृपया यूजरनेम एंटर करा</string>
+    <string name="plz_ent_pwd">कृपया पासवर्ड एंटर करा</string>
+    <string name="logout_txt">लॉगआउट</string>
+    <string name="status_off_duty">ऑफ ड्यूटी</string>
+    <string name="status_on_duty">"ऑन ड्यूटी "</string>
+
+    <string name="select_area_hint">क्षेत्र निवडा</string>
+    <!-- <string name="hp_gp_id_hint">घर आयडी/कचरा पॉइंट आयडी प्रविष्ट करा</string>-->
+    <string name="hp_gp_id_hint">घर आयडी/डंप यार्ड आयडी प्रविष्ट करा</string>
+    <string name="house_number_hint">घर क्रमांक प्रविष्ट करा</string>
+    <string name="gp_id_hint">कचरा पॉइंट आयडी प्रविष्ट करा</string>
+    <string name="dy_id_hint">डंप यार्ड आयडी प्रविष्ट करा</string>
+
+    <string name="take_before_photo">पूर्वीची फोटो</string>
+    <string name="take_after_photo">नंतरची फोटो</string>
+    <string name="comments">टिप्पण्या</string>
+    <string name="plz_capture_img">कृपया कोणताही एक फोटो कॅप्चर करा</string>
+    <string name="garbage_collection_completed">कचरा संकलन पूर्ण झाले</string>
+    <string name="garbage_deposit_completed">कचरा जमा प्रक्रिया पूर्ण झाले</string>
+    <string name="edit_details_txt">तपशील संपादित करा</string>
+    <string name="save_txt">सेव करा</string>
+    <string name="cancel_txt">रद्द करा</string>
+    <string name="done_txt">पूर्ण झाले</string>
+    <string name="retry_txt">पुन्हा प्रयत्न करा</string>
+    <string name="grant_permission_txt">परवानगी देया</string>
+    <string name="emp_id_full">कर्मचारी आयडी :</string>
+    <string name="emp_id_short">कर्मचारी आयडी</string>
+    <string name="month_txt">महिना</string>
+    <string name="house_collection_txt">घर संकलन</string>
+    <string name="point_collection_txt">पॉइंट संकलन</string>
+    <string name="dump_yard_txt">डंप यार्ड ट्रीप</string>
+
+    <string name="house_id_txt">घर आयडी :</string>
+    <string name="point_id_txt">पॉइंट आयडी :</string>
+    <string name="dump_yard_id_txt">डंप यार्ड आयडी :</string>
+
+    <string name="vehicle_number_txt">वाहन नंबर :</string>
+    <string name="select_month_year_warn">कृपया योग्य महिना / वर्ष निवडा</string>
+
+    <string name="vehicle_not_found_error">वाहनांची यादी आढळली नाही</string>
+
+    <string name="something_error">काहीतरी चूक झाली!! कृपया पुन्हा प्रयत्न करा.</string>
+    <string name="no_data_error">कोणताही इतिहास आढळला नाही</string>
+    <string name="no_offline_data_error">कोणताही ऑफलाइन डेटा आढळला नाही</string>
+    <string name="no_internet_error">इंटरनेट कनेक्शन नाही</string>
+    <string name="noVehicleNo">कृपया वाहन नंबर प्रविष्ट करा.</string>
+
+    <string name="be_no_duty">प्रथम आपली उपस्थिति लावा!</string>
+    <string name="off_duty_warning">प्रथम आपल्या ड्यूटी समाप्त करा</string>
+
+    <string name="logout_confirmation_title">लॉगआउट पुष्टीकरण</string>
+    <string name="logout_confirmation_msg">आपणास खात्री आहे की आपण लॉगआउट करू इच्छिता?</string>
+
+    <string name="offduty_confirmation_title">एन्ड ड्यूटी पुष्टीकरण</string>
+    <string name="offduty_confirmation_msg">आपण आपले ड्यूटी एन्ड करू इच्छिता?</string>
+
+    <string name="yes_txt">हो</string>
+    <string name="no_txt">नाही</string>
+    <string name="ok_txt">ठीक आहे</string>
+
+    <string name="area_validation">कृपया वैध क्षेत्र निवडा.</string>
+    <string name="sending_msg">संदेश पाठवित आहे …</string>
+
+    <string name="try_after_sometime">कृपया काही वेळानंतर प्रयत्न करा!</string>
+    <string name="hp_validation">कृपया वैध घर क्रमांक निवडा</string>
+    <string name="gp_validation">कृपया वैध कचरा पॉइंट निवडा</string>
+    <string name="dy_validation">कृपया वैध डंप यार्ड निवडा</string>
+
+    <string name="hp_area_validation">कृपया वैध क्षेत्र आणि घर क्रमांक निवडा.</string>
+    <string name="gp_area_validation">कृपया वैध क्षेत्र आणि कचरा पॉइंट निवडा.</string>
+    <string name="dy_area_validation">कृपया वैध क्षेत्र आणि डंप यार्ड निवडा.</string>
+
+    <string name="app_id_title">स्वच्छ भारत अभियान</string>
+
+    <string name="bifurcate_garbage">वर्गीकृत कचरा</string>
+    <string name="mixed_garbage">मिश्र कचरा</string>
+    <string name="no_garbage">कचरा मिळाला नाही</string>
+    <string name="bifurcate_title">वर्गीकरणाचे प्रकार</string>
+    <string name="bifurcate_garbage_hint">(ओला/सुका/घातक)</string>
+
+    <string name="garbage_error">वर्गीकरणाचे प्रकार निवडा</string>
+
+    <string name="qr_error">अवैध स्कॅनिफाय कोड.</string>
+
+    <string name="setting">सेटिंग</string>
+    <string name="show_bifurcation_type">वर्गीकरणाचे प्रकार</string>
+
+    <string name="total_weight">एकुण वजन</string>
+    <string name="total_dry_weight">एकूण वजन सुका कचरा</string>
+    <string name="total_wet_weight">एकूण वजन ओला कचरा</string>
+
+    <string name="plz_ent_all_fields">कृपया वरील सर्व फील्ड प्रविष्ट करा</string>
+    <string name="plz_ent_only_number">कृपया फक्त संख्या प्रविष्ट करा</string>
+
+    <string name="hp_area_validation_emp">कृपया घर क्रमांक निवडा.</string>
+    <string name="gp_area_validation_emp">कृपया कचरा पॉइंट निवडा.</string>
+    <string name="dy_area_validation_emp">कृपया डंप यार्ड निवडा.</string>
+
+    <string name="choose_option_txt">पर्याय निवडा</string>
+    <string name="add_details_txt">तपशील सादर करा</string>
+    <string name="skip_txt">स्किप</string>
+
+    <string name="name">नाव</string>
+    <string name="name_mar">नाव मराठी</string>
+    <string name="hint_house_no">घर क्रमांक</string>
+    <string name="hint_zone">झोन</string>
+    <string name="ward_no">वार्ड क्रमांक</string>
+    <string name="hint_area">क्षेत्र</string>
+    <string name="hint_mobile">मोबाइल नंबर</string>
+    <string name="hint_address">पत्ता</string>
+
+    <string name="invalid_qr_error">अवैध स्कॅनिफाय</string>
+
+    <string name="title_activity_house_registration_form_page">घर तपशील सादर करा</string>
+    <string name="title_activity_point_registration_form_page">कचरा पॉईंट तपशील सादर करा</string>
+    <string name="title_activity_dump_registration_form_page">डंप यार्ड तपशील सादर करा</string>
+    <string name="title_activity_emp_add_location_details">तपशील सादर करा</string>
+
+    <string name="slow_internet">आपले इंटरनेट हळुवारपणे चालत आहे!</string>
+    <string name="feature_unavailable_error">आपले हळुवार इंटरनेटमुळे ही सेवा अनुपलब्ध आहे.</string>
+    <string name="success_message">यशस्वीरित्या अपलोड केले</string>
+
+    <string name="title_activity_sync_offline">ऑफलाइन समक्रमित करा</string>
+    <string name="success_offline_sync">डेटा समक्रमण यशस्वी झाले</string>
+    <string name="hint_first_sync">प्रथम, कृपया ऑफलाइन डेटा संकालित करा</string>
+    <string name="image_add_error">प्रतिमा जोडण्यात अक्षम</string>
+
+    <string name="title_activity_waste_add_details">कचर्‍याचा तपशील जोडा</string>
+    <string name="title_activity_waste_history">कचरा तपशील इतिहास</string>
+    <string name="title_activity_waste_sync_offline">ऑफलाइन कचरा समक्रमित करा</string>
+
+    <string name="waste_type_txt">कचरेचा प्रकार</string>
+    <string name="waste_category_txt">कचरेची श्रेणी</string>
+    <string name="quantity_txt">कचरेचा प्रमाण</string>
+
+    <string name="select_waste_type">--कचरेचा प्रकार निवडा--</string>
+    <string name="select_waste_category">--कचरेची श्रेणी निवडा--</string>
+
+    <string name="plz_select_waste_type">कृपया कचरेचा प्रकार निवडा</string>
+    <string name="plz_select_waste_category">कृपया कचरेची श्रेणी निवडा</string>
+    <string name="plz_enter_waste_quantity">कृपया कचरेचा प्रमाण प्रविष्ट करा</string>
+    <string name="add_more_txt">अधिक जोडा</string>
+    <string name="delete_txt">हटवा</string>
+    <string name="click_here_to_add_item">आयटम जोडण्यासाठी येथे क्लिक करा</string>
+
+    <string name="waste_management_added_txt">कचरा तपशील</string>
+    <string name="household_collection">"वेस्ट कलेक्शन मॉनिटरिंग टेक्नोलॉजी "</string>
+    <string name="street_sweeping">स्ट्रीट स्वीपिंग मॉनिटरिंग सिस्टम</string>
+    <string name="liquid_waste_cleaning">लिक्विड वेस्ट क्लीनिंग मॉनिटरिंग सिस्टम</string>
+    <string name="select_employee_type">कर्मचारी प्रकार निवडा</string>
+    <string name="house_qr_alert">हाऊस QR स्कॅन करण्यासाठी कृपया waste collection आयडी ने लॉगिन करा.</string>
+    <string name="gp_qr_alert">गार्बेज पॉईंट QR स्कॅन करण्यासाठी कृपया Waste Collection आयडी ने लॉग इन करा.</string>
+    <string name="dy_qr_alert">डंप यार्ड क्यूआर स्कॅन करण्यासाठी, कृपया Waste Collection आयडी ने  लॉग इन करा.</string>
+    <string name="lwc_qr_alert">लिक्विड वेस्ट क्यूआर स्कॅन करण्यासाठी, कृपया लिक्विड वेस्ट क्लीनिंग आयडी ने  लॉग इन करा.</string>
+    <string name="alert">अलर्ट !</string>
+    <string name="liquid_collection">लिक्विड कलेक्शन</string>
+    <string name="street_collection">"स्ट्रीट स्विपिंग कलेक्शन "</string>
+    <string name="street_sweep_id_txt">स्ट्रीट स्वीप आयडी:</string>
+    <string name="liquid_waste_id_txt">लिक्विड वेस्ट आयडी:</string>
+    <string name="plz_slct_emp_type">कृपया कर्मचारी प्रकार निवडा</string>
+    <string name="ssc_qr_warning">स्ट्रीट क्यूआर स्कॅन करण्यासाठी, कृपया स्ट्रीट स्वीपिंग आयडी ने लॉग इन करा!</string>
+    <string name="lwc_title">लिक्विड वेस्ट कलेक्शन</string>
+    <string name="lw_dy_id_hint">लिक्विड वेस्ट आयडी प्रविष्ट करा</string>
+    <string name="sw_dy_id_hint">स्ट्रीट आयडी प्रविष्ट करा</string>
+    <string name="liquid_number_hint">लिक्विड वेस्ट आयडी प्रविष्ट करा</string>
+    <string name="street_number_hint">स्ट्रीट स्वीप आयडी प्रविष्ट करा</string>
+    <string name="liquid_collection_radio">लिक्विड कलेक्शन</string>
+    <string name="street_collection_radio">स्ट्रीट कलेक्शन</string>
+    <string name="waste_collection_radio">"वेस्ट कलेक्शन "</string>
+    <string name="string_horticulture_waste">बागायती कचरा</string>
+    <string name="string_c_and_d_waste">बांधकाम आणि विध्वंस कचरा</string>
+    <!--work history updated-->
+    <string name="string_residential_collection">निवासी संकलन</string>
+    <string name="string_residential_b_collection">निवासी इमारत संकलन</string>
+    <string name="string_residential_slum_collection">निवासी झोपडपट्टी संकलन</string>
+    <string name="string_commercial_collection">व्यावसायिक संकलन</string>
+    <string name="string_cad_collection">बांधकाम आणि विध्वंस संकलन</string>
+    <string name="string_hort_collection">फलोत्पादन संकलन</string>
+    <!--work history details updated-->
+    <string name="string_res_id">रहिवासी ओळखपत्र :</string>
+    <string name="string_res_b_id">निवासी इमारत ओळखपत्र :</string>
+    <string name="string_comercial_id">व्यावसायिक ओळखपत्र :</string>
+    <string name="string_res_s_id">रहिवासी झोपडपट्टी ओळखपत्र :</string>
+
+    <string name="dryWaste_rbTitle">सुका कचरा</string>
+    <string name="sanitaryWaste_rbTitle">सॅनिटरी वेस्ट</string>
+    <string name="wetWaste_rbTitle">ओला कचरा</string>
+    <string name="domesticHazardWaste_rbTitle">घरगुती घातक कचरा</string>
+    <string name="commercial_waste">व्यावसायिक कचरा</string>
+    <string name="residential_building_waste">निवासी इमारतीचा कचरा</string>
+    <string name="resident">रहिवासी</string>
+    <string name="residential_slum_waste">निवासी झोपडपट्टी कचरा</string>
+    <string name="id">"आयडी: "</string>
+    <string name="mixedWaste_rbTitle">मिश्र कचरा</string>
+    <string name="select_the_level_of_segregation">"वेगळे करण्याची पातळी निवडा "</string>
+
+    <string name="_45">>४५%</string>
+
+    <string name="_46_75">४६-७५%</string>
+
+    <string name="_76_95">७६-९५%</string>
+
+    <string name="_95">>९५%</string>
+    <string name="pls_slct_garbageType">कृपया कचरा प्रकार निवडा!</string>
+    <string name="pls_slct_segregationLvl">"वेगळे करण्याची पातळी निवडा "</string>
+    <string name="commercial_collection">व्यावसायिक कचरा कलेक्शन</string>
+
+
+</resources>

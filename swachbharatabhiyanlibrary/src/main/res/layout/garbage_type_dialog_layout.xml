@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <TextView
+        android:id="@+id/lbl_title"
+        style="@style/MyTitle"
+        android:text="@string/bifurcate_title"
+        android:textSize="@dimen/dim_20_sp"
+        android:layout_margin="5dp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/colorPrimary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rb_bifurcate_garbage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bifurcate_garbage"
+            android:checked="false"
+            android:textColor="@color/colorGrayList"
+            android:textSize="@dimen/dim_14_sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bifurcate_garbage_hint"
+            android:textSize="@dimen/dim_12_sp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginBottom="@dimen/dim_10_dp"
+            android:gravity="start|top|left"/>
+
+        <RadioButton
+            android:id="@+id/rb_mixed_garbage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mixed_garbage"
+            android:checked="false"
+            android:textColor="@color/colorGrayList"
+            android:textSize="@dimen/dim_14_sp"
+            android:layout_marginBottom="@dimen/dim_10_dp"/>
+
+        <RadioButton
+            android:id="@+id/rb_no_garbage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_garbage"
+            android:checked="false"
+            android:textColor="@color/colorGrayList"
+            android:textSize="@dimen/dim_14_sp"/>
+    </RadioGroup>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_20_dp"
+        android:layout_marginBottom="@dimen/dim_20_dp">
+
+        <EditText
+            android:id="@+id/txt_garbage_comments"
+            style="@style/MyEditTextStyleLight"
+            android:hint="@string/comments"
+            android:maxLines="10"
+            android:gravity="top"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        style="@style/MyButtonStyle"
+        android:layout_width="match_parent"
+        android:id="@+id/btn_garbage_submit"
+        android:text="@string/submit_txt"
+        android:layout_marginRight="@dimen/dim_80_dp"
+        android:layout_marginLeft="@dimen/dim_80_dp"
+        android:layout_marginBottom="@dimen/dim_10_dp"/>
+</LinearLayout>

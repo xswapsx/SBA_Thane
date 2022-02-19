@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/dim_10_dp">
+
+    <Spinner
+        android:id="@+id/spinner_waste_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textAlignment="gravity"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_marginBottom="@dimen/dim_5_dp"/>
+
+    <Spinner
+        android:id="@+id/spinner_waste_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textAlignment="gravity"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_marginBottom="@dimen/dim_15_dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginBottom="@dimen/dim_20_dp">
+
+        <EditText
+            android:id="@+id/edit_text_waste_quantity"
+            android:layout_weight="1.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="@string/quantity_txt"/>
+
+        <RadioGroup
+            android:id="@+id/radio_group_units"
+            android:layout_weight="0.5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:checkedButton="@id/radio_dry_kg"
+            android:layout_marginTop="@dimen/dim_10_dp"
+            android:layout_marginStart="@dimen/dim_10_dp"
+            android:layout_marginEnd="@dimen/dim_5_dp">
+
+            <RadioButton
+                android:id="@+id/radio_button_kg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/radio_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="@dimen/dim_2_dp"
+                android:text="@string/unit_kg"
+                android:textColor="@color/radio_text_color_selector"
+                android:textSize="@dimen/dim_18_sp"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/radio_button_ton"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_height="@dimen/dim_30_dp"
+                android:layout_weight="1"
+                android:textColor="@color/radio_text_color_selector"
+                android:padding="@dimen/dim_2_dp"
+                android:text="@string/unit_ton"
+                android:button="@null"
+                android:background="@drawable/radio_selector"
+                android:textSize="@dimen/dim_18_sp"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:paddingBottom="@dimen/dim_5_dp">
+
+        <Button
+            android:id="@+id/button_done"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dim_20_dp"
+            android:layout_marginEnd="@dimen/dim_10_dp"
+            android:background="@drawable/rounded_primary_button"
+            android:textColor="@android:color/white"
+            android:text="@string/done_txt"/>
+
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dim_20_dp"
+            android:layout_marginStart="@dimen/dim_10_dp"
+            android:background="@drawable/rounded_pink_button"
+            android:textColor="@android:color/white"
+            android:text="@string/cancel_txt"/>
+
+    </LinearLayout>
+
+</LinearLayout>

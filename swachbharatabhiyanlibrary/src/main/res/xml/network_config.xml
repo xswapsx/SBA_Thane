@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">sbaappynitty.co.in</domain>
+        <domain includeSubdomains="true">192.168.200.3</domain>
+        <domain includeSubdomains="true">115.115.153.117</domain>
+        <domain includeSubdomains="true">ghantagadi.in</domain>
+        <domain includeSubdomains="true">202.65.157.253</domain>
+        <domain includeSubdomains="true">202.65.157.254</domain>
+        <domain includeSubdomains="true">192.168.200.100</domain>
+    </domain-config>
+
+    <!--New advanced ULB    http://202.65.157.253-->
+</network-security-config>

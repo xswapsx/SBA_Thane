@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.EmpQRcodeScannerActivity"
+    android:id="@+id/parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:paddingTop="@dimen/dim_6_dp"
+            android:paddingBottom="@dimen/dim_20_dp"
+            android:paddingStart="@dimen/dim_6_dp"
+            android:paddingEnd="@dimen/dim_6_dp"
+            android:orientation="vertical"
+            android:focusableInTouchMode="true">
+
+            <RadioGroup
+                android:id="@+id/collection_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:visibility="gone">
+
+                <RadioButton
+                    android:id="@+id/house_collection_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:text="@string/house_collection_txt"
+                    android:layout_margin="@dimen/dim_6_dp"
+                    android:textColor="@color/white"
+                    android:checked="true"
+                    android:buttonTint="@color/white"/>
+
+                <!--<RadioButton
+                    android:id="@+id/point_collection_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/point_collection_txt"
+                    android:layout_margin="@dimen/dim_6_dp"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"/>-->
+
+                <RadioButton
+                    android:id="@+id/dump_yard_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:text="@string/dump_yard_txt"
+                    android:layout_margin="@dimen/dim_6_dp"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"/>
+
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_area_layout"
+                android:hint="@string/select_area_hint"
+                android:theme="@style/TextLabel2"
+                android:layout_marginBottom="@dimen/dim_12_dp"
+                android:layout_marginTop="0dp"
+                android:backgroundTint="@color/white">
+
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:id="@+id/txt_area_auto"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="@dimen/dim_6_dp"
+                    android:layout_marginEnd="@dimen/dim_6_dp"
+                    android:textSize="@dimen/dim_18_sp"
+                    android:maxLines="1"
+                    android:backgroundTint="@color/white"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hp_gp_id_hint"
+                android:theme="@style/TextLabel2"
+                android:id="@+id/txt_id_layout"
+                android:backgroundTint="@color/white">
+
+                <AutoCompleteTextView
+                    android:id="@+id/txt_id_auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_6_dp"
+                    android:layout_marginEnd="@dimen/dim_6_dp"
+                    android:textSize="@dimen/dim_18_sp"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="@string/submit_txt"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dim_20_sp"
+        android:layout_margin="@dimen/dim_12_dp"
+        android:background="@drawable/rounded_primary_button"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/grant_permission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="@dimen/dim_80_dp"
+        android:textAllCaps="false"
+        android:text="@string/grant_permission_txt"
+        android:textColor="@color/colorDivider"
+        android:textSize="@dimen/dim_20_sp"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/ic_photo_camera_light_gray_50dp"
+        android:elevation="@dimen/dim_12_dp"
+        android:visibility="gone"/>
+
+    <include
+        android:id="@+id/scanner_view"
+        layout="@layout/emp_content_qrcode_scanner"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

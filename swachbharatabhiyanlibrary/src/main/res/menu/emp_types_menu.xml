@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<item
+        android:id="@+id/item_select_emp"
+        android:title="@string/select_employee_type" />-->
+
+    <item
+        android:id="@+id/item_hc"
+        android:title="@string/household_collection" />
+
+    <item
+        android:id="@+id/item_ss"
+        android:title="@string/street_sweeping" />
+
+    <item
+        android:id="@+id/item_lwc"
+        android:title="@string/liquid_waste_cleaning" />
+
+</menu>

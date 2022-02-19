@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.EmpDashboardActivity"
+    android:id="@+id/parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/emp_content_dashboard" />
+
+    <io.github.kobakei.materialfabspeeddial.FabSpeedDial
+        android:id="@+id/fab_setting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:fab_extraMargin="-15dp"
+        app:fab_menu="@menu/emp_menu"
+        app:fab_miniFabTextColor="@color/colorAccent"
+        app:fab_miniFabTextBackground="@drawable/rounded_white_button"
+        app:fab_fabDrawable="@drawable/ic_repairing_service"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">My Library</string>
+
+    <string name="app_share_text" translatable="false">Share the App:</string>
+    <string name="noData" translatable="false">No data found.</string>
+    <string name="warning_uni_code">⚠</string>
+    <string name="no_internet_error">No Internet Connection</string>
+
+    <string name="logout_confirmation_title">Logout Confirmation</string>
+    <string name="logout_confirmation_msg">Are you sure, you want to Logout?</string>
+
+    <string name="offduty_confirmation_title">End Duty Confirmation</string>
+    <string name="offduty_confirmation_msg">Are you sure, you want to end your Duty?</string>
+
+    <string name="yes_txt">Yes</string>
+    <string name="no_txt">No</string>
+    <string name="ok_txt">OK</string>
+
+    <string name="update_txt" translatable="false">UPDATE</string>
+    <string name="no_thanks_txt" translatable="false">NO, THANKS</string>
+    <string name="update_title" translatable="false">New Version Available</string>
+    <string name="update_message" translatable="false">Please, update app to new version.</string>
+    <string name="currentDir" translatable="false">Current Dir</string>
+    <string name="fileSize" translatable="false">File Size</string>
+</resources>
