@@ -167,9 +167,6 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         initComponents();
         statusCheck();
         onSwitchStatus(AUtils.isIsOnduty());
-        Log.e("","");
-
-
     }
 
     @Override
