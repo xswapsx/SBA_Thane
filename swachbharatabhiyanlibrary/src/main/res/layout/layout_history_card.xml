@@ -95,7 +95,7 @@
                             android:layout_below="@id/res_normal_collection_lbl"
                             android:gravity="left"
                             android:text="@string/hyphen"
-                            android:textColor="@color/colorPinkLight"
+                            android:textColor="@color/black_alpha_170"
                             android:textSize="@dimen/dim_17_sp"
                             android:textStyle="bold" />
 
@@ -125,7 +125,7 @@
                             android:layout_below="@id/res_b_collection_lbl"
                             android:gravity="left"
                             android:text="@string/hyphen"
-                            android:textColor="@color/colorPinkLight"
+                            android:textColor="@color/black_alpha_170"
                             android:textSize="@dimen/dim_17_sp"
                             android:textStyle="bold" />
 
@@ -163,7 +163,7 @@
                             android:layout_below="@id/res_s_collection_lbl"
                             android:gravity="left"
                             android:text="@string/hyphen"
-                            android:textColor="@color/colorPinkLight"
+                            android:textColor="@color/black_alpha_170"
                             android:textSize="@dimen/dim_17_sp"
                             android:textStyle="bold" />
 
@@ -193,7 +193,7 @@
                             android:layout_below="@id/commer_collection_lbl"
                             android:gravity="left"
                             android:text="@string/hyphen"
-                            android:textColor="@color/colorPinkLight"
+                            android:textColor="@color/black_alpha_170"
                             android:textSize="@dimen/dim_17_sp"
                             android:textStyle="bold" />
 
@@ -233,7 +233,7 @@
                             android:layout_below="@id/cad_collection_lbl"
                             android:gravity="left"
                             android:text="@string/hyphen"
-                            android:textColor="@color/colorPinkLight"
+                            android:textColor="@color/black_alpha_170"
                             android:textSize="@dimen/dim_17_sp"
                             android:textStyle="bold" />
 
@@ -263,7 +263,7 @@
                             android:layout_below="@id/hort_collection_lbl"
                             android:gravity="left"
                             android:text="@string/hyphen"
-                            android:textColor="@color/colorPinkLight"
+                            android:textColor="@color/black_alpha_170"
                             android:textSize="@dimen/dim_17_sp"
                             android:textStyle="bold" />
 
@@ -301,7 +301,7 @@
                             android:layout_below="@id/lwc_collection_lbl"
                             android:gravity="left"
                             android:text="@string/hyphen"
-                            android:textColor="@color/colorGreenLight"
+                            android:textColor="@color/black_alpha_170"
                             android:textSize="@dimen/dim_17_sp"
                             android:textStyle="bold" />
 
@@ -331,7 +331,7 @@
                             android:layout_below="@id/ss_collection_lbl"
                             android:gravity="left"
                             android:text="@string/hyphen"
-                            android:textColor="@color/colorPinkLight"
+                            android:textColor="@color/black_alpha_170"
                             android:textSize="@dimen/dim_17_sp"
                             android:textStyle="bold" />
 
@@ -368,7 +368,7 @@
                             android:layout_below="@id/dy_collection_lbl"
                             android:gravity="left"
                             android:text="@string/hyphen"
-                            android:textColor="@color/colorOrange"
+                            android:textColor="@color/black_alpha_170"
                             android:textSize="@dimen/dim_17_sp"
                             android:textStyle="bold" />
 
@@ -399,7 +399,7 @@
                             android:layout_marginBottom="@dimen/dim_6_dp"
                             android:gravity="left"
                             android:text="@string/hyphen"
-                            android:textColor="@color/colorBlue"
+                            android:textColor="@color/black_alpha_170"
                             android:textSize="@dimen/dim_17_sp"
                             android:textStyle="bold" />
 

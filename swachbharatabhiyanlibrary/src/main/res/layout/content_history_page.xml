@@ -35,7 +35,8 @@
             android:layout_weight="0.5"
             android:gravity="center_vertical"
             android:textAlignment="gravity"
-            android:layout_height="wrap_content"
+            android:textSize="26sp"
+            android:layout_height="@dimen/dim_50_dp"
             android:popupBackground="@color/colorPrimary"
             android:backgroundTint="@color/white"/>
 
@@ -44,7 +45,8 @@
             android:layout_width="0dp"
             android:layout_weight="0.4"
             android:gravity="center_vertical"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dim_50_dp"
+            android:textSize="26sp"
             android:popupBackground="@color/colorPrimary"
             android:backgroundTint="@color/white"/>
 
