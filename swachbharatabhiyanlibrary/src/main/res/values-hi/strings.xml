@@ -184,6 +184,13 @@
     <string name="string_res_b_id">निवासी भवन पहचान :</string>
     <string name="string_comercial_id">वाणिज्यिक पहचान :</string>
     <string name="string_res_s_id">निवासी स्लम पहचान :</string>
+    <string name="string_Hort_id">बागवानी अपशिष्ट पहचान :</string>
+    <string name="string_CandD_id">निर्माण और विध्वंस पहचान :</string>
+    <string name="string_house_id">घर पहचान :</string>
+    <string name="string_point_id">प्वाइंट पहचान :</string>
+    <string name="string_dump_yard_id">डंप यार्ड पहचान :</string>
+    <string name="string_street_sweep_id">्ट्रीट स्वीप पहचान :</string>
+    <string name="string_liquid_waste_id">लिक्विड वेस्ट पहचान :</string>
 
     <string name="dryWaste_rbTitle">सूखा कचरा</string>
     <string name="sanitaryWaste_rbTitle">सॅनिटरी वेस्ट</string>

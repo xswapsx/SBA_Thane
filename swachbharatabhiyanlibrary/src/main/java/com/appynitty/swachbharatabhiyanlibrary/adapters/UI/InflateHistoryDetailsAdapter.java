@@ -26,6 +26,7 @@ public class InflateHistoryDetailsAdapter extends ArrayAdapter<WorkHistoryDetail
     private View view;
     private ViewHolder holder;
 
+
     public InflateHistoryDetailsAdapter(@NonNull Context context, @NonNull List<WorkHistoryDetailPojo> objects) {
         super(context, android.R.layout.simple_list_item_1, objects);
         this.context = context;
@@ -78,7 +79,7 @@ public class InflateHistoryDetailsAdapter extends ArrayAdapter<WorkHistoryDetail
                 holder.area.setText(workHistoryDetailPojo.getAreaName());
                 holder.name.setText(workHistoryDetailPojo.getName());
             } else if (workHistoryDetailPojo.getType().equals("1")) {
-                holder.time.setBackgroundResource(R.drawable.rounded_blue_button);
+                holder.time.setBackgroundResource(R.drawable.rounded_brown_button);
                 holder.time.setPadding(0, 0, 0, 0);
                 holder.id.setText(String.format("%s %s", context.getResources().getString(R.string.string_house_id), workHistoryDetailPojo.getRefid()));
                 holder.time.setText(workHistoryDetailPojo.getTime());
@@ -115,6 +116,14 @@ public class InflateHistoryDetailsAdapter extends ArrayAdapter<WorkHistoryDetail
                 holder.time.setBackgroundResource(R.drawable.rounded_green_button);
                 holder.time.setPadding(0, 0, 0, 0);
                 holder.id.setText(String.format("%s %s", context.getResources().getString(R.string.string_Hort_id), workHistoryDetailPojo.getRefid()));
+                holder.time.setText(workHistoryDetailPojo.getTime());
+                holder.vehicleNo.setText(String.format("%s %s", context.getResources().getString(R.string.vehicle_number_txt), workHistoryDetailPojo.getVehicleNumber()));
+                holder.area.setText(workHistoryDetailPojo.getAreaName());
+                holder.name.setText(workHistoryDetailPojo.getName());
+            }else if (workHistoryDetailPojo.getType().equals("9")) {
+                holder.time.setBackgroundResource(R.drawable.rounded_red_button);
+                holder.time.setPadding(0, 0, 0, 0);
+                holder.id.setText(String.format("%s %s", context.getResources().getString(R.string.string_comercial_id), workHistoryDetailPojo.getRefid()));
                 holder.time.setText(workHistoryDetailPojo.getTime());
                 holder.vehicleNo.setText(String.format("%s %s", context.getResources().getString(R.string.vehicle_number_txt), workHistoryDetailPojo.getVehicleNumber()));
                 holder.area.setText(workHistoryDetailPojo.getAreaName());

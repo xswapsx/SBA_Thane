@@ -210,6 +210,13 @@
     <string name="string_res_b_id">निवासी इमारत ओळखपत्र :</string>
     <string name="string_comercial_id">व्यावसायिक ओळखपत्र :</string>
     <string name="string_res_s_id">रहिवासी झोपडपट्टी ओळखपत्र :</string>
+    <string name="string_Hort_id">बागायती कचरा ओळखपत्र :</string>
+    <string name="string_CandD_id">बांधकाम आणि विध्वंस ओळखपत्र :</string>
+    <string name="string_house_id">घर ओळखपत्र :</string>
+    <string name="string_point_id">प्वाइंट ओळखपत्र :</string>
+    <string name="string_dump_yard_id">डंप यार्ड ओळखपत्र :</string>
+    <string name="string_street_sweep_id">स्ट्रीट स्वीप ओळखपत्र :</string>
+    <string name="string_liquid_waste_id">लिक्विड वेस्ट ओळखपत्र :</string>
 
     <string name="dryWaste_rbTitle">सुका कचरा</string>
     <string name="sanitaryWaste_rbTitle">सॅनिटरी वेस्ट</string>
