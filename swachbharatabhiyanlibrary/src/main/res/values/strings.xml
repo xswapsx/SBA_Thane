@@ -279,8 +279,8 @@
     <string name="commercial_collection">Commercial Collection</string>
     <!--CTPT activity-->
     <string name="string_ctpt_heading">CTPT Toilet</string>
-    <string name="str_toilet_seats_count_heading">Toilet Seats Count</string>
-    <string name="str_hint_toilet_seats_count">Please enter seats count</string>
+    <string name="str_toilet_seats_count_heading">Cleaned Toilet Seats Count</string>
+    <string name="str_hint_toilet_seats_count">Please enter cleaned toilet seats count</string>
     <string name="str_title_type_of_toilet">Type Of Toilet</string>
     <string name="str_rd_btn_community_toilet">Community Toilet</string>
     <string name="str_rd_btn_public_toilet">Public Toilet</string>
@@ -301,5 +301,6 @@
     <string name="str_user_validate">The Username should contain at least four characters</string>
     <string name="str_pwd_validate">The Password should contain at least four characters</string>
     <string name="commercial_id_hint">Enter Commercial Point ID</string>
+    <string name="str_date_time_on_photo">Date Time</string>
 
 </resources>

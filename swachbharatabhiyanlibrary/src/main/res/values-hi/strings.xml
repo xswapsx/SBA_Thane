@@ -214,8 +214,8 @@
     <string name="commercial_collection">वाणिज्यिक अपशिष्ट कलेक्शन</string>
     <!--CTPT activity-->
     <string name="string_ctpt_heading">सीटीपीटी शौचालय</string>
-    <string name="str_toilet_seats_count_heading">शौचालय सीटें गिनती</string>
-    <string name="str_hint_toilet_seats_count">कृपया सीटों की संख्या दर्ज करें</string>
+    <string name="str_toilet_seats_count_heading">साफ शौचालय सीटें गिनती</string>
+    <string name="str_hint_toilet_seats_count">कृपया साफ शौचालय सीटों की गिनती दर्ज करें</string>
     <string name="str_title_type_of_toilet">शौचालय का प्रकार</string>
     <string name="str_rd_btn_community_toilet">सामुदायिक शौचालय</string>
     <string name="str_rd_btn_public_toilet">सार्वजनिक शौचालय</string>
@@ -236,4 +236,5 @@
     <string name="str_user_validate">उपयोगकर्ता नाम में कम से कम चार अक्षर होने चाहिए</string>
     <string name="str_pwd_validate">पासवर्ड में कम से कम चार अक्षर होने चाहिए</string>
     <string name="commercial_id_hint">व्यापारिक पॉइंट आयडी दर्ज़ करें</string>
+    <string name="str_date_time_on_photo">दिनांक और समय</string>
 </resources>

@@ -245,8 +245,8 @@
     <string name="commercial_id_hint">व्यावसायिक पॉइंट आयडी एंटर करा</string>
     <!--CTPT activity-->
     <string name="string_ctpt_heading">सीटीपीटी शौचालय</string>
-    <string name="str_toilet_seats_count_heading">शौचालय आसनांची संख्या</string>
-    <string name="str_hint_toilet_seats_count">कृपया जागा संख्या प्रविष्ट करा</string>
+    <string name="str_toilet_seats_count_heading">स्वच्छ शौचालय आसनांची संख्या</string>
+    <string name="str_hint_toilet_seats_count">कृपया स्वच्छ केलेल्या टॉयलेट सीटची संख्या प्रविष्ट करा</string>
     <string name="str_title_type_of_toilet">शौचालयाचा प्रकार</string>
     <string name="str_rd_btn_community_toilet">सामुदायिक शौचालय</string>
     <string name="str_rd_btn_public_toilet">सार्वजनिक शौचालय</string>
@@ -264,6 +264,7 @@
     <string name="rd_btn_stp">सांडपाणी पुनर्प्रक्रिया प्रकल्प</string>
     <string name="rd_btn_bwg_wwp">ऑनसाइट ओल्या कचरा प्रक्रियेसाठी मोठ्या प्रमाणात कचरा जनरेटर</string>
     <string name="str_err_select_swm_type">कृपया एसडब्ल्यूएम सुविधेचे प्रकार निवडा</string>
+    <string name="str_date_time_on_photo">तारीख वेळ</string>
 
 
 </resources>
