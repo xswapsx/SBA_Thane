@@ -16,6 +16,8 @@ import com.appynitty.swachbharatabhiyanlibrary.fragment.CommercialFirstDialog;
 import com.appynitty.swachbharatabhiyanlibrary.fragment.CommercialNextDialog;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 
+import java.util.List;
+
 /**
  * Created by Swapnil on 25/01/22.
  */
@@ -24,7 +26,7 @@ import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 public class CommercialGarbageDialog extends DialogFragment implements CommercialFirstDialog.FirstDialog, CommercialNextDialog.SecondDialog {
     Context mContext;
     String mHouseId;
-    String mGarbageType;
+    List<String> mGarbageType;
     String cType;
 
     CommercialGarbageDialog.CustomDialogInterface mListener;
@@ -52,7 +54,7 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
     }
 
     @Override
-    public void onNextBtnPressed(String houseId, String mGarbageType) {
+    public void onNextBtnPressed(String houseId, List<String> mGarbageType) {
 //        Toast.makeText(mContext, " " + houseId + ", " + mGarbageType, Toast.LENGTH_SHORT).show();
         this.mHouseId = houseId;
         this.mGarbageType = mGarbageType;
@@ -82,7 +84,7 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
     }
 
     public interface CustomDialogInterface {
-        void onSubmitButtonClicked(String houseId, String garbageType, String segregationLevel);
+        void onSubmitButtonClicked(String houseId, List<String> garbageType, String segregationLevel);
     }
 
 

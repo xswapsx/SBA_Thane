@@ -18,6 +18,14 @@
     </string-array>
 
 
+    <string-array name="garbageTypesList">
+        <item>Dry Waste</item>
+        <item>Wet Waste</item>
+        <item>Mixed Waste</item>
+        <item>Domestic Hazardous Waste</item>
+        <item>Sanitary Waste</item>
+    </string-array>
+
     //intro string
     <string name="next" translatable="false">NEXT</string>
     <string name="skip" translatable="false">SKIP</string>
@@ -55,6 +63,7 @@
     <!--<string name="hp_gp_id_hint">Enter House ID/Garbage Point ID</string>-->
     <string name="hp_gp_id_hint">Enter House ID/Dump Yard ID</string>
     <string name="house_number_hint">Enter House Number</string>
+    <string name="commercial_id_hint">Enter Commercial Point ID</string>
     <string name="gp_id_hint">Enter Garbage Point ID</string>
     <string name="dy_id_hint">Enter Dump Yard ID</string>
 
@@ -278,5 +287,7 @@
     <string name="app_notification_description" translatable="false">Please don\'t kill the app from background.</string>
     <string name="commercial_collection">Commercial Collection</string>
     <string name="string_ctpt_heading">CTPT Toilet</string>
+    <string name="str_user_validate">The Username should contain at least four characters!</string>
+    <string name="str_pwd_validate">The Password should contain at least four characters!</string>
 
 </resources>

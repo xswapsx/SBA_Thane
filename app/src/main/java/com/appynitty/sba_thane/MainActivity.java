@@ -34,12 +34,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        Prefs.putString(AUtils.APP_ID, "3088");
+        Prefs.putString(AUtils.APP_ID, "3072");  //Thane Staging app-id
+//        Prefs.putString(AUtils.APP_ID, "3088");   //Thane Live app-id
         //for nagpur APP_ID="3068", Deoli-"1"
 //           Prefs.putString(AUtils.APP_ID, "3041");
 //        Prefs.putString(AUtils.APP_ID, "1003");
 //        Prefs.putInt(AUtils.VERSION_CODE, BuildConfig.VERSION_CODE);
-        Prefs.putInt(AUtils.VERSION_CODE, 30);
+        Prefs.putInt(AUtils.VERSION_CODE, BuildConfig.VERSION_CODE);
 //        initLanguageList();
 
         startActivity(new Intent(MainActivity.this, WelcomeActivity.class));

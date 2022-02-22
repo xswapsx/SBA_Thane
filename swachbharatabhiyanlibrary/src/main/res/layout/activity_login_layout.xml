@@ -67,10 +67,10 @@
                         android:id="@+id/et_emp_type"
                         style="@style/MyEditTextStyleLight"
                         android:clickable="true"
-                        android:inputType="textNoSuggestions"
                         android:drawableEnd="@drawable/ic_arrow_down"
                         android:focusable="false"
                         android:hint="@string/select_employee_type"
+                        android:inputType="textNoSuggestions"
                         android:textSize="@dimen/dim_14_sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 

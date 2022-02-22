@@ -60,6 +60,16 @@
                     android:buttonTint="@color/white"/>-->
 
                 <RadioButton
+                    android:id="@+id/comm_collection_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="@string/commercial_collection"
+                    android:layout_margin="@dimen/dim_6_dp"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"/>
+
+                <RadioButton
                     android:id="@+id/dump_yard_radio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

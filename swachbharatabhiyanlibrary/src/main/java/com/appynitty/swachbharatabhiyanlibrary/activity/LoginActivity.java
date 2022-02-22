@@ -299,6 +299,15 @@ public class LoginActivity extends AppCompatActivity implements PopUpDialog.PopU
 
     private boolean validateForm() {
 
+        if (txtUserName.getText().length() < 4) {
+            AUtils.warning(mContext, getString(R.string.str_user_validate));
+            return false;
+        }
+
+        if (txtUserPwd.getText().length() < 4) {
+            AUtils.warning(mContext, getString(R.string.str_pwd_validate));
+            return false;
+        }
 
         if (EtEmpType.getText().toString().isEmpty()) {
             AUtils.warning(mContext, mContext.getString(R.string.plz_slct_emp_type));
