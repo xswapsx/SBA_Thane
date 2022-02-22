@@ -27,6 +27,24 @@ public class GarbageCollectionPojo {
     private String gcType;
     private String CType;
     private String LevelOS;
+    private String TNS;
+    private String TOT;
+
+    public String getTNS() {
+        return TNS;
+    }
+
+    public void setTNS(String TNS) {
+        this.TNS = TNS;
+    }
+
+    public String getTOT() {
+        return TOT;
+    }
+
+    public void setTOT(String TOT) {
+        this.TOT = TOT;
+    }
 
     public String getLevelOS() {
         return LevelOS;

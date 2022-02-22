@@ -11,6 +11,15 @@ public class ImagePojo {
     private String beforeImage;
 
     private String comment;
+    private String TNS;
+
+    public String getTNS() {
+        return TNS;
+    }
+
+    public void setTNS(String TNS) {
+        this.TNS = TNS;
+    }
 
     public String getImage2() {
         return image2;
@@ -60,6 +69,7 @@ public class ImagePojo {
                 ", AfterImage='" + AfterImage + '\'' +
                 ", beforeImage='" + beforeImage + '\'' +
                 ", comment='" + comment + '\'' +
+                ", TNS='" + TNS + '\'' +
                 '}';
     }
 }

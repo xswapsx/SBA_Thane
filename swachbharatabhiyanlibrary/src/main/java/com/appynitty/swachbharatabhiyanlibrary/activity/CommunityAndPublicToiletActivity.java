@@ -18,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,16 +48,22 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
     private static final int SELECT_FILE = 33;
 
     private static int imageViewNo = 0;
-    private final String resumeFilePath = "";
+
+
     private Context mContext;
     private Toolbar toolbarCtpt;
+
     private EditText comments;
     private ImageView beforeImage;
     private ImageView afterImage;
     private CardView openQR;
     private EditText edtToiletSeatsCount;
+    private TextView txtDataTimeBefore, txtDateTimeAfter;
+
+    private final String resumeFilePath = "";
     private String beforeImageFilePath = "";
     private String afterImageFilePath = "";
+    private String dateTime = AUtils.getServerDate() + " "+ AUtils.getServerTime();
 
     private ImagePojo imagePojo;
 
@@ -239,10 +246,14 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
 
         beforeImage = findViewById(R.id.img_before_photo_ctpt);
         afterImage = findViewById(R.id.img_after_photo_ctpt);
+        txtDateTimeAfter = findViewById(R.id.txt_date_time_after);
+        txtDataTimeBefore = findViewById(R.id.txt_date_time_before);
 
         comments = findViewById(R.id.txt_comments_ctpt);
 
         openQR = findViewById(R.id.open_qr_ctpt);
+        String dateTime = AUtils.getServerDateTimeLocal();
+        Log.e("CTPT Toilet Activity time", dateTime);
 
         initToolbar();
     }
@@ -256,10 +267,12 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     // Do something for marshmallow and above versions
                     isCameraPermissionGiven();
+                    txtDataTimeBefore.setText(dateTime);
                 } else {
                     // do something for phones running an SDK before marshmallow
                     checkGpsStatus();
                 }
+
             }
         });
 
@@ -271,10 +284,12 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     // Do something for marshmallow and above versions
                     isCameraPermissionGiven();
+                    txtDateTimeAfter.setText(dateTime);
                 } else {
                     // do something for phones running an SDK before marshmallow
                     checkGpsStatus();
                 }
+
             }
         });
 
@@ -318,7 +333,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
             if (getFormData()) {
 
                 startActivity(new Intent(CommunityAndPublicToiletActivity.this,
-                        QRcodeScannerCtptActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra("CTPT", AUtils.CTPT_GC_TYPE));
+                        QRcodeScannerCtptActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra( "CTPT",AUtils.CTPT_GC_TYPE));
                 CommunityAndPublicToiletActivity.this.finish();
             }
         }
@@ -370,6 +385,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, REQUEST_CAMERA);
+
     }
 
     private void onCaptureImageResult(Intent data) {
@@ -416,7 +432,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
         if (AUtils.isNullString(beforeImageFilePath) && AUtils.isNullString(afterImageFilePath)) {
             AUtils.warning(mContext, mContext.getString(R.string.plz_capture_img), Toast.LENGTH_SHORT);
             return false;
-        } else if (edtToiletSeatsCount.getText().toString().isEmpty()) {
+        }else if (edtToiletSeatsCount.getText().toString().isEmpty()){
             AUtils.warning(mContext, mContext.getString(R.string.str_hint_toilet_seats_count), Toast.LENGTH_SHORT);
             return false;
         }
@@ -440,6 +456,10 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
         if (!AUtils.isNullString(comments.getText().toString())) {
             imagePojo.setComment(comments.getText().toString());
             Log.e(TAG, "ImageComment: " + imagePojo.getComment());
+        }
+        if (!AUtils.isNullString(edtToiletSeatsCount.getText().toString())){
+            imagePojo.setTNS(edtToiletSeatsCount.getText().toString());
+            Log.e(TAG, "Toilet Seats Count: " + imagePojo.getTNS());
         }
 
 

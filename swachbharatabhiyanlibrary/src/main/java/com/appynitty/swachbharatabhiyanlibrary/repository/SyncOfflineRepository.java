@@ -256,6 +256,8 @@ public class SyncOfflineRepository {
         offlinePojo.setNote(pojo.getNote());//added by swapnil
         offlinePojo.setEmpType(pojo.getEmpType()); //added by swapnil
         offlinePojo.setLevelOS(pojo.getLevelOS()); //added by swapnil
+        offlinePojo.setTOT(pojo.getTOT());
+        offlinePojo.setTNS(pojo.getTNS());
         offlinePojo.setGarbageType(pojo.getGarbageType());
         offlinePojo.setTotalDryWeight(pojo.getTotalDryWeight());
         offlinePojo.setTotalWetWeight(pojo.getTotalWetWeight());

@@ -19,6 +19,24 @@ public class SyncOfflineEntity {
     private String offlineIsLocation;
     private String offlineDate;
     private String empType;
+    private String offlineTNS;
+    private String offlineTOT;
+
+    public String getOfflineTNS() {
+        return offlineTNS;
+    }
+
+    public void setOfflineTNS(String offlineTNS) {
+        this.offlineTNS = offlineTNS;
+    }
+
+    public String getOfflineTOT() {
+        return offlineTOT;
+    }
+
+    public void setOfflineTOT(String offlineTOT) {
+        this.offlineTOT = offlineTOT;
+    }
 
     public String getOfflineRNC() {
         return offlineRNC;
@@ -133,6 +151,8 @@ public class SyncOfflineEntity {
                 ", offlineIsLocation='" + offlineIsLocation + '\'' +
                 ", offlineDate='" + offlineDate + '\'' +
                 ", offlineEmpType='" + empType + '\'' +
+                ", offlineTNS='" + offlineTNS + '\'' +
+                ", offlineTOT='" + offlineTOT + '\'' +
                 '}';
     }
 }
