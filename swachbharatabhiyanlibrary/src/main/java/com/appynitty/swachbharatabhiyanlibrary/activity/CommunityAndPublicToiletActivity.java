@@ -47,18 +47,14 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
     private static final int SELECT_FILE = 33;
 
     private static int imageViewNo = 0;
-
-
+    private final String resumeFilePath = "";
     private Context mContext;
     private Toolbar toolbarCtpt;
-
     private EditText comments;
     private ImageView beforeImage;
     private ImageView afterImage;
     private CardView openQR;
     private EditText edtToiletSeatsCount;
-
-    private final String resumeFilePath = "";
     private String beforeImageFilePath = "";
     private String afterImageFilePath = "";
 
@@ -322,7 +318,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
             if (getFormData()) {
 
                 startActivity(new Intent(CommunityAndPublicToiletActivity.this,
-                        QRcodeScannerCtptActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra( "CTPT",AUtils.CTPT_GC_TYPE));
+                        QRcodeScannerCtptActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra("CTPT", AUtils.CTPT_GC_TYPE));
                 CommunityAndPublicToiletActivity.this.finish();
             }
         }
@@ -420,7 +416,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
         if (AUtils.isNullString(beforeImageFilePath) && AUtils.isNullString(afterImageFilePath)) {
             AUtils.warning(mContext, mContext.getString(R.string.plz_capture_img), Toast.LENGTH_SHORT);
             return false;
-        }else if (edtToiletSeatsCount.getText().toString().isEmpty()){
+        } else if (edtToiletSeatsCount.getText().toString().isEmpty()) {
             AUtils.warning(mContext, mContext.getString(R.string.str_hint_toilet_seats_count), Toast.LENGTH_SHORT);
             return false;
         }

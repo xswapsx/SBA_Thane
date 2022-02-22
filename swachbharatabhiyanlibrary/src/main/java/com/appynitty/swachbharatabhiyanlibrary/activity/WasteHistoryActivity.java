@@ -3,16 +3,12 @@ package com.appynitty.swachbharatabhiyanlibrary.activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-
-import com.appynitty.swachbharatabhiyanlibrary.adapters.UI.EmpInflateHistoryAdapter;
-import com.appynitty.swachbharatabhiyanlibrary.adapters.UI.InflateWasteHistoryUIAdapter;
-import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.HistoryAdapterClass;
-import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.WasteHistoryAdapterClass;
-import com.appynitty.swachbharatabhiyanlibrary.pojos.TableDataCountPojo;
-import com.appynitty.swachbharatabhiyanlibrary.pojos.WasteManagementHistoryPojo;
-import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,16 +17,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-
 import com.appynitty.swachbharatabhiyanlibrary.R;
+import com.appynitty.swachbharatabhiyanlibrary.adapters.UI.InflateWasteHistoryUIAdapter;
+import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.WasteHistoryAdapterClass;
+import com.appynitty.swachbharatabhiyanlibrary.pojos.WasteManagementHistoryPojo;
+import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 import com.riaylibrary.custom_component.MyProgressDialog;
 import com.riaylibrary.utils.LocaleHelper;
 
@@ -109,13 +100,13 @@ public class WasteHistoryActivity extends AppCompatActivity {
         monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                if(isMonthSet) {
-                    if(position > 0 && yearSpinner.getSelectedItemPosition() > 0){
+                if (isMonthSet) {
+                    if (position > 0 && yearSpinner.getSelectedItemPosition() > 0) {
                         initHistoryData(
                                 yearSpinner.getSelectedItem().toString(),
                                 String.valueOf(position)
                         );
-                    }else{
+                    } else {
                         AUtils.warning(mContext, getResources().getString(R.string.select_month_year_warn));
                     }
                 } else {
@@ -132,13 +123,13 @@ public class WasteHistoryActivity extends AppCompatActivity {
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                if(isYearSet) {
-                    if(position > 0 && monthSpinner.getSelectedItemPosition() > 0){
+                if (isYearSet) {
+                    if (position > 0 && monthSpinner.getSelectedItemPosition() > 0) {
                         initHistoryData(
                                 yearSpinner.getSelectedItem().toString(),
                                 String.valueOf(monthSpinner.getSelectedItemPosition())
                         );
-                    }else{
+                    } else {
                         AUtils.info(mContext, getResources().getString(R.string.select_month_year_warn));
                     }
                 } else {
@@ -155,21 +146,21 @@ public class WasteHistoryActivity extends AppCompatActivity {
         mAdapter.setHistoryListener(new WasteHistoryAdapterClass.HistoryListener() {
             @Override
             public void onSuccessCallBack(List<WasteManagementHistoryPojo> data) {
-                if(myProgressDialog.isShowing())
+                if (myProgressDialog.isShowing())
                     myProgressDialog.dismiss();
                 setHistoryData(data);
             }
 
             @Override
             public void onErrorCallBack() {
-                if(myProgressDialog.isShowing())
+                if (myProgressDialog.isShowing())
                     myProgressDialog.dismiss();
                 AUtils.error(mContext, mContext.getResources().getString(R.string.serverError));
             }
 
             @Override
             public void onFailureCallBack() {
-                if(myProgressDialog.isShowing())
+                if (myProgressDialog.isShowing())
                     myProgressDialog.dismiss();
                 AUtils.error(mContext, mContext.getResources().getString(R.string.something_error));
             }
@@ -190,7 +181,7 @@ public class WasteHistoryActivity extends AppCompatActivity {
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(mContext,
                 R.layout.layout_simple_white_textview, AUtils.getMonthList());
         monthSpinner.setAdapter(spinnerAdapter);
-        monthSpinner.setSelection((AUtils.getCurrentMonth()+1), true);
+        monthSpinner.setSelection((AUtils.getCurrentMonth() + 1), true);
     }
 
     public void setYearSpinner(Spinner yearSpinner) {
@@ -200,17 +191,17 @@ public class WasteHistoryActivity extends AppCompatActivity {
         yearSpinner.setSelection(1, true);
     }
 
-    private void initHistoryData(@Nullable String year,@Nullable String month) {
-        if(AUtils.isInternetAvailable()) {
+    private void initHistoryData(@Nullable String year, @Nullable String month) {
+        if (AUtils.isInternetAvailable()) {
             noInternetErrorLayout.setVisibility(View.GONE);
-            if(!myProgressDialog.isShowing())
+            if (!myProgressDialog.isShowing())
                 myProgressDialog.show();
 
-            if(year == null)
+            if (year == null)
                 year = AUtils.getYearList().get(1);
 
-            if(month == null)
-                month = String.valueOf(AUtils.getCurrentMonth()+1);
+            if (month == null)
+                month = String.valueOf(AUtils.getCurrentMonth() + 1);
 
             mAdapter.fetchHistory(year, month);
         } else {
@@ -224,13 +215,13 @@ public class WasteHistoryActivity extends AppCompatActivity {
     private void setHistoryData(List<WasteManagementHistoryPojo> data) {
         noInternetErrorLayout.setVisibility(View.GONE);
 
-        if(!AUtils.isNull(data) && !data.isEmpty()){
+        if (!AUtils.isNull(data) && !data.isEmpty()) {
             historyGrid.setVisibility(View.VISIBLE);
             noDataErrorLayout.setVisibility(View.GONE);
             InflateWasteHistoryUIAdapter adapter = new InflateWasteHistoryUIAdapter(mContext, true);
             adapter.setWasteHistoryList(data);
             historyGrid.setAdapter(adapter);
-        }else{
+        } else {
             historyGrid.setVisibility(View.GONE);
             noDataErrorLayout.setVisibility(View.VISIBLE);
         }
@@ -250,11 +241,9 @@ public class WasteHistoryActivity extends AppCompatActivity {
 
         AUtils.currentContextConstant = mContext;
 
-        if(AUtils.isInternetAvailable())
-        {
+        if (AUtils.isInternetAvailable()) {
             AUtils.hideSnackBar();
-        }
-        else {
+        } else {
             AUtils.showSnackBar(findViewById(R.id.parent));
         }
     }

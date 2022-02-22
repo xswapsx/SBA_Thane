@@ -47,17 +47,13 @@ public class CandDActivity extends AppCompatActivity {
     private static final int SELECT_FILE = 33;
 
     private static int imageViewNo = 0;
-
-
+    private final String resumeFilePath = "";
     private Context mContext;
     private Toolbar toolbar;
-
     private EditText comments;
     private ImageView beforeImage;
     private ImageView afterImage;
     private CardView openQR;
-
-    private final String resumeFilePath = "";
     private String beforeImageFilePath = "";
     private String afterImageFilePath = "";
 
@@ -332,7 +328,7 @@ public class CandDActivity extends AppCompatActivity {
             if (getFormData()) {
 
                 startActivity(new Intent(CandDActivity.this,
-                        QRcodeScannerDemoActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra( "CD",AUtils.CD_GC_TYPE));
+                        QRcodeScannerDemoActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra("CD", AUtils.CD_GC_TYPE));
                 CandDActivity.this.finish();
             }
         }

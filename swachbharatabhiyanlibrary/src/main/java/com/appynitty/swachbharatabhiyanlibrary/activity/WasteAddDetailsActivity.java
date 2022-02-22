@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-
-import com.appynitty.swachbharatabhiyanlibrary.adapters.UI.AddWasteListAdapter;
-import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.WasteTypeCategoryAdapterClass;
-import com.appynitty.swachbharatabhiyanlibrary.dialogs.AddWasteDetailsPopup;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,12 +17,10 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-
 import com.appynitty.swachbharatabhiyanlibrary.R;
+import com.appynitty.swachbharatabhiyanlibrary.adapters.UI.AddWasteListAdapter;
+import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.WasteTypeCategoryAdapterClass;
+import com.appynitty.swachbharatabhiyanlibrary.dialogs.AddWasteDetailsPopup;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.WasteManagementPojo;
 import com.appynitty.swachbharatabhiyanlibrary.repository.SyncWasteCategoriesRepository;
 import com.appynitty.swachbharatabhiyanlibrary.repository.SyncWasteManagementRepository;
@@ -111,20 +109,20 @@ public class WasteAddDetailsActivity extends AppCompatActivity {
         wasteTypeCategoryAdapterClass.setWasteTypeCategoryListener(new WasteTypeCategoryAdapterClass.WasteTypeCategoryListener() {
             @Override
             public void onSuccessCallback(List<?> list, int requestType) {
-                if(progressDialog.isShowing()) progressDialog.dismiss();
+                if (progressDialog.isShowing()) progressDialog.dismiss();
                 if (requestType == WasteTypeCategoryAdapterClass.WASTE_TYPE_REQUEST && list != null && list.size() > 0)
                     categoryPojos = (List<WasteManagementPojo.GarbageCategoryPojo>) list;
             }
 
             @Override
             public void onFailureCallback() {
-                if(progressDialog.isShowing()) progressDialog.dismiss();
+                if (progressDialog.isShowing()) progressDialog.dismiss();
                 AUtils.warning(mContext, getResources().getString(R.string.try_after_sometime));
             }
 
             @Override
             public void onErrorCallback() {
-                if(progressDialog.isShowing()) progressDialog.dismiss();
+                if (progressDialog.isShowing()) progressDialog.dismiss();
                 AUtils.warning(mContext, getResources().getString(R.string.serverError));
             }
         });
@@ -199,7 +197,7 @@ public class WasteAddDetailsActivity extends AppCompatActivity {
 
     private void initData() {
         if (AUtils.isInternetAvailable()) {
-            if(!progressDialog.isShowing()) progressDialog.show();
+            if (!progressDialog.isShowing()) progressDialog.show();
             wasteTypeCategoryAdapterClass.fetchWasteType();
             wasteTypeCategoryAdapterClass.fetchCategorySubCategory();
         } else {
@@ -209,7 +207,7 @@ public class WasteAddDetailsActivity extends AppCompatActivity {
 
     private void showAddWastePopup() {
         addWasteDetailsPopup.setTypeList(categoryPojos);
-        if(!AUtils.isNull(categoryPojos) && categoryPojos.size() > 0) {
+        if (!AUtils.isNull(categoryPojos) && categoryPojos.size() > 0) {
             addWasteDetailsPopup.initDialog(null);
             addWasteDetailsPopup.show();
         } else {
@@ -218,10 +216,10 @@ public class WasteAddDetailsActivity extends AppCompatActivity {
     }
 
     private void populateWasteList(WasteManagementPojo pojo) {
-        if(!pojo.getUpdate()){
+        if (!pojo.getUpdate()) {
             wasteManagementPojoList.add(pojo);
             wasteListAdapter.setWasteManagementList(wasteManagementPojoList);
-            if(wasteManagementPojoList.size() == 1)
+            if (wasteManagementPojoList.size() == 1)
                 recyclerViewWasteList.setAdapter(wasteListAdapter);
 
             wasteListAdapter.notifyDataSetChanged();
@@ -237,7 +235,7 @@ public class WasteAddDetailsActivity extends AppCompatActivity {
         wasteManagementPojoList.remove(position);
         wasteListAdapter.setWasteManagementList(wasteManagementPojoList);
         wasteListAdapter.notifyItemChanged(position);
-        if(wasteManagementPojoList.size() == 0) {
+        if (wasteManagementPojoList.size() == 0) {
             constraintLayoutBaseAdd.setVisibility(View.VISIBLE);
             constraintLayoutWasteList.setVisibility(View.GONE);
         }
@@ -245,7 +243,7 @@ public class WasteAddDetailsActivity extends AppCompatActivity {
 
     private void editWasteListItem(int position) {
         addWasteDetailsPopup.setTypeList(categoryPojos);
-        if(!AUtils.isNull(categoryPojos) && categoryPojos.size() > 0) {
+        if (!AUtils.isNull(categoryPojos) && categoryPojos.size() > 0) {
             WasteManagementPojo pojo = wasteManagementPojoList.get(position);
             pojo.setID(position);
             addWasteDetailsPopup.initDialog(pojo);
@@ -258,8 +256,7 @@ public class WasteAddDetailsActivity extends AppCompatActivity {
         if (l != null && l > 0) {
             AUtils.success(mContext, getResources().getString(R.string.waste_details_success));
             ((Activity) mContext).finish();
-        }
-        else
+        } else
             AUtils.error(mContext, getResources().getString(R.string.something_error));
     }
 
@@ -275,11 +272,9 @@ public class WasteAddDetailsActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
         AUtils.currentContextConstant = mContext;
-        if(AUtils.isInternetAvailable())
-        {
+        if (AUtils.isInternetAvailable()) {
             AUtils.hideSnackBar();
-        }
-        else {
+        } else {
             AUtils.showSnackBar(findViewById(R.id.parent));
         }
     }

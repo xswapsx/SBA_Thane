@@ -98,7 +98,10 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 
     private static final int REQUEST_CAMERA = 22;
     private static final int SELECT_FILE = 33;
-
+    public boolean isView = false;
+    public boolean isSync = true;
+    //    private WorkManager workManager;
+    MediaPlayer mp = null;
     private Context mContext;
     private FabSpeedDial fab;
     private RecyclerView menuGridView;
@@ -107,40 +110,26 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
     private TextView vehicleStatus;
     private Switch markAttendance;
     private ImageView profilePic;
-    public boolean isView = false;
     private TextView userName;
     private TextView empId, txtEmpId;
-    public boolean isSync = true;
-
     private AttendancePojo attendancePojo = null;
-
     private List<VehicleTypePojo> vehicleTypePojoList;
-
     private UserDetailPojo userDetailPojo;
-
     private boolean isLocationPermission = false;
     private boolean isSwitchOn = false;
-
     private boolean isFromLogin;
     private LoginPojo loginPojo;
-
     private CheckAttendanceAdapterClass mCheckAttendanceAdapter;
     private AttendanceAdapterClass mAttendanceAdapter;
     private VehicleTypeAdapterClass mVehicleTypeAdapter;
     private UserDetailAdapterClass mUserDetailAdapter;
     private OfflineAttendanceAdapterClass mOfflineAttendanceAdapter;
-
     private VerifyDataAdapterClass verifyDataAdapterClass;
     private LastLocationRepository lastLocationRepository;
     private SyncOfflineRepository syncOfflineRepository;
-
     private SyncOfflineAttendanceRepository syncOfflineAttendanceRepository;
-
     private boolean isFromAttendanceChecked = false;
     private boolean isDeviceMatch = false;
-
-    //    private WorkManager workManager;
-    MediaPlayer mp = null;
 
 //    AppDatabase db;
 //    HouseEntity houseEntity;
@@ -690,7 +679,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 
         menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_horticulture_waste), R.drawable.ic_hort_waste, HorticultureActivity.class, true));
         menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_c_and_d_waste), R.drawable.ic_cad_waste, CandDActivity.class, true));
-       menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_ctpt_heading), R.drawable.ic_ctpt_toilet, CommunityAndPublicToiletActivity.class, true));
+        menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_ctpt_heading), R.drawable.ic_ctpt_toilet, CommunityAndPublicToiletActivity.class, true));
 
 
         // menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_broadcast_page), R.drawable.ic_broadcast_icon, BroadcastActivity.class, true));
@@ -852,7 +841,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 
     private void onOutPunchSuccess() {
         attendanceStatus.setText(this.getResources().getString(R.string.status_off_duty));
-        attendanceStatus.setTextColor(this.getResources().getColor(R.color.colorOFFDutyRed,getResources().newTheme()));
+        attendanceStatus.setTextColor(this.getResources().getColor(R.color.colorOFFDutyRed, getResources().newTheme()));
 
         vehicleStatus.setText("");
 

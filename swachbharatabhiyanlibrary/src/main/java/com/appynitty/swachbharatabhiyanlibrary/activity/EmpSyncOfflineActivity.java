@@ -40,20 +40,16 @@ import java.util.Objects;
 public class EmpSyncOfflineActivity extends AppCompatActivity {
 
     private final String TAG = EmpSyncOfflineActivity.class.getSimpleName();
-
+    List<EmpOfflineCollectionCount> countList;
     private Context mContext;
     private LinearLayout layoutNoOfflineData;
     private Button btnSyncOfflineData;
     private GridView gridOfflineData;
-
     private EmpSyncServerRepository empSyncServerRepository;
     private List<QrLocationPojo> locationPojoList;
     private Gson gson;
     private AlertDialog alertDialog;
     private int houseCount, dyCount, ssCount, lwcCount, resNCollectionC, resBCollectionC, resSCollectionC, commercialCollectionC, cadCollectionC, hortCollectionC;
-
-
-    List<EmpOfflineCollectionCount> countList;
 
     @Override
     protected void attachBaseContext(Context newBase) {

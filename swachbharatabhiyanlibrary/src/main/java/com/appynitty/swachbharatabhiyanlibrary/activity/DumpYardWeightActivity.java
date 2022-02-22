@@ -58,19 +58,16 @@ public class DumpYardWeightActivity extends AppCompatActivity {
 
     private static final int REQUEST_CAMERA = 22;
     private static int imageViewNo = 0;
-
+    RadioButton radioButtonDryKg, radioButtonWetKg, radioButtonDryTon, radioButtonWetTon;
+    RadioGroup radioGroupDry, radioGroupWet;
     private Context mContext;
     private Toolbar toolbar;
     private String dumpYardId;
     private Intent intent;
     private Button btnSubmitDumpDetails;
-
     private TextView textDumpYardId, editTotal;
     private EditText editDryTotal, editWetTotal;
     private ImageView btnTakeDryPhoto, btnTakeWetPhoto;
-    RadioButton radioButtonDryKg, radioButtonWetKg, radioButtonDryTon, radioButtonWetTon;
-    RadioGroup radioGroupDry, radioGroupWet;
-
     private String dryImageFilePath = "";
     private String wetImageFilePath = "";
 

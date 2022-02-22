@@ -55,7 +55,7 @@ public class EmpHistoryPageActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 break;
@@ -73,11 +73,9 @@ public class EmpHistoryPageActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
         AUtils.currentContextConstant = mContext;
-        if(AUtils.isInternetAvailable())
-        {
+        if (AUtils.isInternetAvailable()) {
             AUtils.hideSnackBar();
-        }
-        else {
+        } else {
             AUtils.showSnackBar(findViewById(R.id.parent));
         }
     }
@@ -119,12 +117,12 @@ public class EmpHistoryPageActivity extends AppCompatActivity {
         monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                if(position > 0 && yearSpinner.getSelectedItemPosition() > 0){
+                if (position > 0 && yearSpinner.getSelectedItemPosition() > 0) {
                     mAdapter.fetchHistory(
                             yearSpinner.getSelectedItem().toString(),
                             String.valueOf(position)
                     );
-                }else{
+                } else {
                     AUtils.warning(mContext, getResources().getString(R.string.select_month_year_warn));
                 }
             }
@@ -138,12 +136,12 @@ public class EmpHistoryPageActivity extends AppCompatActivity {
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                if(position > 0 && monthSpinner.getSelectedItemPosition() > 0){
+                if (position > 0 && monthSpinner.getSelectedItemPosition() > 0) {
                     mAdapter.fetchHistory(
                             yearSpinner.getSelectedItem().toString(),
                             String.valueOf(monthSpinner.getSelectedItemPosition())
                     );
-                }else{
+                } else {
                     AUtils.info(mContext, getResources().getString(R.string.select_month_year_warn));
                 }
             }
@@ -170,11 +168,11 @@ public class EmpHistoryPageActivity extends AppCompatActivity {
     private void initData() {
         initSpinner();
 
-        if(AUtils.isInternetAvailable()){
+        if (AUtils.isInternetAvailable()) {
             noInternetErrorLayout.setVisibility(View.GONE);
             mAdapter.fetchHistory(String.valueOf(AUtils.getCurrentYear()),
                     String.valueOf(AUtils.getCurrentMonth()));
-        }else{
+        } else {
             noInternetErrorLayout.setVisibility(View.VISIBLE);
         }
     }
@@ -188,7 +186,7 @@ public class EmpHistoryPageActivity extends AppCompatActivity {
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(mContext,
                 R.layout.layout_simple_white_textview, AUtils.getMonthList());
         monthSpinner.setAdapter(spinnerAdapter);
-        monthSpinner.setSelection((AUtils.getCurrentMonth()+1), true);
+        monthSpinner.setSelection((AUtils.getCurrentMonth() + 1), true);
     }
 
     public void setYearSpinner(Spinner yearSpinner) {
@@ -202,17 +200,17 @@ public class EmpHistoryPageActivity extends AppCompatActivity {
         noInternetErrorLayout.setVisibility(View.GONE);
         historyPojoList = mAdapter.getworkHistoryTypePojoList();
 
-        if(!AUtils.isNull(historyPojoList) && !historyPojoList.isEmpty()){
+        if (!AUtils.isNull(historyPojoList) && !historyPojoList.isEmpty()) {
             historyGrid.setVisibility(View.VISIBLE);
             noDataErrorLayout.setVisibility(View.GONE);
             initGrid();
-        }else{
+        } else {
             historyGrid.setVisibility(View.GONE);
             noDataErrorLayout.setVisibility(View.VISIBLE);
         }
     }
 
-    private void initGrid(){
+    private void initGrid() {
         EmpInflateHistoryAdapter adapter = new EmpInflateHistoryAdapter(mContext, historyPojoList);
         historyGrid.setAdapter(adapter);
     }

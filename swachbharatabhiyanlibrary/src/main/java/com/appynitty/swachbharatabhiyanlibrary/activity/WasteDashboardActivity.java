@@ -42,7 +42,6 @@ import com.appynitty.swachbharatabhiyanlibrary.pojos.UserDetailPojo;
 import com.appynitty.swachbharatabhiyanlibrary.repository.LastLocationRepository;
 import com.appynitty.swachbharatabhiyanlibrary.repository.SyncOfflineAttendanceRepository;
 import com.appynitty.swachbharatabhiyanlibrary.repository.SyncOfflineRepository;
-import com.appynitty.swachbharatabhiyanlibrary.services.ForgroundService;
 import com.appynitty.swachbharatabhiyanlibrary.services.LocationService;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 import com.appynitty.swachbharatabhiyanlibrary.utils.MyApplication;
@@ -74,7 +73,7 @@ public class WasteDashboardActivity extends AppCompatActivity implements EmpPopU
     private TextView attendanceStatus;
     private Switch markAttendance;
     private TextView userName;
-    private TextView empId,txtEmpId;
+    private TextView empId, txtEmpId;
     private ImageView profilePic;
 
     private AttendancePojo attendancePojo = null;
@@ -177,7 +176,7 @@ public class WasteDashboardActivity extends AppCompatActivity implements EmpPopU
                         dialog.cancel();
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
-                            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION}, AUtils.MY_PERMISSIONS_REQUEST_LOCATION);
+                            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION}, AUtils.MY_PERMISSIONS_REQUEST_LOCATION);
                         }
                     }
                 });

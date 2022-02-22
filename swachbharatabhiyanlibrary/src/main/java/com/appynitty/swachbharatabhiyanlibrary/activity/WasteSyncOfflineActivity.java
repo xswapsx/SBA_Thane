@@ -1,18 +1,13 @@
 package com.appynitty.swachbharatabhiyanlibrary.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-
-import com.appynitty.swachbharatabhiyanlibrary.adapters.UI.InflateWasteHistoryUIAdapter;
-import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.SyncOfflineWasteManagementAdapterClass;
-import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.VerifyDataAdapterClass;
-import com.appynitty.swachbharatabhiyanlibrary.pojos.WasteManagementHistoryPojo;
-import com.appynitty.swachbharatabhiyanlibrary.repository.SyncWasteManagementRepository;
-import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -22,13 +17,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Toast;
-
 import com.appynitty.swachbharatabhiyanlibrary.R;
+import com.appynitty.swachbharatabhiyanlibrary.adapters.UI.InflateWasteHistoryUIAdapter;
+import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.SyncOfflineWasteManagementAdapterClass;
+import com.appynitty.swachbharatabhiyanlibrary.pojos.WasteManagementHistoryPojo;
+import com.appynitty.swachbharatabhiyanlibrary.repository.SyncWasteManagementRepository;
+import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 import com.riaylibrary.utils.LocaleHelper;
 
 import java.util.List;
@@ -96,7 +90,7 @@ public class WasteSyncOfflineActivity extends AppCompatActivity {
         adapterClass.setSyncOfflineListener(new SyncOfflineWasteManagementAdapterClass.SyncOfflineListener() {
             @Override
             public void onSuccessCallback() {
-                if(alertDialog.isShowing())
+                if (alertDialog.isShowing())
                     alertDialog.hide();
                 AUtils.success(context, getString(R.string.success_offline_sync), Toast.LENGTH_LONG);
                 inflateRecycler();
@@ -104,14 +98,14 @@ public class WasteSyncOfflineActivity extends AppCompatActivity {
 
             @Override
             public void onFailureCallback() {
-                if(alertDialog.isShowing())
+                if (alertDialog.isShowing())
                     alertDialog.hide();
                 AUtils.warning(context, getResources().getString(R.string.try_after_sometime));
             }
 
             @Override
             public void onErrorCallback() {
-                if(alertDialog.isShowing())
+                if (alertDialog.isShowing())
                     alertDialog.hide();
                 AUtils.warning(context, getResources().getString(R.string.serverError));
             }
@@ -121,7 +115,7 @@ public class WasteSyncOfflineActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (AUtils.isInternetAvailable()) {
-                    if(!alertDialog.isShowing())
+                    if (!alertDialog.isShowing())
                         alertDialog.show();
                     adapterClass.syncOfflineWasteManagementData();
                 } else
@@ -159,11 +153,9 @@ public class WasteSyncOfflineActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
         AUtils.currentContextConstant = context;
-        if(AUtils.isInternetAvailable())
-        {
+        if (AUtils.isInternetAvailable()) {
             AUtils.hideSnackBar();
-        }
-        else {
+        } else {
             AUtils.showSnackBar(findViewById(R.id.parent));
         }
     }

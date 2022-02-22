@@ -1,30 +1,20 @@
 package com.appynitty.swachbharatabhiyanlibrary.activity;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.VersionDetailsAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.riaylibrary.utils.LocaleHelper;
-
-import static com.riaylibrary.utils.CommonUtils.MY_PERMISSIONS_REQUEST_LOCATION;
-import static com.riaylibrary.utils.CommonUtils.goToAppSettings;
-import static com.riaylibrary.utils.CommonUtils.isLocationPermissionGiven;
-import static com.riaylibrary.utils.CommonUtils.showLocationPermissionDialog;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -33,9 +23,9 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context base) {
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             super.attachBaseContext(LocaleHelper.onAttach(base));
-        }else{
+        } else {
             super.attachBaseContext(base);
         }
     }
@@ -52,7 +42,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         setDefaultLanguage();
 
-        if(AUtils.isInternetAvailable())
+        if (AUtils.isInternetAvailable())
             mAdapter.checkVersionDetails();
         else
             loadNextPage();
@@ -84,11 +74,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         });
     }
 
-    private void loadNextPage(){
-        if(Prefs.getBoolean(AUtils.PREFS.IS_USER_LOGIN,false))
-        {
+    private void loadNextPage() {
+        if (Prefs.getBoolean(AUtils.PREFS.IS_USER_LOGIN, false)) {
             loadDashboard();
-        }  else {
+        } else {
             loadLogin();
         }
     }
@@ -101,11 +90,9 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        if(AUtils.isInternetAvailable())
-        {
+        if (AUtils.isInternetAvailable()) {
             AUtils.hideSnackBar();
-        }
-        else {
+        } else {
             AUtils.showSnackBar(findViewById(R.id.parent));
         }
     }
@@ -134,14 +121,10 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
 
 
-
                 startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
                 SplashScreenActivity.this.finish();
             }
         }, AUtils.SPLASH_SCREEN_TIME);
-
-
-
 
 
     }

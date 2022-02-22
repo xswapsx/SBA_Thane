@@ -47,17 +47,13 @@ public class HorticultureActivity extends AppCompatActivity {
     private static final int SELECT_FILE = 33;
 
     private static int imageViewNo = 0;
-
-
+    private final String resumeFilePath = "";
     private Context mContext;
     private Toolbar toolbar;
-
     private EditText comments;
     private ImageView beforeImage;
     private ImageView afterImage;
     private CardView openQR;
-
-    private final String resumeFilePath = "";
     private String beforeImageFilePath = "";
     private String afterImageFilePath = "";
 
@@ -332,7 +328,7 @@ public class HorticultureActivity extends AppCompatActivity {
             if (getFormData()) {
 
                 startActivity(new Intent(HorticultureActivity.this,
-                        QRcodeScannerNewActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra( "HR",AUtils.HORT_GC_TYPE));
+                        QRcodeScannerNewActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra("HR", AUtils.HORT_GC_TYPE));
                 HorticultureActivity.this.finish();
             }
         }

@@ -1,10 +1,7 @@
 package com.appynitty.swachbharatabhiyanlibrary.activity;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,24 +14,16 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
-import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import static com.appynitty.swachbharatabhiyanlibrary.activity.LoginActivity.PERMISSIONS_MULTIPLE_REQUEST;
 
 /**
  * Created by Amol on 5/28/2021.
-
  */
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -44,8 +33,36 @@ public class WelcomeActivity extends AppCompatActivity {
     private TextView[] dots;
     private int[] layouts;
     private Button btnSkip, btnNext;
-    private Session session;
+    //  viewpager change listener
+    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
 
+        @Override
+        public void onPageSelected(int position) {
+            addBottomDots(position);
+
+            // changing the next button text 'NEXT' / 'GOT IT'
+            if (position == layouts.length - 1) {
+                // last page. make button text to GOT IT
+                btnNext.setText(getString(R.string.start));
+                btnSkip.setVisibility(View.GONE);
+            } else {
+                // still pages are left
+                btnNext.setText(getString(R.string.next));
+                btnSkip.setVisibility(View.VISIBLE);
+            }
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+
+        }
+    };
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +82,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
         setContentView(R.layout.welcome_activity);
 
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
-        dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
-        btnSkip = (Button) findViewById(R.id.btn_skip);
-        btnNext = (Button) findViewById(R.id.btn_next);
+        viewPager = findViewById(R.id.view_pager);
+        dotsLayout = findViewById(R.id.layoutDots);
+        btnSkip = findViewById(R.id.btn_skip);
+        btnNext = findViewById(R.id.btn_next);
 
 
         // layouts of all welcome sliders
@@ -118,13 +135,12 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void showPermissionDialog() {
 
-        View view=LayoutInflater.from(WelcomeActivity.this).inflate(R.layout.customdialogbox1,null);
-        Button cancelBtn=view.findViewById(R.id.cancel);
-        Button okBtn=view.findViewById(R.id.ok);
+        View view = LayoutInflater.from(WelcomeActivity.this).inflate(R.layout.customdialogbox1, null);
+        Button cancelBtn = view.findViewById(R.id.cancel);
+        Button okBtn = view.findViewById(R.id.ok);
 
 
-
-        final AlertDialog dialog=new AlertDialog.Builder(WelcomeActivity.this)
+        final AlertDialog dialog = new AlertDialog.Builder(WelcomeActivity.this)
                 .setCancelable(false)
                 .setView(view).create();
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
@@ -148,15 +164,10 @@ public class WelcomeActivity extends AppCompatActivity {
 //                        AUtils.MY_PERMISSIONS_REQUEST_LOCATION);
 
 
-
                 launchHomeScreen();
 
             }
         });
-
-
-
-
 
 
 //        final AlertDialog dialog=new AlertDialog.Builder(WelcomeActivity.this)
@@ -215,36 +226,6 @@ public class WelcomeActivity extends AppCompatActivity {
         startActivity(new Intent(WelcomeActivity.this, SplashScreenActivity.class));
         finish();
     }
-
-    //  viewpager change listener
-    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
-
-        @Override
-        public void onPageSelected(int position) {
-            addBottomDots(position);
-
-            // changing the next button text 'NEXT' / 'GOT IT'
-            if (position == layouts.length - 1) {
-                // last page. make button text to GOT IT
-                btnNext.setText(getString(R.string.start));
-                btnSkip.setVisibility(View.GONE);
-            } else {
-                // still pages are left
-                btnNext.setText(getString(R.string.next));
-                btnSkip.setVisibility(View.VISIBLE);
-            }
-        }
-
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int arg0) {
-
-        }
-    };
 
     /**
      * Making notification bar transparent

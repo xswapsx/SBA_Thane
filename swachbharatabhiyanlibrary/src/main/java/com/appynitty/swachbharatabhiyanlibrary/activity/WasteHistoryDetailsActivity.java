@@ -3,24 +3,19 @@ package com.appynitty.swachbharatabhiyanlibrary.activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-
-import com.appynitty.swachbharatabhiyanlibrary.adapters.UI.InflateWasteHistoryDetailsUIAdapter;
-import com.appynitty.swachbharatabhiyanlibrary.adapters.UI.InflateWasteHistoryUIAdapter;
-import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.WasteHistoryAdapterClass;
-import com.appynitty.swachbharatabhiyanlibrary.pojos.WasteManagementHistoryPojo;
-import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.View;
-import android.widget.LinearLayout;
-
 import com.appynitty.swachbharatabhiyanlibrary.R;
+import com.appynitty.swachbharatabhiyanlibrary.adapters.UI.InflateWasteHistoryDetailsUIAdapter;
+import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.WasteHistoryAdapterClass;
+import com.appynitty.swachbharatabhiyanlibrary.pojos.WasteManagementHistoryPojo;
+import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 import com.riaylibrary.custom_component.MyProgressDialog;
 import com.riaylibrary.utils.LocaleHelper;
 
@@ -66,7 +61,7 @@ public class WasteHistoryDetailsActivity extends AppCompatActivity {
         mContext = WasteHistoryDetailsActivity.this;
         AUtils.currentContextConstant = mContext;
 
-        if(getIntent().hasExtra(AUtils.HISTORY_DETAILS_DATE)) {
+        if (getIntent().hasExtra(AUtils.HISTORY_DETAILS_DATE)) {
             detailsDate = getIntent().getStringExtra(AUtils.HISTORY_DETAILS_DATE);
         } else
             detailsDate = getResources().getString(R.string.hyphen);
@@ -90,21 +85,21 @@ public class WasteHistoryDetailsActivity extends AppCompatActivity {
         adapterClass.setHistoryListener(new WasteHistoryAdapterClass.HistoryListener() {
             @Override
             public void onSuccessCallBack(List<WasteManagementHistoryPojo> data) {
-                if(myProgressDialog.isShowing())
+                if (myProgressDialog.isShowing())
                     myProgressDialog.dismiss();
                 setHistoryData(data);
             }
 
             @Override
             public void onErrorCallBack() {
-                if(myProgressDialog.isShowing())
+                if (myProgressDialog.isShowing())
                     myProgressDialog.dismiss();
                 AUtils.error(mContext, mContext.getResources().getString(R.string.serverError));
             }
 
             @Override
             public void onFailureCallBack() {
-                if(myProgressDialog.isShowing())
+                if (myProgressDialog.isShowing())
                     myProgressDialog.dismiss();
                 AUtils.error(mContext, mContext.getResources().getString(R.string.something_error));
             }
@@ -112,9 +107,9 @@ public class WasteHistoryDetailsActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        if(AUtils.isInternetAvailable()) {
+        if (AUtils.isInternetAvailable()) {
             noInternetErrorLayout.setVisibility(View.GONE);
-            if(!myProgressDialog.isShowing())
+            if (!myProgressDialog.isShowing())
                 myProgressDialog.show();
             adapterClass.fetchHistoryDetails(detailsDate);
         } else {
@@ -128,13 +123,13 @@ public class WasteHistoryDetailsActivity extends AppCompatActivity {
     private void setHistoryData(List<WasteManagementHistoryPojo> data) {
         noInternetErrorLayout.setVisibility(View.GONE);
 
-        if(!AUtils.isNull(data) && !data.isEmpty()){
+        if (!AUtils.isNull(data) && !data.isEmpty()) {
             recyclerViewHistoryDetails.setVisibility(View.VISIBLE);
             noDataErrorLayout.setVisibility(View.GONE);
             InflateWasteHistoryDetailsUIAdapter adapter = new InflateWasteHistoryDetailsUIAdapter(mContext);
             adapter.setWasteHistoryList(data);
             recyclerViewHistoryDetails.setAdapter(adapter);
-        }else{
+        } else {
             recyclerViewHistoryDetails.setVisibility(View.GONE);
             noDataErrorLayout.setVisibility(View.VISIBLE);
         }
@@ -146,11 +141,9 @@ public class WasteHistoryDetailsActivity extends AppCompatActivity {
 
         AUtils.currentContextConstant = mContext;
 
-        if(AUtils.isInternetAvailable())
-        {
+        if (AUtils.isInternetAvailable()) {
             AUtils.hideSnackBar();
-        }
-        else {
+        } else {
             AUtils.showSnackBar(findViewById(R.id.parent));
         }
     }

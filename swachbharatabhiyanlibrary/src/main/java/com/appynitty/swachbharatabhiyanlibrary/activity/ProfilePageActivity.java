@@ -24,7 +24,7 @@ import java.util.Objects;
 public class ProfilePageActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private TextView userName, empId, contactNo, bloodGroup, address,profileDesig;
+    private TextView userName, empId, contactNo, bloodGroup, address, profileDesig;
     private ImageView profilePic;
 
     private UserDetailAdapterClass mAdapter;
@@ -51,7 +51,7 @@ public class ProfilePageActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 break;
@@ -68,11 +68,9 @@ public class ProfilePageActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        if(AUtils.isInternetAvailable())
-        {
+        if (AUtils.isInternetAvailable()) {
             AUtils.hideSnackBar();
-        }
-        else {
+        } else {
             AUtils.showSnackBar(findViewById(R.id.parent));
         }
     }
@@ -127,8 +125,7 @@ public class ProfilePageActivity extends AppCompatActivity {
 
         userDetailPojo = mAdapter.getUserDetailPojo();
 
-        if(!AUtils.isNull(userDetailPojo))
-        {
+        if (!AUtils.isNull(userDetailPojo)) {
             loadData();
 
             mAdapter.getUserDetail();
@@ -139,23 +136,22 @@ public class ProfilePageActivity extends AppCompatActivity {
 
     private void loadData() {
 
-        if(!AUtils.isNullString(userDetailPojo.getProfileImage()))
-        {
-            try{
+        if (!AUtils.isNullString(userDetailPojo.getProfileImage())) {
+            try {
                 Glide.with(mContext).load(userDetailPojo.getProfileImage())
                         .placeholder(R.drawable.ic_user_white)
                         .error(R.drawable.ic_user_white)
                         .centerCrop()
                         .bitmapTransform(new GlideCircleTransformation(getApplicationContext()))
                         .into(profilePic);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-        if(Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_ID).equals("2")){
+        if (Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_ID).equals("2")) {
             userName.setText(userDetailPojo.getNameMar());
-        }else{
+        } else {
             userName.setText(userDetailPojo.getName());
         }
 

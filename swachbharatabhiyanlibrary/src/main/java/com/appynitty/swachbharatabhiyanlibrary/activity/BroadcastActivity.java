@@ -60,7 +60,7 @@ public class BroadcastActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 break;
@@ -77,11 +77,9 @@ public class BroadcastActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        if(AUtils.isInternetAvailable())
-        {
+        if (AUtils.isInternetAvailable()) {
             AUtils.hideSnackBar();
-        }
-        else {
+        } else {
             AUtils.showSnackBar(findViewById(R.id.parent));
         }
     }
@@ -109,7 +107,7 @@ public class BroadcastActivity extends AppCompatActivity {
         initToolbar();
     }
 
-    protected void initToolbar(){
+    protected void initToolbar() {
         toolbar.setTitle(getResources().getString(R.string.title_activity_broadcast_page));
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -120,8 +118,7 @@ public class BroadcastActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isAreaValid())
-                {
+                if (isAreaValid()) {
                     mAdapter.sendBroadcastMessage(areaHash.get(areaAutoComplete.getText().toString().toLowerCase()));
                     AUtils.success(mContext, mContext.getResources().getString(R.string.sending_msg), Toast.LENGTH_SHORT);
                     finish();
@@ -132,9 +129,9 @@ public class BroadcastActivity extends AppCompatActivity {
         areaAutoComplete.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean isFocused) {
-                if(isFocused){
+                if (isFocused) {
                     areaAutoComplete.showDropDown();
-                    AUtils.showKeyboard((Activity)mContext);
+                    AUtils.showKeyboard((Activity) mContext);
                 }
             }
         });
@@ -174,18 +171,17 @@ public class BroadcastActivity extends AppCompatActivity {
 
     protected void initData() {
 
-        if(! AUtils.isConnectedFast(mContext))
-        {
-            AUtils.warning(mContext,getResources().getString(R.string.slow_internet));
+        if (!AUtils.isConnectedFast(mContext)) {
+            AUtils.warning(mContext, getResources().getString(R.string.slow_internet));
         }
         mAreaAdapter.fetchAreaList(AUtils.HP_AREA_TYPE_ID, true);
     }
 
-    private void inflateAreaAutoComplete(List<CollectionAreaPojo> pojoList){
+    private void inflateAreaAutoComplete(List<CollectionAreaPojo> pojoList) {
 
         areaHash = new HashMap<>();
         ArrayList<String> keyList = new ArrayList<>();
-        for(CollectionAreaPojo pojo : pojoList){
+        for (CollectionAreaPojo pojo : pojoList) {
             areaHash.put(pojo.getArea().toLowerCase(), pojo.getId());
             keyList.add(pojo.getArea().trim());
         }
@@ -193,7 +189,7 @@ public class BroadcastActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, android.R.layout.simple_dropdown_item_1line, keyList);
         areaAutoComplete.setThreshold(0);
         areaAutoComplete.setAdapter(adapter);
-        if(!areaAutoComplete.isFocused()){
+        if (!areaAutoComplete.isFocused()) {
             areaAutoComplete.requestFocus();
         }
 
@@ -201,10 +197,9 @@ public class BroadcastActivity extends AppCompatActivity {
 
     private boolean isAreaValid() {
         String area = areaAutoComplete.getText().toString().toLowerCase();
-        if(areaHash.containsKey(area)) {
+        if (areaHash.containsKey(area)) {
             return true;
-        }
-        else {
+        } else {
             AUtils.error(mContext, mContext.getResources().getString(R.string.area_validation));
             return false;
         }

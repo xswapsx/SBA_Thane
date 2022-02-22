@@ -1,8 +1,8 @@
 package com.appynitty.swachbharatabhiyanlibrary.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
 

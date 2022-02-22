@@ -8,10 +8,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
@@ -49,17 +47,13 @@ public class TakePhotoActivity extends AppCompatActivity {
     private static final int SELECT_FILE = 33;
 
     private static int imageViewNo = 0;
-
-
+    private final String resumeFilePath = "";
     private Context mContext;
     private Toolbar toolbar;
-
     private EditText comments;
     private ImageView beforeImage;
     private ImageView afterImage;
     private CardView openQR;
-
-    private final String resumeFilePath = "";
     private String beforeImageFilePath = "";
     private String afterImageFilePath = "";
 

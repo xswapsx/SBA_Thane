@@ -42,16 +42,13 @@ import java.util.Objects;
 
 public class EmpAddLocationDetailsActivity extends AppCompatActivity {
 
+    ArrayList<String> nameListZone, nameListWardZone, nameListArea;
     private Context mContext;
-
     private EditText txtName, txtNameMar, txtAddress, txtHouseNo, txtContactNo;
     private Spinner spinnerZone, spinnerWard, spinnerArea;
     private Button btnSubmit;
     private String referenceId, submitType, zoneId, wardId, areaId;
-
     private HashMap<String, String> zoneMap, zoneWardMap, areaMap;
-    ArrayList<String> nameListZone, nameListWardZone, nameListArea;
-
     private EmpWardZoneAreaAdapterClass mAdapterClass;
     private EmpQrLocationAdapterClass empQrLocationAdapterClass;
     private EmpRegistrationDataAdapterClass empRegistrationDataAdapterClass;
@@ -78,13 +75,13 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
         initComponents();
     }
 
-    private void initComponents(){
+    private void initComponents() {
         generateId();
         initData();
         registerEvents();
     }
 
-    private void generateId(){
+    private void generateId() {
 
         setContentView(R.layout.activity_emp_add_location_details);
         mContext = EmpAddLocationDetailsActivity.this;
@@ -118,11 +115,11 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        if(intent.hasExtra(AUtils.ADD_DETAILS_TYPE_KEY)){
+        if (intent.hasExtra(AUtils.ADD_DETAILS_TYPE_KEY)) {
             referenceId = intent.getStringExtra(AUtils.NondaniLocation.REFERENCE_ID);
             submitType = intent.getStringExtra(AUtils.NondaniLocation.SUBMIT_TYPE);
 
-            if(!submitType.equals("1")){
+            if (!submitType.equals("1")) {
                 mobileLayout.setVisibility(View.GONE);
                 houseIdLayout.setVisibility(View.GONE);
             }
@@ -135,11 +132,11 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
         empRegistrationDataAdapterClass = new EmpRegistrationDataAdapterClass();
     }
 
-    private void initToolbar(){
+    private void initToolbar() {
 
         String additionalParam = getResources().getString(R.string.title_activity_emp_add_location_details);
 
-        if(!AUtils.isNull(referenceId) && !referenceId.matches("")){
+        if (!AUtils.isNull(referenceId) && !referenceId.matches("")) {
 //            additionalParam = referenceId+"-"+additionalParam;
             additionalParam = referenceId;
         }
@@ -150,7 +147,7 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
-    private void registerEvents(){
+    private void registerEvents() {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,9 +158,9 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
         mAdapterClass.setEmpZoneWardAreaListner(new EmpWardZoneAreaAdapterClass.EmpZoneWardAreaListner() {
             @Override
             public void onSuccessCallback(List<ZoneWardAreaMasterPojo> data, int CallRequestCode) {
-                try{
-                    if(!AUtils.isNull(data)){
-                        switch (CallRequestCode){
+                try {
+                    if (!AUtils.isNull(data)) {
+                        switch (CallRequestCode) {
                             case EmpWardZoneAreaAdapterClass.CALL_REQUEST_ZONE:
                                 initZone(data);
                                 break;
@@ -174,10 +171,10 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
                                 initArea(data);
                                 break;
                         }
-                    }else{
+                    } else {
                         AUtils.error(mContext, getResources().getString(R.string.something_error), Toast.LENGTH_SHORT);
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -199,18 +196,18 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
                 myProgressDialog.dismiss();
                 String message = "";
 
-                if(Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_ID).equals("2")){
+                if (Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_ID).equals("2")) {
                     message = resultPojo.getMessageMar();
-                }else{
+                } else {
                     message = resultPojo.getMessage();
                 }
 
-                if(resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)){
+                if (resultPojo.getStatus().equals(AUtils.STATUS_SUCCESS)) {
                     AUtils.success(mContext, message, Toast.LENGTH_LONG);
                     Intent intent = new Intent();
                     setResult(RESULT_OK, intent);
                     finish();
-                }else{
+                } else {
                     AUtils.error(mContext, message, Toast.LENGTH_LONG);
                 }
             }
@@ -218,13 +215,13 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
             @Override
             public void onFailureCallback() {
                 myProgressDialog.dismiss();
-                AUtils.error(mContext,getResources().getString(R.string.something_error), Toast.LENGTH_LONG);
+                AUtils.error(mContext, getResources().getString(R.string.something_error), Toast.LENGTH_LONG);
             }
 
             @Override
             public void onErrorCallback() {
                 myProgressDialog.dismiss();
-                AUtils.error(mContext,getResources().getString(R.string.serverError), Toast.LENGTH_LONG);
+                AUtils.error(mContext, getResources().getString(R.string.serverError), Toast.LENGTH_LONG);
             }
         });
 
@@ -232,29 +229,29 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
             @Override
             public void onSuccessCallback(EmpRegistrationPojo empRegistrationPojo) {
                 myProgressDialog.dismiss();
-                if(!AUtils.isNull(empRegistrationPojo))
+                if (!AUtils.isNull(empRegistrationPojo))
 
                     initFieldData(empRegistrationPojo);
                 else
-                    AUtils.error(mContext,getResources().getString(R.string.something_error), Toast.LENGTH_LONG);
+                    AUtils.error(mContext, getResources().getString(R.string.something_error), Toast.LENGTH_LONG);
 
             }
 
             @Override
             public void onFailureCallback() {
                 myProgressDialog.dismiss();
-                AUtils.error(mContext,getResources().getString(R.string.something_error), Toast.LENGTH_LONG);
+                AUtils.error(mContext, getResources().getString(R.string.something_error), Toast.LENGTH_LONG);
             }
 
             @Override
             public void onErrorCallback() {
                 myProgressDialog.dismiss();
-                AUtils.error(mContext,getResources().getString(R.string.serverError), Toast.LENGTH_LONG);
+                AUtils.error(mContext, getResources().getString(R.string.serverError), Toast.LENGTH_LONG);
             }
         });
     }
 
-    private void initData(){
+    private void initData() {
         myProgressDialog.show();
 
         QrLocationPojo pojo = new QrLocationPojo();
@@ -268,10 +265,10 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
         mAdapterClass.fetchArea();
     }
 
-    private void initZone(List<ZoneWardAreaMasterPojo> list){
+    private void initZone(List<ZoneWardAreaMasterPojo> list) {
 
         nameListZone.add("--Select Zone--");
-        for(ZoneWardAreaMasterPojo pojo: list){
+        for (ZoneWardAreaMasterPojo pojo : list) {
             nameListZone.add(pojo.getName());
             zoneMap.put(pojo.getName(), pojo.getzoneId());
             zoneMap.put(pojo.getzoneId(), pojo.getName());
@@ -280,18 +277,18 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, nameListZone);
         spinnerZone.setAdapter(adapter);
 
-        if(!AUtils.isNull(zoneId) && !zoneId.isEmpty()){
-            if(zoneMap.containsValue(zoneId) && nameListZone.indexOf(zoneMap.get(zoneId)) > 0){
+        if (!AUtils.isNull(zoneId) && !zoneId.isEmpty()) {
+            if (zoneMap.containsValue(zoneId) && nameListZone.indexOf(zoneMap.get(zoneId)) > 0) {
                 spinnerZone.setSelection(nameListZone.indexOf(zoneMap.get(zoneId)));
             }
         }
     }
 
-    private void initWardZone(List<ZoneWardAreaMasterPojo> list){
+    private void initWardZone(List<ZoneWardAreaMasterPojo> list) {
 
         nameListWardZone.add("--Select Ward No.--");
-        for(ZoneWardAreaMasterPojo pojo: list){
-            String name = pojo.getWardNo()+"("+pojo.getZone()+")";
+        for (ZoneWardAreaMasterPojo pojo : list) {
+            String name = pojo.getWardNo() + "(" + pojo.getZone() + ")";
             nameListWardZone.add(name);
             zoneWardMap.put(name, pojo.getWardID());
             zoneWardMap.put(pojo.getWardID(), name);
@@ -300,18 +297,18 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, nameListWardZone);
         spinnerWard.setAdapter(adapter);
 
-        if(!AUtils.isNull(wardId) && !wardId.isEmpty()){
-            if(zoneWardMap.containsValue(wardId) && nameListWardZone.indexOf(zoneWardMap.get(wardId)) > 0){
+        if (!AUtils.isNull(wardId) && !wardId.isEmpty()) {
+            if (zoneWardMap.containsValue(wardId) && nameListWardZone.indexOf(zoneWardMap.get(wardId)) > 0) {
                 spinnerWard.setSelection(nameListWardZone.indexOf(zoneWardMap.get(wardId)));
             }
         }
     }
 
-    private void initArea(List<ZoneWardAreaMasterPojo> list){
+    private void initArea(List<ZoneWardAreaMasterPojo> list) {
 
         nameListArea.add("--Select Area--");
-        for(ZoneWardAreaMasterPojo pojo: list){
-            String name = pojo.getArea()+"("+pojo.getAreaMar()+")";
+        for (ZoneWardAreaMasterPojo pojo : list) {
+            String name = pojo.getArea() + "(" + pojo.getAreaMar() + ")";
             nameListArea.add(name);
             areaMap.put(name, pojo.getId());
             areaMap.put(pojo.getId(), name);
@@ -320,15 +317,15 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, nameListArea);
         spinnerArea.setAdapter(adapter);
 
-        if(!AUtils.isNull(areaId) && !areaId.isEmpty()){
-            if(areaMap.containsValue(areaId) && nameListArea.indexOf(areaMap.get(areaId)) > 0){
+        if (!AUtils.isNull(areaId) && !areaId.isEmpty()) {
+            if (areaMap.containsValue(areaId) && nameListArea.indexOf(areaMap.get(areaId)) > 0) {
                 spinnerArea.setSelection(nameListArea.indexOf(areaMap.get(areaId)));
             }
         }
     }
 
-    private void initFieldData(EmpRegistrationPojo pojo){
-        if(pojo.getStatus().toLowerCase().equals(AUtils.STATUS_SUCCESS)){
+    private void initFieldData(EmpRegistrationPojo pojo) {
+        if (pojo.getStatus().equalsIgnoreCase(AUtils.STATUS_SUCCESS)) {
             txtName.setText(pojo.getName());
             txtNameMar.setText(pojo.getNamemar());
             txtAddress.setText(pojo.getAddress());
@@ -337,30 +334,30 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
             zoneId = pojo.getZoneId();
             areaId = pojo.getAreaId();
 
-            if(submitType.equals("1") && !AUtils.isNull(pojo.getHouseNumber()) && pojo.getHouseNumber().length() > 0){
+            if (submitType.equals("1") && !AUtils.isNull(pojo.getHouseNumber()) && pojo.getHouseNumber().length() > 0) {
                 txtHouseNo.setText(pojo.getHouseNumber());
                 txtContactNo.setText(pojo.getMobileno());
             }
 
-            if(zoneMap.size() > 0 && zoneMap.containsValue(zoneId) && nameListZone.indexOf(zoneMap.get(zoneId)) > 0){
+            if (zoneMap.size() > 0 && zoneMap.containsValue(zoneId) && nameListZone.indexOf(zoneMap.get(zoneId)) > 0) {
                 spinnerZone.setSelection(nameListZone.indexOf(zoneMap.get(zoneId)));
             }
 
-            if(zoneWardMap.size() > 0 && zoneWardMap.containsValue(wardId) && nameListWardZone.indexOf(zoneWardMap.get(wardId)) > 0){
+            if (zoneWardMap.size() > 0 && zoneWardMap.containsValue(wardId) && nameListWardZone.indexOf(zoneWardMap.get(wardId)) > 0) {
                 spinnerWard.setSelection(nameListWardZone.indexOf(zoneWardMap.get(wardId)));
             }
 
-            if(areaMap.size() > 0 && areaMap.containsValue(areaId) && nameListArea.indexOf(areaMap.get(areaId)) > 0){
+            if (areaMap.size() > 0 && areaMap.containsValue(areaId) && nameListArea.indexOf(areaMap.get(areaId)) > 0) {
                 spinnerArea.setSelection(nameListArea.indexOf(areaMap.get(areaId)));
             }
 
-        }else{
+        } else {
             Toast.makeText(mContext, pojo.getMessage(), Toast.LENGTH_LONG).show();
-            ((Activity)mContext).finish();
+            ((Activity) mContext).finish();
         }
     }
 
-    private void submitDetails(){
+    private void submitDetails() {
 
         myProgressDialog.show();
         QrLocationPojo qrLocationPojo = new QrLocationPojo();
@@ -373,7 +370,7 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
         qrLocationPojo.setName(txtName.getText().toString());
         qrLocationPojo.setNameMar(txtNameMar.getText().toString());
         qrLocationPojo.setAddress(txtAddress.getText().toString());
-        if(spinnerZone.getSelectedItemPosition() == 0)
+        if (spinnerZone.getSelectedItemPosition() == 0)
             qrLocationPojo.setZoneId("0");
         else
             qrLocationPojo.setZoneId(zoneMap.get(spinnerZone.getSelectedItem().toString()));
@@ -393,7 +390,7 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
         qrLocationPojo.setUserId(Prefs.getString(AUtils.PREFS.USER_ID, ""));
         qrLocationPojo.setDate(AUtils.getServerDateTime());
 
-        if(AUtils.isInternetAvailable()) {
+        if (AUtils.isInternetAvailable()) {
             empQrLocationAdapterClass.saveQrLocation(qrLocationPojo);
         } else {
             insertToDB(qrLocationPojo);
@@ -402,7 +399,7 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
         }
 
@@ -411,7 +408,8 @@ public class EmpAddLocationDetailsActivity extends AppCompatActivity {
 
     private void insertToDB(QrLocationPojo pojo) {
 
-        Type type = new TypeToken<QrLocationPojo>(){}.getType();
+        Type type = new TypeToken<QrLocationPojo>() {
+        }.getType();
         empSyncServerRepository.insertEmpSyncServerEntity(gson.toJson(pojo, type));
 
         AUtils.success(mContext, "Uploaded successfully", Toast.LENGTH_LONG);

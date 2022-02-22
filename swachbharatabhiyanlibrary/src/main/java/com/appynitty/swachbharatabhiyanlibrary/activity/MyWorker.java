@@ -1,37 +1,22 @@
 package com.appynitty.swachbharatabhiyanlibrary.activity;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.Service;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.location.Address;
-import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Build;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Looper;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.work.ListenableWorker;
-import androidx.work.WorkManager;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.services.LocationMonitoringService;
-import com.appynitty.swachbharatabhiyanlibrary.services.RestarterBroadcastReceiver;
-import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
-import com.google.android.gms.common.api.Result;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -39,7 +24,6 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -48,18 +32,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
-import java.util.Timer;
 
 
-public class MyWorker  extends Worker {
+public class MyWorker extends Worker {
     private static final String TAG = LocationMonitoringService.class.getSimpleName();
 //    LocationMonitoringService monitoringService;
 
 
     private static final String DEFAULT_START_TIME = "08:00";
     private static final String DEFAULT_END_TIME = "19:00";
-
 
 
     /**

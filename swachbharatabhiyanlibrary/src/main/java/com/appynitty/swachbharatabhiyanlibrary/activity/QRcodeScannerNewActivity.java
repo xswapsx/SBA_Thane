@@ -629,7 +629,7 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
                     QRcodeScannerNewActivity.this.finish();
                 } else {
 
-                    showPopup(getGarbageCollectionPojo().getId(), mAdapter.getResultPojo(),gcType);
+                    showPopup(getGarbageCollectionPojo().getId(), mAdapter.getResultPojo(), gcType);
 
                 }
             }
@@ -699,14 +699,14 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
 //                AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.dy_qr_alert), null);
                 getDumpYardDetails(houseid);
             }
-        }else if (EmpType.matches("N")){
+        } else if (EmpType.matches("N")) {
 
             gcType = "7";
             if (houseid.substring(0, 2).matches("^[HhPp]+$")) {
                 startSubmitQRAsyncTask(houseid, -1, gcType, null);
-            }else if (houseid.substring(0, 2).matches("^[DdYy]+$")) {
+            } else if (houseid.substring(0, 2).matches("^[DdYy]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.dy_qr_alert), null);
-            }else if (houseid.substring(0, 2).matches("^[LlWw]+$")) {
+            } else if (houseid.substring(0, 2).matches("^[LlWw]+$")) {
 //                AUtils.warning(QRcodeScannerActivity.this, "For scanning Liquid Waste Collection QR,\nkindly login with liquid waste cleaning id", 16);
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.lwc_qr_alert), null);
             } else if (houseid.substring(0, 2).matches("^[SsSs]+$")) {
@@ -811,7 +811,7 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
         });
 
         String valueOne = "";
-        switch (gcType){
+        switch (gcType) {
             case "1":
                 valueOne = "6";
                 break;
@@ -1145,7 +1145,7 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
 
         entity.setReferenceID(garbageCollectionPojo.getId());
         if (garbageCollectionPojo.getId().substring(0, 2).matches("^[HhPp]+$")) {
-            if ((gcType.equalsIgnoreCase("7")) && gcType.matches("7")){
+            if ((gcType.equalsIgnoreCase("7")) && gcType.matches("7")) {
                 getIntent().getStringArrayExtra("Hort");
                 entity.setGcType("7");
             }

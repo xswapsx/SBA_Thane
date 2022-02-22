@@ -95,6 +95,9 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     private final static int DUMP_YARD_DETAILS_REQUEST_CODE = 100;
     GarbageCollectionPojo garbageCollectionPojo;
     SyncOfflinePojo syncOfflinePojo;
+    LocationMonitoringService locationMonitoringService;
+    List<SyncOfflinePojo> scannedQR;
+    ProgressDialog progressBar;
     private Context mContext;
     private Toolbar toolbar;
     private ZBarScannerView scannerView;
@@ -120,15 +123,8 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     private SyncOfflineAdapterClass syncOfflineAdapterClass;
     private SyncOfflineRepository syncOfflineRepository;
     private SyncOfflineAttendanceRepository syncOfflineAttendanceRepository;
-
     private String EmpType, gcType, cType;
     private String areaType;
-
-
-    LocationMonitoringService locationMonitoringService;
-    List<SyncOfflinePojo> scannedQR;
-
-    ProgressDialog progressBar;
 
     @Override
     protected void attachBaseContext(Context newBase) {

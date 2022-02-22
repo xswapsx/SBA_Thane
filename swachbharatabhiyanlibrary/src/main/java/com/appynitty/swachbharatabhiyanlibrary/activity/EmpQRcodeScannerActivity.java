@@ -50,7 +50,7 @@ import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
-public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler, EmpGarbageTpyePopUp.EmpGarbagePopUpDialogListener,EmpSWMTypePopUpDialog.EmpSWMTypePopUpDialogListener {
+public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler, EmpGarbageTpyePopUp.EmpGarbagePopUpDialogListener, EmpSWMTypePopUpDialog.EmpSWMTypePopUpDialogListener {
 
     private final static String TAG = "EmpQRcodeScannerActivity";
 
@@ -249,7 +249,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
         isScanQr = true;
 
-        ViewGroup contentFrame = (ViewGroup) findViewById(R.id.qr_scanner);
+        ViewGroup contentFrame = findViewById(R.id.qr_scanner);
         scannerView = new ZBarScannerView(mContext);
         scannerView.setAutoFocus(true);
         scannerView.setLaserColor(getResources().getColor(R.color.colorPrimary));
@@ -561,24 +561,21 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
             empGarbageTpyePopUp = new EmpGarbageTpyePopUp(mContext, id, this);
             //added by rahul
-            empSWMTypePopUpDialog = new EmpSWMTypePopUpDialog(mContext, id, (EmpSWMTypePopUpDialog.EmpSWMTypePopUpDialogListener) this);
+            empSWMTypePopUpDialog = new EmpSWMTypePopUpDialog(mContext, id, this);
 //            chooseActionPopUp.setData(id);
             if (id.substring(0, 2).matches("^[HhPp]+$")) {
                 empGarbageTpyePopUp.show();
-            }
-            else if (id.substring(0, 2).matches("^[CcTtPpTt]+$")) {
+            } else if (id.substring(0, 2).matches("^[CcTtPpTt]+$")) {
                 submitBtn.setVisibility(View.GONE);
                 collectionRadioGroup.setVisibility(View.GONE);
                 submitOnSkipToilet(id);
                 AUtils.success(mContext, "Uploaded successfully");
                 finish();
-            }
-            else if (id.substring(0, 2).matches("^[SsWwMm]+$")) {
+            } else if (id.substring(0, 2).matches("^[SsWwMm]+$")) {
                 submitBtn.setVisibility(View.GONE);
                 collectionRadioGroup.setVisibility(View.GONE);
                 empSWMTypePopUpDialog.show();
-            }
-            else if (id.substring(0, 2).matches("^[CcPp]+$")) {
+            } else if (id.substring(0, 2).matches("^[CcPp]+$")) {
                 submitOnSkip(id, "CW");
                 AUtils.success(mContext, "Uploaded successfully");
                 finish();
