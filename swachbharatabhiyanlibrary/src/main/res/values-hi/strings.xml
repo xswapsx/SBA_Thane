@@ -233,4 +233,7 @@
     <string name="rd_btn_stp">मलजल उपचार संयंत्र</string>
     <string name="rd_btn_bwg_wwp">ऑनसाइट गीले अपशिष्ट प्रसंस्करण के लिए थोक अपशिष्ट जेनरेटर</string>
     <string name="str_err_select_swm_type">कृपया एसडब्ल्यूएम सुविधा का प्रकार चुनें</string>
+    <string name="str_user_validate">उपयोगकर्ता नाम में कम से कम चार अक्षर होने चाहिए</string>
+    <string name="str_pwd_validate">पासवर्ड में कम से कम चार अक्षर होने चाहिए</string>
+    <string name="commercial_id_hint">व्यापारिक पॉइंट आयडी दर्ज़ करें</string>
 </resources>

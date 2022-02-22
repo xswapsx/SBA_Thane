@@ -298,5 +298,8 @@
     <string name="rd_btn_stp">Sewage Treatment Plant</string>
     <string name="rd_btn_bwg_wwp">Bulk Waste Generators For Onsite Wet Waste Processing</string>
     <string name="str_err_select_swm_type">Please select SWM facility type</string>
+    <string name="str_user_validate">The Username should contain at least four characters</string>
+    <string name="str_pwd_validate">The Password should contain at least four characters</string>
+    <string name="commercial_id_hint">Enter Commercial Point ID</string>
 
 </resources>

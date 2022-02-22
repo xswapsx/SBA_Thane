@@ -16,8 +16,6 @@ import com.appynitty.swachbharatabhiyanlibrary.fragment.CommercialFirstDialog;
 import com.appynitty.swachbharatabhiyanlibrary.fragment.CommercialNextDialog;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 
-import java.util.List;
-
 /**
  * Created by Swapnil on 25/01/22.
  */
@@ -26,7 +24,7 @@ import java.util.List;
 public class CommercialGarbageDialog extends DialogFragment implements CommercialFirstDialog.FirstDialog, CommercialNextDialog.SecondDialog {
     Context mContext;
     String mHouseId;
-    List<String> mGarbageType;
+    String mGarbageType;
     String cType;
 
     CommercialGarbageDialog.CustomDialogInterface mListener;
@@ -54,20 +52,20 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
     }
 
     @Override
-    public void onNextBtnPressed(String houseId, List<String> mGarbageType) {
+    public void onNextBtnPressed(String houseId, String mGarbageType) {
 //        Toast.makeText(mContext, " " + houseId + ", " + mGarbageType, Toast.LENGTH_SHORT).show();
         this.mHouseId = houseId;
         this.mGarbageType = mGarbageType;
 
-        if (!mGarbageType.equals("-1")) {
+        /*if (!mGarbageType.equals("-1")) {*/
             FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
             CommercialNextDialog commercialNextDialog = new CommercialNextDialog();
             transaction.replace(R.id.commercialDialog_container, commercialNextDialog);
             transaction.addToBackStack("commercialNextDialog");
             transaction.commit();
-        } else {
+        /*}*/ /*else {
             AUtils.warning(mContext, getResources().getString(R.string.pls_slct_garbageType));
-        }
+        }*/
 
 
     }
@@ -84,7 +82,7 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
     }
 
     public interface CustomDialogInterface {
-        void onSubmitButtonClicked(String houseId, List<String> garbageType, String segregationLevel);
+        void onSubmitButtonClicked(String houseId, String garbageType, String segregationLevel);
     }
 
 

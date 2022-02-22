@@ -103,7 +103,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     private TextInputLayout idIpLayout, areaLayout;
     private AutoCompleteTextView idAutoComplete;
     private RadioGroup collectionRadioGroup;
-    private RadioButton houseCollectionRadio, commercialCollectionRadio, dumpYardRadio;
+    private RadioButton houseCollectionRadio, dumpYardRadio;
     private String radioSelection;
     private Button submitBtn, permissionBtn;
     private View contentView;
@@ -321,7 +321,6 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
         collectionRadioGroup = findViewById(R.id.collection_radio_group);
         houseCollectionRadio = findViewById(R.id.house_collection_radio);
-        commercialCollectionRadio = findViewById(R.id.comm_collection_radio);
         dumpYardRadio = findViewById(R.id.dump_yard_radio);
 
         /***** Rahul Rokade ****/
@@ -449,9 +448,6 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                     } else if (radioGroupId == R.id.dump_yard_radio) {
                         idIpLayout.setHint(getResources().getString(R.string.dy_id_hint));
                         radioSelection = AUtils.RADIO_SELECTED_DY;
-                    } else if (radioGroupId == R.id.comm_collection_radio) {
-                        idIpLayout.setHint(getResources().getString(R.string.commercial_id_hint));
-                        radioSelection = AUtils.RADIO_SELECTED_CP;
                     }
 
                     if (!AUtils.isConnectedFast(mContext)) {
@@ -1391,10 +1387,8 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     }
 
     @Override
-    public void onSubmitButtonClicked(String houseId, List<String> garbageType, String segregationLevel) {
-
-        Log.e(TAG, "onSubmitButtonClicked: houseID:- " + houseId + ", garbageType:- " + garbageType + ", segregationLevel:- " + segregationLevel);
-//        startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "1", segregationLevel);
-        confirmationDialog(houseId, "garbageType");
+    public void onSubmitButtonClicked(String houseId, String garbageType, String segregationLevel) {
+        startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "1", segregationLevel);
+        confirmationDialog(houseId, garbageType);
     }
 }
