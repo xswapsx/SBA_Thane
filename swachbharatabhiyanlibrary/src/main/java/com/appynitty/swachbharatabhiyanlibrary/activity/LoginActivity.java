@@ -364,7 +364,6 @@ public class LoginActivity extends AppCompatActivity implements PopUpDialog.PopU
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             deviceId = telephonyManager.getDeviceId();
         }
-
         loginPojo.setImiNo(deviceId);
     }
 

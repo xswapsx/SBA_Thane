@@ -112,6 +112,30 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/str_toilet_seats_count_heading"
+            android:layout_marginStart="@dimen/dim_6_dp"
+            android:layout_marginEnd="@dimen/dim_6_dp"
+            android:textSize="@dimen/dim_17_sp" />
+
+        <EditText
+            android:id="@+id/edt_numberOf_seats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/str_hint_toilet_seats_count"
+            android:textColorHint="@color/black_alpha_45"
+            android:maxLines="1"
+            android:maxLength="3"
+            android:layout_marginVertical="@dimen/dim_5_dp"
+            android:layout_marginHorizontal="@dimen/dim_10_dp"
+            android:background="@android:color/transparent"
+            android:paddingVertical="@dimen/dim_10_dp"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/comments"
             android:layout_marginStart="@dimen/dim_6_dp"
             android:layout_marginEnd="@dimen/dim_6_dp"

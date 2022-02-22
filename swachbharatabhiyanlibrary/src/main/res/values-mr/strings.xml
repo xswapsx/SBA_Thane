@@ -243,6 +243,27 @@
     <string name="str_user_validate">वापरकर्तानावामध्ये किमान चार अक्षर असावेत!</string>
     <string name="str_pwd_validate">पासवर्डमध्ये किमान चार अक्षर असावेत!</string>
     <string name="commercial_id_hint">व्यावसायिक पॉइंट आयडी एंटर करा</string>
+    <!--CTPT activity-->
+    <string name="string_ctpt_heading">सीटीपीटी शौचालय</string>
+    <string name="str_toilet_seats_count_heading">शौचालय आसनांची संख्या</string>
+    <string name="str_hint_toilet_seats_count">कृपया जागा संख्या प्रविष्ट करा</string>
+    <string name="str_title_type_of_toilet">शौचालयाचा प्रकार</string>
+    <string name="str_rd_btn_community_toilet">सामुदायिक शौचालय</string>
+    <string name="str_rd_btn_public_toilet">सार्वजनिक शौचालय</string>
+    <string name="str_rd_btn_urinal">लघवी करण्याचे ठिकाण</string>
+    <string name="str_err_select_type">कृपया शौचालयाचा प्रकार निवडा</string>
+    <!--SWM Facility-->
+    <string name="str_title_type_swm_facility">एसडब्ल्यूएम सुविधेचे प्रकार</string>
+    <string name="rd_btn_ts">स्थानांतरण स्थान</string>
+    <string name="rd_btn_wwpf">ओला कचरा प्रक्रिया सुविधा</string>
+    <string name="rd_btn_dwpf">सुका कचरा प्रक्रिया सुविधा</string>
+    <string name="rd_btn_cdwpf">सी एंड डी कचरा प्रक्रिया सुविधा</string>
+    <string name="rd_btn_ifd_swp">घरगुती आणि स्वच्छताविषयक कचरा प्रक्रियेसाठी जाळण्याची सुविधा</string>
+    <string name="rd_btn_slf">सॅनिटरी लँडफिल सुविधा</string>
+    <string name="rd_btn_lwbf">विरासती अपशिष्ट जैव उपचार सुविधा</string>
+    <string name="rd_btn_stp">सांडपाणी पुनर्प्रक्रिया प्रकल्प</string>
+    <string name="rd_btn_bwg_wwp">ऑनसाइट ओल्या कचरा प्रक्रियेसाठी मोठ्या प्रमाणात कचरा जनरेटर</string>
+    <string name="str_err_select_swm_type">कृपया एसडब्ल्यूएम सुविधेचे प्रकार निवडा</string>
 
 
 </resources>
