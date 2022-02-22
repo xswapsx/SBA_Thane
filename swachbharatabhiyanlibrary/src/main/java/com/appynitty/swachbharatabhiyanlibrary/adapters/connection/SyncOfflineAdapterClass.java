@@ -33,7 +33,7 @@ public class SyncOfflineAdapterClass {
     private String offset = "0";
     private final List<SyncOfflinePojo> syncOfflineList;
     private final static String TAG = "SyncOfflineAdapterClass";
-    private String CType;
+
 
     public SyncOfflineAdapterClass(Context context) {
         this.mContext = context;
@@ -67,7 +67,6 @@ public class SyncOfflineAdapterClass {
 
                                 if (response.code() == 200) {
                                     onResponseReceived(response.body());
-
                                     SyncOfflineData();
                                 } else {
                                     Log.i(AUtils.TAG_HTTP_RESPONSE, "onFailureCallback: Response Code-" + response.code());
