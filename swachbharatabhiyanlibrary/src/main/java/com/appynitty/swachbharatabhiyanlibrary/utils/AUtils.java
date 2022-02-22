@@ -145,6 +145,8 @@ public class AUtils extends CommonUtils {
 
     public static final String DY_AREA_TYPE_ID = "3";
 
+    public static final String CP_AREA_TYPE_ID = "1";
+
     public final static String CONNECTIVITY_ACTION = "android.net.conn.CONNECTIVITY_CHANGE";
 
     public static final String TAG_HTTP_RESPONSE = "HTTPResponse_Error";

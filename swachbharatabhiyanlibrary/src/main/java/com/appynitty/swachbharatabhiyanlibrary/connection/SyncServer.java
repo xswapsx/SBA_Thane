@@ -403,6 +403,23 @@ public class SyncServer {
         return areaPojoList;
     }
 
+    public List<CollectionDumpYardPointPojo> fetchCollectionCommercialPoint(String appId, String areaId) {
+        List<CollectionDumpYardPointPojo> areaPojoList = null;
+
+        try {
+
+            AreaHousePointService areaHousePointService = Connection.createService(AreaHousePointService.class, AUtils.SERVER_URL);
+            areaPojoList = areaHousePointService.fetchCollectionCpPoint(
+                    Prefs.getString(AUtils.APP_ID, ""), areaId)
+                    .execute().body();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return areaPojoList;
+    }
+
     public List<CollectionAreaPointPojo> fetchCollectionAreaPoint(String areaType, String areaId) {
 
         List<CollectionAreaPointPojo> areaPojoList = null;

@@ -41,6 +41,7 @@ import androidx.fragment.app.FragmentManager;
 import com.appynitty.retrofitconnectionlibrary.connection.Connection;
 import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.UI.AutocompleteContainSearch;
+import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.AreaCommercialAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.AreaHouseAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.AreaPointAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.CollectionAreaAdapterClass;
@@ -116,6 +117,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     private HashMap<String, String> areaHash;
     private HashMap<String, String> idHash;
     private AreaHouseAdapterClass mHpAdapter;
+    private AreaCommercialAdapterClass mCpAdapter;
     private AreaPointAdapterClass mGpAdapter;
     private DumpYardAdapterClass mDyAdapter;
     private CollectionAreaAdapterClass mAreaAdapter;
@@ -296,6 +298,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         mDyAdapter = new DumpYardAdapterClass();
         mGpAdapter = new AreaPointAdapterClass();
         mHpAdapter = new AreaHouseAdapterClass();
+        mCpAdapter = new AreaCommercialAdapterClass();
         mAreaAdapter = new CollectionAreaAdapterClass();
         syncOfflineAdapterClass = new SyncOfflineAdapterClass(this);
 
@@ -441,6 +444,10 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                     if (radioGroupId == R.id.house_collection_radio) {
                         idIpLayout.setHint(getResources().getString(R.string.house_number_hint));
                         radioSelection = AUtils.RADIO_SELECTED_HP;
+                    } else if (radioGroupId == R.id.comm_collection_radio) {
+                        Toast.makeText(mContext, "commercial radio is selected!", Toast.LENGTH_SHORT).show();
+                        idIpLayout.setHint(getResources().getString(R.string.commercial_id_hint));
+                        radioSelection = AUtils.RADIO_SELECTED_CP;
                     } else if (radioGroupId == R.id.dump_yard_radio) {
                         idIpLayout.setHint(getResources().getString(R.string.dy_id_hint));
                         radioSelection = AUtils.RADIO_SELECTED_DY;
@@ -596,6 +603,18 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
             @Override
             public void onSuccessCallBack() {
                 inflateHpAutoComplete(mHpAdapter.getHpPojoList());
+            }
+
+            @Override
+            public void onFailureCallBack() {
+                AUtils.error(mContext, getResources().getString(R.string.serverError));
+            }
+        });
+
+        mCpAdapter.setAreaCommercialListener(new AreaCommercialAdapterClass.AreaCommercialPointListener() {
+            @Override
+            public void onSuccessCallBack() {
+                inflateCpAutoComplete(mCpAdapter.getCpPojoList());
             }
 
             @Override
@@ -860,6 +879,9 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         } else if (radioSelection.equals(AUtils.RADIO_SELECTED_SW)) {
             idIpLayout.setHint(getResources().getString(R.string.street_number_hint));
             idAutoComplete.setHint("");
+        } else if (radioSelection.equals(AUtils.RADIO_SELECTED_CP)) {
+            idIpLayout.setHint(getResources().getString(R.string.commercial_id_hint));
+            idAutoComplete.setHint("");
         }
 
     }
@@ -1099,6 +1121,21 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         idAutoComplete.requestFocus();
     }
 
+    private void inflateCpAutoComplete(List<CollectionDumpYardPointPojo> pojoList) {
+
+        idHash = new HashMap<>();
+        ArrayList<String> keyList = new ArrayList<>();
+        for (CollectionDumpYardPointPojo pojo : pojoList) {
+            idHash.put(pojo.getDyId().toLowerCase(), pojo.getDyName());
+            keyList.add(pojo.getDyId().trim());
+        }
+
+        AutocompleteContainSearch adapter = new AutocompleteContainSearch(mContext, android.R.layout.simple_dropdown_item_1line, keyList);
+        idAutoComplete.setThreshold(0);
+        idAutoComplete.setAdapter(adapter);
+        idAutoComplete.requestFocus();
+    }
+
     private void inflateGpAutoComplete(List<CollectionAreaPointPojo> pojoList) {
 
         idHash = new HashMap<>();
@@ -1136,6 +1173,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         String areaType = getAreaType();
         if (areaType.equals(AUtils.HP_AREA_TYPE_ID)) {
             mHpAdapter.fetchHpList(areaId);
+            mCpAdapter.fetchCpList(areaId);
         }
 
         if (areaType.equals(AUtils.GP_AREA_TYPE_ID)) {
@@ -1145,12 +1183,18 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         if (areaType.equals(AUtils.DY_AREA_TYPE_ID)) {
             mDyAdapter.fetchDyList(areaId);
         }
+
+        if (areaType.equals(AUtils.CP_AREA_TYPE_ID)) {
+            mCpAdapter.fetchCpList(areaId);
+        }
     }
 
 
     private String getAreaType() {
         areaType = AUtils.HP_AREA_TYPE_ID;
         if (radioSelection.equals(AUtils.RADIO_SELECTED_HP)) {
+            areaType = AUtils.HP_AREA_TYPE_ID;
+        } else if (radioSelection.equals(AUtils.RADIO_SELECTED_CP)) {
             areaType = AUtils.HP_AREA_TYPE_ID;
         } else if (radioSelection.equals(AUtils.RADIO_SELECTED_DY)) {
             areaType = AUtils.DY_AREA_TYPE_ID;

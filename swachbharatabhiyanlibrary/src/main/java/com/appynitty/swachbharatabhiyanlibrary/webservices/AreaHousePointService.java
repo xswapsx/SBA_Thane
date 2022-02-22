@@ -38,6 +38,8 @@ public interface AreaHousePointService {
                                                                    @Header("type") String collectionType,
                                                                    @Header("areaId") String areaId);
 
-
+    @GET("api/Get/CommercialPoint")
+    Call<List<CollectionDumpYardPointPojo>> fetchCollectionCpPoint(@Header("appId") String appId,
+                                                                   @Header("areaId") String areaId);
 
 }
