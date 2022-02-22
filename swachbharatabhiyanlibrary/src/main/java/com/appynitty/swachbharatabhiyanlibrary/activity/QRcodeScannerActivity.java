@@ -445,7 +445,6 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                         idIpLayout.setHint(getResources().getString(R.string.house_number_hint));
                         radioSelection = AUtils.RADIO_SELECTED_HP;
                     } else if (radioGroupId == R.id.comm_collection_radio) {
-                        Toast.makeText(mContext, "commercial radio is selected!", Toast.LENGTH_SHORT).show();
                         idIpLayout.setHint(getResources().getString(R.string.commercial_id_hint));
                         radioSelection = AUtils.RADIO_SELECTED_CP;
                     } else if (radioGroupId == R.id.dump_yard_radio) {
