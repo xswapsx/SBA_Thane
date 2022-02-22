@@ -56,6 +56,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
     private ImageView beforeImage;
     private ImageView afterImage;
     private CardView openQR;
+    private EditText edtToiletSeatsCount;
 
     private final String resumeFilePath = "";
     private String beforeImageFilePath = "";
@@ -235,6 +236,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_take_ctpt_photo);
         toolbarCtpt = findViewById(R.id.toolbar_ctpt);
+        edtToiletSeatsCount = findViewById(R.id.edt_numberOf_seats);
 
         mContext = CommunityAndPublicToiletActivity.this;
         AUtils.currentContextConstant = mContext;
@@ -418,6 +420,9 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
         if (AUtils.isNullString(beforeImageFilePath) && AUtils.isNullString(afterImageFilePath)) {
             AUtils.warning(mContext, mContext.getString(R.string.plz_capture_img), Toast.LENGTH_SHORT);
             return false;
+        }else if (edtToiletSeatsCount.getText().toString().isEmpty()){
+            AUtils.warning(mContext, mContext.getString(R.string.str_hint_toilet_seats_count), Toast.LENGTH_SHORT);
+            return false;
         }
 
         return true;
@@ -440,6 +445,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
             imagePojo.setComment(comments.getText().toString());
             Log.e(TAG, "ImageComment: " + imagePojo.getComment());
         }
+
 
         if (!AUtils.isNull(imagePojo)) {
 

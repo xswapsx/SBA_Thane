@@ -44,6 +44,7 @@ import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.CollectionAre
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.DumpYardAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.GarbageCollectionAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.GarbageTypePopUp;
+import com.appynitty.swachbharatabhiyanlibrary.dialogs.ToiletTypePopUp;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.CollectionAreaHousePojo;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.CollectionAreaPointPojo;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.CollectionAreaPojo;
@@ -222,8 +223,9 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
     @Override
     public void onGarbagePopUpDismissed(String houseID, int garbageType, @Nullable String comment) {
         if (garbageType != -1) {
-            gcType = "1";
-            startSubmitQRAsyncTask(houseID, garbageType, gcType, comment);
+            gcType = "10";
+            validateTypeOfCollection(houseID);
+         //   startSubmitQRAsyncTask(houseID, garbageType, gcType, comment);
         } else {
             restartPreview();
         }
@@ -774,7 +776,10 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
 
             if (id.substring(0, 2).matches("^[HhPp]+$")) {
                 ownerMobile.setText(pojo.getMobile());
-            } else if (id.substring(0, 2).matches("^[GgPp]+$")) {
+            }else if (id.substring(0, 2).matches("^[CcTtPpTt]+$")) {
+                ownerMobile.setText(pojo.getMobile());
+            }
+            else if (id.substring(0, 2).matches("^[GgPp]+$")) {
                 ownerMobile.setVisibility(View.GONE);
             } else if (id.substring(0, 2).matches("^[DdYy]+$")) {
                 ownerMobile.setVisibility(View.GONE);
@@ -858,9 +863,9 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
         stopCamera();
         contentView.setVisibility(View.GONE);
         submitBtn.setVisibility(View.VISIBLE);
-        collectionRadioGroup.setVisibility(View.VISIBLE);
-        areaLayout.setVisibility(View.VISIBLE);
-        areaAutoComplete.setVisibility(View.VISIBLE);
+        collectionRadioGroup.setVisibility(View.GONE);
+        areaLayout.setVisibility(View.GONE);
+        areaAutoComplete.setVisibility(View.GONE);
         areaAutoComplete.requestFocusFromTouch();
         areaAutoComplete.setSelected(true);
 
@@ -938,11 +943,11 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
 
     private void validateTypeOfCollection(String houseid) {
         if (Prefs.getBoolean(AUtils.PREFS.IS_GT_FEATURE, false)) {
-            GarbageTypePopUp dialog = new GarbageTypePopUp(QRcodeScannerCtptActivity.this, houseid, this);
+            ToiletTypePopUp dialog = new ToiletTypePopUp(QRcodeScannerCtptActivity.this, houseid, (ToiletTypePopUp.ToiletTypePopUpDialogListener) this);
             dialog.show();
         } else {
-            gcType = "1";
-            startSubmitQRAsyncTask(houseid, 3, gcType, null);
+            gcType = "10";
+            startSubmitQRAsyncTask(houseid, 1, gcType, null);
         }
     }
 
@@ -1142,7 +1147,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
         OfflineGarbageColectionPojo entity = new OfflineGarbageColectionPojo();
 
         entity.setReferenceID(garbageCollectionPojo.getId());
-        if (garbageCollectionPojo.getId().substring(0, 2).matches("^[HhPp]+$")) {
+        if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcTtPpTt]+$")) {
             if ((gcType.equalsIgnoreCase("10")) && gcType.matches("10")) {
                 getIntent().getStringArrayExtra("CTPT");
                 entity.setGcType(String.valueOf(AUtils.CTPT_GC_TYPE));
@@ -1153,10 +1158,8 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
         entity.setVehicleNumber(Prefs.getString(AUtils.VEHICLE_NO, ""));
         entity.setLong(Prefs.getString(AUtils.LONG, ""));
         entity.setLat(Prefs.getString(AUtils.LAT, ""));
-      //  entity.setGcDate(AUtils.getServerDateTime());
         entity.setGcDate(AUtils.getServerDateTimeLocal());
         entity.setDistance(String.valueOf(garbageCollectionPojo.getDistance()));
-
         entity.setIsOffline(AUtils.isInternetAvailable() && AUtils.isConnectedFast(mContext));
 
         if (isActivityData) {

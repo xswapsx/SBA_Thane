@@ -212,4 +212,25 @@
     <string name="pls_slct_garbageType">कृपया कचरा प्रकार चुनें!</string>
     <string name="pls_slct_segregationLvl">अलगाव के स्तर का चयन करें</string>
     <string name="commercial_collection">वाणिज्यिक अपशिष्ट कलेक्शन</string>
+    <!--CTPT activity-->
+    <string name="string_ctpt_heading">सीटीपीटी शौचालय</string>
+    <string name="str_toilet_seats_count_heading">शौचालय सीटें गिनती</string>
+    <string name="str_hint_toilet_seats_count">कृपया सीटों की संख्या दर्ज करें</string>
+    <string name="str_title_type_of_toilet">शौचालय का प्रकार</string>
+    <string name="str_rd_btn_community_toilet">सामुदायिक शौचालय</string>
+    <string name="str_rd_btn_public_toilet">सार्वजनिक शौचालय</string>
+    <string name="str_rd_btn_urinal">मूत्रालय</string>
+    <string name="str_err_select_type">कृपया शौचालय का प्रकार चुनें</string>
+    <!--SWM Facility-->
+    <string name="str_title_type_swm_facility">एसडब्ल्यूएम सुविधा के प्रकार</string>
+    <string name="rd_btn_ts">हस्तांतरण स्टेशन</string>
+    <string name="rd_btn_wwpf">गीला अपशिष्ट प्रसंस्करण सुविधा</string>
+    <string name="rd_btn_dwpf">शुष्क अपशिष्ट प्रसंस्करण सुविधा</string>
+    <string name="rd_btn_cdwpf">सी एंड डी अपशिष्ट प्रसंस्करण सुविधा</string>
+    <string name="rd_btn_ifd_swp">घरेलू और स्वच्छता अपशिष्ट प्रसंस्करण के लिए भस्मीकरण सुविधा</string>
+    <string name="rd_btn_slf">सेनेटरी लैंडफिल सुविधा</string>
+    <string name="rd_btn_lwbf">लेगसी वेस्ट बायोरिमेडिएशन सुविधा</string>
+    <string name="rd_btn_stp">मलजल उपचार संयंत्र</string>
+    <string name="rd_btn_bwg_wwp">ऑनसाइट गीले अपशिष्ट प्रसंस्करण के लिए थोक अपशिष्ट जेनरेटर</string>
+    <string name="str_err_select_swm_type">कृपया एसडब्ल्यूएम सुविधा का प्रकार चुनें</string>
 </resources>

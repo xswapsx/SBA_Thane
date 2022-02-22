@@ -277,6 +277,26 @@
     <string name="pls_slct_segregationLvl">Please select the level of segregation!</string>
     <string name="app_notification_description" translatable="false">Please don\'t kill the app from background.</string>
     <string name="commercial_collection">Commercial Collection</string>
+    <!--CTPT activity-->
     <string name="string_ctpt_heading">CTPT Toilet</string>
+    <string name="str_toilet_seats_count_heading">Toilet Seats Count</string>
+    <string name="str_hint_toilet_seats_count">Please enter seats count</string>
+    <string name="str_title_type_of_toilet">Type Of Toilet</string>
+    <string name="str_rd_btn_community_toilet">Community Toilet</string>
+    <string name="str_rd_btn_public_toilet">Public Toilet</string>
+    <string name="str_rd_btn_urinal">Urinal</string>
+    <string name="str_err_select_type">Please select toilet type</string>
+    <!--SWM Facility-->
+    <string name="str_title_type_swm_facility">Types of SWM facility</string>
+    <string name="rd_btn_ts">Transfer Station</string>
+    <string name="rd_btn_wwpf">Wet Waste Processing Facility</string>
+    <string name="rd_btn_dwpf">Dry Waste Processing Facility</string>
+    <string name="rd_btn_cdwpf">C&amp;D Waste Processing Facility</string>
+    <string name="rd_btn_ifd_swp">Incineration Facility For Domestic and Sanitary Waste Processing</string>
+    <string name="rd_btn_slf">Sanitary Landfill Facility</string>
+    <string name="rd_btn_lwbf">Legacy Waste Bioremediation Facility</string>
+    <string name="rd_btn_stp">Sewage Treatment Plant</string>
+    <string name="rd_btn_bwg_wwp">Bulk Waste Generators For Onsite Wet Waste Processing</string>
+    <string name="str_err_select_swm_type">Please select SWM facility type</string>
 
 </resources>

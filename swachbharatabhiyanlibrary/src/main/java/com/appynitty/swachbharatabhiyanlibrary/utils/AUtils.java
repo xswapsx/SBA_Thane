@@ -58,11 +58,11 @@ public class AUtils extends CommonUtils {
     //  Advanced Ghanta Gadi URL
 //    public static final String SERVER_URL = "http://202.65.157.253:6560";
     //ICTSBM Thane
-    public static final String SERVER_URL = "http://202.65.157.253:5045/";
+    //public static final String SERVER_URL = "http://202.65.157.253:5045/";
 
     //    Staging URL
 //    public static final String SERVER_URL = "http://115.115.153.117:4044/";
-//    public static final String SERVER_URL = "http://202.65.157.254:7075";
+     public static final String SERVER_URL = "http://202.65.157.254:7075";
 
     //Relese URL
 //    public static final String SERVER_URL = "https://ghantagadi.in:444/";
@@ -112,6 +112,7 @@ public class AUtils extends CommonUtils {
     public static final String RADIO_SELECTED_HP = "house_point";
     public static final String RADIO_SELECTED_LW = "liquid_point";
     public static final String RADIO_SELECTED_SW = "street_point";
+    public static final String RADIO_SELECTED_TOILET = "toilet_point";
 
     public static final String RADIO_SELECTED_GP = "garbage_point";
     public static final String RADIO_SELECTED_DY = "garbage_dump_yard";

@@ -31,6 +31,7 @@ import com.appynitty.retrofitconnectionlibrary.pojos.ResultPojo;
 import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.EmpQrLocationAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.EmpGarbageTpyePopUp;
+import com.appynitty.swachbharatabhiyanlibrary.dialogs.EmpSWMTypePopUpDialog;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.QrLocationPojo;
 import com.appynitty.swachbharatabhiyanlibrary.repository.EmpSyncServerRepository;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
@@ -49,7 +50,7 @@ import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
-public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler, EmpGarbageTpyePopUp.EmpGarbagePopUpDialogListener {
+public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler, EmpGarbageTpyePopUp.EmpGarbagePopUpDialogListener,EmpSWMTypePopUpDialog.EmpSWMTypePopUpDialogListener {
 
     private final static String TAG = "EmpQRcodeScannerActivity";
 
@@ -60,13 +61,15 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
     private TextInputLayout idIpLayout;
     private AutoCompleteTextView idAutoComplete;
     private RadioGroup collectionRadioGroup;
-    private String radioSelection, cType;
+    private String radioSelection, cType, swmType;
     private Button submitBtn, permissionBtn;
     private View contentView;
     private Boolean isScanQr;
 //    private ChooseActionPopUp chooseActionPopUp;
 
     private EmpGarbageTpyePopUp empGarbageTpyePopUp;
+    /******** Rahul Rokade 02-21_22 ********/
+    private EmpSWMTypePopUpDialog empSWMTypePopUpDialog;
     private EmpQrLocationAdapterClass empQrLocationAdapter;
     private QrLocationPojo qrLocationPojo;
 
@@ -460,7 +463,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         } else if (id.matches("cpsba[0-9]+$")) {
             return true;
         }*/
-        return id.matches("hpsba[0-9]+$") || id.matches("cpsba[0-9]+$");
+        return id.matches("hpsba[0-9]+$") || id.matches("cpsba[0-9]+$") || id.matches("ctptsba[0-9]+$") || id.matches("swmsba[0-9]+$");
 //            return id.matches("hpsba[0-9]+$");
                 /*|| id.matches("gpsba[0-9]+$")
                 || id.matches("lwsba[0-9]+$")
@@ -557,14 +560,35 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         if (validSubmitId(id.toLowerCase())) {
 
             empGarbageTpyePopUp = new EmpGarbageTpyePopUp(mContext, id, this);
+            //added by rahul
+            empSWMTypePopUpDialog = new EmpSWMTypePopUpDialog(mContext, id, (EmpSWMTypePopUpDialog.EmpSWMTypePopUpDialogListener) this);
 //            chooseActionPopUp.setData(id);
-            if (id.substring(0, 2).matches("^[HhPp]+$"))
+            if (id.substring(0, 2).matches("^[HhPp]+$")) {
                 empGarbageTpyePopUp.show();
-            else {
+            }
+            else if (id.substring(0, 2).matches("^[CcTtPpTt]+$")) {
+                submitBtn.setVisibility(View.GONE);
+                collectionRadioGroup.setVisibility(View.GONE);
+                submitOnSkipToilet(id);
+                AUtils.success(mContext, "Uploaded successfully");
+                finish();
+            }
+            else if (id.substring(0, 2).matches("^[SsWwMm]+$")) {
+                submitBtn.setVisibility(View.GONE);
+                collectionRadioGroup.setVisibility(View.GONE);
+                empSWMTypePopUpDialog.show();
+            }
+            else if (id.substring(0, 2).matches("^[CcPp]+$")) {
                 submitOnSkip(id, "CW");
                 AUtils.success(mContext, "Uploaded successfully");
                 finish();
             }
+            /*else {
+
+                submitOnSkip(id, "CW");
+                AUtils.success(mContext, "Uploaded successfully");
+                finish();
+            }*/
 
         } else
             AUtils.error(mContext, getResources().getString(R.string.invalid_qr_error));
@@ -581,6 +605,29 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
             } else {
                 qrLocationPojo.setcType(cType);
             }
+            qrLocationPojo.setName("");
+            qrLocationPojo.setNameMar("");
+            qrLocationPojo.setAddress("");
+            qrLocationPojo.setZoneId("");
+            qrLocationPojo.setWardId("");
+            qrLocationPojo.setAreaId("");
+            qrLocationPojo.setHouseNumber("");
+            qrLocationPojo.setMobileno("");
+
+            qrLocationPojo.setGcType(getGCType(id));
+            qrLocationPojo.setDate(AUtils.getServerDateTime());
+
+            startSubmitQRAsyncTask(qrLocationPojo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void submitOnSkipToilet(String id) {
+        try {
+            qrLocationPojo.setReferanceId(id);
+            qrLocationPojo.setLat(Prefs.getString(AUtils.LAT, ""));
+            qrLocationPojo.setLong(Prefs.getString(AUtils.LONG, ""));
             qrLocationPojo.setName("");
             qrLocationPojo.setNameMar("");
             qrLocationPojo.setAddress("");
@@ -654,6 +701,10 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
             return "5";
         else if (refId.substring(0, 2).toLowerCase().matches("^[cp]+$"))
             return "9";
+        else if (refId.substring(0, 2).toLowerCase().matches("^[ctpt]+$"))
+            return "10";
+        else if (refId.substring(0, 2).toLowerCase().matches("^[swm]+$"))
+            return "11";
         else
             return "0";
     }
@@ -675,6 +726,15 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         Log.e(TAG, "onEmpGarbagePopUpDismissed: " + cType);
         this.cType = cType;
         submitOnSkip(houseID, cType);
+        finish();
+    }
+
+    @Override
+    public void onEmpSWMTypePopUpDialogDismissed(String swmId, String swmType) {
+        Log.e(TAG, "onEmpSWMTypePopUpDialogDismissed: " + swmType);
+        this.swmType = swmType;
+        submitOnSkip(swmId, swmType);
+        AUtils.success(mContext, "Uploaded successfully");
         finish();
     }
 }
