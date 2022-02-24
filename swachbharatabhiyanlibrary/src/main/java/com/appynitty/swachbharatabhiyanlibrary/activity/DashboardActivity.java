@@ -679,20 +679,45 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 
         List<MenuListPojo> menuPojoList = new ArrayList<MenuListPojo>();
 
-        menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_qrcode_scanner), R.drawable.ic_qr_code, QRcodeScannerActivity.class, true));
-        menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_take_photo), R.drawable.ic_photograph, TakePhotoActivity.class, true));
+        String empType = Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null);
+        if (empType.matches("N")){
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_qrcode_scanner), R.drawable.ic_qr_code, QRcodeScannerActivity.class, true));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_take_photo), R.drawable.ic_photograph, TakePhotoActivity.class, true));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_horticulture_waste), R.drawable.ic_hort_waste, HorticultureActivity.class, true));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_c_and_d_waste), R.drawable.ic_cad_waste, CandDActivity.class, true));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_ctpt_heading), R.drawable.ic_ctpt_toilet, CommunityAndPublicToiletActivity.class, true));
+            // menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_broadcast_page), R.drawable.ic_broadcast_icon, BroadcastActivity.class, true));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_history_page), R.drawable.ic_history, HistoryPageActivity.class, false));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_profile_page), R.drawable.ic_id_card, ProfilePageActivity.class, false));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_sync_offline), R.drawable.ic_sync, SyncOfflineActivity.class, false));
 
+        }else if (empType.matches("L")){
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_qrcode_scanner), R.drawable.ic_qr_code, QRcodeScannerActivity.class, true));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_take_photo), R.drawable.ic_photograph, TakePhotoActivity.class, true));
+            // menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_broadcast_page), R.drawable.ic_broadcast_icon, BroadcastActivity.class, true));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_history_page), R.drawable.ic_history, HistoryPageActivity.class, false));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_profile_page), R.drawable.ic_id_card, ProfilePageActivity.class, false));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_sync_offline), R.drawable.ic_sync, SyncOfflineActivity.class, false));
+        }else if (empType.matches("S")){
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_qrcode_scanner), R.drawable.ic_qr_code, QRcodeScannerActivity.class, true));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_take_photo), R.drawable.ic_photograph, TakePhotoActivity.class, true));
+            // menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_broadcast_page), R.drawable.ic_broadcast_icon, BroadcastActivity.class, true));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_history_page), R.drawable.ic_history, HistoryPageActivity.class, false));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_profile_page), R.drawable.ic_id_card, ProfilePageActivity.class, false));
+            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_sync_offline), R.drawable.ic_sync, SyncOfflineActivity.class, false));
+
+        }
+
+     /*   menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_qrcode_scanner), R.drawable.ic_qr_code, QRcodeScannerActivity.class, true));
+        menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_take_photo), R.drawable.ic_photograph, TakePhotoActivity.class, true));
         menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_horticulture_waste), R.drawable.ic_hort_waste, HorticultureActivity.class, true));
         menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_c_and_d_waste), R.drawable.ic_cad_waste, CandDActivity.class, true));
         menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_ctpt_heading), R.drawable.ic_ctpt_toilet, CommunityAndPublicToiletActivity.class, true));
-
-
         // menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_broadcast_page), R.drawable.ic_broadcast_icon, BroadcastActivity.class, true));
         menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_history_page), R.drawable.ic_history, HistoryPageActivity.class, false));
-
         menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_profile_page), R.drawable.ic_id_card, ProfilePageActivity.class, false));
         menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_sync_offline), R.drawable.ic_sync, SyncOfflineActivity.class, false));
-
+*/
         DashboardMenuAdapter mainMenuAdaptor = new DashboardMenuAdapter(mContext);
         mainMenuAdaptor.setMenuList(menuPojoList);
         menuGridView.setAdapter(mainMenuAdaptor);

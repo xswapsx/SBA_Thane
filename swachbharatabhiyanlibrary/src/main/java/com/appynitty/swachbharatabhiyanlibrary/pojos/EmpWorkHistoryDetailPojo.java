@@ -22,6 +22,24 @@ public class EmpWorkHistoryDetailPojo {
     private String ResidentBNO;
     private String ResidentSNO;
     private String CommercialNO;
+    private String SWMNO;
+    private String CTPTNO;
+
+    public String getSWMNO() {
+        return SWMNO;
+    }
+
+    public void setSWMNO(String SWMNO) {
+        this.SWMNO = SWMNO;
+    }
+
+    public String getCTPTNO() {
+        return CTPTNO;
+    }
+
+    public void setCTPTNO(String CTPTNO) {
+        this.CTPTNO = CTPTNO;
+    }
 
     public String getLiquidNo() {
         return LiquidNo;

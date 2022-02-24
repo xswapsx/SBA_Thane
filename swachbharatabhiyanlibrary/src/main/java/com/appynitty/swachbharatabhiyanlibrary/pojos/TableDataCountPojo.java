@@ -20,24 +20,24 @@ public class TableDataCountPojo {
         private String CommertialCollection;
         private String CADCollection;
         private String HorticultureCollection;
-        private String CtptCollection;
-        private String SwmCollection;
+        private String CTPTCollection;
+        private String SLWMCollection;
         private String HouseCType;
 
         public String getCtptCollection() {
-            return CtptCollection;
+            return CTPTCollection;
         }
 
         public void setCtptCollection(String ctptCollection) {
-            CtptCollection = ctptCollection;
+            CTPTCollection = ctptCollection;
         }
 
         public String getSwmCollection() {
-            return SwmCollection;
+            return SLWMCollection;
         }
 
         public void setSwmCollection(String swmCollection) {
-            SwmCollection = swmCollection;
+            SLWMCollection = swmCollection;
         }
 
         public String getResidentialCollection() {
@@ -152,8 +152,8 @@ public class TableDataCountPojo {
                     + ", ResidentialBCollection='" + ResidentialBCollection + '\''
                     + ", ResidentialSCollection='" + ResidentialSCollection + '\''
                     + ", CommertialCollection='" + CommertialCollection + '\''
-                    + ", CtptCollection='" + CtptCollection + '\''
-                    + ", SwmCollection='" + SwmCollection + '\''
+                    + ", CTPTCollection='" + CTPTCollection + '\''
+                    + ", SLWMCollection='" + SLWMCollection + '\''
                     + '}';
         }
     }

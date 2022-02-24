@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -59,6 +60,10 @@ public class EmpInflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.Wo
             viewHolder.commerCollection = view.findViewById(R.id.commer_collection);
             viewHolder.cadCollection = view.findViewById(R.id.cad_collection);
             viewHolder.hortCollection = view.findViewById(R.id.hort_collection);
+            viewHolder.ctptCollection = view.findViewById(R.id.ctpt_collection);
+            viewHolder.swmCollection = view.findViewById(R.id.swm_collection);
+            viewHolder.liCtptSwmBox = view.findViewById(R.id.li_ctpt_swm_box);
+            viewHolder.liCtptSwmBox.setVisibility(View.VISIBLE);
             view.setTag(viewHolder);
 
         } else {
@@ -82,6 +87,8 @@ public class EmpInflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.Wo
             holder.commerCollection.setText(workHistoryPojo.getCommertialCollection());
             holder.cadCollection.setText(workHistoryPojo.getCADCollection());
             holder.hortCollection.setText(workHistoryPojo.getHorticultureCollection());
+            holder.ctptCollection.setText(workHistoryPojo.getCtptCollection());
+            holder.swmCollection.setText(workHistoryPojo.getSwmCollection());
         }
 
         return view;
@@ -103,6 +110,9 @@ public class EmpInflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.Wo
         private TextView commerCollection;
         private TextView cadCollection;
         private TextView hortCollection;
+        private TextView ctptCollection;
+        private TextView swmCollection;
+        private LinearLayout liCtptSwmBox;
     }
 
 

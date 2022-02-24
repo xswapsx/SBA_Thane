@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,6 +45,7 @@ public class EmpInflateHistoryDetailsAdapter extends ArrayAdapter<EmpWorkHistory
             final ViewHolder viewHolder = new ViewHolder();
             viewHolder.time = view.findViewById(R.id.history_details_time);
             viewHolder.id = view.findViewById(R.id.history_details_name);
+            viewHolder.liEmpHistoryBox = view.findViewById(R.id.li_emp_work_details_box);
             /***added by rahul**/
             viewHolder.house_num = view.findViewById(R.id.house_n);
 
@@ -134,6 +136,22 @@ public class EmpInflateHistoryDetailsAdapter extends ArrayAdapter<EmpWorkHistory
                 holder.id.setText( context.getResources().getString(R.string.string_res_s_id));
                 holder.house_num.setText(workHistoryDetailPojo.getResidentSNO());
             }
+            else if (workHistoryDetailPojo.getType().equals("10")) {
+                holder.time.setVisibility(View.VISIBLE);
+                holder.time.setBackgroundResource(R.drawable.rounded_ctpt_button);
+                holder.time.setPadding(0, 0, 0, 0);
+                holder.time.setText(AUtils.getEmpTimeLineFormat(workHistoryDetailPojo.getTime()));
+                holder.id.setText( context.getResources().getString(R.string.string_ctpt_waste_id));
+                holder.house_num.setText(workHistoryDetailPojo.getCTPTNO());
+            }
+            else if (workHistoryDetailPojo.getType().equals("11")) {
+                holder.time.setVisibility(View.VISIBLE);
+                holder.time.setBackgroundResource(R.drawable.rounded_swm_button);
+                holder.time.setPadding(0, 0, 0, 0);
+                holder.time.setText(AUtils.getEmpTimeLineFormat(workHistoryDetailPojo.getTime()));
+                holder.id.setText( context.getResources().getString(R.string.string_swm_waste_id));
+                holder.house_num.setText(workHistoryDetailPojo.getSWMNO());
+            }
 
 //            holder.time.setText(workHistoryDetailPojo.getTime());
            // holder.time.setText(AUtils.getEmpTimeLineFormat(workHistoryDetailPojo.getTime()));
@@ -147,6 +165,7 @@ public class EmpInflateHistoryDetailsAdapter extends ArrayAdapter<EmpWorkHistory
         private TextView time;
         private TextView id;
         private TextView house_num;
+        private LinearLayout liEmpHistoryBox;
     }
 
 
