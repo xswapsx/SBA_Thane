@@ -463,7 +463,13 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         } else if (id.matches("cpsba[0-9]+$")) {
             return true;
         }*/
-        return id.matches("hpsba[0-9]+$") || id.matches("cpsba[0-9]+$") || id.matches("ctptsba[0-9]+$") || id.matches("swmsba[0-9]+$");
+        return id.matches("hpsba[0-9]+$")
+                || id.matches("cpsba[0-9]+$")
+                || id.matches("ctptsba[0-9]+$")
+                || id.matches("swmsba[0-9]+$")
+                || id.matches("lwsba[0-9]+$")
+                || id.matches("sssba[0-9]+$")
+                || id.matches("dysba[0-9]+$");
 //            return id.matches("hpsba[0-9]+$");
                 /*|| id.matches("gpsba[0-9]+$")
                 || id.matches("lwsba[0-9]+$")
@@ -565,13 +571,19 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 //            chooseActionPopUp.setData(id);
             if (id.substring(0, 2).matches("^[HhPp]+$")) {
                 empGarbageTpyePopUp.show();
-            } else if (id.substring(0, 2).matches("^[CcTtPpTt]+$")) {
+            } else if (id.substring(0, 2).matches("^[SsSs]+$")) {
+                submitOnSkip(id, "");
+                finish();
+            } else if (id.substring(0, 2).matches("^[LlWw]+$")) {
+                submitOnSkip(id, "");
+                finish();
+            } else if (id.substring(0, 3).matches("^[CcTtPpTt]+$")) {
                 submitBtn.setVisibility(View.GONE);
                 collectionRadioGroup.setVisibility(View.GONE);
                 submitOnSkipToilet(id);
                 AUtils.success(mContext, "Uploaded successfully");
                 finish();
-            } else if (id.substring(0, 2).matches("^[SsWwMm]+$")) {
+            } else if (id.substring(0, 3).matches("^[SsWwMm]+$")) {
                 submitBtn.setVisibility(View.GONE);
                 collectionRadioGroup.setVisibility(View.GONE);
                 empSWMTypePopUpDialog.show();

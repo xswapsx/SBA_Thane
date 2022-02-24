@@ -731,6 +731,8 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.ssc_qr_warning), null);
             } else if (houseid.substring(0, 2).matches("^[CcPp]+$")) {
                 validateTypeOfCollection(houseid, "CW");
+            } else if (houseid.substring(0, 2).matches("^[SsWw]+$")) {
+                validateTypeOfCollection(houseid, "SW");
             } else {
                 AUtils.warning(QRcodeScannerActivity.this, mContext.getResources().getString(R.string.qr_error));
                 restartPreview();
@@ -1330,6 +1332,8 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
             showGarbageTypeDialog(houseId, CType);
         } else if (CType.matches("CW")) {
             showGarbageTypeDialog(houseId, "CW");
+        } else if (CType.matches("SW")) {
+            showGarbageTypeDialog(houseId, "SW");
         }
 
     }

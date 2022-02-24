@@ -270,6 +270,25 @@
     <string name="rd_btn_bwg_wwp">ऑनसाइट ओल्या कचरा प्रक्रियेसाठी मोठ्या प्रमाणात कचरा जनरेटर</string>
     <string name="str_err_select_swm_type">कृपया एसडब्ल्यूएम सुविधेचे प्रकार निवडा</string>
     <string name="str_date_time_on_photo">तारीख वेळ</string>
+    <string name="txtMuniciple_solid_waste">Municiple Solid Waste</string>
+    <string name="txt_compost">Compost</string>
+    <string name="txt_biogas">Biogas</string>
+    <string name="txt_biodigester_bottom_sludge">Biodigester Bottom Sludge</string>
+    <string name="txtRefuse_derived_fuel">Refuse Derived Fuel</string>
+    <string name="txtPlastics">Plastics</string>
+    <string name="txt_metal_and_glass">Metal And Glass</string>
+    <string name="txtCardboards">Cardboards</string>
+    <string name="txtAny_other_veriety">Any Other Veriety</string>
+    <string name="txtSoil">Soil</string>
+    <string name="txtSand">Sand</string>
+    <string name="txt_8_16mm_aggregates">8-16mm Aggregates</string>
+    <string name="txt_16mm_aggregates"><![CDATA[>16mm Aggregates]]></string>
+    <string name="txt_manufactured_goods_bricks_tiles_etc">Manufactured Goods(Bricks,Tiles,etc.)</string>
+    <string name="txt_fly_ash">Fly Ash</string>
+    <string name="txt_sand_and_soil">Sand and Soil</string>
+    <string name="txt_dried_sludge">Dried Sludge</string>
+    <string name="txt_treated_wastewater">Treated Wastewater</string>
+    <string name="txt_8mm_aggregates"><![CDATA[<8mm Aggregates]]></string>
 
 
 </resources>

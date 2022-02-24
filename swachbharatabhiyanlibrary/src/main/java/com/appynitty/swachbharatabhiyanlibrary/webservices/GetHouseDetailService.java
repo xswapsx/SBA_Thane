@@ -13,6 +13,6 @@ public interface GetHouseDetailService {
             "appId:3072",
             "Content-Type:application/json"
     })
-    @GET("/api/Get/GetHouseCType")
+    @GET("/api/Get/GetSWMFType")
     Call<List<HouseCTypePojo>> getHouseDetails();
 }

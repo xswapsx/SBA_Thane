@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
+import com.appynitty.swachbharatabhiyanlibrary.db.AppDatabase;
 import com.appynitty.swachbharatabhiyanlibrary.fragment.CommercialFirstDialog;
 import com.appynitty.swachbharatabhiyanlibrary.fragment.CommercialNextDialog;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
@@ -26,6 +27,7 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
     String mHouseId;
     String mGarbageType;
     String cType;
+    String innerCType;
 
     CommercialGarbageDialog.CustomDialogInterface mListener;
 
@@ -45,8 +47,10 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        AppDatabase db = AppDatabase.getDbInstance(AUtils.mainApplicationConstant);
+        innerCType = db.houseDao().getCtypeFromHouseID(mHouseId);
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        CommercialFirstDialog commercialFirstDialog = new CommercialFirstDialog(mContext, mHouseId, cType);
+        CommercialFirstDialog commercialFirstDialog = new CommercialFirstDialog(mContext, mHouseId, cType, innerCType);
         transaction.replace(R.id.commercialDialog_container, commercialFirstDialog);
         transaction.commit();
     }
@@ -58,11 +62,11 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
         this.mGarbageType = mGarbageType;
 
         /*if (!mGarbageType.equals("-1")) {*/
-            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-            CommercialNextDialog commercialNextDialog = new CommercialNextDialog();
-            transaction.replace(R.id.commercialDialog_container, commercialNextDialog);
-            transaction.addToBackStack("commercialNextDialog");
-            transaction.commit();
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        CommercialNextDialog commercialNextDialog = new CommercialNextDialog();
+        transaction.replace(R.id.commercialDialog_container, commercialNextDialog);
+        transaction.addToBackStack("commercialNextDialog");
+        transaction.commit();
         /*}*/ /*else {
             AUtils.warning(mContext, getResources().getString(R.string.pls_slct_garbageType));
         }*/

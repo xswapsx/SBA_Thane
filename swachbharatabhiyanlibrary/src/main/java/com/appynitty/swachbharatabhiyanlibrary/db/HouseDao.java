@@ -18,17 +18,17 @@ public interface HouseDao {
     @Delete
     void deleteUser(HouseEntity houseEntity);
 
-    @Query("SELECT ctype FROM houseentity  WHERE house_id = :houseId")
+    @Query("SELECT ctype FROM HouseEntity  WHERE house_id = :houseId")
     String getCtypeFromHouseID(String houseId);
 
     @Query("DELETE FROM HouseEntity")
     void deleteAllHouse();
 
-    @Query("UPDATE houseentity SET ctype=:cType, house_id=:houseID WHERE house_id = :houseID")
-    void update(String houseID, String cType);
+    @Query("UPDATE HouseEntity SET ctype=:cType, house_id=:houseId WHERE house_id = :houseId")
+    void update(String houseId, String cType);
 
     /*@Query("SELECT * FROM HOUSEENTITY WHERE house_id = :houseId")
     String findHouseId(String houseId);*/
-    @Query("SELECT * FROM HOUSEENTITY WHERE house_id = :houseId")
+    @Query("SELECT * FROM HouseEntity WHERE house_id = :houseId")
     int isDataExist(String houseId);
 }

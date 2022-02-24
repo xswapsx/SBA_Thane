@@ -2,6 +2,7 @@ package com.appynitty.swachbharatabhiyanlibrary.activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,9 +42,12 @@ import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.SyncOfflineAd
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.UserDetailAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.VehicleTypeAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.VerifyDataAdapterClass;
+import com.appynitty.swachbharatabhiyanlibrary.db.AppDatabase;
+import com.appynitty.swachbharatabhiyanlibrary.db.HouseEntity;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.IdCardDialog;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.PopUpDialog;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.AttendancePojo;
+import com.appynitty.swachbharatabhiyanlibrary.pojos.HouseCTypePojo;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.LanguagePojo;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.LoginPojo;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.MenuListPojo;
@@ -55,6 +59,7 @@ import com.appynitty.swachbharatabhiyanlibrary.repository.SyncOfflineRepository;
 import com.appynitty.swachbharatabhiyanlibrary.services.LocationService;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 import com.appynitty.swachbharatabhiyanlibrary.utils.MyApplication;
+import com.appynitty.swachbharatabhiyanlibrary.webservices.GetHouseDetailService;
 import com.appynitty.swachbharatabhiyanlibrary.webservices.IMEIWebService;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.api.ApiException;
@@ -131,11 +136,11 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
     private boolean isFromAttendanceChecked = false;
     private boolean isDeviceMatch = false;
 
-//    AppDatabase db;
-//    HouseEntity houseEntity;
-//    ArrayList<HouseCTypePojo> houseList;
-//    String houseCount = "";
-//    ProgressDialog progressBar;
+    AppDatabase db;
+    HouseEntity houseEntity;
+    ArrayList<HouseCTypePojo> houseList;
+    String houseCount = "";
+    ProgressDialog progressBar;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -354,14 +359,14 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
     private void initComponents() {
         isView = true;
 
-        /*db = AppDatabase.getDbInstance(this.getApplicationContext());
+        db = AppDatabase.getDbInstance(this.getApplicationContext());
 
         if (AUtils.isNetworkAvailable(AUtils.mainApplicationConstant)) {
             db.houseDao().deleteAllHouse();
             houseEntity = new HouseEntity();
             houseCount = Prefs.getString(AUtils.PREFS.HOUSE_COUNT, null);
             getHouseDetails(houseCount);
-        }*/
+        }
 
         getPermission();
         generateId();
@@ -1126,7 +1131,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         });
     }
 
-    /*private void getHouseDetails(String house_Count) {
+    private void getHouseDetails(String house_Count) {
         houseList = new ArrayList<>();
 
         progressBar = new ProgressDialog(DashboardActivity.this);
@@ -1162,6 +1167,6 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         houseEntity.cType = cType;
         db.houseDao().insertHouse(houseEntity);
 
-    }*/
+    }
 
 }

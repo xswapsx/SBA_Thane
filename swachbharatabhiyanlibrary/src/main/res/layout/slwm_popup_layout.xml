@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/dim_5_dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dim_10_dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lbl_title"
+            style="@style/MyTitle"
+            android:layout_margin="5dp"
+            android:paddingStart="@dimen/dim_10_dp"
+            android:paddingEnd="@dimen/dim_10_dp"
+            android:text="@string/bifurcate_title"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/dim_20_sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorDivider" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rb_municipleSW"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txtMuniciple_solid_waste"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_Compost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txt_compost"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_Biogas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txt_biogas"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_biodigesterBS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txt_biodigester_bottom_sludge"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_refuseDerivedFuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txtRefuse_derived_fuel"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_Plastics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txtPlastics"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                    android:id="@+id/rb_metal_and_glass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txt_metal_and_glass"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_cardboards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txtCardboards"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_anyOtherVeriety"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txtAny_other_veriety"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_Soil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txtSoil"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_Sand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txtSand"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_8mmAggregates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txt_8mm_aggregates"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_8_16mm_aggregates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txt_8_16mm_aggregates"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_16mm_aggregates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txt_16mm_aggregates"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_manufactured_goods_bricks_tiles_etc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txt_manufactured_goods_bricks_tiles_etc"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_fly_ash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txt_fly_ash"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_sand_and_soil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txt_sand_and_soil"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_dried_sludge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txt_dried_sludge"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/rb_treated_wastewater"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txt_treated_wastewater"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_slwm_garbage_next"
+            style="@style/MyButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dim_80_dp"
+            android:layout_marginTop="@dimen/dim_20_dp"
+            android:layout_marginRight="@dimen/dim_80_dp"
+            android:layout_marginBottom="@dimen/dim_10_dp"
+            android:text="@string/next" />
+    </LinearLayout>
+</ScrollView>
