@@ -10,6 +10,8 @@ import android.graphics.Bitmap;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
@@ -30,6 +32,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.ImagePojo;
+import com.appynitty.swachbharatabhiyanlibrary.services.GeocodingLocation;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -41,6 +44,8 @@ import java.io.FileOutputStream;
 import java.lang.reflect.Type;
 import java.util.Objects;
 
+
+/******  Rahul Rokade 20/02/22 **************/
 public class CommunityAndPublicToiletActivity extends AppCompatActivity {
 
     private final static String TAG = "TakePhotoActivity";
@@ -258,6 +263,15 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
         initToolbar();
     }
 
+    private void address(){
+        String address = " ";
+
+        GeocodingLocation locationAddress = new GeocodingLocation();
+        locationAddress.getAddressFromLocation(address,
+                getApplicationContext(), new GeocoderHandler());
+
+    }
+
     private void registerEvents() {
         beforeImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -394,7 +408,6 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
         File destination = null;
         try {
 
-//changes made by swapnil for android 11 image upload
             File dir = new File(
                     getExternalFilesDir(null).getAbsolutePath()
                             + "/Gram Panchayat");
@@ -472,6 +485,26 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
             return true;
         } else {
             return false;
+        }
+    }
+
+    private class GeocoderHandler extends Handler {
+        @Override
+        public void handleMessage(Message message) {
+            String address;
+            switch (message.what) {
+                case 1:
+                    Bundle bundle = message.getData();
+                    address = bundle.getString("address");
+                    break;
+                default:
+                    address = null;
+            }
+            String latLongAddress = null;
+            if (latLongAddress != null) {
+                latLongAddress = address;
+                Log.e("Address", latLongAddress);
+            }
         }
     }
 }

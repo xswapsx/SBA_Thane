@@ -128,6 +128,23 @@ public class InflateHistoryDetailsAdapter extends ArrayAdapter<WorkHistoryDetail
                 holder.vehicleNo.setText(String.format("%s %s", context.getResources().getString(R.string.vehicle_number_txt), workHistoryDetailPojo.getVehicleNumber()));
                 holder.area.setText(workHistoryDetailPojo.getAreaName());
                 holder.name.setText(workHistoryDetailPojo.getName());
+            }else if (workHistoryDetailPojo.getType().equals("10")) {
+                holder.time.setBackgroundResource(R.drawable.rounded_blue_button);
+                holder.time.setPadding(0, 0, 0, 0);
+                holder.id.setText(String.format("%s %s", context.getResources().getString(R.string.string_ctpt_waste_id), workHistoryDetailPojo.getRefid()));
+                holder.time.setText(workHistoryDetailPojo.getTime());
+                holder.vehicleNo.setText(String.format("%s %s", context.getResources().getString(R.string.vehicle_number_txt), workHistoryDetailPojo.getVehicleNumber()));
+                holder.area.setText(workHistoryDetailPojo.getAreaName());
+                holder.name.setText(workHistoryDetailPojo.getName());
+            }
+            else if (workHistoryDetailPojo.getType().equals("11")) {
+                holder.time.setBackgroundResource(R.drawable.rounded_yellow_button);
+                holder.time.setPadding(0, 0, 0, 0);
+                holder.id.setText(String.format("%s %s", context.getResources().getString(R.string.string_swm_waste_id), workHistoryDetailPojo.getRefid()));
+                holder.time.setText(workHistoryDetailPojo.getTime());
+                holder.vehicleNo.setText(String.format("%s %s", context.getResources().getString(R.string.vehicle_number_txt), workHistoryDetailPojo.getVehicleNumber()));
+                holder.area.setText(workHistoryDetailPojo.getAreaName());
+                holder.name.setText(workHistoryDetailPojo.getName());
             }
 
             /*//added code by Rahul

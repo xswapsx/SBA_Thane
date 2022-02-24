@@ -60,18 +60,24 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
             viewHolder.liquidCollectionLbl = view.findViewById(R.id.lwc_collection_lbl);
             viewHolder.streetCollection = view.findViewById(R.id.ss_collection);
             viewHolder.streetCollectionLbl = view.findViewById(R.id.ss_collection_lbl);
+
+            //added code by rahul
             viewHolder.resBuildingCollection = view.findViewById(R.id.res_b_collection);
             viewHolder.resSlumCollection = view.findViewById(R.id.res_s_collection);
             viewHolder.resNormalCollection = view.findViewById(R.id.res_normal_collection);
-
-            //added code by rahul
             viewHolder.commercialCollection = view.findViewById(R.id.commer_collection);
             viewHolder.liHortCadBox = view.findViewById(R.id.li_hort_cad_box);
             viewHolder.liHouseColBox = view.findViewById(R.id.li_house_col_box);
+            viewHolder.lictptSwmColBox = view.findViewById(R.id.li_ctpt_swm_box);
             viewHolder.liHortCadBox.setVisibility(View.VISIBLE);
             viewHolder.liHouseColBox.setVisibility(View.VISIBLE);
+            viewHolder.lictptSwmColBox.setVisibility(View.VISIBLE);
             viewHolder.cadCollection = view.findViewById(R.id.cad_collection);
             viewHolder.hortCollection = view.findViewById(R.id.hort_collection);
+            viewHolder.ctptCollection = view.findViewById(R.id.ctpt_collection);
+            viewHolder.swmCollection = view.findViewById(R.id.swm_collection);
+            viewHolder.ctptCollectionLbl = view.findViewById(R.id.ctpt_collection_lbl);
+            viewHolder.swmCollectionLbl = view.findViewById(R.id.swm_collection_lbl);
             view.setTag(viewHolder);
 
         } else {
@@ -95,6 +101,8 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
                 holder.commercialCollection.setText(workHistoryPojo.getCommertialCollection());
                 holder.cadCollection.setText(workHistoryPojo.getCADCollection());
                 holder.hortCollection.setText(workHistoryPojo.getHorticultureCollection());
+                holder.ctptCollection.setText(workHistoryPojo.getCtptCollection());
+                holder.swmCollection.setText(workHistoryPojo.getSwmCollection());
 
                 holder.liquidCollection.setVisibility(View.GONE);
                 holder.liquidCollectionLbl.setVisibility(View.GONE);
@@ -113,6 +121,7 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
                 holder.streetCollection.setVisibility(View.GONE);
                 holder.streetCollectionLbl.setVisibility(View.GONE);
             } else if (empType.matches("S")) {
+
 
                 Log.e(TAG, "getView: Street collection=>" + workHistoryPojo.getStreetCollection());
                 holder.houseCollectionTitle.setText(R.string.street_collection);
@@ -154,8 +163,13 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
         private TextView commercialCollection;
         private TextView cadCollection;
         private TextView hortCollection;
+        private TextView ctptCollection;
+        private TextView swmCollection;
+        private TextView ctptCollectionLbl;
+        private TextView swmCollectionLbl;
         private LinearLayout liHortCadBox;
         private LinearLayout liHouseColBox;
+        private LinearLayout lictptSwmColBox;
     }
 
 

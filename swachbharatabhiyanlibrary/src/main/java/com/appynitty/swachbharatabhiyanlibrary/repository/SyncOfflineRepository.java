@@ -39,6 +39,8 @@ public class SyncOfflineRepository {
     private static final int candDCollectionId = 6;//added by rahul
     private static final int hortCollectionId = 7;//added by rahul
     private static final int commercialCollectionId = 9;// added by swapnil
+    private static final int ctptCollectionId = 10;// added by rahul
+    private static final int swmCollectionId = 11;// added by rahul
 
     private static final String C_TYPE_RNC = "R";
     private static final String C_TYPE_RBC = "RBW";
@@ -256,8 +258,8 @@ public class SyncOfflineRepository {
         offlinePojo.setNote(pojo.getNote());//added by swapnil
         offlinePojo.setEmpType(pojo.getEmpType()); //added by swapnil
         offlinePojo.setLevelOS(pojo.getLevelOS()); //added by swapnil
-        offlinePojo.setTOT(pojo.getTOT());
-        offlinePojo.setTNS(pojo.getTNS());
+        offlinePojo.setTOT(pojo.getTOT());//added by Rahul
+        offlinePojo.setTNS(pojo.getTNS());//added by Rahul
         offlinePojo.setGarbageType(pojo.getGarbageType());
         offlinePojo.setTotalDryWeight(pojo.getTotalDryWeight());
         offlinePojo.setTotalWetWeight(pojo.getTotalWetWeight());
@@ -514,6 +516,7 @@ public class SyncOfflineRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
         return mList;
     }

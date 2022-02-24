@@ -243,6 +243,8 @@
     <string name="string_commercial_collection">Commercial Collection</string>
     <string name="string_cad_collection">Construction And Demolition Collection</string>
     <string name="string_hort_collection">Horticulture Collection</string>
+    <string name="string_ctpt_collection">CTPT Toilet Collection</string>
+    <string name="string_swm_collection">SWM facility Collection</string>
     <!--work history details updated-->
     <string name="string_res_id">Resident ID :</string>
     <string name="string_res_b_id">Resident Building ID :</string>
@@ -255,6 +257,10 @@
     <string name="string_dump_yard_id">Dump Yard ID :</string>
     <string name="string_street_sweep_id">Street Sweep ID :</string>
     <string name="string_liquid_waste_id">Liquid Waste ID :</string>
+    <string name="string_ctpt_waste_id">CTPT Toilet ID :</string>
+    <string name="string_swm_waste_id">SWM Waste ID :</string>
+
+
 
     <string name="resident">Resident</string>
     <string name="residential_building_waste">Residential Building Waste</string>

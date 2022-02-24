@@ -205,6 +205,8 @@
     <string name="string_commercial_collection">व्यावसायिक संकलन</string>
     <string name="string_cad_collection">बांधकाम आणि विध्वंस संकलन</string>
     <string name="string_hort_collection">फलोत्पादन संकलन</string>
+    <string name="string_ctpt_collection">सीटीपीटी शौचालय संकलन</string>
+    <string name="string_swm_collection">एसडब्ल्यूएम सुविधेचे संकलन</string>
     <!--work history details updated-->
     <string name="string_res_id">रहिवासी ओळखपत्र :</string>
     <string name="string_res_b_id">निवासी इमारत ओळखपत्र :</string>
@@ -217,6 +219,9 @@
     <string name="string_dump_yard_id">डंप यार्ड ओळखपत्र :</string>
     <string name="string_street_sweep_id">स्ट्रीट स्वीप ओळखपत्र :</string>
     <string name="string_liquid_waste_id">लिक्विड वेस्ट ओळखपत्र :</string>
+    <string name="string_ctpt_waste_id">सीटीपीटी शौचालय ओळखपत्र :</string>
+    <string name="string_swm_waste_id">एसडब्ल्यूएम वेस्ट ओळखपत्र :</string>
+
 
     <string name="dryWaste_rbTitle">सुका कचरा</string>
     <string name="sanitaryWaste_rbTitle">सॅनिटरी वेस्ट</string>
