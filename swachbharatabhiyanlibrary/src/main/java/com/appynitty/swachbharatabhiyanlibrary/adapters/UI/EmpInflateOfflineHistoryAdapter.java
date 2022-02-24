@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -65,6 +66,10 @@ public class EmpInflateOfflineHistoryAdapter extends ArrayAdapter<EmpOfflineColl
         TextView resBuildingCollection = v.findViewById(R.id.res_b_collection);
         TextView resSlumCollection = v.findViewById(R.id.res_s_collection);
         TextView commercialCollection = v.findViewById(R.id.commer_collection);
+        TextView ctptCollection = v.findViewById(R.id.ctpt_collection);
+        TextView swmCollection = v.findViewById(R.id.swm_collection);
+        LinearLayout liCtptSwmBox = v.findViewById(R.id.li_ctpt_swm_box);
+        liCtptSwmBox.setVisibility(View.VISIBLE);
         /*TextView liHortCadBox = v.findViewById(R.id.li_hort_cad_box);
          liHortCadBox.setVisibility(View.VISIBLE);*/
         TextView cadCollection = v.findViewById(R.id.cad_collection);
@@ -87,6 +92,8 @@ public class EmpInflateOfflineHistoryAdapter extends ArrayAdapter<EmpOfflineColl
         commercialCollection.setText(item.getCommercialCollection());
         cadCollection.setText(item.getCadCollection());
         hortCollection.setText(item.getHortCollection());
+        ctptCollection.setText(item.getCtptCollection());
+        swmCollection.setText(item.getSwmCollection());
 
         return v;
     }

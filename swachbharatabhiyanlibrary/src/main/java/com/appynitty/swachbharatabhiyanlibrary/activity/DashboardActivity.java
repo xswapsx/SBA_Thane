@@ -1171,9 +1171,10 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
             @Override
             public void onResponse(Call<List<HouseCTypePojo>> call, Response<List<HouseCTypePojo>> response) {
                 progressBar.dismiss();
-
-                for (int i = 0; i < response.body().size(); i++) {
-                    saveNewHouse(response.body().get(i).getHouseid(), response.body().get(i).getCtype());
+                if (response.body() != null) {
+                    for (int i = 0; i < response.body().size(); i++) {
+                        saveNewHouse(response.body().get(i).getHouseid(), response.body().get(i).getCtype());
+                    }
                 }
                 Log.e(TAG, "size " + response.body().size());
 
