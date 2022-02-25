@@ -30,6 +30,15 @@ public class SyncOfflinePojo {
     private String LevelOS;
     private String TNS;
     private String TOT;
+    private String TOR;
+
+    public String getTOR() {
+        return TOR;
+    }
+
+    public void setTOR(String TOR) {
+        this.TOR = TOR;
+    }
 
     public String getTNS() {
         return TNS;

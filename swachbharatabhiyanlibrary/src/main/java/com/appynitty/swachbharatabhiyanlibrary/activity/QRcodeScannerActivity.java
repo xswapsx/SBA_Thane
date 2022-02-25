@@ -1274,14 +1274,12 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         try {
             garbageCollectionPojo = new GarbageCollectionPojo();
             if (map.containsKey(AUtils.DUMPDATA.dumpYardId)) {
-                Toast.makeText(mContext, "Dump-yard data Found!", Toast.LENGTH_SHORT).show();
                 garbageCollectionPojo.setId(map.get(AUtils.DUMPDATA.dumpYardId));
                 garbageCollectionPojo.setWeightTotal(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.DUMPDATA.weightTotal))));
                 garbageCollectionPojo.setWeightTotalDry(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.DUMPDATA.weightTotalDry))));
                 garbageCollectionPojo.setWeightTotalWet(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.DUMPDATA.weightTotalWet))));
             }
             if (map.containsKey(AUtils.SLWMDATA.slwmId)) {
-                Toast.makeText(mContext, "SLWM data Found!", Toast.LENGTH_SHORT).show();
                 garbageCollectionPojo.setId(map.get(AUtils.SLWMDATA.slwmId));
                 garbageCollectionPojo.setWeightTotal(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.SLWMDATA.weightTotal))));
                 garbageCollectionPojo.setWeightTotalDry(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.SLWMDATA.weightTotalDry))));
@@ -1332,8 +1330,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         } else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[SsWw]+$")) {
             entity.setGcType("11");
             entity.setTOR(garbageCollectionPojo.getTOR());
-            entity.setLevelOS(garbageCollectionPojo.getTOR());
-            Log.e(TAG, "insertToDB: SLWM-Ctype:-" + cType);
+            Log.e(TAG, "insertToDB: SLWM-Ctype:-" + gcType);
         }
         entity.setNote(garbageCollectionPojo.getComment());
         entity.setGarbageType(String.valueOf(garbageCollectionPojo.getGarbageType()));
@@ -1449,7 +1446,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
             // Dry Waste
             default:
-                value = "House Id  ";
+                value = "Scanned Id  ";
         }
 
         houseTitle.setText(value);
