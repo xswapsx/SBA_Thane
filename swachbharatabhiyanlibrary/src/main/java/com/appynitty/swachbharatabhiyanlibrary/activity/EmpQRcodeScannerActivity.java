@@ -101,8 +101,8 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 //    List<BarcodeFormat> formats = new ArrayList<BarcodeFormat>();
 //    if(mSelectedIndices == null || mSelectedIndices.isEmpty()) {
 //        mSelectedIndices = new ArrayList<Integer>();
-//        for(int i = 0; i < BarcodeFormat.ALL_FORMATS.size(); i++) {
-//            mSelectedIndices.add(i);
+//        for(int intent = 0; intent < BarcodeFormat.ALL_FORMATS.size(); intent++) {
+//            mSelectedIndices.add(intent);
 //        }
 //    }
 //

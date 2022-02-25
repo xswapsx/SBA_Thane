@@ -848,7 +848,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         for (int i = 0; i < vehicleTypePojoList.size(); i++) {
             if (Prefs.getString(AUtils.VEHICLE_ID, "0").equals(vehicleTypePojoList.get(i).getVtId())) {
 //                if(Prefs.getString(AUtils.LANGUAGE_NAME,AUtils.DEFAULT_LANGUAGE_ID).equals(AUtils.LanguageConstants.MARATHI))
-//                    vehicleType = vehicleTypePojoList.get(i).getDescriptionMar();
+//                    vehicleType = vehicleTypePojoList.get(intent).getDescriptionMar();
 //                else
                 vehicleType = vehicleTypePojoList.get(i).getDescription();
             }
@@ -1166,7 +1166,8 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 
 
         GetHouseDetailService service = Connection.createService(GetHouseDetailService.class, AUtils.SERVER_URL);
-        Call<List<HouseCTypePojo>> call = service.getHouseDetails();
+        Call<List<HouseCTypePojo>> call = service.getHouseDetails(Prefs.getString(AUtils.APP_ID, null),
+                Prefs.getString(AUtils.CONTENT_TYPE, null));
         call.enqueue(new Callback<List<HouseCTypePojo>>() {
             @Override
             public void onResponse(Call<List<HouseCTypePojo>> call, Response<List<HouseCTypePojo>> response) {
