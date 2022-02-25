@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
-import android.location.Address;
-import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -45,7 +43,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
 public class AUtils extends CommonUtils {
@@ -59,11 +56,11 @@ public class AUtils extends CommonUtils {
     //  Advanced Ghanta Gadi URL
 //    public static final String SERVER_URL = "http://202.65.157.253:6560";
     //ICTSBM Thane Live
-    public static final String SERVER_URL = "http://202.65.157.253:5045/";
+//    public static final String SERVER_URL = "http://202.65.157.253:5045/";
 
     //    Staging URL
 //    public static final String SERVER_URL = "http://115.115.153.117:4044/";
-   // public static final String SERVER_URL = "http://202.65.157.254:7075";  //Thane staging
+     public static final String SERVER_URL = "http://202.65.157.254:7075";  //Thane staging
 
     //Relese URL
 //    public static final String SERVER_URL = "https://ghantagadi.in:444/";
@@ -230,6 +227,17 @@ public class AUtils extends CommonUtils {
     public interface DUMPDATA {
         String dumpDataMap = "dump_data_map";
         String dumpYardId = "dump_yard_id";
+        String weightTotal = "total_weight";
+        String weightTotalDry = "total_weight_dry";
+        String weightTotalWet = "total_weight_wet";
+    }
+
+    public interface SLWMDATA {
+        String slwmDataMap = "slwm_data_map";
+        String slwmId = "slwm_id";
+        String slwmGarbageType = "slwm_GarbageType";
+        String slwmSegregationlvl = "slwm_segregation_lvl";
+        String slwmTor = "slwm_tor";
         String weightTotal = "total_weight";
         String weightTotalDry = "total_weight_dry";
         String weightTotalWet = "total_weight_wet";
