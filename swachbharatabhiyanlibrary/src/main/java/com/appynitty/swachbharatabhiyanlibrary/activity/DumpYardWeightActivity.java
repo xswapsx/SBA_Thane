@@ -57,6 +57,7 @@ import java.util.Objects;
 public class DumpYardWeightActivity extends AppCompatActivity {
 
     private static final int REQUEST_CAMERA = 22;
+    private static final String TAG = "DumpYardWeightActivity";
     private static int imageViewNo = 0;
     RadioButton radioButtonDryKg, radioButtonWetKg, radioButtonDryTon, radioButtonWetTon;
     RadioGroup radioGroupDry, radioGroupWet;

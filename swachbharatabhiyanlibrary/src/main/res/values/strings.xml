@@ -261,7 +261,6 @@
     <string name="string_swm_waste_id">SWM Waste ID :</string>
 
 
-
     <string name="resident">Resident</string>
     <string name="residential_building_waste">Residential Building Waste</string>
     <string name="residential_slum_waste">Residential Slum Waste</string>
@@ -327,6 +326,8 @@
     <string name="txt_dried_sludge">Dried Sludge</string>
     <string name="txt_treated_wastewater">Treated Wastewater</string>
     <string name="txt_8mm_aggregates"><![CDATA[<8mm Aggregates]]></string>
+    <string name="slwm_details_title">SLWM Details</string>
+    <string name="txt_slwm_id">SLWM ID:</string>
 
 
 </resources>

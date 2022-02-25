@@ -111,7 +111,12 @@ public class CommercialFirstDialog extends Fragment {
             btnSLWM_garbage_next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(mContext, "Selected Facility is: " + selectedFacility, Toast.LENGTH_SHORT).show();
+                    if (selectedFacility.matches("Nuffin"))
+                        Toast.makeText(mContext, "please select a facility", Toast.LENGTH_SHORT).show();
+                    else {
+                        Toast.makeText(mContext, "Selected Facility is: " + selectedFacility, Toast.LENGTH_SHORT).show();
+                        onSlwmNextBtnPressed(mHouseId, String.valueOf(mGarbageType), selectedFacility);
+                    }
                 }
             });
         }
@@ -357,8 +362,10 @@ public class CommercialFirstDialog extends Fragment {
         listener.onNextBtnPressed(HouseID, GarbageType);
     }
 
-    void onSlwmNextBtnPressed(String selectedFacility) {
-        Log.d(TAG, "onSlwmNextBtnPressed");
+    void onSlwmNextBtnPressed(String mHouseId, String GarbageType, String selectedFacility) {
+        Log.e(TAG, "onSlwmNextBtnPressed: " + selectedFacility);
+        FirstSLWMDialog slwmDialogListener = (FirstSLWMDialog) getParentFragment();
+        slwmDialogListener.slwmOnNextBtnPressed(mHouseId, GarbageType, selectedFacility);
     }
 
     public interface FirstDialog {
@@ -366,6 +373,6 @@ public class CommercialFirstDialog extends Fragment {
     }
 
     public interface FirstSLWMDialog {
-        void slwmOnNextBtnPressed();
+        void slwmOnNextBtnPressed(String houseId, String GarbageType, String TOR);
     }
 }

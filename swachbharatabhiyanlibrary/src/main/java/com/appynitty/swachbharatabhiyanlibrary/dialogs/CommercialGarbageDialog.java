@@ -1,7 +1,9 @@
 package com.appynitty.swachbharatabhiyanlibrary.dialogs;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
+import com.appynitty.swachbharatabhiyanlibrary.activity.SLWM_WeightActivity;
 import com.appynitty.swachbharatabhiyanlibrary.db.AppDatabase;
 import com.appynitty.swachbharatabhiyanlibrary.fragment.CommercialFirstDialog;
 import com.appynitty.swachbharatabhiyanlibrary.fragment.CommercialNextDialog;
@@ -22,11 +25,13 @@ import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
  */
 
 
-public class CommercialGarbageDialog extends DialogFragment implements CommercialFirstDialog.FirstDialog, CommercialNextDialog.SecondDialog {
+public class CommercialGarbageDialog extends DialogFragment implements CommercialFirstDialog.FirstDialog, CommercialFirstDialog.FirstSLWMDialog, CommercialNextDialog.SecondDialog {
+    private static final String TAG = "CommercialGarbageDialog";
     Context mContext;
     String mHouseId;
     String mGarbageType;
     String cType;
+    String mTOR = "nuffin";
     String innerCType;
 
     CommercialGarbageDialog.CustomDialogInterface mListener;
@@ -77,16 +82,40 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
     @Override
     public void onSubmit(String segregationLevel) {
         if (!(segregationLevel == null)) {
-            mListener.onSubmitButtonClicked(mHouseId, mGarbageType, segregationLevel);
+            /*mListener.onSubmitButtonClicked(mHouseId, mGarbageType, segregationLevel, mTOR);
+            this.dismiss();*/
             this.dismiss();
+            Intent i = new Intent(mContext, SLWM_WeightActivity.class);
+
+            i.putExtra("houseId", mHouseId);
+            i.putExtra("garbageType", mGarbageType);
+            i.putExtra("segregationLvl", segregationLevel);
+            i.putExtra("toR", mTOR);
+//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            mContext.startActivity(i);
         } else {
             AUtils.warning(mContext, getResources().getString(R.string.pls_slct_segregationLvl));
         }
 
     }
 
+    @Override
+    public void slwmOnNextBtnPressed(String houseId, String GarbageType, String TOR) {
+        this.mHouseId = houseId;
+        this.mGarbageType = GarbageType;
+        this.mTOR = TOR;
+        Log.e(TAG, "slwmOnNextBtnPressed: houseId:- " + mHouseId + ", GarbageType:- " + mGarbageType + ", Tor:- " + mTOR);
+
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        CommercialNextDialog commercialNextDialog = new CommercialNextDialog();
+        transaction.replace(R.id.commercialDialog_container, commercialNextDialog);
+        transaction.addToBackStack("commercialNextDialog");
+        transaction.commit();
+    }
+
     public interface CustomDialogInterface {
-        void onSubmitButtonClicked(String houseId, String garbageType, String segregationLevel);
+
+        void onSubmitButtonClicked(String houseId, String garbageType, String segregationLevel, String tor);
     }
 
 

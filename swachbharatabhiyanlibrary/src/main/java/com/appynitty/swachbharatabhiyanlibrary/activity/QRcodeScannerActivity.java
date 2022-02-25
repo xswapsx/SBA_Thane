@@ -1427,11 +1427,22 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         FragmentManager fm = getSupportFragmentManager();
         CommercialGarbageDialog commercialGarbageDialog = new CommercialGarbageDialog(QRcodeScannerActivity.this, houseId, Ctype, this);
         commercialGarbageDialog.show(fm, "commercial_first_dialog");
+//        this.finish();
     }
 
     @Override
-    public void onSubmitButtonClicked(String houseId, String garbageType, String segregationLevel) {
-        startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "1", segregationLevel);
+    public void onSubmitButtonClicked(String houseId, String garbageType, String segregationLevel, String tor) {
+        if (tor.matches("nuffin")) {
+            startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "1", segregationLevel);
+        } else {
+            startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "11", segregationLevel, tor);
+        }
+
         confirmationDialog(houseId, garbageType);
+    }
+
+    private void startSubmitQRAsyncTask(String houseId, int garbageType, String gcType, String segregationLevel, String tor) {
+        Log.e(TAG, "startSubmitQRAsyncTask: houseId:- " + houseId + ", GarbageType:- " + garbageType + ", GcType:- " + gcType
+                + ", Segregation:- " + segregationLevel + ", TOR:- " + tor);
     }
 }

@@ -99,7 +99,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="@dimen/dim_50_dp"
             android:layout_marginBottom="@dimen/dim_10_dp"
-            android:text="@string/submit_txt" />
+            android:text="@string/next" />
     </LinearLayout>
 
 </FrameLayout>
