@@ -31,7 +31,7 @@ public class CommercialFirstDialog extends Fragment {
     private String selectedFacility = "Nuffin";
     private RadioButton rb_wetWaste, rb_dryWaste, rb_mixedWaste;    //for Commercial
     private RadioButton rb_domesticHazardWaste, rb_sanitaryWaste, rb_garbageNotReceived;      //for residential
-    private RadioButton rb_municipleSW, rb_Compost, rb_Biogas, rb_biodigesterBS,
+    private RadioButton rb_municipleSW, rb_Compost, rb_Biogas, rb_biodigesterBS,    //for SLWM
             rb_refuseDerivedFuel, rb_Plastics, rb_metal_and_glass, rb_cardboards, rb_anyOtherVeriety, rb_Soil,
             rb_Sand, rb_8mmAggregates, rb_8_16mm_aggregates, rb_16mm_aggregates, rb_manufactured_goods_bricks_tiles_etc,
             rb_fly_ash, rb_sand_and_soil, rb_dried_sludge, rb_treated_wastewater;
@@ -114,7 +114,6 @@ public class CommercialFirstDialog extends Fragment {
                     if (selectedFacility.matches("Nuffin"))
                         Toast.makeText(mContext, "please select a facility", Toast.LENGTH_SHORT).show();
                     else {
-                        Toast.makeText(mContext, "Selected Facility is: " + selectedFacility, Toast.LENGTH_SHORT).show();
                         onSlwmNextBtnPressed(mHouseId, String.valueOf(mGarbageType), selectedFacility);
                     }
                 }

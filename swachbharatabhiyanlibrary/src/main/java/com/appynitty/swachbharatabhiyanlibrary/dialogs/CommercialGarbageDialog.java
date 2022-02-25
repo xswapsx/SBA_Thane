@@ -62,20 +62,13 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
 
     @Override
     public void onNextBtnPressed(String houseId, String mGarbageType) {
-//        Toast.makeText(mContext, " " + houseId + ", " + mGarbageType, Toast.LENGTH_SHORT).show();
         this.mHouseId = houseId;
         this.mGarbageType = mGarbageType;
-
-        /*if (!mGarbageType.equals("-1")) {*/
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         CommercialNextDialog commercialNextDialog = new CommercialNextDialog();
         transaction.replace(R.id.commercialDialog_container, commercialNextDialog);
         transaction.addToBackStack("commercialNextDialog");
         transaction.commit();
-        /*}*/ /*else {
-            AUtils.warning(mContext, getResources().getString(R.string.pls_slct_garbageType));
-        }*/
-
 
     }
 
@@ -84,14 +77,6 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
         if (!(segregationLevel == null)) {
             mListener.onSubmitButtonClicked(mHouseId, mGarbageType, segregationLevel, mTOR);
             this.dismiss();
-/*            this.dismiss();
-            Intent i = new Intent(mContext, SLWM_WeightActivity.class);
-
-            i.putExtra("houseId", mHouseId);
-            i.putExtra("garbageType", mGarbageType);
-            i.putExtra("segregationLvl", segregationLevel);
-            i.putExtra("toR", mTOR);
-            mContext.startActivity(i);*/
         } else {
             AUtils.warning(mContext, getResources().getString(R.string.pls_slct_segregationLvl));
         }

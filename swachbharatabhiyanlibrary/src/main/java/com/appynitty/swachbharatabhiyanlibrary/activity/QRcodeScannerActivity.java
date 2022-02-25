@@ -241,14 +241,11 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     @Override
     protected void onPostResume() {
         super.onPostResume();
-//        Toast.makeText(mContext, "hellow", Toast.LENGTH_SHORT).show();
-        Intent i = getIntent();
-        if (i.hasExtra(""))
-            if (AUtils.isInternetAvailable()) {
-                AUtils.hideSnackBar();
-            } else {
-                AUtils.showSnackBar(findViewById(R.id.parent));
-            }
+        if (AUtils.isInternetAvailable()) {
+            AUtils.hideSnackBar();
+        } else {
+            AUtils.showSnackBar(findViewById(R.id.parent));
+        }
     }
 
     @Override
@@ -698,7 +695,6 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
     protected void initData() {
 
-
         checkCameraPermission();
 
         if (!AUtils.isConnectedFast(mContext)) {
@@ -706,13 +702,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         }
 
         mAreaAdapter.fetchAreaList(getAreaType(), false);
-        String skl = "Nuffin";
         Intent intent = getIntent();
-        if (intent.hasExtra("HouseID")) {
-            skl = intent.getStringExtra("HouseID");
-        }
-
-        Toast.makeText(mContext, skl, Toast.LENGTH_SHORT).show();
         if (intent.hasExtra(AUtils.REQUEST_CODE)) {
             Type type = new TypeToken<ImagePojo>() {
             }.getType();
