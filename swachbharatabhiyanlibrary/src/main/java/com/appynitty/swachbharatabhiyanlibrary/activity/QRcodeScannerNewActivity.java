@@ -73,7 +73,7 @@ import java.util.Objects;
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
-
+/******  Rahul Rokade 24/01/22 **************/
 public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler, GarbageTypePopUp.GarbagePopUpDialogListener {
 
     private final static String TAG = "QRcodeScannerActivity";

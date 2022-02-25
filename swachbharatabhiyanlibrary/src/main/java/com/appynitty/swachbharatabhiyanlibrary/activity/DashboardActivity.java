@@ -678,7 +678,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         mUserDetailAdapter.getUserDetail();
 
         List<MenuListPojo> menuPojoList = new ArrayList<MenuListPojo>();
-
+        //added by Rahul
         String empType = Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null);
         if (empType.matches("N")){
             menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_qrcode_scanner), R.drawable.ic_qr_code, QRcodeScannerActivity.class, true));

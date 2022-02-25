@@ -78,6 +78,11 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
             viewHolder.swmCollection = view.findViewById(R.id.swm_collection);
             viewHolder.ctptCollectionLbl = view.findViewById(R.id.ctpt_collection_lbl);
             viewHolder.swmCollectionLbl = view.findViewById(R.id.swm_collection_lbl);
+
+            viewHolder.liNormalBColBox = view.findViewById(R.id.li_res_normal_b_box);
+            viewHolder.liSlumCwColBox = view.findViewById(R.id.li_res_slum_cW_box);
+            viewHolder.liLiqStreetColBox = view.findViewById(R.id.li_liq_street_box);
+            viewHolder.liDumpHouseColBox = view.findViewById(R.id.li_dump_house_box);
             view.setTag(viewHolder);
 
         } else {
@@ -120,9 +125,9 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
                 holder.liquidCollectionLbl.setVisibility(View.GONE);
                 holder.streetCollection.setVisibility(View.GONE);
                 holder.streetCollectionLbl.setVisibility(View.GONE);
+                holder.lictptSwmColBox.setVisibility(View.GONE);
+                holder.liHortCadBox.setVisibility(View.GONE);
             } else if (empType.matches("S")) {
-
-
                 Log.e(TAG, "getView: Street collection=>" + workHistoryPojo.getStreetCollection());
                 holder.houseCollectionTitle.setText(R.string.street_collection);
                 holder.houseCollection.setText(workHistoryPojo.getStreetCollection());
@@ -134,6 +139,8 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
                 holder.liquidCollectionLbl.setVisibility(View.GONE);
                 holder.streetCollection.setVisibility(View.GONE);
                 holder.streetCollectionLbl.setVisibility(View.GONE);
+                holder.lictptSwmColBox.setVisibility(View.GONE);
+                holder.liHortCadBox.setVisibility(View.GONE);
             }
 
         }
@@ -170,6 +177,10 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
         private LinearLayout liHortCadBox;
         private LinearLayout liHouseColBox;
         private LinearLayout lictptSwmColBox;
+        private LinearLayout liNormalBColBox;
+        private LinearLayout liSlumCwColBox;
+        private LinearLayout liDumpHouseColBox;
+        private LinearLayout liLiqStreetColBox;
     }
 
 

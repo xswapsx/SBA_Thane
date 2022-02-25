@@ -67,6 +67,7 @@
                 android:padding="@dimen/dim_10_dp">
 
                 <LinearLayout
+                    android:id="@+id/li_res_normal_b_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dim_5_dp"
@@ -135,6 +136,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/li_res_slum_cW_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dim_5_dp"
@@ -273,6 +275,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/li_liq_street_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dim_5_dp"
@@ -341,6 +344,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/li_dump_house_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/dim_5_dp"

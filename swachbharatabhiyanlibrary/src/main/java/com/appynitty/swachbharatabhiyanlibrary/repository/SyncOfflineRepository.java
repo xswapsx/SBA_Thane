@@ -54,10 +54,10 @@ public class SyncOfflineRepository {
     public final static String COLUMN_DATE = "offlineSyncDate";
     private final static String COLUMN_REFERENCE_ID = "offlineSyncRefID";
     private final static String COLUMN_GC_TYPE = "offlineSyncGcType";
-    private final static String COLUMN_C_TYPE = "offlineSyncCType";
+    private final static String COLUMN_C_TYPE = "offlineSyncCType";// added by rahul
     private final static String COLUMN_IS_LOCATION = "offlineSyncIsLocation";
-    private final static String COLUMN_CTPT_TNS = "offlineSyncCtptTns";
-    private final static String COLUMN_CTPT_TOT = "offlineSyncCtptTot";
+    private final static String COLUMN_CTPT_TNS = "offlineSyncCtptTns";// added by rahul
+    private final static String COLUMN_CTPT_TOT = "offlineSyncCtptTot";// added by rahul
 
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + SyncOfflineRepository.SYNC_OFFLINE_TABLE + " (" +
             COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -328,7 +328,7 @@ public class SyncOfflineRepository {
                 entity.setOfflineRefId(cursor.getString(cursor.getColumnIndex(COLUMN_REFERENCE_ID)));
                 entity.setOfflineGcType(cursor.getString(cursor.getColumnIndex(COLUMN_GC_TYPE)));
                 //  entity.setOfflineCType(cursor.getString(cursor.getColumnIndex(COLUMN_C_TYPE)));
-
+                // added by rahul
                 entity.setOfflineRNC(cursor.getString(cursor.getColumnIndex(COLUMN_C_TYPE)));
                 entity.setOfflineRBC(cursor.getString(cursor.getColumnIndex(COLUMN_C_TYPE)));
                 entity.setOfflineRSC(cursor.getString(cursor.getColumnIndex(COLUMN_C_TYPE)));
@@ -428,7 +428,7 @@ public class SyncOfflineRepository {
                 " select count(*) as ss, date(" + COLUMN_DATE + ") as gcdateSs from " + SYNC_OFFLINE_TABLE +
                 " where " + COLUMN_GC_TYPE + " = " + streetCollectionId +
                 " group by date(tableSyncOffline.offlineSyncDate))," +
-
+// added by rahul
                 "cteCd as(" +
                 " select count(*) as cd, date(" + COLUMN_DATE + ") as gcdateCd from " + SYNC_OFFLINE_TABLE +
                 " where " + COLUMN_GC_TYPE + " = " + candDCollectionId +
@@ -522,7 +522,7 @@ public class SyncOfflineRepository {
                     entity.setDumpYardCollection(cursor.getString(cursor.getColumnIndex("dy")));
                     entity.setLiquidCollection(cursor.getString(cursor.getColumnIndex("lw")));
                     entity.setStreetCollection(cursor.getString(cursor.getColumnIndex("ss")));
-
+// added by rahul
                     entity.setCADCollection(cursor.getString(cursor.getColumnIndex("cd")));
                     entity.setHorticultureCollection(cursor.getString(cursor.getColumnIndex("hr")));
                     entity.setResidentialCollection(cursor.getString(cursor.getColumnIndex("rnc")));

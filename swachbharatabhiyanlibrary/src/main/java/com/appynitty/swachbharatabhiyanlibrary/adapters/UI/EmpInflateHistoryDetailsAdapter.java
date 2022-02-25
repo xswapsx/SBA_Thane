@@ -46,6 +46,7 @@ public class EmpInflateHistoryDetailsAdapter extends ArrayAdapter<EmpWorkHistory
             viewHolder.time = view.findViewById(R.id.history_details_time);
             viewHolder.id = view.findViewById(R.id.history_details_name);
             viewHolder.liEmpHistoryBox = view.findViewById(R.id.li_emp_work_details_box);
+            viewHolder.liEmpHistoryBox.setVisibility(View.VISIBLE);
             /***added by rahul**/
             viewHolder.house_num = view.findViewById(R.id.house_n);
 

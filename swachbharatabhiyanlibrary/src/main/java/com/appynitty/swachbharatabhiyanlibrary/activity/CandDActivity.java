@@ -39,7 +39,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.lang.reflect.Type;
 import java.util.Objects;
-
+/******  Rahul Rokade 24/01/22 **************/
 public class CandDActivity extends AppCompatActivity {
 
     private final static String TAG = "TakePhotoActivity";

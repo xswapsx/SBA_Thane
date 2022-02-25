@@ -104,7 +104,7 @@ public class ToiletTypePopUp extends Dialog {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    ToiletType = "Uri";
+                    ToiletType = "U";
                 }
             }
         });

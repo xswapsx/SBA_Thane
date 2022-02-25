@@ -463,6 +463,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         } else if (id.matches("cpsba[0-9]+$")) {
             return true;
         }*/
+        //Added by Rahul
         return id.matches("hpsba[0-9]+$")
                 || id.matches("gpsba[0-9]+$")
                 || id.matches("lwsba[0-9]+$")
@@ -639,7 +640,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
             e.printStackTrace();
         }
     }
-
+    //Added by Rahul
     private void submitOnSkipToilet(String id) {
         try {
             qrLocationPojo.setReferanceId(id);
@@ -704,7 +705,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         }
         return areaType;
     }
-
+    //Added by Rahul
     private String getGCType(String refId) {
         if (refId.substring(0, 2).toLowerCase().matches("^[hp]+$"))
             return "1";
