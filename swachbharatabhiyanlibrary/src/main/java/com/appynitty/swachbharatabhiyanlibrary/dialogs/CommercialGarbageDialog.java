@@ -82,17 +82,16 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
     @Override
     public void onSubmit(String segregationLevel) {
         if (!(segregationLevel == null)) {
-            /*mListener.onSubmitButtonClicked(mHouseId, mGarbageType, segregationLevel, mTOR);
-            this.dismiss();*/
+            mListener.onSubmitButtonClicked(mHouseId, mGarbageType, segregationLevel, mTOR);
             this.dismiss();
+/*            this.dismiss();
             Intent i = new Intent(mContext, SLWM_WeightActivity.class);
 
             i.putExtra("houseId", mHouseId);
             i.putExtra("garbageType", mGarbageType);
             i.putExtra("segregationLvl", segregationLevel);
             i.putExtra("toR", mTOR);
-//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            mContext.startActivity(i);
+            mContext.startActivity(i);*/
         } else {
             AUtils.warning(mContext, getResources().getString(R.string.pls_slct_segregationLvl));
         }
