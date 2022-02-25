@@ -66,5 +66,7 @@
     <color name="color_residential_b_collection">#F84E04</color>
     <color name="color_residential_s_collection">#FFF333</color>
     <color name="color_commercial_collection">#C60303</color>
+    <color name="color_ctpt_collection">#54573B</color>
+    <color name="color_swm_collection">#425F6C</color>
 
 </resources>

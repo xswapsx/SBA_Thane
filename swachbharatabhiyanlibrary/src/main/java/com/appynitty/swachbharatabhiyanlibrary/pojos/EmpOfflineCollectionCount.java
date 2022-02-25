@@ -21,8 +21,10 @@ public class EmpOfflineCollectionCount {
     String commercialCollection;
     String cadCollection;
     String hortCollection;
+    String ctptCollection;
+    String swmCollection;
 
-    public EmpOfflineCollectionCount(String houseCount, String dumpYardCount, String streetSweepCount, String liquidWasteCount, String date,String resNCollection,String resBCollection,String resSCollection,String commercialCollection,String cadCollection,String hortCollection) {
+    public EmpOfflineCollectionCount(String houseCount, String dumpYardCount, String streetSweepCount, String liquidWasteCount, String date,String resNCollection,String resBCollection,String resSCollection,String commercialCollection,String cadCollection,String hortCollection,String ctptCollection, String swmCollection) {
         this.houseCount = houseCount;
         this.dumpYardCount = dumpYardCount;
         this.streetSweepCount = streetSweepCount;
@@ -35,8 +37,25 @@ public class EmpOfflineCollectionCount {
         this.commercialCollection = commercialCollection;
         this.cadCollection = cadCollection;
         this.hortCollection = hortCollection;
+        this.ctptCollection = ctptCollection;
+        this.swmCollection = swmCollection;
     }
 
+    public String getCtptCollection() {
+        return ctptCollection;
+    }
+
+    public void setCtptCollection(String ctptCollection) {
+        this.ctptCollection = ctptCollection;
+    }
+
+    public String getSwmCollection() {
+        return swmCollection;
+    }
+
+    public void setSwmCollection(String swmCollection) {
+        this.swmCollection = swmCollection;
+    }
 
     public String getResNCollection() {
         return resNCollection;

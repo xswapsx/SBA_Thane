@@ -56,6 +56,8 @@ public class SyncOfflineRepository {
     private final static String COLUMN_GC_TYPE = "offlineSyncGcType";
     private final static String COLUMN_C_TYPE = "offlineSyncCType";
     private final static String COLUMN_IS_LOCATION = "offlineSyncIsLocation";
+    private final static String COLUMN_CTPT_TNS = "offlineSyncCtptTns";
+    private final static String COLUMN_CTPT_TOT = "offlineSyncCtptTot";
 
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + SyncOfflineRepository.SYNC_OFFLINE_TABLE + " (" +
             COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -64,6 +66,8 @@ public class SyncOfflineRepository {
             COLUMN_GC_TYPE + " INTEGER DEFAULT 0, " +
             COLUMN_C_TYPE + " TEXT DEFAULT NULL, " +
             COLUMN_IS_LOCATION + " TEXT, " +
+            COLUMN_CTPT_TNS + " INTEGER DEFAULT 0, " +
+            COLUMN_CTPT_TOT + " TEXT DEFAULT NULL, " +
             COLUMN_DATE + " DATETIME DEFAULT (strftime('%Y-%m-%d %H:%M:%f','now', 'localtime')))";
 
     public static final String RESTORE_TABLE =
@@ -332,6 +336,8 @@ public class SyncOfflineRepository {
 
                 entity.setOfflineIsLocation(cursor.getString(cursor.getColumnIndex(COLUMN_IS_LOCATION)));
                 entity.setOfflineDate(cursor.getString(cursor.getColumnIndex(COLUMN_DATE)));
+                entity.setOfflineTOT(cursor.getString(cursor.getColumnIndex(COLUMN_CTPT_TOT)));
+                entity.setOfflineTNS(cursor.getString(cursor.getColumnIndex(COLUMN_CTPT_TNS)));
 
 
                 mList.add(entity);
@@ -451,6 +457,18 @@ public class SyncOfflineRepository {
                 /* " and " + COLUMN_C_TYPE + " = " + C_TYPE_RSC +*/
                 " group by date(tableSyncOffline.offlineSyncDate))," +
 
+                "cteCtpt as(" +
+                " select count(*) as ctpt, date(" + COLUMN_DATE + ") as gcdateCtpt from " + SYNC_OFFLINE_TABLE +
+                " where " + COLUMN_GC_TYPE + " = " + ctptCollectionId +
+                /* " and " + COLUMN_C_TYPE + " = " + C_TYPE_RSC +*/
+                " group by date(tableSyncOffline.offlineSyncDate))," +
+
+                "cteSwm as(" +
+                " select count(*) as swm, date(" + COLUMN_DATE + ") as gcdateSwm from " + SYNC_OFFLINE_TABLE +
+                " where " + COLUMN_GC_TYPE + " = " + swmCollectionId +
+                /* " and " + COLUMN_C_TYPE + " = " + C_TYPE_RSC +*/
+                " group by date(tableSyncOffline.offlineSyncDate))," +
+
                 "cteCc as(" +
                 " select count(*) as cc, date(" + COLUMN_DATE + ") as gcdateCc from " + SYNC_OFFLINE_TABLE +
                 " where " + COLUMN_GC_TYPE + " = " + commercialCollectionId +
@@ -469,7 +487,9 @@ public class SyncOfflineRepository {
                 " case when i.rnc is null then 0 else i.rnc end as rnc, " +
                 " case when j.rbc is null then 0 else j.rbc end as rbc, " +
                 " case when k.rsc is null then 0 else k.rsc end as rsc," +
-                " case when l.cc is null then 0 else l.cc end as cc " +
+                " case when l.cc is null then 0 else l.cc end as cc, " +
+                " case when m.ctpt is null then 0 else m.ctpt end as ctpt, " +
+                " case when n.swm is null then 0 else n.swm end as swm " +
 
                 " from cte a " +
                 " left join cteHp b on b.gcdateHp = a.dte " +
@@ -484,6 +504,8 @@ public class SyncOfflineRepository {
                 " left join cteRbc j on j.gcdateRbc = a.dte " +
                 " left join cteRsc k on k.gcdateRsc = a.dte " +
                 " left join cteCc l on l.gcdateCc = a.dte " +
+                " left join cteCc m on m.gcdateCtpt = a.dte " +
+                " left join cteCc n on n.gcdateSwm = a.dte " +
 
                 " order by dte desc)" +
                 "select * from ctef";
@@ -507,6 +529,8 @@ public class SyncOfflineRepository {
                     entity.setResidentialBCollection(cursor.getString(cursor.getColumnIndex("rbc")));
                     entity.setResidentialSCollection(cursor.getString(cursor.getColumnIndex("rsc")));
                     entity.setCommertialCollection(cursor.getString(cursor.getColumnIndex("cc")));
+                    entity.setCtptCollection(cursor.getString(cursor.getColumnIndex("ctpt")));
+                    entity.setSwmCollection(cursor.getString(cursor.getColumnIndex("swm")));
 
                     mList.add(entity);
                 } while (cursor.moveToNext());

@@ -74,8 +74,6 @@ public class InflateOfflineWorkAdapter extends ArrayAdapter<TableDataCountPojo.W
 
             view.setTag(viewHolder);
 
-
-
         } else {
             view = convertView;
         }

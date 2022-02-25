@@ -14,7 +14,8 @@ import retrofit2.http.Header;
 public interface WorkHistoryWebService {
 
     @GET("api/Get/WorkHistory")
-    Call<List<TableDataCountPojo.WorkHistory>> pullWorkHistoryList(@Header("appId") String appId,
+    Call<List<TableDataCountPojo.WorkHistory>> pullWorkHistoryList( @Header("Content-Type") String content_type,
+                                                                    @Header("appId") String appId,
                                                                    @Header("userId") String userId,
                                                                    @Header("year") String year,
                                                                    @Header("month") String month,
@@ -22,13 +23,15 @@ public interface WorkHistoryWebService {
 
 
     @GET("api//Get/WorkHistory/Details")
-    Call<List<WorkHistoryDetailPojo>> pullWorkHistoryDetailList(@Header("appId") String appId,
+    Call<List<WorkHistoryDetailPojo>> pullWorkHistoryDetailList(@Header("Content-Type") String content_type,
+                                                                @Header("appId") String appId,
                                                                 @Header("userId") String userId,
                                                                 @Header("fdate") String fDate,
                                                                 @Header("LanguageId") String languageId);
 
     @GET("api/Get/QrWorkHistory ")
-    Call<List<TableDataCountPojo.WorkHistory>> pullEmpWorkHistoryList(@Header("appId") String appId,
+    Call<List<TableDataCountPojo.WorkHistory>> pullEmpWorkHistoryList(@Header("Content-Type") String content_type,
+                                                                        @Header("appId") String appId,
                                                                       @Header("userId") String userId,
                                                                       @Header("year") String year,
                                                                       @Header("month") String month);

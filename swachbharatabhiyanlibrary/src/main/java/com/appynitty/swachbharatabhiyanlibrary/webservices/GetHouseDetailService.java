@@ -10,7 +10,7 @@ import retrofit2.http.Headers;
 
 public interface GetHouseDetailService {
     @Headers({
-            "appId:3072",
+            "appId:3088",
             "Content-Type:application/json"
     })
     @GET("/api/Get/GetSWMFType")

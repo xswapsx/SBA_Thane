@@ -296,7 +296,7 @@ public class SyncServer {
         try {
 
             WorkHistoryWebService service = Connection.createService(WorkHistoryWebService.class, AUtils.SERVER_URL);
-            workHistoryPojoList = service.pullWorkHistoryList(Prefs.getString(AUtils.APP_ID, ""),
+            workHistoryPojoList = service.pullWorkHistoryList(AUtils.CONTENT_TYPE,Prefs.getString(AUtils.APP_ID, ""),
                     Prefs.getString(AUtils.PREFS.USER_ID, null), year, month, empTyp).execute().body();
 
             if (!AUtils.isNull(workHistoryPojoList)) {
@@ -324,7 +324,7 @@ public class SyncServer {
         try {
 
             WorkHistoryWebService service = Connection.createService(WorkHistoryWebService.class, AUtils.SERVER_URL);
-            workHistoryDetailPojoList = service.pullWorkHistoryDetailList(Prefs.getString(AUtils.APP_ID, ""),
+            workHistoryDetailPojoList = service.pullWorkHistoryDetailList(AUtils.CONTENT_TYPE,Prefs.getString(AUtils.APP_ID, ""),
                     Prefs.getString(AUtils.PREFS.USER_ID, null), fDate,
                     "1").execute().body();
 

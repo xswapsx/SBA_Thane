@@ -49,7 +49,7 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
     private List<QrLocationPojo> locationPojoList;
     private Gson gson;
     private AlertDialog alertDialog;
-    private int houseCount, dyCount, ssCount, lwcCount, resNCollectionC, resBCollectionC, resSCollectionC, commercialCollectionC, cadCollectionC, hortCollectionC;
+    private int houseCount, dyCount, ssCount, lwcCount, resNCollectionC, resBCollectionC, resSCollectionC, commercialCollectionC, cadCollectionC, hortCollectionC,ctptCollectionC,swmCollectionC;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -103,6 +103,8 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
         commercialCollectionC = 0;
         cadCollectionC = 0;
         hortCollectionC = 0;
+        ctptCollectionC = 0;
+        swmCollectionC = 0;
         getDatabaseList();
     }
 
@@ -162,6 +164,10 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
                     ssCount++;
                 } else if (refId.substring(0, 2).matches("^[CcPp]+$")) {
                     commercialCollectionC++;
+                }else if (refId.substring(0, 3).matches("^[CcTtPpTt]+$")) {
+                    ctptCollectionC++;
+                }else if (refId.substring(0, 2).matches("^[SsWwMm]+$")) {
+                    swmCollectionC++;
                 }
             }
             Log.e(TAG, "House count: " + houseCount
@@ -174,6 +180,8 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
                     + ", commercialCollectionC: " + commercialCollectionC
                     + ", cadCollectionC: " + cadCollectionC
                     + ", hortCollectionC: " + hortCollectionC
+                    + ", ctptCollectionC: " + ctptCollectionC
+                    + ", swmCollectionC: " + swmCollectionC
             );
 
             countList.add(new EmpOfflineCollectionCount(
@@ -186,7 +194,9 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
                             String.valueOf(resSCollectionC),
                             String.valueOf(commercialCollectionC),
                             String.valueOf(cadCollectionC),
-                            String.valueOf(hortCollectionC)
+                            String.valueOf(hortCollectionC),
+                            String.valueOf(ctptCollectionC),
+                            String.valueOf(swmCollectionC)
                     )
             );
         }
