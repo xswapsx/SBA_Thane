@@ -94,25 +94,14 @@ public class SLWM_WeightActivity extends AppCompatActivity {
         initEvents();
         initData();
 
-        Toast.makeText(SLWM_WeightActivity.this, "houseId: " + strSlwmid + ", "
-                + "garbageType: " + strGarbageType
-                + ", Tor: " + strTor
-                + ", segregationLvl: " + strSegregationlvl, Toast.LENGTH_SHORT).show();
     }
 
     private void initData() {
-        strSlwmid = intent.getStringExtra("houseId");
-        strGarbageType = intent.getStringExtra("garbageType");
-        strSegregationlvl = intent.getStringExtra("segregationLvl");
-        strTor = intent.getStringExtra("toR");
 
-        Log.e(TAG, "onCreate: houseId:- " + strSlwmid
-                + ", " + "garbageType:- " + strGarbageType
-                + ", segregationLvl:- " + strSegregationlvl
-                + ", Tor:- " + strSegregationlvl);
-
+        if (intent.hasExtra(AUtils.slwmId)) {
+            strSlwmid = intent.getStringExtra(AUtils.slwmId);
+        }
         tvSlwm_id.setText(strSlwmid);
-
     }
 
     private void initEvents() {
@@ -294,7 +283,6 @@ public class SLWM_WeightActivity extends AppCompatActivity {
         radioButtonWetKg.setChecked(true);
         radioButtonWetTon = findViewById(R.id.rb_wet_ton);
 
-
     }
 
     private void initToolbar() {
@@ -330,13 +318,11 @@ public class SLWM_WeightActivity extends AppCompatActivity {
         boolean isImgPojo = getFormData();
 
         Intent intent = new Intent();
-        intent.putExtra(AUtils.DUMPDATA.dumpDataMap, getIntentMap());
+        intent.putExtra(AUtils.SLWMDATA.slwmDataMap, getIntentMap());
         intent.putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR);
-        intent.putExtra("HouseID", strSlwmid);
         setResult(RESULT_OK, intent);
         finish();
     }
-
 
     private void isCameraPermissionGiven() {
         if (AUtils.isCameraPermissionGiven(mContext)) {
@@ -544,7 +530,6 @@ public class SLWM_WeightActivity extends AppCompatActivity {
 
         switch (imageViewNo) { //Mod by swapnil
 
-
             case 1:
                 Uri tempUri;
                 String finalPath;
@@ -605,19 +590,17 @@ public class SLWM_WeightActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     private HashMap<String, String> getIntentMap() {
 
         HashMap<String, String> map = new HashMap<>();
-        map.put(AUtils.SLWMDATA.slwmDataMap, strSlwmid);
-        map.put(AUtils.SLWMDATA.slwmGarbageType, strGarbageType);
-        map.put(AUtils.SLWMDATA.slwmSegregationlvl, strSegregationlvl);
-        map.put(AUtils.SLWMDATA.slwmTor, strTor);
+        map.put(AUtils.SLWMDATA.slwmId, strSlwmid);
+        map.put(AUtils.SLWMDATA.weightTotal, String.valueOf(totalTon));
+        map.put(AUtils.SLWMDATA.weightTotalDry, String.valueOf(dryTon));
+        map.put(AUtils.SLWMDATA.weightTotalWet, String.valueOf(wetTon));
 
-        map.put(AUtils.DUMPDATA.weightTotal, String.valueOf(totalTon));
-        map.put(AUtils.DUMPDATA.weightTotalDry, String.valueOf(dryTon));
-        map.put(AUtils.DUMPDATA.weightTotalWet, String.valueOf(wetTon));
-
+        Log.e(TAG, "getIntentMap: totalTon" + totalTon);
+        Log.e(TAG, "getIntentMap: dryTon" + dryTon);
+        Log.e(TAG, "getIntentMap: wetTon" + wetTon);
 
         return map;
     }

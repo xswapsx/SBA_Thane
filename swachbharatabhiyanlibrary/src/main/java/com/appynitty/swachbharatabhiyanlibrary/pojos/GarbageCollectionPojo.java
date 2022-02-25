@@ -27,8 +27,10 @@ public class GarbageCollectionPojo {
     private String gcType;
     private String CType;
     private String LevelOS;
+
     private String TNS;
     private String TOT;
+    private String TOR;
 
     public String getTNS() {
         return TNS;
@@ -157,6 +159,14 @@ public class GarbageCollectionPojo {
 
     public void setCType(String CType) {
         this.CType = CType;
+    }
+
+    public String getTOR() {
+        return TOR;
+    }
+
+    public void setTOR(String TOR) {
+        this.TOR = TOR;
     }
 
     @Override

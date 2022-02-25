@@ -41,7 +41,23 @@ public class OfflineGarbageColectionPojo {
     private String LevelOS;
     private String TNS;
     private String TOT;
+    private String TOR;
 
+    public Boolean getOffline() {
+        return isOffline;
+    }
+
+    public void setOffline(Boolean offline) {
+        isOffline = offline;
+    }
+
+    public String getTOR() {
+        return TOR;
+    }
+
+    public void setTOR(String TOR) {
+        this.TOR = TOR;
+    }
 
     public String getTNS() {
         return TNS;

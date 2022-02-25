@@ -94,6 +94,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
     private final static String TAG = "QRcodeScannerActivity";
     private final static int DUMP_YARD_DETAILS_REQUEST_CODE = 100;
+    private final static int SLWM_DETAILS_REQUEST_CODE = 112;
     GarbageCollectionPojo garbageCollectionPojo;
     SyncOfflinePojo syncOfflinePojo;
     LocationMonitoringService locationMonitoringService;
@@ -125,8 +126,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     private SyncOfflineAdapterClass syncOfflineAdapterClass;
     private SyncOfflineRepository syncOfflineRepository;
     private SyncOfflineAttendanceRepository syncOfflineAttendanceRepository;
-    private String EmpType, gcType, cType;
-    private String areaType;
+    private String EmpType, gcType, cType, areaType, mGarbageType, mSegregationLvl, mTor;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -244,11 +244,11 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 //        Toast.makeText(mContext, "hellow", Toast.LENGTH_SHORT).show();
         Intent i = getIntent();
         if (i.hasExtra(""))
-        if (AUtils.isInternetAvailable()) {
-            AUtils.hideSnackBar();
-        } else {
-            AUtils.showSnackBar(findViewById(R.id.parent));
-        }
+            if (AUtils.isInternetAvailable()) {
+                AUtils.hideSnackBar();
+            } else {
+                AUtils.showSnackBar(findViewById(R.id.parent));
+            }
     }
 
     @Override
@@ -276,6 +276,31 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                 e.printStackTrace();
             }
 
+        } else if (requestCode == SLWM_DETAILS_REQUEST_CODE && resultCode == RESULT_OK) {
+            try {
+                HashMap<String, String> map = (HashMap<String, String>) data.getSerializableExtra(AUtils.SLWMDATA.slwmDataMap);
+                if (data.hasExtra(AUtils.REQUEST_CODE)) {
+                    Type type = new TypeToken<ImagePojo>() {
+                    }.getType();
+                    imagePojo = new Gson().fromJson(Prefs.getString(AUtils.PREFS.IMAGE_POJO, null), type);
+
+                    if (!AUtils.isNull(imagePojo)) {
+                        isActivityData = true;
+                    }
+
+                    Log.e(TAG, "onActivityResult: houseId:- " + map.get(AUtils.SLWMDATA.slwmId)
+                            + ", weightTotal:- " + map.get(AUtils.SLWMDATA.weightTotal)
+                            + ", weightTotalDry:- " + map.get(AUtils.SLWMDATA.weightTotalDry)
+                            + ", GcType:- " + gcType
+                            + ", segregationLvl:- " + mSegregationLvl
+                            + ", tor:- " + mTor
+                            + ", garbageType:- " + mGarbageType
+                            + ", weightTotalWet:- " + map.get(AUtils.SLWMDATA.weightTotalWet));
+                }
+                startSubmitQRAsyncTask(map);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -681,10 +706,10 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         }
 
         mAreaAdapter.fetchAreaList(getAreaType(), false);
-        String skl="Nuffin";
+        String skl = "Nuffin";
         Intent intent = getIntent();
         if (intent.hasExtra("HouseID")) {
-             skl = intent.getStringExtra("HouseID");
+            skl = intent.getStringExtra("HouseID");
         }
 
         Toast.makeText(mContext, skl, Toast.LENGTH_SHORT).show();
@@ -1248,10 +1273,23 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     private void setGarbageCollectionPojo(HashMap<String, String> map) {
         try {
             garbageCollectionPojo = new GarbageCollectionPojo();
-            garbageCollectionPojo.setId(map.get(AUtils.DUMPDATA.dumpYardId));
-            garbageCollectionPojo.setWeightTotal(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.DUMPDATA.weightTotal))));
-            garbageCollectionPojo.setWeightTotalDry(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.DUMPDATA.weightTotalDry))));
-            garbageCollectionPojo.setWeightTotalWet(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.DUMPDATA.weightTotalWet))));
+            if (map.containsKey(AUtils.DUMPDATA.dumpYardId)) {
+                Toast.makeText(mContext, "Dump-yard data Found!", Toast.LENGTH_SHORT).show();
+                garbageCollectionPojo.setId(map.get(AUtils.DUMPDATA.dumpYardId));
+                garbageCollectionPojo.setWeightTotal(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.DUMPDATA.weightTotal))));
+                garbageCollectionPojo.setWeightTotalDry(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.DUMPDATA.weightTotalDry))));
+                garbageCollectionPojo.setWeightTotalWet(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.DUMPDATA.weightTotalWet))));
+            }
+            if (map.containsKey(AUtils.SLWMDATA.slwmId)) {
+                Toast.makeText(mContext, "SLWM data Found!", Toast.LENGTH_SHORT).show();
+                garbageCollectionPojo.setId(map.get(AUtils.SLWMDATA.slwmId));
+                garbageCollectionPojo.setWeightTotal(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.SLWMDATA.weightTotal))));
+                garbageCollectionPojo.setWeightTotalDry(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.SLWMDATA.weightTotalDry))));
+                garbageCollectionPojo.setWeightTotalWet(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.SLWMDATA.weightTotalWet))));
+                garbageCollectionPojo.setTOR(mTor);
+                garbageCollectionPojo.setLevelOS(mSegregationLvl);
+            }
+
             garbageCollectionPojo.setGarbageType(-1);
             garbageCollectionPojo.setComment(null);
             double newlat = Double.parseDouble(Prefs.getString(AUtils.LAT, "0"));
@@ -1274,6 +1312,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         OfflineGarbageColectionPojo entity = new OfflineGarbageColectionPojo();
 
         entity.setReferenceID(garbageCollectionPojo.getId());
+
         if (garbageCollectionPojo.getId().substring(0, 2).matches("^[HhPp]+$")) {
             entity.setGcType("1");
             cType = entity.getCType();
@@ -1290,6 +1329,11 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         } else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
             entity.setGcType("9");
             Log.e(TAG, "insertToDB: commercial-Ctype:-" + cType);
+        } else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[SsWw]+$")) {
+            entity.setGcType("11");
+            entity.setTOR(garbageCollectionPojo.getTOR());
+            entity.setLevelOS(garbageCollectionPojo.getTOR());
+            Log.e(TAG, "insertToDB: SLWM-Ctype:-" + cType);
         }
         entity.setNote(garbageCollectionPojo.getComment());
         entity.setGarbageType(String.valueOf(garbageCollectionPojo.getGarbageType()));
@@ -1317,7 +1361,6 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                     entity.setGpAfterImage("");
                     Log.e(TAG, "Images are null!");
                 }
-
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -1441,15 +1484,25 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     public void onSubmitButtonClicked(String houseId, String garbageType, String segregationLevel, String tor) {
         if (tor.matches("nuffin")) {
             startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "1", segregationLevel);
+            confirmationDialog(houseId, garbageType);
         } else {
-            startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "11", segregationLevel, tor);
+            getSlwmWeightDetails(houseId, Integer.parseInt(garbageType), "11", segregationLevel, tor);
+
         }
 
-        confirmationDialog(houseId, garbageType);
+//        confirmationDialog(houseId, garbageType);
     }
 
-    private void startSubmitQRAsyncTask(String houseId, int garbageType, String gcType, String segregationLevel, String tor) {
-        Log.e(TAG, "startSubmitQRAsyncTask: houseId:- " + houseId + ", GarbageType:- " + garbageType + ", GcType:- " + gcType
+    private void getSlwmWeightDetails(String houseId, int garbageType, String gcType, String segregationLevel, String tor) {
+        Log.e(TAG, "getSlwmWeightDetails: houseId:- " + houseId + ", GarbageType:- " + garbageType + ", GcType:- " + gcType
                 + ", Segregation:- " + segregationLevel + ", TOR:- " + tor);
+        this.mGarbageType = String.valueOf(garbageType);
+        this.gcType = gcType;
+        this.mSegregationLvl = segregationLevel;
+        this.mTor = tor;
+        Intent intent = new Intent(mContext, SLWM_WeightActivity.class);
+        intent.putExtra(AUtils.slwmId, houseId);
+        startActivityForResult(intent, SLWM_DETAILS_REQUEST_CODE);
     }
+
 }
