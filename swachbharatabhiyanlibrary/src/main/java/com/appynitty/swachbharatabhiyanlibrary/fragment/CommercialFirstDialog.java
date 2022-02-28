@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -27,8 +28,9 @@ public class CommercialFirstDialog extends Fragment {
     private final Context mContext;
     private final String mHouseId;
     private final String cType;
-    String slwmCtype;
+    String slwmCtype, sComment;
     private String selectedFacility = "Nuffin";
+    private EditText etComment, etsComment;
     private RadioButton rb_wetWaste, rb_dryWaste, rb_mixedWaste;    //for Commercial
     private RadioButton rb_domesticHazardWaste, rb_sanitaryWaste, rb_garbageNotReceived;      //for residential
     private RadioButton rb_municipleSW, rb_Compost, rb_Biogas, rb_biodigesterBS,    //for SLWM
@@ -65,8 +67,10 @@ public class CommercialFirstDialog extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+
         // For residential and commercial
         btn_CommercialGarbageNext = view.findViewById(R.id.btn_garbage_next);
+        etComment = view.findViewById(R.id.txt_garbage_comments);
         rb_wetWaste = view.findViewById(R.id.rb_wetWaste);
         rb_dryWaste = view.findViewById(R.id.rb_dryWaste);
         rb_mixedWaste = view.findViewById(R.id.rb_mixedWaste);
@@ -76,6 +80,7 @@ public class CommercialFirstDialog extends Fragment {
 
         // For SLWM
         btnSLWM_garbage_next = view.findViewById(R.id.btn_slwm_garbage_next);
+        etsComment = view.findViewById(R.id.et_garbage_comments);
         rb_municipleSW = view.findViewById(R.id.rb_municipleSW);
         rb_Compost = view.findViewById(R.id.rb_Compost);
         rb_Biogas = view.findViewById(R.id.rb_Biogas);
@@ -102,6 +107,7 @@ public class CommercialFirstDialog extends Fragment {
             btn_CommercialGarbageNext.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    sComment = etComment.getText().toString();
                     onBtnPressed(mHouseId, String.valueOf(mGarbageType));
                 }
             });
@@ -109,8 +115,10 @@ public class CommercialFirstDialog extends Fragment {
             registerEventsForSLWM();
 
             btnSLWM_garbage_next.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
+                    sComment = etsComment.getText().toString();
                     if (selectedFacility.matches("Nuffin"))
                         Toast.makeText(mContext, "please select a facility", Toast.LENGTH_SHORT).show();
                     else {
@@ -355,23 +363,25 @@ public class CommercialFirstDialog extends Fragment {
     }
 
     void onBtnPressed(String HouseID, String GarbageType) {
+        sComment = etComment.getText().toString();
 
-        Log.e(TAG, "onButtonPressed: " + HouseID + ", " + GarbageType);
+        Log.e(TAG, "onButtonPressed: " + HouseID + ", GarbageType: " + GarbageType + ", Comment: " + sComment);
         FirstDialog listener = (FirstDialog) getParentFragment();
-        listener.onNextBtnPressed(HouseID, GarbageType);
+        listener.onNextBtnPressed(HouseID, GarbageType, sComment);
     }
 
     void onSlwmNextBtnPressed(String mHouseId, String GarbageType, String selectedFacility) {
-        Log.e(TAG, "onSlwmNextBtnPressed: " + selectedFacility);
+        sComment = etsComment.getText().toString();
+        Log.e(TAG, "onSlwmNextBtnPressed: " + selectedFacility + ", comment:- " + sComment);
         FirstSLWMDialog slwmDialogListener = (FirstSLWMDialog) getParentFragment();
-        slwmDialogListener.slwmOnNextBtnPressed(mHouseId, GarbageType, selectedFacility);
+        slwmDialogListener.slwmOnNextBtnPressed(mHouseId, GarbageType, selectedFacility, sComment);
     }
 
     public interface FirstDialog {
-        void onNextBtnPressed(String HouseID, String GarbageType);
+        void onNextBtnPressed(String HouseID, String GarbageType, String sComment);
     }
 
     public interface FirstSLWMDialog {
-        void slwmOnNextBtnPressed(String houseId, String GarbageType, String TOR);
+        void slwmOnNextBtnPressed(String houseId, String GarbageType, String TOR, String sComment);
     }
 }

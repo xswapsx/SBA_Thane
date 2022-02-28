@@ -126,7 +126,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     private SyncOfflineAdapterClass syncOfflineAdapterClass;
     private SyncOfflineRepository syncOfflineRepository;
     private SyncOfflineAttendanceRepository syncOfflineAttendanceRepository;
-    private String EmpType, gcType, cType, areaType, mGarbageType, mSegregationLvl, mTor;
+    private String EmpType, gcType, cType, areaType, mGarbageType, mSegregationLvl, mTor, mComment;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -721,7 +721,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
             gcType = "4";
 
             if (houseid.substring(0, 2).matches("^[LlWw]+$")) {
-                startSubmitQRAsyncTask(houseid, -1, gcType, null);
+                startSubmitQRAsyncTask(houseid, -1, gcType, null, mComment);
             } else if (houseid.substring(0, 2).matches("^[HhPp]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.house_qr_alert), null);
             } else if (houseid.substring(0, 2).matches("^[GgPp]+$")) {
@@ -734,7 +734,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
             gcType = "5";
 
             if (houseid.substring(0, 2).matches("^[SsSs]+$")) {
-                startSubmitQRAsyncTask(houseid, -1, gcType, null);
+                startSubmitQRAsyncTask(houseid, -1, gcType, null, mComment);
             } else if (houseid.substring(0, 2).matches("^[HhPp]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.house_qr_alert), null);
             } else if (houseid.substring(0, 2).matches("^[GgPp]+$")) {
@@ -1079,10 +1079,10 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
     }
 
-    private void startSubmitQRAsyncTask(final String houseNo, @Nullable final int garbageType, @Nullable final String gcType, @Nullable final String segregatnLevel) {
+    private void startSubmitQRAsyncTask(final String houseNo, @Nullable final int garbageType, @Nullable final String gcType, @Nullable final String segregatnLevel, String comment) {
 
         stopCamera();
-        setGarbageCollectionPojo(houseNo, garbageType, gcType, segregatnLevel);
+        setGarbageCollectionPojo(houseNo, garbageType, gcType, segregatnLevel, comment);
 
         Log.d(TAG, "startSubmitQRAsyncTask: " + new Gson().toJson(garbageCollectionPojo));
         insertToDB(garbageCollectionPojo);
@@ -1235,20 +1235,21 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     }
 
     private void setGarbageCollectionPojo(String houseNo, @Nullable final int garbageType, final String gcType,
-                                          @Nullable final String segregatnLevel) {
+                                          @Nullable final String segregatnLevel, String comment) {
         garbageCollectionPojo = new GarbageCollectionPojo();
         garbageCollectionPojo.setId(houseNo);
         garbageCollectionPojo.setGarbageType(garbageType);
         garbageCollectionPojo.setComment(null);
         garbageCollectionPojo.setGcType(gcType);
         garbageCollectionPojo.setLevelOS(segregatnLevel);
+        garbageCollectionPojo.setComment(comment);
         double newlat = Double.parseDouble(Prefs.getString(AUtils.LAT, "0"));
         double newlng = Double.parseDouble(Prefs.getString(AUtils.LONG, "0"));
         garbageCollectionPojo.setDistance(AUtils.calculateDistance(mContext, newlat, newlng));
         if (isActivityData) {
             garbageCollectionPojo.setAfterImage(imagePojo.getAfterImage());
             garbageCollectionPojo.setBeforeImage(imagePojo.getBeforeImage());
-            garbageCollectionPojo.setComment(imagePojo.getComment());
+//            garbageCollectionPojo.setComment(imagePojo.getComment());
             garbageCollectionPojo.setImage1(imagePojo.getImage1());
             garbageCollectionPojo.setImage2(imagePojo.getImage2());
         }
@@ -1276,17 +1277,18 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                 garbageCollectionPojo.setWeightTotalWet(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.SLWMDATA.weightTotalWet))));
                 garbageCollectionPojo.setTOR(mTor);
                 garbageCollectionPojo.setLevelOS(mSegregationLvl);
+                garbageCollectionPojo.setComment(mComment);
             }
 
             garbageCollectionPojo.setGarbageType(-1);
-            garbageCollectionPojo.setComment(null);
+            garbageCollectionPojo.setComment(mComment);
             double newlat = Double.parseDouble(Prefs.getString(AUtils.LAT, "0"));
             double newlng = Double.parseDouble(Prefs.getString(AUtils.LONG, "0"));
             garbageCollectionPojo.setDistance(AUtils.calculateDistance(mContext, newlat, newlng));
             if (isActivityData) {
                 garbageCollectionPojo.setAfterImage(imagePojo.getAfterImage());
                 garbageCollectionPojo.setBeforeImage(imagePojo.getBeforeImage());
-                garbageCollectionPojo.setComment(imagePojo.getComment());
+//                garbageCollectionPojo.setComment(imagePojo.getComment());
                 garbageCollectionPojo.setImage1(imagePojo.getImage1());
                 garbageCollectionPojo.setImage2(imagePojo.getImage2());
             }
@@ -1322,6 +1324,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
             entity.setTOR(garbageCollectionPojo.getTOR());
             Log.e(TAG, "insertToDB: SLWM-Ctype:-" + gcType);
         }
+        Log.e(TAG, "insertToDB: Comment:-" + garbageCollectionPojo.getComment());
         entity.setNote(garbageCollectionPojo.getComment());
         entity.setGarbageType(String.valueOf(garbageCollectionPojo.getGarbageType()));
         entity.setTotalGcWeight(String.valueOf(garbageCollectionPojo.getWeightTotal()));
@@ -1468,9 +1471,12 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     }
 
     @Override
-    public void onSubmitButtonClicked(String houseId, String garbageType, String segregationLevel, String tor) {
+    public void onSubmitButtonClicked(String houseId, String garbageType, String segregationLevel, String tor, String comment) {
+
+        Log.e(TAG, "onSubmitButtonClicked: " + comment);
+        mComment = comment;
         if (tor.matches("nuffin")) {
-            startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "1", segregationLevel);
+            startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "1", segregationLevel, mComment);
             confirmationDialog(houseId, garbageType);
         } else {
             getSlwmWeightDetails(houseId, Integer.parseInt(garbageType), "11", segregationLevel, tor);

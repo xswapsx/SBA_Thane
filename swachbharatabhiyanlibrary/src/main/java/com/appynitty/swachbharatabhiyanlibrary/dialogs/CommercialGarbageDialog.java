@@ -26,11 +26,8 @@ import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 public class CommercialGarbageDialog extends DialogFragment implements CommercialFirstDialog.FirstDialog, CommercialFirstDialog.FirstSLWMDialog, CommercialNextDialog.SecondDialog {
     private static final String TAG = "CommercialGarbageDialog";
     Context mContext;
-    String mHouseId;
-    String mGarbageType;
-    String cType;
+    String mHouseId, mGarbageType, cType, innerCType, sComment;
     String mTOR = "nuffin";
-    String innerCType;
 
     CommercialGarbageDialog.CustomDialogInterface mListener;
 
@@ -59,9 +56,10 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
     }
 
     @Override
-    public void onNextBtnPressed(String houseId, String mGarbageType) {
+    public void onNextBtnPressed(String houseId, String mGarbageType, String sComment) {
         this.mHouseId = houseId;
         this.mGarbageType = mGarbageType;
+        this.sComment = sComment;
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         CommercialNextDialog commercialNextDialog = new CommercialNextDialog();
         transaction.replace(R.id.commercialDialog_container, commercialNextDialog);
@@ -73,7 +71,7 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
     @Override
     public void onSubmit(String segregationLevel) {
         if (!(segregationLevel == null)) {
-            mListener.onSubmitButtonClicked(mHouseId, mGarbageType, segregationLevel, mTOR);
+            mListener.onSubmitButtonClicked(mHouseId, mGarbageType, segregationLevel, mTOR, sComment);
             this.dismiss();
         } else {
             AUtils.warning(mContext, getResources().getString(R.string.pls_slct_segregationLvl));
@@ -82,24 +80,25 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
     }
 
     @Override
-    public void slwmOnNextBtnPressed(String houseId, String GarbageType, String TOR) {
+    public void slwmOnNextBtnPressed(String houseId, String GarbageType, String TOR, String sComment) {
         this.mHouseId = houseId;
         this.mGarbageType = GarbageType;
         this.mTOR = TOR;
-        Log.e(TAG, "slwmOnNextBtnPressed: houseId:- " + mHouseId + ", GarbageType:- " + mGarbageType + ", Tor:- " + mTOR);
+        this.sComment = sComment;
+        Log.e(TAG, "slwmOnNextBtnPressed: houseId:- " + mHouseId + ", GarbageType:- " + mGarbageType + ", Tor:- " + mTOR + ", comment:- " + sComment);
 
         /*FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         CommercialNextDialog commercialNextDialog = new CommercialNextDialog();
         transaction.replace(R.id.commercialDialog_container, commercialNextDialog);
         transaction.addToBackStack("commercialNextDialog");
         transaction.commit();*/
-        mListener.onSubmitButtonClicked(mHouseId, mGarbageType, "", mTOR);
+        mListener.onSubmitButtonClicked(mHouseId, mGarbageType, "", mTOR, sComment);
         this.dismiss();
     }
 
     public interface CustomDialogInterface {
 
-        void onSubmitButtonClicked(String houseId, String garbageType, String segregationLevel, String tor);
+        void onSubmitButtonClicked(String houseId, String garbageType, String segregationLevel, String tor, String comment);
     }
 
 

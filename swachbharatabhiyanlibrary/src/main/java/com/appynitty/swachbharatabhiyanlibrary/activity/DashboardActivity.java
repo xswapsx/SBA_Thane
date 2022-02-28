@@ -18,6 +18,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -540,6 +541,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         toolbar.setNavigationIcon(R.drawable.ic_app_id_icon_white);
         toolbar.setTitle(getResources().getString(R.string.app_name));
         setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(v -> AUtils.success(mContext, getString(R.string.app_name)));
     }
 
     private void registerEvents() {
