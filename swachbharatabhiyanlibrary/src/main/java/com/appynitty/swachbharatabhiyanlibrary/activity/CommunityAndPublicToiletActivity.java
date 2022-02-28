@@ -440,12 +440,30 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
 
     }
 
-    private boolean validateForm() {
+   /* private boolean validateForm() {
 
         if (AUtils.isNullString(beforeImageFilePath) && AUtils.isNullString(afterImageFilePath)) {
             AUtils.warning(mContext, mContext.getString(R.string.plz_capture_img), Toast.LENGTH_SHORT);
             return false;
-        }else if (edtToiletSeatsCount.getText().toString().isEmpty()){
+        }
+        else if (edtToiletSeatsCount.getText().toString().isEmpty()){
+            AUtils.warning(mContext, mContext.getString(R.string.str_hint_toilet_seats_count), Toast.LENGTH_SHORT);
+            return false;
+        }
+
+        return true;
+    }*/
+
+    private boolean validateForm() {
+         if (AUtils.isNullString(beforeImageFilePath)) {
+            AUtils.warning(mContext, mContext.getString(R.string.plz_capture_before_img), Toast.LENGTH_SHORT);
+            return false;
+        }
+        else if (AUtils.isNullString(afterImageFilePath)) {
+            AUtils.warning(mContext, mContext.getString(R.string.plz_capture_after_img), Toast.LENGTH_SHORT);
+            return false;
+        }
+        else if (edtToiletSeatsCount.getText().toString().isEmpty()){
             AUtils.warning(mContext, mContext.getString(R.string.str_hint_toilet_seats_count), Toast.LENGTH_SHORT);
             return false;
         }

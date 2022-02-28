@@ -44,6 +44,8 @@
     <string name="take_after_photo">नंतरची फोटो</string>
     <string name="comments">टिप्पण्या</string>
     <string name="plz_capture_img">कृपया कोणताही एक फोटो कॅप्चर करा</string>
+    <string name="plz_capture_before_img">कृपया प्रतिमेपूर्वी कॅप्चर करा</string>
+    <string name="plz_capture_after_img">कृपया प्रतिमा नंतर कॅप्चर करा</string>
     <string name="garbage_collection_completed">कचरा संकलन पूर्ण झाले</string>
     <string name="garbage_deposit_completed">कचरा जमा प्रक्रिया पूर्ण झाले</string>
     <string name="edit_details_txt">तपशील संपादित करा</string>

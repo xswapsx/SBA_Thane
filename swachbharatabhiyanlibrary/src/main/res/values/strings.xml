@@ -63,6 +63,8 @@
     <string name="comments">Comments</string>
 
     <string name="plz_capture_img">Please capture any one image</string>
+    <string name="plz_capture_before_img">Please capture before image</string>
+    <string name="plz_capture_after_img">Please capture after image</string>
     <string name="garbage_collection_completed">Garbage Collection Completed</string>
     <string name="garbage_deposit_completed">Garbage Deposition Completed</string>
     <string name="edit_details_txt">Edit Details</string>
@@ -289,7 +291,7 @@
     <string name="str_title_type_of_toilet">Type Of Toilet</string>
     <string name="str_rd_btn_community_toilet">Community Toilet</string>
     <string name="str_rd_btn_public_toilet">Public Toilet</string>
-    <string name="str_rd_btn_urinal">Urinal</string>
+    <string name="str_rd_btn_urinal">Urinal Toilet</string>
     <string name="str_err_select_type">Please select toilet type</string>
     <!--SWM Facility-->
     <string name="str_title_type_swm_facility">Types of SWM facility</string>

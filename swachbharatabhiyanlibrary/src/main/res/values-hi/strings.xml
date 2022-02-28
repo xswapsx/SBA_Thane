@@ -72,6 +72,8 @@
     <string name="ok_txt">ठीक</string>
     <string name="password_txt">पासवर्ड</string>
     <string name="plz_capture_img">कृपया किसी एक छवि को कैप्चर करें</string>
+    <string name="plz_capture_before_img">कृपया छवि से पहले कैप्चर करें</string>
+    <string name="plz_capture_after_img">कृपया छवि के बाद कैप्चर करें</string>
     <string name="plz_ent_all_fields">कृपया उपरोक्त सभी फ़ील्ड दर्ज करें</string>
     <string name="plz_ent_only_number">कृपया केवल नंबर दर्ज करें</string>
     <string name="plz_ent_pwd">कृप्या पास्वर्ड भरो</string>

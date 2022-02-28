@@ -32,6 +32,7 @@ import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.EmpQrLocationAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.EmpGarbageTpyePopUp;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.EmpSWMTypePopUpDialog;
+import com.appynitty.swachbharatabhiyanlibrary.dialogs.ToiletTypePopUp;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.QrLocationPojo;
 import com.appynitty.swachbharatabhiyanlibrary.repository.EmpSyncServerRepository;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
@@ -50,7 +51,7 @@ import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
-public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler, EmpGarbageTpyePopUp.EmpGarbagePopUpDialogListener, EmpSWMTypePopUpDialog.EmpSWMTypePopUpDialogListener {
+public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler, EmpGarbageTpyePopUp.EmpGarbagePopUpDialogListener, EmpSWMTypePopUpDialog.EmpSWMTypePopUpDialogListener, ToiletTypePopUp.ToiletTypePopUpDialogListener {
 
     private final static String TAG = "EmpQRcodeScannerActivity";
 
@@ -61,7 +62,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
     private TextInputLayout idIpLayout;
     private AutoCompleteTextView idAutoComplete;
     private RadioGroup collectionRadioGroup;
-    private String radioSelection, cType, swmType;
+    private String radioSelection, cType, swmType, toiletType;
     private Button submitBtn, permissionBtn;
     private View contentView;
     private Boolean isScanQr;
@@ -70,6 +71,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
     private EmpGarbageTpyePopUp empGarbageTpyePopUp;
     /******** Rahul Rokade 02-21_22 ********/
     private EmpSWMTypePopUpDialog empSWMTypePopUpDialog;
+    private ToiletTypePopUp toiletTypePopUp;
     private EmpQrLocationAdapterClass empQrLocationAdapter;
     private QrLocationPojo qrLocationPojo;
 
@@ -570,6 +572,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
             empGarbageTpyePopUp = new EmpGarbageTpyePopUp(mContext, id, this);
             //added by rahul
             empSWMTypePopUpDialog = new EmpSWMTypePopUpDialog(mContext, id, this);
+            toiletTypePopUp = new ToiletTypePopUp(mContext,id,this);
 //            chooseActionPopUp.setData(id);
             if (id.substring(0, 2).matches("^[HhPp]+$")) {
                 empGarbageTpyePopUp.show();
@@ -589,9 +592,10 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
             }else if (id.substring(0, 3).matches("^[CcTtPpTt]+$")) {
                 submitBtn.setVisibility(View.GONE);
                 collectionRadioGroup.setVisibility(View.GONE);
-                submitOnSkipToilet(id);
+                toiletTypePopUp.show();
+                /*submitOnSkipToilet(id);
                 AUtils.success(mContext, "Uploaded successfully");
-                finish();
+                finish();*/
             } else if (id.substring(0, 3).matches("^[SsWwMm]+$")) {
                 submitBtn.setVisibility(View.GONE);
                 collectionRadioGroup.setVisibility(View.GONE);
@@ -752,6 +756,15 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         Log.e(TAG, "onEmpSWMTypePopUpDialogDismissed: " + swmType);
         this.swmType = swmType;
         submitOnSkip(swmId, swmType);
+        AUtils.success(mContext, "Uploaded successfully");
+        finish();
+    }
+
+    @Override
+    public void onToiletTypePopUpDismissed(String toiletId, String toiletType) {
+        Log.e(TAG, "onToiletTypePopUpDismissed: " + toiletType);
+        this.toiletType = toiletType;
+        submitOnSkip(toiletId, toiletType);
         AUtils.success(mContext, "Uploaded successfully");
         finish();
     }
