@@ -117,7 +117,7 @@ public class EmpInflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.Wo
             holder.txtLiquidC.setText(workHistoryPojo.getLiquidCollection());
             holder.txtStreetC.setText(workHistoryPojo.getStreetCollection());
             holder.liDumpHouseCBox.setVisibility(View.VISIBLE);
-            holder.liHouseColBox.setVisibility(View.VISIBLE);
+            holder.liHouseColBox.setVisibility(View.GONE);
             holder.txtHouseC.setText(workHistoryPojo.getHouseCollection());
             holder.liDumpColBox.setVisibility(View.VISIBLE);
             holder.txtDumpC.setText(workHistoryPojo.getDumpYardCollection());

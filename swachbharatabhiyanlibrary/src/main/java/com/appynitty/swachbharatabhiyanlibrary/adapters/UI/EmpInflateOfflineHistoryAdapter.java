@@ -115,7 +115,7 @@ public class EmpInflateOfflineHistoryAdapter extends ArrayAdapter<EmpOfflineColl
         txtLiquidC.setText(item.getLiquidWasteCount());
         txtStreetC.setText(item.getStreetSweepCount());
         liDumpHouseCBox.setVisibility(View.VISIBLE);
-        liHouseColBox.setVisibility(View.VISIBLE);
+        liHouseColBox.setVisibility(View.GONE);
         txtHouseC.setText(item.getHouseCount());
         liDumpColBox.setVisibility(View.VISIBLE);
         txtDumpC.setText(item.getDumpYardCount());
