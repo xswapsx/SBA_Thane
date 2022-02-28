@@ -1,7 +1,6 @@
 package com.appynitty.swachbharatabhiyanlibrary.dialogs;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
-import com.appynitty.swachbharatabhiyanlibrary.activity.SLWM_WeightActivity;
 import com.appynitty.swachbharatabhiyanlibrary.db.AppDatabase;
 import com.appynitty.swachbharatabhiyanlibrary.fragment.CommercialFirstDialog;
 import com.appynitty.swachbharatabhiyanlibrary.fragment.CommercialNextDialog;
@@ -90,11 +88,13 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
         this.mTOR = TOR;
         Log.e(TAG, "slwmOnNextBtnPressed: houseId:- " + mHouseId + ", GarbageType:- " + mGarbageType + ", Tor:- " + mTOR);
 
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        /*FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         CommercialNextDialog commercialNextDialog = new CommercialNextDialog();
         transaction.replace(R.id.commercialDialog_container, commercialNextDialog);
         transaction.addToBackStack("commercialNextDialog");
-        transaction.commit();
+        transaction.commit();*/
+        mListener.onSubmitButtonClicked(mHouseId, mGarbageType, "", mTOR);
+        this.dismiss();
     }
 
     public interface CustomDialogInterface {
