@@ -711,7 +711,8 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
             gcType = "10";
             toiletTypePopUp = new ToiletTypePopUp(mContext, houseid, this);
             if (houseid.substring(0, 2).matches("^[CcTtPpTt]+$")) {
-                toiletTypePopUp.show();
+               // toiletTypePopUp.show();
+                startSubmitQRAsyncTask(houseid, -1, gcType, null, imagePojo.getTNS(),null);
                // startSubmitQRAsyncTask(houseid, -1, gcType, null,0, null);
             }else if (houseid.substring(0, 2).matches("^[DdYy]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.dy_qr_alert), null);

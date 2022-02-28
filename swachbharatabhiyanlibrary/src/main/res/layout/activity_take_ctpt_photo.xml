@@ -72,7 +72,7 @@
                             android:adjustViewBounds="false"
                             android:contentDescription="@string/take_before_photo"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/ic_truck_garbage" />
+                            android:src="@drawable/ic_dirty_toilet" />
 
                         <TextView
                             android:id="@+id/txt_date_time_before"
@@ -124,9 +124,10 @@
                             android:id="@+id/img_after_photo_ctpt"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
                             android:contentDescription="@string/take_after_photo"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/ic_truck_with_garbage" />
+                            android:src="@drawable/ic_clean_toilet" />
 
                         <TextView
                             android:id="@+id/txt_date_time_after"
