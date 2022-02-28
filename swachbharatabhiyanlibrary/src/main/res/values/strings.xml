@@ -224,6 +224,7 @@
     <string name="gp_qr_alert">For scanning Garbage Point QR, kindly login with waste collection id</string>
     <string name="dy_qr_alert">For scanning Dump Yard QR, kindly login with waste collection id.</string>
     <string name="lwc_qr_alert">For scanning Liquid Waste QR, kindly login with liquid waste cleaning id</string>
+    <string name="ctpt_qr_alert">Please Clicking CTPT Tab then process for it. Thank you</string>
     <string name="alert">Alert!</string>
     <string name="liquid_collection">Liquid Collection</string>
     <string name="street_collection">Street Collection</string>

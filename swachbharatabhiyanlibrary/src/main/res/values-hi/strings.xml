@@ -157,6 +157,7 @@
     <string name="gp_qr_alert">गार्बेज पॉईंट QR स्कॅन करने के लिए कृपया waste collection आयडी से लॉगिन करें।</string>
     <string name="dy_qr_alert">डंप यार्ड क्यूआर स्कैन करने के लिए, कृपया waste collection आईडी से लॉगिन करें।</string>
     <string name="lwc_qr_alert">लिक्विड वेस्ट क्यूआर स्कैन करने के लिए, कृपया लिक्विड वेस्ट क्लीनिंग आईडी से लॉग इन करें।</string>
+    <string name="ctpt_qr_alert">कृपया CTPT Tab पर क्लिक करें और फिर इसके लिए प्रोसेस करें। शुक्रिया</string>
     <string name="alert">अलर्ट !</string>
     <string name="liquid_collection">लिक्विड कलेक्शन</string>
     <string name="street_collection">"स्ट्रीट स्विपिंग कलेक्शन "</string>

@@ -1,6 +1,7 @@
 package com.appynitty.swachbharatabhiyanlibrary.utils;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
@@ -21,6 +22,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.activity.DashboardActivity;
@@ -59,11 +61,11 @@ public class AUtils extends CommonUtils {
     //  Advanced Ghanta Gadi URL
 //    public static final String SERVER_URL = "http://202.65.157.253:6560";
     //ICTSBM Thane Live
-    public static final String SERVER_URL = "http://202.65.157.253:5045/";
+   // public static final String SERVER_URL = "http://202.65.157.253:5045/";
 
     //    Staging URL
 //    public static final String SERVER_URL = "http://115.115.153.117:4044/";
-//     public static final String SERVER_URL = "http://202.65.157.254:7075";  //Thane staging
+     public static final String SERVER_URL = "http://202.65.157.254:7075";  //Thane staging
 
     //Relese URL
 //    public static final String SERVER_URL = "https://ghantagadi.in:444/";

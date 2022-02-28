@@ -749,7 +749,10 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                 getDumpYardDetails(houseid);
             else if (houseid.substring(0, 2).matches("^[LlWw]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.lwc_qr_alert), null);
-            } else if (houseid.substring(0, 2).matches("^[SsSs]+$")) {
+            }else if (houseid.substring(0, 4).matches("^[CcTtPpTt]+$")) {
+                AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.ctpt_qr_alert), null);
+            }
+            else if (houseid.substring(0, 2).matches("^[SsSs]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.ssc_qr_warning), null);
             } else if (houseid.substring(0, 2).matches("^[CcPp]+$")) {
                 validateTypeOfCollection(houseid, "CW");
