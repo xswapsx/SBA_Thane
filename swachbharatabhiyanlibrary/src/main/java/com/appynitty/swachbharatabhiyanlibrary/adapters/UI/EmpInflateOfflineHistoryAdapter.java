@@ -50,50 +50,78 @@ public class EmpInflateOfflineHistoryAdapter extends ArrayAdapter<EmpOfflineColl
             v = inflater.inflate(custom_layout_id, null);
         }
 
-        // initializing the textview and
-        // setting data
-
         TextView day = v.findViewById(R.id.history_date_txt);
         TextView month = v.findViewById(R.id.history_month_txt);
+        LinearLayout liNormalBuildingCBox = v.findViewById(R.id.li_res_normal_b_box);
+        liNormalBuildingCBox.setVisibility(View.GONE);
+        TextView txtResC = v.findViewById(R.id.res_normal_collection);
+        TextView txtResBC = v.findViewById(R.id.res_b_collection);
+        //Slum and commercial waste
+        LinearLayout liResSlumCommercialCBox = v.findViewById(R.id.li_res_slum_cW_box);
+        liResSlumCommercialCBox.setVisibility(View.GONE);
+        TextView txtResSlumC = v.findViewById(R.id.res_s_collection);
+        TextView txtResCwC = v.findViewById(R.id.commer_collection);
+        //Horticulture and CandD waste
+        LinearLayout liHortCadCBox = v.findViewById(R.id.li_hort_cad_box);
+        liHortCadCBox.setVisibility(View.GONE);
+        TextView txtCandDC = v.findViewById(R.id.cad_collection);
+        TextView txtHortC = v.findViewById(R.id.hort_collection);
+        // Liquid and street
+        LinearLayout liLiqStreetCBox = v.findViewById(R.id.li_liq_street_box);
+        liLiqStreetCBox.setVisibility(View.GONE);
 
-        TextView houseCollectionCount = v.findViewById(R.id.house_collection);
-        TextView dyCollectionCount = v.findViewById(R.id.dy_collection);
-        TextView lwcCollectionCount = v.findViewById(R.id.lwc_collection);
-        TextView ssCollectionCount = v.findViewById(R.id.ss_collection);
+        LinearLayout liLiquidColBox = v.findViewById(R.id.liLqiColBox);
+        liLiquidColBox.setVisibility(View.INVISIBLE);
+        TextView txtLiquidC = v.findViewById(R.id.lwc_collection);
 
-        //added code by rahul
-        TextView resNormalCollection = v.findViewById(R.id.res_normal_collection);
-        TextView resBuildingCollection = v.findViewById(R.id.res_b_collection);
-        TextView resSlumCollection = v.findViewById(R.id.res_s_collection);
-        TextView commercialCollection = v.findViewById(R.id.commer_collection);
-        TextView ctptCollection = v.findViewById(R.id.ctpt_collection);
-        TextView swmCollection = v.findViewById(R.id.swm_collection);
-        LinearLayout liCtptSwmBox = v.findViewById(R.id.li_ctpt_swm_box);
-        liCtptSwmBox.setVisibility(View.VISIBLE);
-        /*TextView liHortCadBox = v.findViewById(R.id.li_hort_cad_box);
-         liHortCadBox.setVisibility(View.VISIBLE);*/
-        TextView cadCollection = v.findViewById(R.id.cad_collection);
-        TextView hortCollection = v.findViewById(R.id.hort_collection);
+        LinearLayout liStreetColBox = v.findViewById(R.id.liStreetColBox);
+        liStreetColBox.setVisibility(View.INVISIBLE);
+        TextView txtStreetC = v.findViewById(R.id.ss_collection);
+        //Dump yard and House collection
+        LinearLayout liDumpHouseCBox = v.findViewById(R.id.li_dump_house_box);
+        liDumpHouseCBox.setVisibility(View.GONE);
+
+        LinearLayout liDumpColBox = v.findViewById(R.id.liDumpColBox);
+        liDumpColBox.setVisibility(View.INVISIBLE);
+        TextView txtDumpC = v.findViewById(R.id.dy_collection);
+
+        LinearLayout liHouseColBox = v.findViewById(R.id.liHouseColBox);
+        liHouseColBox.setVisibility(View.INVISIBLE);
+        TextView txtHouseC = v.findViewById(R.id.house_collection);
+        //Ctpt and SLWM collection
+        LinearLayout liCtptSwmCBox = v.findViewById(R.id.li_ctpt_swm_box);
+        liCtptSwmCBox.setVisibility(View.GONE);
+        TextView txtCtptC = v.findViewById(R.id.ctpt_collection);
+        TextView txtSlwmC = v.findViewById(R.id.swm_collection);
 
         // get the item using the  position param
         EmpOfflineCollectionCount item = items_list.get(position);
 
-        houseCollectionCount.setText(item.getHouseCount());
-        dyCollectionCount.setText(item.getDumpYardCount());
-        lwcCollectionCount.setText(item.getLiquidWasteCount());
-        ssCollectionCount.setText(item.getStreetSweepCount());
-        day.setText(AUtils.extractDate(item.getDate()));
-        month.setText(AUtils.extractMonth(item.getDate()));
+        day.setText(AUtils.extractDateEmp(item.getDate()));
+        month.setText(AUtils.extractMonthEmp(item.getDate()));
 
-        //added by rahul
-        resNormalCollection.setText(item.getHouseCount());
-        resBuildingCollection.setText(item.getResBCollection());
-        resSlumCollection.setText(item.getResSCollection());
-        commercialCollection.setText(item.getCommercialCollection());
-        cadCollection.setText(item.getCadCollection());
-        hortCollection.setText(item.getHortCollection());
-        ctptCollection.setText(item.getCtptCollection());
-        swmCollection.setText(item.getSwmCollection());
+        liNormalBuildingCBox.setVisibility(View.VISIBLE);
+        txtResC.setText(item.getResNCollection());
+        txtResBC.setText(item.getResBCollection());
+        liResSlumCommercialCBox.setVisibility(View.VISIBLE);
+        txtResSlumC.setText(item.getResSCollection());
+        txtResCwC.setText(item.getCommercialCollection());
+        liHortCadCBox.setVisibility(View.GONE);
+        txtCandDC.setText(item.getCadCollection());
+        txtHortC.setText(item.getHortCollection());
+        liLiqStreetCBox.setVisibility(View.VISIBLE);
+        liLiquidColBox.setVisibility(View.VISIBLE);
+        liStreetColBox.setVisibility(View.VISIBLE);
+        txtLiquidC.setText(item.getLiquidWasteCount());
+        txtStreetC.setText(item.getStreetSweepCount());
+        liDumpHouseCBox.setVisibility(View.VISIBLE);
+        liHouseColBox.setVisibility(View.VISIBLE);
+        txtHouseC.setText(item.getHouseCount());
+        liDumpColBox.setVisibility(View.VISIBLE);
+        txtDumpC.setText(item.getDumpYardCount());
+        liCtptSwmCBox.setVisibility(View.VISIBLE);
+        txtCtptC.setText(item.getCtptCollection());
+        txtSlwmC.setText(item.getSwmCollection());
 
         return v;
     }

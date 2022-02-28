@@ -28,9 +28,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ababab" />
-                            <entry key="outputName" value="ic_arrow_down" />
-                            <entry key="sourceFile" value="D:\CloneSBA\swachbharatabhiyanlibrary\src\main\res\drawable-hdpi\try.svg" />
+                            <entry key="outputName" value="ic_ctpt_toilet_new" />
+                            <entry key="sourceFile" value="D:\CTPT toilet\ic_ctpt_toilet_new.svg" />
                           </map>
                         </option>
                       </PersistentState>

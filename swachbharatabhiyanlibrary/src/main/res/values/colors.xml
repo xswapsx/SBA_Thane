@@ -6,6 +6,7 @@
     
     <color name="colorDefault">#9e9e9e</color>
     <color name="colorGray">#757575</color>
+    <color name="colorLightWhiteBlue">#D3D3ECF3</color>
     <color name="colorBlackGray">#0F0F0F</color>
     <color name="colorGrayList">#383838</color>
     <color name="colorDivider">#C8C8C8</color>
@@ -19,6 +20,7 @@
     <color name="black_alpha_5">#0D000000</color>
     <color name="black_alpha_45">#72000000</color>
     <color name="white_alpha_50">#80FFFFFF</color>
+    <color name="colorTransparent">#00F6F4F4</color>
 
     <color name="colorBlue">#658bf3</color>
     <color name="colorGreenLight">#54e69d</color>
@@ -68,5 +70,9 @@
     <color name="color_commercial_collection">#C60303</color>
     <color name="color_ctpt_collection">#54573B</color>
     <color name="color_swm_collection">#425F6C</color>
+
+
+    <color name="color_green">#2FA134</color>
+    <color name="color_light_green">#52B557</color>
 
 </resources>

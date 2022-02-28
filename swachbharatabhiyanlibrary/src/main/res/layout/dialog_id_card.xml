@@ -27,7 +27,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="440dp"
-            android:background="@drawable/id_bg_3">
+            android:background="@drawable/dialog_half_change_color">
 
                 <ImageView
                     android:id="@+id/profile_pic"
@@ -84,7 +84,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/emp_id_short"
                             android:gravity="center"
-                            android:textColor="@color/colorDivider"
+                            android:textColor="@android:color/white"
                             android:layout_marginTop="@dimen/dim_10_dp"/>
 
                         <TextView

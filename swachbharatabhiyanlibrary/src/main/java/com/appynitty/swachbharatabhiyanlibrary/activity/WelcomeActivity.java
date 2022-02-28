@@ -165,6 +165,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
                 launchHomeScreen();
+                dialog.dismiss();
 
             }
         });

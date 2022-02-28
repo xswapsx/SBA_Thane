@@ -50,27 +50,48 @@ public class InflateOfflineWorkAdapter extends ArrayAdapter<TableDataCountPojo.W
             final InflateOfflineWorkAdapter.ViewHolder viewHolder = new InflateOfflineWorkAdapter.ViewHolder();
             viewHolder.date = view.findViewById(R.id.history_date_txt);
             viewHolder.month = view.findViewById(R.id.history_month_txt);
-            viewHolder.houseCollection = view.findViewById(R.id.house_collection);
-            viewHolder.dyCollection = view.findViewById(R.id.dy_collection);
-            viewHolder.dyCollectionlbl = view.findViewById(R.id.dy_collection_lbl);
-            viewHolder.houseCollectionTitle = view.findViewById(R.id.house_collection_lbl);
-            viewHolder.liquidCollection = view.findViewById(R.id.lwc_collection);
-            viewHolder.liquidCollectionLbl = view.findViewById(R.id.lwc_collection_lbl);
-            viewHolder.streetCollection = view.findViewById(R.id.ss_collection);
-            viewHolder.streetCollectionLbl = view.findViewById(R.id.ss_collection_lbl);
-            viewHolder.resBuildingCollectionLbl = view.findViewById(R.id.res_b_collection_lbl);
-            viewHolder.resSlumCollectionLbl = view.findViewById(R.id.res_s_collection_lbl);
-            //added code by rahul
-            viewHolder.resNormalCollection = view.findViewById(R.id.res_normal_collection);
-            viewHolder.resBuildingCollection = view.findViewById(R.id.res_b_collection);
-            viewHolder.resSlumCollection = view.findViewById(R.id.res_s_collection);
-            viewHolder.commercialCollection = view.findViewById(R.id.commer_collection);
-            viewHolder.liHortCadBox = view.findViewById(R.id.li_hort_cad_box);
-            viewHolder.liHouseColBox = view.findViewById(R.id.li_house_col_box);
-            viewHolder.liHortCadBox.setVisibility(View.VISIBLE);
-//            viewHolder.liHouseColBox.setVisibility(View.VISIBLE);
-            viewHolder.cadCollection = view.findViewById(R.id.cad_collection);
-            viewHolder.hortCollection = view.findViewById(R.id.hort_collection);
+            //NormalBuildingCBox
+            viewHolder.liNormalBuildingCBox = view.findViewById(R.id.li_res_normal_b_box);
+            viewHolder.liNormalBuildingCBox.setVisibility(View.GONE);
+            viewHolder.txtResC = view.findViewById(R.id.res_normal_collection);
+            viewHolder.txtResBC = view.findViewById(R.id.res_b_collection);
+            //Slum and commercial waste
+            viewHolder.liResSlumCommercialCBox = view.findViewById(R.id.li_res_slum_cW_box);
+            viewHolder.liResSlumCommercialCBox.setVisibility(View.GONE);
+            viewHolder.txtResSlumC = view.findViewById(R.id.res_s_collection);
+            viewHolder.txtResCwC = view.findViewById(R.id.commer_collection);
+            //Horticulture and CandD waste
+            viewHolder.liHortCadCBox = view.findViewById(R.id.li_hort_cad_box);
+            viewHolder.liHortCadCBox.setVisibility(View.GONE);
+            viewHolder.txtCandDC = view.findViewById(R.id.cad_collection);
+            viewHolder.txtHortC = view.findViewById(R.id.hort_collection);
+            // Liquid and street
+            viewHolder.liLiqStreetCBox = view.findViewById(R.id.li_liq_street_box);
+            viewHolder.liLiqStreetCBox.setVisibility(View.GONE);
+
+            viewHolder.liLiquidColBox = view.findViewById(R.id.liLqiColBox);
+            viewHolder.liLiquidColBox.setVisibility(View.GONE);
+            viewHolder.txtLiquidC = view.findViewById(R.id.lwc_collection);
+
+            viewHolder.liStreetColBox = view.findViewById(R.id.liStreetColBox);
+            viewHolder.liStreetColBox.setVisibility(View.GONE);
+            viewHolder.txtStreetC = view.findViewById(R.id.ss_collection);
+            //Dump yard and House collection
+            viewHolder.liDumpHouseCBox = view.findViewById(R.id.li_dump_house_box);
+            viewHolder.liDumpHouseCBox.setVisibility(View.GONE);
+
+            viewHolder.liDumpColBox = view.findViewById(R.id.liDumpColBox);
+            viewHolder.liDumpColBox.setVisibility(View.INVISIBLE);
+            viewHolder.txtDumpC = view.findViewById(R.id.dy_collection);
+
+            viewHolder.liHouseColBox = view.findViewById(R.id.liHouseColBox);
+            viewHolder.liHouseColBox.setVisibility(View.INVISIBLE);
+            viewHolder.txtHouseC = view.findViewById(R.id.house_collection);
+            //Ctpt and SLWM collection
+            viewHolder.liCtptSwmCBox = view.findViewById(R.id.li_ctpt_swm_box);
+            viewHolder.liCtptSwmCBox.setVisibility(View.GONE);
+            viewHolder.txtCtptC = view.findViewById(R.id.ctpt_collection);
+            viewHolder.txtSlwmC = view.findViewById(R.id.swm_collection);
 
             view.setTag(viewHolder);
 
@@ -83,55 +104,52 @@ public class InflateOfflineWorkAdapter extends ArrayAdapter<TableDataCountPojo.W
             TableDataCountPojo.WorkHistory workHistoryPojo = historyPojoList.get(position);
 
             Log.e(TAG, "getView: WorkHistory==>" + workHistoryPojo);
+            holder.date.setText(AUtils.extractDate(workHistoryPojo.getDate()));
+            holder.month.setText(AUtils.extractMonth(workHistoryPojo.getDate()));
 
             if (empType.matches("N") || empType.isEmpty()) {
-                holder.date.setText(AUtils.extractDate(workHistoryPojo.getDate()));
-                holder.month.setText(AUtils.extractMonth(workHistoryPojo.getDate()));
-                holder.houseCollection.setText(workHistoryPojo.getHouseCollection());
-                holder.dyCollection.setText(workHistoryPojo.getDumpYardCollection());
-                if (AUtils.isInternetAvailable(AUtils.mainApplicationConstant)) {
-//                    Toast.makeText(context, "Its online!", Toast.LENGTH_SHORT).show();
-                    holder.resBuildingCollection.setText(workHistoryPojo.getResidentialBCollection());
-                    holder.resSlumCollection.setText(workHistoryPojo.getResidentialSCollection());
-                } else {
-//                    Toast.makeText(context, "Its offline!", Toast.LENGTH_SHORT).show();
-                    holder.resBuildingCollection.setText("0");
-                    holder.resSlumCollection.setText("0");
-                }
-                //added by rahul
-                holder.resNormalCollection.setText(workHistoryPojo.getResidentialCollection());
+                holder.liNormalBuildingCBox.setVisibility(View.VISIBLE);
+                holder.txtResC.setText(workHistoryPojo.getResidentialCollection());
+                holder.txtResBC.setText(workHistoryPojo.getResidentialBCollection());
+                holder.liResSlumCommercialCBox.setVisibility(View.VISIBLE);
+                holder.txtResSlumC.setText(workHistoryPojo.getResidentialSCollection());
+                holder.txtResCwC.setText(workHistoryPojo.getCommertialCollection());
+                holder.liHortCadCBox.setVisibility(View.VISIBLE);
+                holder.txtCandDC.setText(workHistoryPojo.getCADCollection());
+                holder.txtHortC.setText(workHistoryPojo.getHorticultureCollection());
+                holder.liLiqStreetCBox.setVisibility(View.GONE);
+                holder.liDumpHouseCBox.setVisibility(View.VISIBLE);
+                holder.liHouseColBox.setVisibility(View.VISIBLE);
+                holder.txtHouseC.setText(workHistoryPojo.getHouseCollection());
+                holder.liDumpColBox.setVisibility(View.VISIBLE);
+                holder.txtDumpC.setText(workHistoryPojo.getDumpYardCollection());
+                holder.liCtptSwmCBox.setVisibility(View.VISIBLE);
+                holder.txtCtptC.setText(workHistoryPojo.getCtptCollection());
+                holder.txtSlwmC.setText(workHistoryPojo.getSwmCollection());
 
-                holder.commercialCollection.setText(workHistoryPojo.getCommertialCollection());
-                holder.cadCollection.setText(workHistoryPojo.getCADCollection());
-                holder.hortCollection.setText(workHistoryPojo.getHorticultureCollection());
-
-                holder.liquidCollection.setVisibility(View.GONE);
-                holder.liquidCollectionLbl.setVisibility(View.GONE);
-                holder.streetCollection.setVisibility(View.GONE);
-                holder.streetCollectionLbl.setVisibility(View.GONE);
 
             } else if (empType.matches("L")) {
-                holder.houseCollectionTitle.setText(R.string.liquid_collection);
-                holder.houseCollection.setText(workHistoryPojo.getLiquidCollection());
-                holder.date.setText(AUtils.extractDate(workHistoryPojo.getDate()));
-                holder.month.setText(AUtils.extractMonth(workHistoryPojo.getDate()));
-                holder.dyCollectionlbl.setVisibility(View.GONE);
-                holder.dyCollection.setVisibility(View.GONE);
-                holder.liquidCollection.setVisibility(View.GONE);
-                holder.liquidCollectionLbl.setVisibility(View.GONE);
-                holder.streetCollection.setVisibility(View.GONE);
-                holder.streetCollectionLbl.setVisibility(View.GONE);
+                holder.liNormalBuildingCBox.setVisibility(View.GONE);
+                holder.liResSlumCommercialCBox.setVisibility(View.GONE);
+                holder.liHortCadCBox.setVisibility(View.GONE);
+                holder.liLiqStreetCBox.setVisibility(View.VISIBLE);
+                holder.liLiquidColBox.setVisibility(View.VISIBLE);
+                holder.liStreetColBox.setVisibility(View.GONE);
+                holder.liDumpHouseCBox.setVisibility(View.GONE);
+                holder.liCtptSwmCBox.setVisibility(View.GONE);
+                holder.txtLiquidC.setText(workHistoryPojo.getLiquidCollection());
+
             } else if (empType.matches("S")) {
-                holder.houseCollectionTitle.setText(R.string.street_collection);
-                holder.houseCollection.setText(workHistoryPojo.getStreetCollection());
-                holder.date.setText(AUtils.extractDate(workHistoryPojo.getDate()));
-                holder.month.setText(AUtils.extractMonth(workHistoryPojo.getDate()));
-                holder.dyCollectionlbl.setVisibility(View.GONE);
-                holder.dyCollection.setVisibility(View.GONE);
-                holder.liquidCollection.setVisibility(View.GONE);
-                holder.liquidCollectionLbl.setVisibility(View.GONE);
-                holder.streetCollection.setVisibility(View.GONE);
-                holder.streetCollectionLbl.setVisibility(View.GONE);
+
+                holder.liNormalBuildingCBox.setVisibility(View.GONE);
+                holder.liResSlumCommercialCBox.setVisibility(View.GONE);
+                holder.liHortCadCBox.setVisibility(View.GONE);
+                holder.liLiqStreetCBox.setVisibility(View.VISIBLE);
+                holder.liStreetColBox.setVisibility(View.VISIBLE);
+                holder.liLiquidColBox.setVisibility(View.GONE);
+                holder.liDumpHouseCBox.setVisibility(View.GONE);
+                holder.liCtptSwmCBox.setVisibility(View.GONE);
+                holder.txtStreetC.setText(workHistoryPojo.getStreetCollection());
             }
 
         }
@@ -143,27 +161,22 @@ public class InflateOfflineWorkAdapter extends ArrayAdapter<TableDataCountPojo.W
 
         private TextView date;
         private TextView month;
-        private TextView houseCollection;
-        private TextView gpCollection;
-        private TextView dyCollection;
-        private TextView dyCollectionlbl;
-        private TextView houseCollectionTitle;
-        private TextView pointCollectionTitle;
-        private TextView liquidCollection;
-        private TextView liquidCollectionLbl;
-        private TextView streetCollection;
-        private TextView streetCollectionLbl;
-        private TextView resBuildingCollectionLbl;
-        private TextView resSlumCollectionLbl;
-        //added code by rahul
-        private TextView resNormalCollection;
-        private TextView resBuildingCollection;
-        private TextView resSlumCollection;
-        private TextView commercialCollection;
-        private TextView cadCollection;
-        private TextView hortCollection;
-        private LinearLayout liHortCadBox;
-        private LinearLayout liHouseColBox;
+        //box
+        private LinearLayout liNormalBuildingCBox, liResSlumCommercialCBox, liLiqStreetCBox;
+        private LinearLayout liDumpHouseCBox, liCtptSwmCBox , liHortCadCBox;
+
+        //content
+        private TextView txtResC, txtResBC;
+        private TextView txtResSlumC, txtResCwC;
+        private TextView txtCandDC, txtHortC;
+        private TextView txtLiquidC, txtStreetC;
+        private TextView txtDumpC, txtHouseC;
+        private TextView txtCtptC, txtSlwmC;
+
+        // liquid and street column
+        private LinearLayout liLiquidColBox, liStreetColBox;
+        //dump and house collection
+        private LinearLayout liDumpColBox, liHouseColBox;
     }
 
 }
