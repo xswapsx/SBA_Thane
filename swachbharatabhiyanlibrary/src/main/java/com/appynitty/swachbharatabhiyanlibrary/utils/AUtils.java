@@ -59,11 +59,11 @@ public class AUtils extends CommonUtils {
     //  Advanced Ghanta Gadi URL
 //    public static final String SERVER_URL = "http://202.65.157.253:6560";
     //ICTSBM Thane Live
-    public static final String SERVER_URL = "http://202.65.157.253:5045/";
+    //public static final String SERVER_URL = "http://202.65.157.253:5045/";
 
     //    Staging URL
 //    public static final String SERVER_URL = "http://115.115.153.117:4044/";
-//     public static final String SERVER_URL = "http://202.65.157.254:7075";  //Thane staging
+     public static final String SERVER_URL = "http://202.65.157.254:7075";  //Thane staging
 
     //Relese URL
 //    public static final String SERVER_URL = "https://ghantagadi.in:444/";
@@ -164,6 +164,8 @@ public class AUtils extends CommonUtils {
     public static final String OFFLINE_HOUSE_CTYPE = "offlineHouse_cType";
     public static final String DRY_IMAGE = "image1";
     public static final String WET_IMAGE = "image2";
+    public static final String BEFORE_IMAGE = "imageB";
+    public static final String AFTER_IMAGE = "imageA";
 
     private static SyncServerAdapterClass syncServer;
     private static ShareLocationAdapterClass shareLocationAdapterClass;

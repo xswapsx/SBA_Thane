@@ -72,7 +72,7 @@
                             android:adjustViewBounds="false"
                             android:contentDescription="@string/take_before_photo"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/ic_dirty_toilet" />
+                            android:src="@drawable/dirty_toilet" />
 
                         <TextView
                             android:id="@+id/txt_date_time_before"
@@ -84,6 +84,7 @@
                             android:layout_marginEnd="@dimen/dim_5_dp"
                             android:layout_marginBottom="@dimen/dim_5_dp"
                             android:text="@string/str_date_time_on_photo"
+                            android:visibility="gone"
                             android:textColor="@color/colorPrimary"
                             android:textSize="@dimen/dim_14_sp" />
 
@@ -127,7 +128,7 @@
                             android:layout_centerInParent="true"
                             android:contentDescription="@string/take_after_photo"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/ic_clean_toilet" />
+                            android:src="@drawable/clean_toilet" />
 
                         <TextView
                             android:id="@+id/txt_date_time_after"
@@ -139,6 +140,7 @@
                             android:layout_marginEnd="@dimen/dim_5_dp"
                             android:layout_marginBottom="@dimen/dim_5_dp"
                             android:text="@string/str_date_time_on_photo"
+                            android:visibility="gone"
                             android:textColor="@color/colorPrimary"
                             android:textSize="@dimen/dim_14_sp" />
 
