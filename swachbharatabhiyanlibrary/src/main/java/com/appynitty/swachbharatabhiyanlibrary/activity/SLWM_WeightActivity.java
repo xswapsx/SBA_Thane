@@ -108,14 +108,19 @@ public class SLWM_WeightActivity extends AppCompatActivity {
         tvSlwm_id.setText(strSlwmid);
 
         if (Prefs.contains(AUtils.DRY_IMAGE)) {
+            dryImageFilePath = Prefs.getString(AUtils.DRY_IMAGE, null);
             Bitmap myBitmap = BitmapFactory.decodeFile(Prefs.getString(AUtils.DRY_IMAGE, null));
             btnTakeDryPhoto.setImageBitmap(myBitmap);
+            getFormData();
         }
 
         if (Prefs.contains(AUtils.WET_IMAGE)) {
+            wetImageFilePath = Prefs.getString(AUtils.WET_IMAGE, null);
             Bitmap myBitmap = BitmapFactory.decodeFile(Prefs.getString(AUtils.WET_IMAGE, null));
             btnTakeWetPhoto.setImageBitmap(myBitmap);
+            getFormData();
         }
+
     }
 
     private void initEvents() {

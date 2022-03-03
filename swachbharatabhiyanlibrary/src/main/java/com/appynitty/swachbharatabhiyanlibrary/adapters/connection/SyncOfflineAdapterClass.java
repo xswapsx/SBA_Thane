@@ -100,21 +100,25 @@ public class SyncOfflineAdapterClass {
         for (int i = 0; i < results.size(); i++) {
             req_status = results.get(i).getStatus();
             if (req_status.equals(AUtils.STATUS_ERROR)) {
-                AUtils.warning(mContext, results.get(i).getMessage());
+                String msg = results.get(i).getMessage();
+                if (!msg.matches("Something is wrong,Try Again.. ")) {
+                    AUtils.warning(mContext, msg);
+                }
+
                 if (Integer.parseInt(results.get(i).getID()) != 0) {
                     int deleteCount = syncOfflineRepository.deleteSyncTableData(results.get(i).getID());
                     if (deleteCount == 0) {
                         offset = String.valueOf(Integer.parseInt(offset) + 1);
                     }
                 }
-                for (int j = 0; j < syncOfflineList.size(); j++) {
+                for (int j = 0; j < results.size(); j++) {
                     if (syncOfflineList.get(j).getOfflineID().equals(results.get(j).getID())) {
-                        syncOfflineList.remove(i);
+                        syncOfflineList.remove(j);
                         break;
                     }
                 }
             }
-
+            Log.e(TAG, "onResponseReceived: results size:- " + results.size() + ", syncofflinelist size:- " + syncOfflineList.size());
         }
         /* EOF mod by swapnil*/
 
