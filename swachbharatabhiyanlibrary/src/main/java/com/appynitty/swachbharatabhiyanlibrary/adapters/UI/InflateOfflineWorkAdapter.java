@@ -57,6 +57,7 @@ public class InflateOfflineWorkAdapter extends ArrayAdapter<TableDataCountPojo.W
             viewHolder.txtResBC = view.findViewById(R.id.res_b_collection);
             //Slum and commercial waste
             viewHolder.liResSlumCommercialCBox = view.findViewById(R.id.li_res_slum_cW_box);
+            viewHolder.liSlumCBox = view.findViewById(R.id.slumColBox);
             viewHolder.liResSlumCommercialCBox.setVisibility(View.GONE);
             viewHolder.txtResSlumC = view.findViewById(R.id.res_s_collection);
             viewHolder.txtResCwC = view.findViewById(R.id.commer_collection);
@@ -108,7 +109,8 @@ public class InflateOfflineWorkAdapter extends ArrayAdapter<TableDataCountPojo.W
             holder.month.setText(AUtils.extractMonth(workHistoryPojo.getDate()));
 
             if (empType.matches("N") || empType.isEmpty()) {
-                holder.liNormalBuildingCBox.setVisibility(View.VISIBLE);
+                holder.liNormalBuildingCBox.setVisibility(View.GONE);
+                holder.liSlumCBox.setVisibility(View.GONE);
                 holder.txtResC.setText(workHistoryPojo.getResidentialCollection());
                 holder.txtResBC.setText(workHistoryPojo.getResidentialBCollection());
                 holder.liResSlumCommercialCBox.setVisibility(View.VISIBLE);
@@ -177,6 +179,7 @@ public class InflateOfflineWorkAdapter extends ArrayAdapter<TableDataCountPojo.W
         private LinearLayout liLiquidColBox, liStreetColBox;
         //dump and house collection
         private LinearLayout liDumpColBox, liHouseColBox;
+        private LinearLayout liSlumCBox;
     }
 
 }

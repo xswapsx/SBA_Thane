@@ -136,75 +136,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/li_res_slum_cW_box"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dim_5_dp"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/res_s_collection_lbl"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/res_b_collection"
-                            android:layout_marginTop="@dimen/dim_6_dp"
-                            android:gravity="left"
-                            android:text="@string/string_residential_slum_collection"
-                            android:textColor="@color/black_alpha_45"
-                            android:textSize="@dimen/dim_12_sp" />
-
-                        <TextView
-                            android:id="@+id/res_s_collection"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/res_s_collection_lbl"
-                            android:gravity="left"
-                            android:text="@string/hyphen"
-                            android:textColor="@color/black_alpha_170"
-                            android:textSize="@dimen/dim_17_sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/commer_collection_lbl"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/res_s_collection"
-                            android:layout_marginTop="@dimen/dim_6_dp"
-                            android:gravity="left"
-                            android:text="@string/string_commercial_collection"
-                            android:textColor="@color/black_alpha_45"
-                            android:textSize="@dimen/dim_12_sp" />
-
-                        <TextView
-                            android:id="@+id/commer_collection"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/commer_collection_lbl"
-                            android:gravity="left"
-                            android:text="@string/hyphen"
-                            android:textColor="@color/black_alpha_170"
-                            android:textSize="@dimen/dim_17_sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/li_hort_cad_box"
@@ -266,6 +198,77 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/hort_collection_lbl"
+                            android:gravity="left"
+                            android:text="@string/hyphen"
+                            android:textColor="@color/black_alpha_170"
+                            android:textSize="@dimen/dim_17_sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/li_res_slum_cW_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dim_5_dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/slumColBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/res_s_collection_lbl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/res_b_collection"
+                            android:layout_marginTop="@dimen/dim_6_dp"
+                            android:gravity="left"
+                            android:text="@string/string_residential_slum_collection"
+                            android:textColor="@color/black_alpha_45"
+                            android:textSize="@dimen/dim_12_sp" />
+
+                        <TextView
+                            android:id="@+id/res_s_collection"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/res_s_collection_lbl"
+                            android:gravity="left"
+                            android:text="@string/hyphen"
+                            android:textColor="@color/black_alpha_170"
+                            android:textSize="@dimen/dim_17_sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/commer_collection_lbl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/res_s_collection"
+                            android:layout_marginTop="@dimen/dim_6_dp"
+                            android:gravity="left"
+                            android:text="@string/string_commercial_collection"
+                            android:textColor="@color/black_alpha_45"
+                            android:textSize="@dimen/dim_12_sp" />
+
+                        <TextView
+                            android:id="@+id/commer_collection"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/commer_collection_lbl"
                             android:gravity="left"
                             android:text="@string/hyphen"
                             android:textColor="@color/black_alpha_170"

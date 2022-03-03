@@ -252,6 +252,8 @@ public class SyncOfflineRepository {
         String gcDate = pojo.getGcDate();
         String gcType = pojo.getGcType();
         String refId = pojo.getReferenceID();
+        String TOT = pojo.getTOT();
+        String TON = pojo.getTNS();
         SyncOfflinePojo offlinePojo = new SyncOfflinePojo();
         offlinePojo.setIsLocation(String.valueOf(isCollectionId));
         offlinePojo.setGcDate(gcDate);
@@ -283,6 +285,8 @@ public class SyncOfflineRepository {
         contentValues.put(COLUMN_DATE, gcDate);
         contentValues.put(COLUMN_GC_TYPE, Integer.parseInt(gcType));
         contentValues.put(COLUMN_REFERENCE_ID, refId);
+        contentValues.put(COLUMN_CTPT_TNS, TON);
+        contentValues.put(COLUMN_CTPT_TOT, TOT);
         contentValues.put(COLUMN_IS_LOCATION, "false");
 
         String offlineId = null;
@@ -330,10 +334,10 @@ public class SyncOfflineRepository {
                 entity.setOfflineGcType(cursor.getString(cursor.getColumnIndex(COLUMN_GC_TYPE)));
                 //  entity.setOfflineCType(cursor.getString(cursor.getColumnIndex(COLUMN_C_TYPE)));
                 // added by rahul
-                entity.setOfflineRNC(cursor.getString(cursor.getColumnIndex(COLUMN_C_TYPE)));
+               /* entity.setOfflineRNC(cursor.getString(cursor.getColumnIndex(COLUMN_C_TYPE)));
                 entity.setOfflineRBC(cursor.getString(cursor.getColumnIndex(COLUMN_C_TYPE)));
-                entity.setOfflineRSC(cursor.getString(cursor.getColumnIndex(COLUMN_C_TYPE)));
-                entity.setOfflineCW(cursor.getString(cursor.getColumnIndex(COLUMN_C_TYPE)));
+                entity.setOfflineRSC(cursor.getString(cursor.getColumnIndex(COLUMN_C_TYPE)));*/
+                //entity.setOfflineCW(cursor.getString(cursor.getColumnIndex(COLUMN_C_TYPE)));
 
                 entity.setOfflineIsLocation(cursor.getString(cursor.getColumnIndex(COLUMN_IS_LOCATION)));
                 entity.setOfflineDate(cursor.getString(cursor.getColumnIndex(COLUMN_DATE)));
@@ -505,8 +509,8 @@ public class SyncOfflineRepository {
                 " left join cteRbc j on j.gcdateRbc = a.dte " +
                 " left join cteRsc k on k.gcdateRsc = a.dte " +
                 " left join cteCc l on l.gcdateCc = a.dte " +
-                " left join cteCc m on m.gcdateCtpt = a.dte " +
-                " left join cteCc n on n.gcdateSwm = a.dte " +
+                " left join cteCtpt m on m.gcdateCtpt = a.dte " +
+                " left join cteSwm n on n.gcdateSwm = a.dte " +
 
                 " order by dte desc)" +
                 "select * from ctef";
