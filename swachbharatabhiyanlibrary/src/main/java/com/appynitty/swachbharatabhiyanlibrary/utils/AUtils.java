@@ -1,7 +1,6 @@
 package com.appynitty.swachbharatabhiyanlibrary.utils;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
@@ -22,7 +21,6 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.activity.DashboardActivity;
@@ -151,7 +149,7 @@ public class AUtils extends CommonUtils {
 
     public static final String DY_AREA_TYPE_ID = "3";
 
-    public static final String CP_AREA_TYPE_ID = "1";
+    public static final String CP_AREA_TYPE_ID = "4";
 
     public final static String CONNECTIVITY_ACTION = "android.net.conn.CONNECTIVITY_CHANGE";
 
@@ -164,7 +162,8 @@ public class AUtils extends CommonUtils {
     public static final String COLLECTION_TABLE_NAME = "table_gcollection";
     public static final String QR_TABLE_NAME = "table_qr_emp";
     public static final String OFFLINE_HOUSE_CTYPE = "offlineHouse_cType";
-
+    public static final String DRY_IMAGE = "image1";
+    public static final String WET_IMAGE = "image2";
 
     private static SyncServerAdapterClass syncServer;
     private static ShareLocationAdapterClass shareLocationAdapterClass;

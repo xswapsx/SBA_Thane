@@ -51,8 +51,7 @@ public class SyncOfflineAdapterClass {
             setOfflineData();
 
             if (syncOfflineList.size() > 0) {
-//                String myLevelOS = syncOfflineList.get(1).getLevelOS();
-//                Log.e(TAG, "SyncOfflineData: " + myLevelOS);
+
                 AUtils.isSyncOfflineDataRequestEnable = true;
 
                 GarbageCollectionWebService service = Connection.createService(GarbageCollectionWebService.class, AUtils.SERVER_URL);
@@ -95,7 +94,30 @@ public class SyncOfflineAdapterClass {
 
     private void onResponseReceived(List<OfflineGcResultPojo> results) {
 
+        /*mod by swapnil*/
+        String req_status = "";
         Log.e(SyncOfflineAdapterClass.class.getSimpleName(), results.get(0).getMessage());
+        for (int i = 0; i < results.size(); i++) {
+            req_status = results.get(i).getStatus();
+            if (req_status.equals(AUtils.STATUS_ERROR)) {
+                AUtils.warning(mContext, results.get(i).getMessage());
+                if (Integer.parseInt(results.get(i).getID()) != 0) {
+                    int deleteCount = syncOfflineRepository.deleteSyncTableData(results.get(i).getID());
+                    if (deleteCount == 0) {
+                        offset = String.valueOf(Integer.parseInt(offset) + 1);
+                    }
+                }
+                for (int j = 0; j < syncOfflineList.size(); j++) {
+                    if (syncOfflineList.get(j).getOfflineID().equals(results.get(j).getID())) {
+                        syncOfflineList.remove(i);
+                        break;
+                    }
+                }
+            }
+
+        }
+        /* EOF mod by swapnil*/
+
         if (!AUtils.isNull(results) && results.size() > 0) {
 
             for (OfflineGcResultPojo result : results) {

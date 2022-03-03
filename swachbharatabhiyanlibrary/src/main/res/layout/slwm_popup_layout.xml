@@ -34,6 +34,17 @@
             android:orientation="vertical">
 
             <RadioButton
+                android:id="@+id/rb_SLF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="@string/txt_sanitary_landfill_facility"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp"
+                android:visibility="gone" />
+
+            <RadioButton
                 android:id="@+id/rb_municipleSW"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

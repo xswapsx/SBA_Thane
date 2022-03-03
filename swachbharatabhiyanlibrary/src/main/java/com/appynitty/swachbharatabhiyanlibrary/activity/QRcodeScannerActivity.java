@@ -108,7 +108,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     private TextInputLayout idIpLayout, areaLayout;
     private AutoCompleteTextView idAutoComplete;
     private RadioGroup collectionRadioGroup;
-    private RadioButton houseCollectionRadio, dumpYardRadio;
+    private RadioButton houseCollectionRadio, dumpYardRadio, commercialRadio;
     private String radioSelection;
     private Button submitBtn, permissionBtn;
     private View contentView;
@@ -222,6 +222,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+
                 onBackPressed();
                 break;
         }
@@ -232,6 +233,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     public void onBackPressed() {
         if (!isScanQr) {
             scanQR();
+            setHints();
         } else {
             super.onBackPressed();
 
@@ -345,24 +347,10 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         collectionRadioGroup = findViewById(R.id.collection_radio_group);
         houseCollectionRadio = findViewById(R.id.house_collection_radio);
         dumpYardRadio = findViewById(R.id.dump_yard_radio);
+        commercialRadio = findViewById(R.id.comm_collection_radio);
 
+        setHints();
         /***** Rahul Rokade ****/
-
-        if (EmpType.matches("L")) {
-            idAutoComplete.setHint(getResources().getString(R.string.lw_dy_id_hint));
-            radioSelection = AUtils.RADIO_SELECTED_LW;
-            houseCollectionRadio.setText(R.string.liquid_collection_radio);
-            dumpYardRadio.setVisibility(View.GONE);
-        } else if (EmpType.matches("S")) {
-            idAutoComplete.setHint(getResources().getString(R.string.sw_dy_id_hint));
-            radioSelection = AUtils.RADIO_SELECTED_SW;
-            houseCollectionRadio.setText(R.string.street_collection_radio);
-            dumpYardRadio.setVisibility(View.GONE);
-        } else if (EmpType.matches("N")) {
-            idAutoComplete.setHint(getResources().getString(R.string.hp_gp_id_hint));
-            radioSelection = AUtils.RADIO_SELECTED_HP;
-            houseCollectionRadio.setText(R.string.waste_collection_radio);
-        }
 
 
         submitBtn = findViewById(R.id.submit_button);
@@ -392,6 +380,27 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
     }
 
+    private void setHints() {
+        if (EmpType.matches("L")) {
+            idAutoComplete.setHint(getResources().getString(R.string.lw_dy_id_hint));
+            radioSelection = AUtils.RADIO_SELECTED_LW;
+            houseCollectionRadio.setText(R.string.liquid_collection_radio);
+            dumpYardRadio.setVisibility(View.GONE);
+            commercialRadio.setVisibility(View.GONE);
+        } else if (EmpType.matches("S")) {
+            idAutoComplete.setHint(getResources().getString(R.string.sw_dy_id_hint));
+            radioSelection = AUtils.RADIO_SELECTED_SW;
+            houseCollectionRadio.setText(R.string.street_collection_radio);
+            dumpYardRadio.setVisibility(View.GONE);
+            commercialRadio.setVisibility(View.GONE);
+        } else if (EmpType.matches("N")) {
+            idIpLayout.setHint("");
+            idAutoComplete.setHint(getResources().getString(R.string.hp_gp_id_hint));
+            radioSelection = AUtils.RADIO_SELECTED_HP;
+            houseCollectionRadio.setText(R.string.waste_collection_radio);
+        }
+    }
+
     protected void initToolbar() {
         toolbar.setTitle(getResources().getString(R.string.title_activity_qrcode_scanner));
         setSupportActionBar(toolbar);
@@ -418,6 +427,8 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                     } else {
                         if (getAreaType().equals(AUtils.HP_AREA_TYPE_ID))
                             AUtils.error(mContext, mContext.getResources().getString(R.string.hp_area_validation));
+                        else if (getAreaType().equals(AUtils.CP_AREA_TYPE_ID))
+                            AUtils.error(mContext, mContext.getResources().getString(R.string.cp_area_validation));
                         else
                             AUtils.error(mContext, mContext.getResources().getString(R.string.gp_area_validation));
                     }
@@ -749,10 +760,9 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                 getDumpYardDetails(houseid);
             else if (houseid.substring(0, 2).matches("^[LlWw]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.lwc_qr_alert), null);
-            }else if (houseid.substring(0, 4).matches("^[CcTtPpTt]+$")) {
+            } else if (houseid.substring(0, 4).matches("^[CcTtPpTt]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.ctpt_qr_alert), null);
-            }
-            else if (houseid.substring(0, 2).matches("^[SsSs]+$")) {
+            } else if (houseid.substring(0, 2).matches("^[SsSs]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.ssc_qr_warning), null);
             } else if (houseid.substring(0, 2).matches("^[CcPp]+$")) {
                 validateTypeOfCollection(houseid, "CW");
@@ -1001,6 +1011,25 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
             }*/
 
+        } else {
+            gcType = "1";
+            int garbageType = -1;
+            //garbage type = -1 for all and gctype will be different.
+            if (cType.matches("R")) {
+                gcType = "1";
+            } else if (cType.matches("CW")) {
+                gcType = "9";//for commercial
+            }
+            if (houseid.substring(0, 2).matches("^[DdYy]+$")) {
+                gcType = "3";
+            } else if (houseid.substring(0, 2).matches("^[LlWw]+$")) {
+                gcType = "4";
+            } else if (houseid.substring(0, 2).matches("^[SsSs]+$")) {
+                gcType = "5";
+            } else if (houseid.substring(0, 2).matches("^[SsWw]+$")) {
+                gcType = "11";
+            }
+            startSubmitQRAsyncTask(houseid, garbageType, gcType, "", ""); //gctype = 9 for commercial SsWw
         }
     }
 
@@ -1030,9 +1059,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         return syncOfflinePojo;
     }
 
-
     private void getQRWasteType(final String houseid) {            //Added by Swapnil
-
 
         progressBar = new ProgressDialog(mContext);
         progressBar.setTitle("Loading...");
@@ -1199,7 +1226,6 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         String areaType = getAreaType();
         if (areaType.equals(AUtils.HP_AREA_TYPE_ID)) {
             mHpAdapter.fetchHpList(areaId);
-            mCpAdapter.fetchCpList(areaId);
         }
 
         if (areaType.equals(AUtils.GP_AREA_TYPE_ID)) {
@@ -1213,6 +1239,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         if (areaType.equals(AUtils.CP_AREA_TYPE_ID)) {
             mCpAdapter.fetchCpList(areaId);
         }
+
     }
 
 
@@ -1221,7 +1248,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         if (radioSelection.equals(AUtils.RADIO_SELECTED_HP)) {
             areaType = AUtils.HP_AREA_TYPE_ID;
         } else if (radioSelection.equals(AUtils.RADIO_SELECTED_CP)) {
-            areaType = AUtils.HP_AREA_TYPE_ID;
+            areaType = AUtils.CP_AREA_TYPE_ID;
         } else if (radioSelection.equals(AUtils.RADIO_SELECTED_DY)) {
             areaType = AUtils.DY_AREA_TYPE_ID;
         }
@@ -1467,6 +1494,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     }
 
     private void showGarbageTypeDialog(String houseId, String Ctype) {
+        Log.e(TAG, "showGarbageTypeDialog: cType:- " + Ctype);
         FragmentManager fm = getSupportFragmentManager();
         CommercialGarbageDialog commercialGarbageDialog = new CommercialGarbageDialog(QRcodeScannerActivity.this, houseId, Ctype, this);
         commercialGarbageDialog.show(fm, "commercial_first_dialog");

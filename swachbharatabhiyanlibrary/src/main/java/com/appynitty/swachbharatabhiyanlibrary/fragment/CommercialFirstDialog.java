@@ -24,7 +24,7 @@ import com.appynitty.swachbharatabhiyanlibrary.R;
 
 public class CommercialFirstDialog extends Fragment {
     Button btn_CommercialGarbageNext, btnSLWM_garbage_next;
-    private int mGarbageType = -1;
+    private int mGarbageType;
     private final Context mContext;
     private final String mHouseId;
     private final String cType;
@@ -32,11 +32,11 @@ public class CommercialFirstDialog extends Fragment {
     private String selectedFacility = "Nuffin";
     private EditText etComment, etsComment;
     private RadioButton rb_wetWaste, rb_dryWaste, rb_mixedWaste;    //for Commercial
-    private RadioButton rb_domesticHazardWaste, rb_sanitaryWaste, rb_garbageNotReceived;      //for residential
+    private RadioButton rb_domesticHazardWaste, rb_sanitaryWaste, rb_garbageNotReceived, rb_garbageNotSpecified;      //for residential
     private RadioButton rb_municipleSW, rb_Compost, rb_Biogas, rb_biodigesterBS,    //for SLWM
             rb_refuseDerivedFuel, rb_Plastics, rb_metal_and_glass, rb_cardboards, rb_anyOtherVeriety, rb_Soil,
             rb_Sand, rb_8mmAggregates, rb_8_16mm_aggregates, rb_16mm_aggregates, rb_manufactured_goods_bricks_tiles_etc,
-            rb_fly_ash, rb_sand_and_soil, rb_dried_sludge, rb_treated_wastewater;
+            rb_fly_ash, rb_sand_and_soil, rb_dried_sludge, rb_treated_wastewater, rb_sanitaryLandfill;
     private static final String TAG = "CommercialFirstDialog";
 
 
@@ -57,11 +57,13 @@ public class CommercialFirstDialog extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         if (cType.matches("CW") || cType.matches("R"))
             return inflater.inflate(R.layout.garbage_type_dialog_commercial, container, false);
         else
             return inflater.inflate(R.layout.slwm_popup_layout, container, false);
+
     }
 
     @Override
@@ -77,10 +79,13 @@ public class CommercialFirstDialog extends Fragment {
         rb_domesticHazardWaste = view.findViewById(R.id.rb_domesticHazardWaste);
         rb_sanitaryWaste = view.findViewById(R.id.rb_sanitaryWaste);
         rb_garbageNotReceived = view.findViewById(R.id.rb_garbage_not_received);
+//        rb_garbageNotSpecified = view.findViewById(R.id.rb_garbage_not_specified);
 
         // For SLWM
         btnSLWM_garbage_next = view.findViewById(R.id.btn_slwm_garbage_next);
         etsComment = view.findViewById(R.id.et_garbage_comments);
+
+        rb_sanitaryLandfill = view.findViewById(R.id.rb_SLF);
         rb_municipleSW = view.findViewById(R.id.rb_municipleSW);
         rb_Compost = view.findViewById(R.id.rb_Compost);
         rb_Biogas = view.findViewById(R.id.rb_Biogas);
@@ -277,6 +282,14 @@ public class CommercialFirstDialog extends Fragment {
             }
         });
 
+        rb_sanitaryLandfill.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    selectedFacility = rb_sanitaryLandfill.getText().toString();
+            }
+        });
+
     }
 
     private void registerEventsForResiAndCommercials() {
@@ -335,10 +348,19 @@ public class CommercialFirstDialog extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    mGarbageType = -1;
+                    mGarbageType = 2;
                 }
             }
         });
+
+        /*rb_garbageNotSpecified.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mGarbageType = -1;
+                }
+            }
+        });*/  //Garbage not collected => mGarbageType = 2 and Garbage not specified => mGarbageType = -1
 
     }
 
@@ -359,6 +381,14 @@ public class CommercialFirstDialog extends Fragment {
         } else if (slwmCtype.matches("STP")) {
             rb_dried_sludge.setVisibility(View.VISIBLE);
             rb_treated_wastewater.setVisibility(View.VISIBLE);
+        } else if (slwmCtype.matches("SLF")) {
+            rb_sanitaryLandfill.setVisibility(View.VISIBLE);
+        } else if (slwmCtype.matches("DWPF")) {
+            rb_refuseDerivedFuel.setVisibility(View.VISIBLE);
+            rb_Plastics.setVisibility(View.VISIBLE);
+            rb_metal_and_glass.setVisibility(View.VISIBLE);
+            rb_cardboards.setVisibility(View.VISIBLE);
+            rb_anyOtherVeriety.setVisibility(View.VISIBLE);
         }
     }
 

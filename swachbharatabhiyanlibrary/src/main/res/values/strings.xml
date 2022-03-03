@@ -53,7 +53,7 @@
 
     <string name="select_area_hint">Select Area</string>
     <!--<string name="hp_gp_id_hint">Enter House ID/Garbage Point ID</string>-->
-    <string name="hp_gp_id_hint">Enter House ID/Dump Yard ID</string>
+    <string name="hp_gp_id_hint">Enter House/Commercial/Dump Yard ID</string>
     <string name="house_number_hint">Enter House Number</string>
     <string name="gp_id_hint">Enter Garbage Point ID</string>
     <string name="dy_id_hint">Enter Dump Yard ID</string>
@@ -331,6 +331,9 @@
     <string name="txt_8mm_aggregates"><![CDATA[<8mm Aggregates]]></string>
     <string name="slwm_details_title">SLWM Details</string>
     <string name="txt_slwm_id">SLWM ID:</string>
+    <string name="txt_sanitary_landfill_facility">Sanitary landfill facility</string>
+    <string name="txt_garbage_not_specified">Garbage not specified</string>
+    <string name="cp_area_validation">Please Select Valid Area and Commercial Point.</string>
 
 
 </resources>

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
@@ -54,6 +55,9 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
 
+/**
+ * Created by Swapnil Lanjewar 23-02-22
+ */
 public class SLWM_WeightActivity extends AppCompatActivity {
 
     private static final String TAG = "SLWM_WeightActivity";
@@ -102,6 +106,16 @@ public class SLWM_WeightActivity extends AppCompatActivity {
             strSlwmid = intent.getStringExtra(AUtils.slwmId);
         }
         tvSlwm_id.setText(strSlwmid);
+
+        if (Prefs.contains(AUtils.DRY_IMAGE)) {
+            Bitmap myBitmap = BitmapFactory.decodeFile(Prefs.getString(AUtils.DRY_IMAGE, null));
+            btnTakeDryPhoto.setImageBitmap(myBitmap);
+        }
+
+        if (Prefs.contains(AUtils.WET_IMAGE)) {
+            Bitmap myBitmap = BitmapFactory.decodeFile(Prefs.getString(AUtils.WET_IMAGE, null));
+            btnTakeWetPhoto.setImageBitmap(myBitmap);
+        }
     }
 
     private void initEvents() {
@@ -503,6 +517,7 @@ public class SLWM_WeightActivity extends AppCompatActivity {
                 fos = resolver.openOutputStream(imageUri);
                 thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fos);
                 destination = new File(String.valueOf(contentValues), System.currentTimeMillis() + ".jpg");
+                Log.e(TAG, "onCaptureImageResult: thumbnail" + thumbnail);
 
             } else {
 
@@ -515,6 +530,7 @@ public class SLWM_WeightActivity extends AppCompatActivity {
                 destination = new File(dir, System.currentTimeMillis() + ".jpg");
                 fos = new FileOutputStream(destination);
                 thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                Log.e(TAG, "onCaptureImageResult: thumbnail" + thumbnail);
             }
 
             fos.flush();
@@ -533,20 +549,24 @@ public class SLWM_WeightActivity extends AppCompatActivity {
             case 1:
                 Uri tempUri;
                 String finalPath;
+
                 btnTakeDryPhoto.setImageBitmap(thumbnail);
                 tempUri = getImageUri(getApplicationContext(), thumbnail);
 
                 finalPath = getRealPathFromURI(tempUri);
-                dryImageFilePath = finalPath; //setting image1 path that will be set in imagePojo. swapnil
-                Log.e("Image1 Path: ", dryImageFilePath);
+                dryImageFilePath = finalPath; //setting image1 path that will be set in imageDTO.
+
+                Prefs.putString(AUtils.DRY_IMAGE, dryImageFilePath);
+
                 break;
             case 2:
                 btnTakeWetPhoto.setImageBitmap(thumbnail);
                 tempUri = getImageUri(getApplicationContext(), thumbnail);
 
                 finalPath = getRealPathFromURI(tempUri);
-                wetImageFilePath = finalPath; //setting image2 path that will be set in imagePojo. swapnil
-                Log.e("Image2 Path: ", wetImageFilePath);
+                wetImageFilePath = finalPath; //setting image2 path that will be set in imageDTO.
+
+                Prefs.putString(AUtils.WET_IMAGE, wetImageFilePath);
 
                 break;
         }
@@ -554,9 +574,6 @@ public class SLWM_WeightActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * Added by swapnil 22-12-21
-     */
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
@@ -578,11 +595,6 @@ public class SLWM_WeightActivity extends AppCompatActivity {
         return path;
     }
 
-    /**
-     * End of addition
-     */
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
@@ -597,10 +609,6 @@ public class SLWM_WeightActivity extends AppCompatActivity {
         map.put(AUtils.SLWMDATA.weightTotal, String.valueOf(totalTon));
         map.put(AUtils.SLWMDATA.weightTotalDry, String.valueOf(dryTon));
         map.put(AUtils.SLWMDATA.weightTotalWet, String.valueOf(wetTon));
-
-        Log.e(TAG, "getIntentMap: totalTon" + totalTon);
-        Log.e(TAG, "getIntentMap: dryTon" + dryTon);
-        Log.e(TAG, "getIntentMap: wetTon" + wetTon);
 
         return map;
     }

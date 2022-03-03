@@ -264,4 +264,8 @@
     <string name="txt_dried_sludge">Dried Sludge</string>
     <string name="txt_treated_wastewater">Treated Wastewater</string>
     <string name="txt_8mm_aggregates"><![CDATA[<8mm Aggregates]]></string>
+    <string name="txt_garbage_not_specified">कचरा निर्दिष्ट नहीं</string>
+    <string name="txt_sanitary_landfill_facility">सेनेटरी लैंडफिल सुविधा</string>
+    <string name="slwm_details_title">एसएलडब्ल्यूएम विवरण</string>
+    <string name="txt_slwm_id">एसएलडब्लूएम  आयडी:</string>
 </resources>
