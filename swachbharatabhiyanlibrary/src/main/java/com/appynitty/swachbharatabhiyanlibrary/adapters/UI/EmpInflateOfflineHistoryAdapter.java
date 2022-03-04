@@ -49,7 +49,7 @@ public class EmpInflateOfflineHistoryAdapter extends ArrayAdapter<EmpOfflineColl
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(custom_layout_id, null);
         }
-
+        //added by Rahul
         TextView day = v.findViewById(R.id.history_date_txt);
         TextView month = v.findViewById(R.id.history_month_txt);
         LinearLayout liNormalBuildingCBox = v.findViewById(R.id.li_res_normal_b_box);
@@ -58,6 +58,7 @@ public class EmpInflateOfflineHistoryAdapter extends ArrayAdapter<EmpOfflineColl
         TextView txtResBC = v.findViewById(R.id.res_b_collection);
         //Slum and commercial waste
         LinearLayout liResSlumCommercialCBox = v.findViewById(R.id.li_res_slum_cW_box);
+        LinearLayout liSlumCBox = v.findViewById(R.id.slumColBox);
         liResSlumCommercialCBox.setVisibility(View.GONE);
         TextView txtResSlumC = v.findViewById(R.id.res_s_collection);
         TextView txtResCwC = v.findViewById(R.id.commer_collection);
@@ -104,6 +105,7 @@ public class EmpInflateOfflineHistoryAdapter extends ArrayAdapter<EmpOfflineColl
         txtResC.setText(item.getResNCollection());
         txtResBC.setText(item.getResBCollection());
         liResSlumCommercialCBox.setVisibility(View.VISIBLE);
+        liSlumCBox.setVisibility(View.VISIBLE);
         txtResSlumC.setText(item.getResSCollection());
         txtResCwC.setText(item.getCommercialCollection());
         liHortCadCBox.setVisibility(View.GONE);
