@@ -54,6 +54,7 @@ public class EmpInflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.Wo
             viewHolder.txtResBC = view.findViewById(R.id.res_b_collection);
             //Slum and commercial waste
             viewHolder.liResSlumCommercialCBox = view.findViewById(R.id.li_res_slum_cW_box);
+            viewHolder.liSlumCBox = view.findViewById(R.id.slumColBox);
             viewHolder.liResSlumCommercialCBox.setVisibility(View.GONE);
             viewHolder.txtResSlumC = view.findViewById(R.id.res_s_collection);
             viewHolder.txtResCwC = view.findViewById(R.id.commer_collection);
@@ -106,6 +107,7 @@ public class EmpInflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.Wo
             holder.txtResC.setText(workHistoryPojo.getResidentialCollection());
             holder.txtResBC.setText(workHistoryPojo.getResidentialBCollection());
             holder.liResSlumCommercialCBox.setVisibility(View.VISIBLE);
+            holder.liSlumCBox.setVisibility(View.VISIBLE);
             holder.txtResSlumC.setText(workHistoryPojo.getResidentialSCollection());
             holder.txtResCwC.setText(workHistoryPojo.getCommertialCollection());
             holder.liHortCadCBox.setVisibility(View.GONE);
@@ -149,6 +151,7 @@ public class EmpInflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.Wo
         private LinearLayout liLiquidColBox, liStreetColBox;
         //dump and house collection
         private LinearLayout liDumpColBox, liHouseColBox;
+        private LinearLayout liSlumCBox;
     }
 
 
