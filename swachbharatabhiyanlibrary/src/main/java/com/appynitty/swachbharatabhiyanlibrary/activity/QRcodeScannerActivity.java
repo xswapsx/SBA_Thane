@@ -1517,6 +1517,11 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 //        confirmationDialog(houseId, garbageType);
     }
 
+    @Override
+    public void onSubmitButtonSegregated(String houseId, String garbageType, String segregationLevel, String tor, String comment, String Wet, String Dry, String Domestic, String Sanitary) {
+        Log.e(TAG, "onSubmitButtonSegregated: Wet: "+ Wet+", Dry: "+ Dry+", Domestic: "+ Domestic+", Sanitary: "+ Sanitary );
+    }
+
     private void getSlwmWeightDetails(String houseId, int garbageType, String gcType, String segregationLevel, String tor) {
         Log.e(TAG, "getSlwmWeightDetails: houseId:- " + houseId + ", GarbageType:- " + garbageType + ", GcType:- " + gcType
                 + ", Segregation:- " + segregationLevel + ", TOR:- " + tor);

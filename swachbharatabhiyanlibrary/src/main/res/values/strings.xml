@@ -334,6 +334,8 @@
     <string name="txt_sanitary_landfill_facility">Sanitary landfill facility</string>
     <string name="txt_garbage_not_specified">Garbage not specified</string>
     <string name="cp_area_validation">Please Select Valid Area and Commercial Point.</string>
+    <string name="segregated">Segregated</string>
+    <string name="segregated_bifurcated_types">Segregated Bifurcated Types</string>
 
 
 </resources>

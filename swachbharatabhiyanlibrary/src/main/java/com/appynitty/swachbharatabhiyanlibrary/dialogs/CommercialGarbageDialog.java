@@ -16,6 +16,7 @@ import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.db.AppDatabase;
 import com.appynitty.swachbharatabhiyanlibrary.fragment.CommercialFirstDialog;
 import com.appynitty.swachbharatabhiyanlibrary.fragment.CommercialNextDialog;
+import com.appynitty.swachbharatabhiyanlibrary.fragment.SegreMultiSelectDialog;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 
 /**
@@ -23,10 +24,11 @@ import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
  */
 
 
-public class CommercialGarbageDialog extends DialogFragment implements CommercialFirstDialog.FirstDialog, CommercialFirstDialog.FirstSLWMDialog, CommercialNextDialog.SecondDialog {
+public class CommercialGarbageDialog extends DialogFragment implements CommercialFirstDialog.FirstDialog, CommercialFirstDialog.FirstSLWMDialog,
+        CommercialNextDialog.SecondDialog, SegreMultiSelectDialog.SegreMultiDialog {
     private static final String TAG = "CommercialGarbageDialog";
     Context mContext;
-    String mHouseId, mGarbageType, cType, innerCType, sComment;
+    String mHouseId, mGarbageType, cType, innerCType, sComment, Wet, Dry, Domestic, Sanitary;
     String mTOR = "nuffin";
 
     CommercialGarbageDialog.CustomDialogInterface mListener;
@@ -60,12 +62,20 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
         this.mHouseId = houseId;
         this.mGarbageType = mGarbageType;
         this.sComment = sComment;
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        CommercialNextDialog commercialNextDialog = new CommercialNextDialog();
-        transaction.replace(R.id.commercialDialog_container, commercialNextDialog);
-        transaction.addToBackStack("commercialNextDialog");
-        transaction.commit();
 
+        if (mGarbageType.equals("1")) {
+            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+            SegreMultiSelectDialog multiSelectDialog = new SegreMultiSelectDialog(mContext, mHouseId, mGarbageType);
+            transaction.replace(R.id.commercialDialog_container, multiSelectDialog);
+            transaction.addToBackStack("segreMultiselectDialog");
+            transaction.commit();
+        } else {
+            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+            CommercialNextDialog commercialNextDialog = new CommercialNextDialog();
+            transaction.replace(R.id.commercialDialog_container, commercialNextDialog);
+            transaction.addToBackStack("commercialNextDialog");
+            transaction.commit();
+        }
     }
 
     @Override
@@ -73,6 +83,8 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
         if (!(segregationLevel == null)) {
             mListener.onSubmitButtonClicked(mHouseId, mGarbageType, segregationLevel, mTOR, sComment);
             this.dismiss();
+        } else if (Wet.matches("1") || Dry.matches("1") || Domestic.matches("1") || Sanitary.matches("1")) {
+            mListener.onSubmitButtonSegregated(mHouseId, mGarbageType, segregationLevel, mTOR, sComment, Wet, Dry, Domestic, Sanitary);
         } else {
             AUtils.warning(mContext, getResources().getString(R.string.pls_slct_segregationLvl));
         }
@@ -96,9 +108,27 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
         this.dismiss();
     }
 
+    @Override
+    public void onSegreNextPressed(String Wet, String Dry, String Domestic, String Sanitary) {
+        this.Wet = Wet;
+        this.Dry = Dry;
+        this.Domestic = Domestic;
+        this.Sanitary = Sanitary;
+
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        CommercialNextDialog commercialNextDialog = new CommercialNextDialog();
+        transaction.replace(R.id.commercialDialog_container, commercialNextDialog);
+        transaction.addToBackStack("commercialNextDialog");
+        transaction.commit();
+
+    }
+
     public interface CustomDialogInterface {
 
         void onSubmitButtonClicked(String houseId, String garbageType, String segregationLevel, String tor, String comment);
+
+        void onSubmitButtonSegregated(String houseId, String garbageType, String segregationLevel, String tor,
+                                      String comment, String Wet, String Dry, String Domestic, String Sanitary);
     }
 
 

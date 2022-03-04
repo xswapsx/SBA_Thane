@@ -296,6 +296,8 @@
     <string name="txt_sanitary_landfill_facility">सॅनिटरी लँडफिल सुविधा</string>
     <string name="slwm_details_title">एसएलडब्लूएम  तपशील</string>
     <string name="txt_slwm_id">एसएलडब्लूएम  आयडी:</string>
+    <string name="segregated_bifurcated_types">विभक्त विभाजक प्रकार</string>
+    <string name="segregated">वेगळे केले</string>
 
 
 </resources>

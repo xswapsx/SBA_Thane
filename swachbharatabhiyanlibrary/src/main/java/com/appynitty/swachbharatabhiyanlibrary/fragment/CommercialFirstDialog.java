@@ -32,7 +32,7 @@ public class CommercialFirstDialog extends Fragment {
     private String selectedFacility = "Nuffin";
     private EditText etComment, etsComment;
     private RadioButton rb_wetWaste, rb_dryWaste, rb_mixedWaste;    //for Commercial
-    private RadioButton rb_domesticHazardWaste, rb_sanitaryWaste, rb_garbageNotReceived, rb_garbageNotSpecified;      //for residential
+    private RadioButton rb_domesticHazardWaste, rb_sanitaryWaste, rb_garbageNotReceived, rb_segregated, rb_garbageNotSpecified;      //for residential
     private RadioButton rb_municipleSW, rb_Compost, rb_Biogas, rb_biodigesterBS,    //for SLWM
             rb_refuseDerivedFuel, rb_Plastics, rb_metal_and_glass, rb_cardboards, rb_anyOtherVeriety, rb_Soil,
             rb_Sand, rb_8mmAggregates, rb_8_16mm_aggregates, rb_16mm_aggregates, rb_manufactured_goods_bricks_tiles_etc,
@@ -79,6 +79,7 @@ public class CommercialFirstDialog extends Fragment {
         rb_domesticHazardWaste = view.findViewById(R.id.rb_domesticHazardWaste);
         rb_sanitaryWaste = view.findViewById(R.id.rb_sanitaryWaste);
         rb_garbageNotReceived = view.findViewById(R.id.rb_garbage_not_received);
+        rb_segregated = view.findViewById(R.id.rb_segregated);
 //        rb_garbageNotSpecified = view.findViewById(R.id.rb_garbage_not_specified);
 
         // For SLWM
@@ -297,7 +298,23 @@ public class CommercialFirstDialog extends Fragment {
         if (cType.equals("CW")) {
             rb_domesticHazardWaste.setVisibility(View.GONE);
             rb_sanitaryWaste.setVisibility(View.GONE);
+        } else if (cType.equals("R")) {
+            Toast.makeText(mContext, "Its a residential one!", Toast.LENGTH_SHORT).show();
+            rb_dryWaste.setVisibility(View.GONE);
+            rb_wetWaste.setVisibility(View.GONE);
+            rb_sanitaryWaste.setVisibility(View.GONE);
+            rb_domesticHazardWaste.setVisibility(View.GONE);
+            rb_segregated.setVisibility(View.VISIBLE);
         }
+
+        rb_segregated.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    mGarbageType = 1;
+                }
+            }
+        });
 
         rb_wetWaste.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
