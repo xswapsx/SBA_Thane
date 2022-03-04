@@ -101,7 +101,11 @@ public class SyncOfflineAdapterClass {
             req_status = results.get(i).getStatus();
             if (req_status.equals(AUtils.STATUS_ERROR)) {
                 String msg = results.get(i).getMessage();
-                if (!msg.matches("Something is wrong,Try Again.. ")) {
+                if (msg.equals("Your duty is currently off, please start again.. ")) {
+                    AUtils.warning(mContext, msg);
+                }else if (msg.matches("Something is wrong,Try Again.. ")){
+
+                }else{
                     AUtils.warning(mContext, msg);
                 }
 
@@ -111,7 +115,7 @@ public class SyncOfflineAdapterClass {
                         offset = String.valueOf(Integer.parseInt(offset) + 1);
                     }
                 }
-                for (int j = 0; j < results.size(); j++) {
+                for (int j = 0; j < i; j++) {
                     if (syncOfflineList.get(j).getOfflineID().equals(results.get(j).getID())) {
                         syncOfflineList.remove(j);
                         break;
