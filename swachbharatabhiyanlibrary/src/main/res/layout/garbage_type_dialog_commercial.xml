@@ -72,7 +72,7 @@
                 android:layout_marginBottom="@dimen/dim_10_dp"
                 android:checked="false"
                 android:visibility="gone"
-                android:text="@string/segregated"
+                android:text="@string/bifurcate_garbage"
                 android:textColor="@color/colorGrayList"
                 android:textSize="@dimen/dim_14_sp" />
 

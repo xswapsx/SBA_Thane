@@ -126,7 +126,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     private SyncOfflineAdapterClass syncOfflineAdapterClass;
     private SyncOfflineRepository syncOfflineRepository;
     private SyncOfflineAttendanceRepository syncOfflineAttendanceRepository;
-    private String EmpType, gcType, cType, areaType, mGarbageType, mSegregationLvl, mTor, mComment;
+    private String EmpType, gcType, cType, areaType, mGarbageType, mSegregationLvl, mTor, mComment, mWet, mDry, mDomestic, mSanitary;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -1266,6 +1266,8 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
     private void setGarbageCollectionPojo(String houseNo, @Nullable final int garbageType, final String gcType,
                                           @Nullable final String segregatnLevel, String comment) {
+
+        Log.e(TAG, "setGarbageCollectionPojo: Wet: "+mWet+", Dry: "+mDry+", Domestic: "+mDomestic+", Sanitary: "+mSanitary );
         garbageCollectionPojo = new GarbageCollectionPojo();
         garbageCollectionPojo.setId(houseNo);
         garbageCollectionPojo.setGarbageType(garbageType);
@@ -1273,8 +1275,15 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         garbageCollectionPojo.setGcType(gcType);
         garbageCollectionPojo.setLevelOS(segregatnLevel);
         garbageCollectionPojo.setComment(comment);
+
         double newlat = Double.parseDouble(Prefs.getString(AUtils.LAT, "0"));
         double newlng = Double.parseDouble(Prefs.getString(AUtils.LONG, "0"));
+
+        garbageCollectionPojo.setWet(mWet);
+        garbageCollectionPojo.setDry(mDry);
+        garbageCollectionPojo.setDomestic(mDomestic);
+        garbageCollectionPojo.setSanitary(mSanitary);
+
         garbageCollectionPojo.setDistance(AUtils.calculateDistance(mContext, newlat, newlng));
         if (isActivityData) {
             garbageCollectionPojo.setAfterImage(imagePojo.getAfterImage());
@@ -1367,6 +1376,10 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         entity.setDistance(String.valueOf(garbageCollectionPojo.getDistance()));
         entity.setLevelOS(garbageCollectionPojo.getLevelOS());
         entity.setIsOffline(AUtils.isInternetAvailable() && AUtils.isConnectedFast(mContext));
+        entity.setWet(garbageCollectionPojo.getWet());
+        entity.setDry(garbageCollectionPojo.getDry());
+        entity.setDomestic(garbageCollectionPojo.getDomestic());
+        entity.setSanitary(garbageCollectionPojo.getSanitary());
 
         if (isActivityData) {
 
@@ -1519,7 +1532,13 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
     @Override
     public void onSubmitButtonSegregated(String houseId, String garbageType, String segregationLevel, String tor, String comment, String Wet, String Dry, String Domestic, String Sanitary) {
-        Log.e(TAG, "onSubmitButtonSegregated: Wet: "+ Wet+", Dry: "+ Dry+", Domestic: "+ Domestic+", Sanitary: "+ Sanitary );
+        Log.e(TAG, "onSubmitButtonSegregated: Wet: " + Wet + ", Dry: " + Dry + ", Domestic: " + Domestic + ", Sanitary: " + Sanitary);
+        mWet = Wet;
+        mDry = Dry;
+        mDomestic = Domestic;
+        mSanitary = Sanitary;
+        startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "1", segregationLevel, mComment);
+        confirmationDialog(houseId, garbageType);
     }
 
     private void getSlwmWeightDetails(String houseId, int garbageType, String gcType, String segregationLevel, String tor) {

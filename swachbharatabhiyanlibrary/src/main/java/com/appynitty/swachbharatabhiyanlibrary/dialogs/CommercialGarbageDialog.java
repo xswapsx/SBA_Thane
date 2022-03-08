@@ -81,11 +81,12 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
     @Override
     public void onSubmit(String segregationLevel) {
         if (!(segregationLevel == null)) {
-            mListener.onSubmitButtonClicked(mHouseId, mGarbageType, segregationLevel, mTOR, sComment);
-            this.dismiss();
-        } else if (Wet.matches("1") || Dry.matches("1") || Domestic.matches("1") || Sanitary.matches("1")) {
+//            mListener.onSubmitButtonClicked(mHouseId, mGarbageType, segregationLevel, mTOR, sComment);
             mListener.onSubmitButtonSegregated(mHouseId, mGarbageType, segregationLevel, mTOR, sComment, Wet, Dry, Domestic, Sanitary);
-        } else {
+            this.dismiss();
+        } /*else if (Wet.matches("1") || Dry.matches("1") || Domestic.matches("1") || Sanitary.matches("1")) {
+            mListener.onSubmitButtonSegregated(mHouseId, mGarbageType, segregationLevel, mTOR, sComment, Wet, Dry, Domestic, Sanitary);
+        }*/ else {
             AUtils.warning(mContext, getResources().getString(R.string.pls_slct_segregationLvl));
         }
 

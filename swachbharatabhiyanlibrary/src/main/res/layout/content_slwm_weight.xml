@@ -63,9 +63,10 @@
                     android:layout_height="@dimen/dim_120_dp"
                     android:layout_marginStart="@dimen/dim_10_dp"
                     android:layout_marginEnd="@dimen/dim_10_dp"
+                    android:adjustViewBounds="true"
                     android:background="@color/colorDivider"
                     android:contentDescription="@string/title_activity_dump_yard_weight"
-                    android:scaleType="center"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/ic_photo_camera_light_gray_50dp" />
 
                 <LinearLayout
@@ -149,7 +150,7 @@
                     android:layout_marginEnd="@dimen/dim_10_dp"
                     android:background="@color/colorDivider"
                     android:contentDescription="@string/title_activity_dump_yard_weight"
-                    android:scaleType="center"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/ic_photo_camera_light_gray_50dp" />
 
                 <LinearLayout

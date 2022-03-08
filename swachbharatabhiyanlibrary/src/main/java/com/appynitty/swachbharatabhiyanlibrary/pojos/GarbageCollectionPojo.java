@@ -32,6 +32,43 @@ public class GarbageCollectionPojo {
     private String TOT;
     private String TOR;
 
+    private String Wet;
+    private String Dry;
+    private String Domestic;
+    private String Sanitary;
+
+    public String getWet() {
+        return Wet;
+    }
+
+    public void setWet(String wet) {
+        Wet = wet;
+    }
+
+    public String getDry() {
+        return Dry;
+    }
+
+    public void setDry(String dry) {
+        Dry = dry;
+    }
+
+    public String getDomestic() {
+        return Domestic;
+    }
+
+    public void setDomestic(String domestic) {
+        Domestic = domestic;
+    }
+
+    public String getSanitary() {
+        return Sanitary;
+    }
+
+    public void setSanitary(String sanitary) {
+        Sanitary = sanitary;
+    }
+
     public String getTNS() {
         return TNS;
     }

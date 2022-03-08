@@ -299,7 +299,6 @@ public class CommercialFirstDialog extends Fragment {
             rb_domesticHazardWaste.setVisibility(View.GONE);
             rb_sanitaryWaste.setVisibility(View.GONE);
         } else if (cType.equals("R")) {
-            Toast.makeText(mContext, "Its a residential one!", Toast.LENGTH_SHORT).show();
             rb_dryWaste.setVisibility(View.GONE);
             rb_wetWaste.setVisibility(View.GONE);
             rb_sanitaryWaste.setVisibility(View.GONE);

@@ -13,13 +13,13 @@
         <TextView
             android:id="@+id/lbl_title"
             style="@style/MyTitle"
-            android:layout_margin="5dp"
-            android:paddingStart="@dimen/dim_10_dp"
-            android:paddingEnd="@dimen/dim_10_dp"
+            android:layout_width="match_parent"
+
             android:text="@string/segregated_bifurcated_types"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/dim_20_sp" />
-
+        <!--android:paddingStart="@dimen/dim_10_dp"
+                    android:paddingEnd="@dimen/dim_10_dp"-->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

@@ -8,6 +8,7 @@
         <domain includeSubdomains="true">202.65.157.253</domain>
         <domain includeSubdomains="true">202.65.157.254</domain>
         <domain includeSubdomains="true">192.168.200.100</domain>
+        <domain includeSubdomains="true">114.143.244.133</domain>
     </domain-config>
 
     <!--New advanced ULB    http://202.65.157.253-->
