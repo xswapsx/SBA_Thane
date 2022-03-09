@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
        Prefs.putString(AUtils.APP_ID, "3072");  //Thane Staging app-id
-//       Prefs.putString(AUtils.APP_ID, "3088");   //Thane Live app-id
+//        Prefs.putString(AUtils.APP_ID, "3088");   //Thane Live app-id
         //for nagpur APP_ID="3068", Deoli-"1"
 //           Prefs.putString(AUtils.APP_ID, "3041");
 //        Prefs.putString(AUtils.APP_ID, "1003");

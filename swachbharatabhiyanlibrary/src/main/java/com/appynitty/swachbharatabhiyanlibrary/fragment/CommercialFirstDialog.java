@@ -298,6 +298,9 @@ public class CommercialFirstDialog extends Fragment {
         if (cType.equals("CW")) {
             rb_domesticHazardWaste.setVisibility(View.GONE);
             rb_sanitaryWaste.setVisibility(View.GONE);
+            rb_dryWaste.setVisibility(View.GONE);
+            rb_wetWaste.setVisibility(View.GONE);
+            rb_segregated.setVisibility(View.VISIBLE);
         } else if (cType.equals("R")) {
             rb_dryWaste.setVisibility(View.GONE);
             rb_wetWaste.setVisibility(View.GONE);
@@ -309,7 +312,7 @@ public class CommercialFirstDialog extends Fragment {
         rb_segregated.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     mGarbageType = 1;
                 }
             }

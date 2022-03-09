@@ -52,7 +52,7 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
         AppDatabase db = AppDatabase.getDbInstance(AUtils.mainApplicationConstant);
         innerCType = db.houseDao().getCtypeFromHouseID(mHouseId);
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        CommercialFirstDialog commercialFirstDialog = new CommercialFirstDialog(mContext, mHouseId, cType, innerCType);
+        CommercialFirstDialog commercialFirstDialog = new  CommercialFirstDialog(mContext, mHouseId, cType, innerCType);
         transaction.replace(R.id.commercialDialog_container, commercialFirstDialog);
         transaction.commit();
     }

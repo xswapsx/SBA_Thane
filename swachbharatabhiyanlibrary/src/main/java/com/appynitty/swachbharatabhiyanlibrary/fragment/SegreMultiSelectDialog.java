@@ -22,10 +22,8 @@ public class SegreMultiSelectDialog extends Fragment {
     private final String mHouseId;
     private final String mGarbageType;
 
-    String Wet;
-    String Dry;
-    String Sanitary;
-    String Domestic;
+    String Wet, Dry, Sanitary, Domestic, cType;
+
     CheckBox cbWetWaste, cbDryWaste, cbDomestic, cbSanitary;
     Button btnNext;
 
@@ -33,6 +31,10 @@ public class SegreMultiSelectDialog extends Fragment {
         this.mContext = mContext;
         this.mHouseId = mHouseId;
         this.mGarbageType = mGarbageType;
+
+        if (mHouseId.substring(0, 2).matches("^[CcPp]+$")) {
+            cType = "CW";
+        }
     }
 
     @Override
@@ -56,6 +58,10 @@ public class SegreMultiSelectDialog extends Fragment {
         cbDomestic = view.findViewById(R.id.cb_domesticHazardWaste);
         cbSanitary = view.findViewById(R.id.cb_sanitaryWaste);
 
+        if (cType.equals("CW")) {
+            cbDomestic.setVisibility(View.GONE);
+            cbSanitary.setVisibility(View.GONE);
+        }
         btnNext = view.findViewById(R.id.btn_segregatedNext);
 
         registerEvents();
