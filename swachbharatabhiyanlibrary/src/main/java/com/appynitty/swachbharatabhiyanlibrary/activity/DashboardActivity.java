@@ -18,7 +18,6 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -156,7 +155,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initComponents();
-        statusCheck();
+        gpsStatusCheck();
         onSwitchStatus(AUtils.isIsOnduty());
     }
 
@@ -626,7 +625,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                statusCheck();
+                gpsStatusCheck();
                 if (AUtils.isInternetAvailable(AUtils.mainApplicationConstant)) {
                     onSwitchStatus(isChecked);
                 } else {
@@ -1110,7 +1109,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         super.onDestroy();
     }
 
-    public void statusCheck() {
+    public void gpsStatusCheck() {
 
         LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(10);

@@ -58,10 +58,13 @@ public class SegreMultiSelectDialog extends Fragment {
         cbDomestic = view.findViewById(R.id.cb_domesticHazardWaste);
         cbSanitary = view.findViewById(R.id.cb_sanitaryWaste);
 
-        if (cType.equals("CW")) {
-            cbDomestic.setVisibility(View.GONE);
-            cbSanitary.setVisibility(View.GONE);
+        if (cType != null) {
+            if (cType.equals("CW")) {
+                cbDomestic.setVisibility(View.GONE);
+                cbSanitary.setVisibility(View.GONE);
+            }
         }
+
         btnNext = view.findViewById(R.id.btn_segregatedNext);
 
         registerEvents();
