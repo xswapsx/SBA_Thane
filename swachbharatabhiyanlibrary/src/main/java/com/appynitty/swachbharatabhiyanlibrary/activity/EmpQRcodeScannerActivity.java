@@ -51,7 +51,7 @@ import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
-public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler, EmpGarbageTpyePopUp.EmpGarbagePopUpDialogListener, EmpSWMTypePopUpDialog.EmpSWMTypePopUpDialogListener, ToiletTypePopUp.ToiletTypePopUpDialogListener {
+public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler, EmpGarbageTpyePopUp.EmpGarbagePopUpDialogListener, /*EmpSWMTypePopUpDialog.EmpSWMTypePopUpDialogListener, */ToiletTypePopUp.ToiletTypePopUpDialogListener {
 
     private final static String TAG = "EmpQRcodeScannerActivity";
 
@@ -571,7 +571,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
             empGarbageTpyePopUp = new EmpGarbageTpyePopUp(mContext, id, this);
             //added by rahul
-            empSWMTypePopUpDialog = new EmpSWMTypePopUpDialog(mContext, id, this);
+           // empSWMTypePopUpDialog = new EmpSWMTypePopUpDialog(mContext, id, this);
             toiletTypePopUp = new ToiletTypePopUp(mContext,id,this);
 //            chooseActionPopUp.setData(id);
             if (id.substring(0, 2).matches("^[HhPp]+$")) {
@@ -597,9 +597,13 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
                 AUtils.success(mContext, "Uploaded successfully");
                 finish();*/
             } else if (id.substring(0, 3).matches("^[SsWwMm]+$")) {
-                submitBtn.setVisibility(View.GONE);
+                /*submitBtn.setVisibility(View.GONE);
                 collectionRadioGroup.setVisibility(View.GONE);
-                empSWMTypePopUpDialog.show();
+                empSWMTypePopUpDialog.show();*/
+                submitOnSkip(id, " ");
+                AUtils.success(mContext, "Uploaded successfully");
+                finish();
+
             } else if (id.substring(0, 2).matches("^[CcPp]+$")) {
                 submitOnSkip(id, "CW");
                 AUtils.success(mContext, "Uploaded successfully");
@@ -751,14 +755,14 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         finish();
     }
 
-    @Override
+   /* @Override
     public void onEmpSWMTypePopUpDialogDismissed(String swmId, String swmType) {
         Log.e(TAG, "onEmpSWMTypePopUpDialogDismissed: " + swmType);
         this.swmType = swmType;
         submitOnSkip(swmId, swmType);
         AUtils.success(mContext, "Uploaded successfully");
         finish();
-    }
+    }*/
 
     @Override
     public void onToiletTypePopUpDismissed(String toiletId, String toiletType) {

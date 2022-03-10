@@ -448,8 +448,6 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
                     }
                     mAreaAdapter.fetchAreaList(getAreaType(), true);
                 }
-
-
             }
         });
 

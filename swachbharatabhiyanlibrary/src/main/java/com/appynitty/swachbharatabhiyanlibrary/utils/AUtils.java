@@ -64,7 +64,7 @@ public class AUtils extends CommonUtils {
     //    Staging URL
 //    public static final String SERVER_URL = "http://115.115.153.117:4044/";
      public static final String SERVER_URL = "http://202.65.157.254:7075";  //Thane staging
-//     public static final String SERVER_URL = "http://114.143.244.133:7075";  // New Staging server for Thane
+
 
     //Relese URL
 //    public static final String SERVER_URL = "https://ghantagadi.in:444/";
