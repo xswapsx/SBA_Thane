@@ -559,6 +559,11 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
 
     }
 
+    private void autoRefresh(){
+        beforeImage.setImageDrawable(getResources().getDrawable(R.drawable.dirty_toilet));
+        afterImage.setImageDrawable(getResources().getDrawable(R.drawable.clean_toilet));
+    }
+
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
@@ -595,11 +600,11 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
     }*/
 
     private boolean validateForm() {
-         if (AUtils.isNullString(beforeImageFilePath)) {
+         /*if (AUtils.isNullString(beforeImageFilePath)) {
             AUtils.warning(mContext, mContext.getString(R.string.plz_capture_before_img), Toast.LENGTH_SHORT);
             return false;
         }
-        else if (AUtils.isNullString(afterImageFilePath)) {
+        else*/ if (AUtils.isNullString(afterImageFilePath)) {
             AUtils.warning(mContext, mContext.getString(R.string.plz_capture_after_img), Toast.LENGTH_SHORT);
             return false;
         }
