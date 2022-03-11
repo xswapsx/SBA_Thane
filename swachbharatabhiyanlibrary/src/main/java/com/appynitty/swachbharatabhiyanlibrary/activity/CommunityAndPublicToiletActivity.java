@@ -377,6 +377,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
         toolbarCtpt.setTitle(R.string.string_ctpt_heading);
         setSupportActionBar(toolbarCtpt);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //autoRefresh();
     }
 
     private void isCameraPermissionGiven() {

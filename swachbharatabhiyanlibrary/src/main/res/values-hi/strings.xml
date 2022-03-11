@@ -29,6 +29,7 @@
     <string name="forgot_password_txt">पासवर्ड भूल गए?</string>
     <string name="garbage_collection_completed">कचरा संग्रहण पूरा हुआ</string>
     <string name="garbage_deposit_completed">कचरा डिपॉजिट पूरा हुआ</string>
+    <string name="garbage_dump_completed">कचरा डंप पूरा हुआ</string>
     <string name="garbage_error">कृपया द्विभाजन प्रकार का चयन करें!</string>
     <string name="gp_area_validation">कृपया मान्य क्षेत्र और कचरा प्वाइंट का चयन करें।</string>
     <string name="gp_area_validation_emp">कृपया एक कचरा प्वाइंट चुनें।</string>
@@ -184,6 +185,7 @@
     <string name="string_hort_collection">बागवानी संग्रह</string>
     <string name="string_ctpt_collection">सीटीपीटी शौचालय संग्रह</string>
     <string name="string_swm_collection">एसडब्ल्यूएम सुविधा के संग्रह</string>
+    <string name="string_swm_facility_id">एसडब्ल्यूएम सुविधा पहचान</string>
 
     <!--work history details updated-->
     <string name="string_res_id">निवासी पहचान :</string>

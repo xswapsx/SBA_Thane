@@ -27,6 +27,17 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/dim_16_dp"
                 android:visibility="visible" />
+            <TextView
+                android:id="@+id/lbl_title_swm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dim_20_dp"
+                android:gravity="center_horizontal"
+                android:text="@string/hyphen"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dim_20_sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/house_owner_name"

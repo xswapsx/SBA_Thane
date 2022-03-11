@@ -48,6 +48,7 @@
     <string name="plz_capture_after_img">कृपया प्रतिमा नंतर कॅप्चर करा</string>
     <string name="garbage_collection_completed">कचरा संकलन पूर्ण झाले</string>
     <string name="garbage_deposit_completed">कचरा जमा प्रक्रिया पूर्ण झाले</string>
+    <string name="garbage_dump_completed">कचरा डंप प्रक्रिया पूर्ण झाले</string>
     <string name="edit_details_txt">तपशील संपादित करा</string>
     <string name="save_txt">सेव करा</string>
     <string name="cancel_txt">रद्द करा</string>
@@ -210,6 +211,7 @@
     <string name="string_hort_collection">फलोत्पादन संकलन</string>
     <string name="string_ctpt_collection">सीटीपीटी शौचालय संकलन</string>
     <string name="string_swm_collection">एसडब्ल्यूएम सुविधेचे संकलन</string>
+    <string name="string_swm_facility_id">एसडब्ल्यूएम सुविधा ओळखपत्र</string>
     <!--work history details updated-->
     <string name="string_res_id">रहिवासी ओळखपत्र :</string>
     <string name="string_res_b_id">निवासी इमारत ओळखपत्र :</string>

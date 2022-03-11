@@ -67,6 +67,7 @@
     <string name="plz_capture_after_img">Please capture after image</string>
     <string name="garbage_collection_completed">Garbage Collection Completed</string>
     <string name="garbage_deposit_completed">Garbage Deposition Completed</string>
+    <string name="garbage_dump_completed">Garbage Dump Completed</string>
     <string name="edit_details_txt">Edit Details</string>
     <string name="save_txt">Save</string>
     <string name="cancel_txt">Cancel</string>
@@ -248,6 +249,7 @@
     <string name="string_hort_collection">Horticulture Collection</string>
     <string name="string_ctpt_collection">CTPT Toilet Collection</string>
     <string name="string_swm_collection">SWM facility Collection</string>
+    <string name="string_swm_facility_id">SWM facility ID</string>
     <!--work history details updated-->
     <string name="string_res_id">Resident ID :</string>
     <string name="string_res_b_id">Resident Building ID :</string>

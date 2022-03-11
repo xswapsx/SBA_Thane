@@ -49,6 +49,7 @@ import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.DumpYardAdapt
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.GarbageCollectionAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.SyncOfflineAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.CommercialGarbageDialog;
+import com.appynitty.swachbharatabhiyanlibrary.dialogs.PopUpDialog;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.CollectionAreaHousePojo;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.CollectionAreaPointPojo;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.CollectionAreaPojo;
@@ -99,6 +100,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     SyncOfflinePojo syncOfflinePojo;
     LocationMonitoringService locationMonitoringService;
     List<SyncOfflinePojo> scannedQR;
+    OfflineGarbageColectionPojo offlineGarbageColectionPojos;
     ProgressDialog progressBar;
     private Context mContext;
     private Toolbar toolbar;
@@ -327,7 +329,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         mCpAdapter = new AreaCommercialAdapterClass();
         mAreaAdapter = new CollectionAreaAdapterClass();
         syncOfflineAdapterClass = new SyncOfflineAdapterClass(this);
-
+        offlineGarbageColectionPojos = new OfflineGarbageColectionPojo();
         fabSpeedDial = findViewById(R.id.flash_toggle);
 
         areaLayout = findViewById(R.id.txt_area_layout);
@@ -767,7 +769,8 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
             } else if (houseid.substring(0, 2).matches("^[CcPp]+$")) {
                 validateTypeOfCollection(houseid, "CW");
             } else if (houseid.substring(0, 2).matches("^[SsWw]+$")) {
-                validateTypeOfCollection(houseid, "SW");
+               // validateTypeOfCollection(houseid, "SW");
+                validateSubmitSWM(houseid, "SW");
             } else {
                 AUtils.warning(QRcodeScannerActivity.this, mContext.getResources().getString(R.string.qr_error));
                 restartPreview();
@@ -777,7 +780,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
     }
 
 
-    private void showPopup(String id, GcResultPojo pojo) {
+    private void showPopup(String id, GcResultPojo pojo, String comment) {
 
 
         Log.d(TAG, "showPopup: " + new Gson().toJson(pojo));
@@ -804,6 +807,8 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         final String responseStatus = pojo.getStatus();
         TextView ownerName = view.findViewById(R.id.house_owner_name);
         TextView ownerMobile = view.findViewById(R.id.house_owner_mobile);
+        TextView houseTitleSwm = view.findViewById(R.id.lbl_title_swm);
+        houseTitleSwm.setVisibility(View.VISIBLE);
         TextView houseId = view.findViewById(R.id.house_id);
         TextView collectionStatus = view.findViewById(R.id.collection_status);
         ImageView statusImage = view.findViewById(R.id.response_image);
@@ -833,6 +838,10 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                 ownerMobile.setVisibility(View.GONE);
             } else if (id.substring(0, 2).matches("^[DdYy]+$")) {
                 ownerMobile.setVisibility(View.GONE);
+                collectionStatus.setText(getResources().getString(R.string.garbage_deposit_completed));
+            }else if (id.substring(0, 3).matches("^[sSwWmM]+$")) {
+                ownerMobile.setVisibility(View.GONE);
+                houseTitleSwm.setText(comment);
                 collectionStatus.setText(getResources().getString(R.string.garbage_deposit_completed));
             }
 
@@ -975,13 +984,56 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         startPreview();
     }
 
+    private void submitOnSkip(String houseid, String cType) {
+        if (Prefs.getBoolean(AUtils.PREFS.IS_GT_FEATURE, false)) {
+
+
+        }
+    }
+
+    private Boolean validSubmitId(String id) {
+        return id.matches("swmsba[0-9]+$");
+    }
+
+    private void showActionPopUp(String id, String cType, @Nullable final int garbageType, final String gcType) {
+
+        if (validSubmitId(id.toLowerCase())) {
+            if (id.substring(0, 3).matches("^[SsWwMm]+$")) {
+                //submitOnSkip(id,cType);
+                setGarbageCollectionPojo(id,garbageType,cType,"","");
+                Log.d(TAG, "showActionPopUp SWM : " + new Gson().toJson(garbageCollectionPojo));
+                insertToDB(garbageCollectionPojo);
+                confirmationDialog(id, "-1",getResources().getString(R.string.string_swm_facility_id),getResources().getString(R.string.garbage_dump_completed));
+
+            }
+        }
+    }
+    private void validateSubmitSWM(String houseid, String cType) {
+        if (Prefs.getBoolean(AUtils.PREFS.IS_GT_FEATURE, false)) {
+           showActionPopUp(houseid, cType,-1,"SW");
+
+        }else {
+            gcType = "1";
+            int garbageType = -1;
+            if (validSubmitId(houseid.toLowerCase())) {
+
+                if (houseid.substring(0, 3).matches("^[SsWwMm]+$")) {
+                    gcType = "11";
+                    if(cType.matches("sw")){
+                        //submitOnSkip(houseid, cType);
+                        AUtils.success(mContext, "Uploaded successfully");
+                        finish();
+                    }
+                }
+            }
+        }
+    }
+
     private void validateTypeOfCollection(String houseid, String cType) {
 
         if (Prefs.getBoolean(AUtils.PREFS.IS_GT_FEATURE, false)) {
 
-
             showGarbageTypeDialog(houseid, cType);
-
 
             /*if (AUtils.isNetworkAvailable(mContext)) {
                 setQRTypePojo(houseid, -1);
@@ -1011,7 +1063,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
             }*/
 
-        } else {
+        }else {
             gcType = "1";
             int garbageType = -1;
             //garbage type = -1 for all and gctype will be different.
@@ -1026,8 +1078,6 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                 gcType = "4";
             } else if (houseid.substring(0, 2).matches("^[SsSs]+$")) {
                 gcType = "5";
-            } else if (houseid.substring(0, 2).matches("^[SsWw]+$")) {
-                gcType = "11";
             }
             startSubmitQRAsyncTask(houseid, garbageType, gcType, "", ""); //gctype = 9 for commercial SsWw
         }
@@ -1310,13 +1360,21 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                 garbageCollectionPojo.setWeightTotalWet(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.DUMPDATA.weightTotalWet))));
             }
             if (map.containsKey(AUtils.SLWMDATA.slwmId)) {
-                garbageCollectionPojo.setId(map.get(AUtils.SLWMDATA.slwmId));
+               /* garbageCollectionPojo.setId(map.get(AUtils.SLWMDATA.slwmId));
                 garbageCollectionPojo.setWeightTotal(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.SLWMDATA.weightTotal))));
                 garbageCollectionPojo.setWeightTotalDry(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.SLWMDATA.weightTotalDry))));
                 garbageCollectionPojo.setWeightTotalWet(Double.parseDouble(Objects.requireNonNull(map.get(AUtils.SLWMDATA.weightTotalWet))));
                 garbageCollectionPojo.setTOR(mTor);
                 garbageCollectionPojo.setLevelOS(mSegregationLvl);
-                garbageCollectionPojo.setComment(mComment);
+                garbageCollectionPojo.setComment(mComment);*/
+
+                garbageCollectionPojo.setId(map.get(AUtils.SLWMDATA.slwmId));
+                garbageCollectionPojo.setWeightTotal(Double.parseDouble(""));
+                garbageCollectionPojo.setWeightTotalDry(Double.parseDouble(""));
+                garbageCollectionPojo.setWeightTotalWet(Double.parseDouble(""));
+                garbageCollectionPojo.setTOR("");
+                garbageCollectionPojo.setLevelOS("");
+                garbageCollectionPojo.setComment("");
             }
 
             garbageCollectionPojo.setGarbageType(-1);
@@ -1402,7 +1460,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
         syncOfflineRepository.insertCollection(entity);
 
-        confirmationDialog(garbageCollectionPojo.getId(), String.valueOf(garbageCollectionPojo.getGarbageType()));
+        confirmationDialog(garbageCollectionPojo.getId(), String.valueOf(garbageCollectionPojo.getGarbageType()), "","");
     }
 
     private void showGarbageTypePopUp(String houseId, String CType) {  //Swapnil
@@ -1415,13 +1473,14 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
             showGarbageTypeDialog(houseId, CType);
         } else if (CType.matches("CW")) {
             showGarbageTypeDialog(houseId, "CW");
-        } else if (CType.matches("SW")) {
-            showGarbageTypeDialog(houseId, "SW");
-        }
+        }/* else if (CType.matches("SW")) {
+           // showGarbageTypeDialog(houseId, "SW");
+          //  submitOnSkip(id, " ");
+        }*/
 
     }
 
-    private void confirmationDialog(String houseID, String garbageType) {    //swapnil
+    private void confirmationDialog(String houseID, String garbageType, String comment,String qrStatus) {    //swapnil
         final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setCancelable(false);
         View view = View.inflate(mContext, R.layout.layout_qr_result, null);
@@ -1434,8 +1493,14 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
         TextView ownerName = view.findViewById(R.id.house_owner_name);
         TextView houseTitle = view.findViewById(R.id.lbl_title);
+        TextView houseTitleSwm = view.findViewById(R.id.lbl_title_swm);
+        TextView collectionStatus = view.findViewById(R.id.collection_status);
+        collectionStatus.setVisibility(View.VISIBLE);
+        collectionStatus.setText(qrStatus);
         Button doneBtn = view.findViewById(R.id.done_btn);
-
+        houseTitleSwm.setVisibility(View.VISIBLE);
+        houseTitle.setVisibility(View.VISIBLE);
+        houseTitleSwm.setText(comment);
         ownerName.setText(houseID);
         String value = "";
 
@@ -1521,7 +1586,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         mComment = comment;
         if (tor.matches("nuffin")) {
             startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "1", segregationLevel, mComment);
-            confirmationDialog(houseId, garbageType);
+            confirmationDialog(houseId, garbageType, "","");
         } else {
             getSlwmWeightDetails(houseId, Integer.parseInt(garbageType), "11", segregationLevel, tor);
 
@@ -1538,7 +1603,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         mDomestic = Domestic;
         mSanitary = Sanitary;
         startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "1", segregationLevel, mComment);
-        confirmationDialog(houseId, garbageType);
+        confirmationDialog(houseId, garbageType, "","");
     }
 
     private void getSlwmWeightDetails(String houseId, int garbageType, String gcType, String segregationLevel, String tor) {
@@ -1548,9 +1613,9 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         this.gcType = gcType;
         this.mSegregationLvl = segregationLevel;
         this.mTor = tor;
-        Intent intent = new Intent(mContext, SLWM_WeightActivity.class);
+       /* Intent intent = new Intent(mContext, SLWM_WeightActivity.class);
         intent.putExtra(AUtils.slwmId, houseId);
-        startActivityForResult(intent, SLWM_DETAILS_REQUEST_CODE);
+        startActivityForResult(intent, SLWM_DETAILS_REQUEST_CODE);*/
     }
 
 }
