@@ -13,12 +13,15 @@ import android.hardware.camera2.CameraCharacteristics;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -117,6 +120,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
     private Switch markAttendance;
     private ImageView profilePic;
     private TextView userName;
+    FrameLayout pb;
     private TextView empId, txtEmpId;
     private AttendancePojo attendancePojo = null;
     private List<VehicleTypePojo> vehicleTypePojoList;
@@ -159,7 +163,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initComponents();
-        gpsStatusCheck();
+        AUtils.gpsStatusCheck(DashboardActivity.this);
         onSwitchStatus(AUtils.isIsOnduty());
     }
 
@@ -349,6 +353,13 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
             switch (resultCode) {
                 case Activity.RESULT_OK:
                     // All required changes were successfully made
+                    pb.setVisibility(View.VISIBLE);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            pb.setVisibility(View.GONE);
+                        }
+                    }, 5000);
                     break;
                 case Activity.RESULT_CANCELED:
                     // The user was asked to change settings, but chose not to
@@ -524,7 +535,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         mUserDetailAdapter = new UserDetailAdapterClass();
         verifyDataAdapterClass = new VerifyDataAdapterClass(mContext);
         mOfflineAttendanceAdapter = new OfflineAttendanceAdapterClass(mContext);
-
+        pb = findViewById(R.id.progress_layout);
         lastLocationRepository = new LastLocationRepository(mContext);
         syncOfflineRepository = new SyncOfflineRepository(mContext);
         syncOfflineAttendanceRepository = new SyncOfflineAttendanceRepository(mContext);
@@ -643,7 +654,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                gpsStatusCheck();
+                AUtils.gpsStatusCheck(DashboardActivity.this);
                 if (AUtils.isInternetAvailable(AUtils.mainApplicationConstant)) {
                     onSwitchStatus(isChecked);
                 } else {
@@ -1113,7 +1124,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
                 }
             } else {
                 markAttendance.setChecked(false);
-                Toast.makeText(mContext, getResources().getString(R.string.no_internet_error), Toast.LENGTH_LONG).show();
+//                Toast.makeText(mContext, getResources().getString(R.string.no_internet_error), Toast.LENGTH_LONG).show();
 //                AUtils.showGPSSettingsAlert(mContext);
             }
         } else {
@@ -1196,7 +1207,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         super.onDestroy();
     }
 
-    public void gpsStatusCheck() {
+    /*public void gpsStatusCheck() {
 
         LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(10);
@@ -1242,7 +1253,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
                 }
             }
         });
-    }
+    }*/
 
     private void getHouseDetails(String house_Count) {
         houseList = new ArrayList<>();

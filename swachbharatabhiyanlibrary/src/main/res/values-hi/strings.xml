@@ -273,4 +273,5 @@
     <string name="segregated_bifurcated_types">पृथक द्विभाजित प्रकार</string>
     <string name="change_user_type">उपयोगकर्ता प्रकार बदलें</string>
     <string name="saved_successfully">सफलतापूर्वक जमा</string>
+    <string name="turning_on_the_gps_n_please_wait">जीपीएस चालू किया जा रहा है\n कृपया प्रतीक्षा करें…</string>
 </resources>

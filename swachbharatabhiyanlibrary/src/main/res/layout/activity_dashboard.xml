@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.DashboardActivity"
-    android:id="@+id/parent">
+    tools:context=".activity.DashboardActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -25,19 +24,41 @@
 
     <include layout="@layout/content_dashboard" />
 
+    <FrameLayout
+        android:id="@+id/progress_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            android:indeterminateTintMode="src_atop" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dim_40_dp"
+            android:gravity="center_horizontal"
+            android:text="@string/turning_on_the_gps_n_please_wait"
+            android:textColor="@color/colorPrimaryDark" />
+    </FrameLayout>
 
     <io.github.kobakei.materialfabspeeddial.FabSpeedDial
         android:id="@+id/fab_setting"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:fab_extraMargin="-15dp"
         android:layout_gravity="center_horizontal"
+        app:fab_extraMargin="-15dp"
+        app:fab_fabDrawable="@drawable/ic_repairing_service"
         app:fab_menu="@menu/menu"
-        app:fab_miniFabTextColor="@color/colorAccent"
         app:fab_miniFabTextBackground="@drawable/rounded_white_button"
-        app:fab_fabDrawable="@drawable/ic_repairing_service"/>
-
+        app:fab_miniFabTextColor="@color/colorAccent" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
