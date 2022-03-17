@@ -1212,7 +1212,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
 //        mSyncServerRepository.insertSyncServerEntity(new Gson().toJson(entity, type)); //TODO
 
         syncOfflineRepository.insertCollection(entity);
-
+        Prefs.remove(AUtils.BEFORE_IMAGE);
         showOfflinePopup(garbageCollectionPojo.getId(), entity.getGcType());
     }
 

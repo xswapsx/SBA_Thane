@@ -57,7 +57,7 @@ import java.util.Objects;
 /******  Rahul Rokade 20/02/22 **************/
 public class CommunityAndPublicToiletActivity extends AppCompatActivity {
 
-    private final static String TAG = "TakePhotoActivity";
+    private final static String TAG = "CommunityAndPublicToiletActivity";
     private static final int REQUEST_CAMERA = 22;
     private static final int SELECT_FILE = 33;
 
