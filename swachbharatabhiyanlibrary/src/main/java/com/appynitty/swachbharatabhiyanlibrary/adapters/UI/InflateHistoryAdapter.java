@@ -93,7 +93,8 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
             viewHolder.liCtptSwmCBox.setVisibility(View.GONE);
             viewHolder.txtCtptC = view.findViewById(R.id.ctpt_collection);
             viewHolder.txtSlwmC = view.findViewById(R.id.swm_collection);
-
+            viewHolder.slwmLayout = view.findViewById(R.id.slwm_layout);
+            viewHolder.ctptLayout = view.findViewById(R.id.ctptLayout);
             view.setTag(viewHolder);
 
         } else {
@@ -108,25 +109,54 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
             holder.month.setText(AUtils.extractMonth(workHistoryPojo.getDate()));
 
             if (empType.matches("N") || empType.isEmpty()) {
-                holder.liNormalBuildingCBox.setVisibility(View.VISIBLE);
-                holder.txtResC.setText(workHistoryPojo.getResidentialCollection());
-                holder.txtResBC.setText(workHistoryPojo.getResidentialBCollection());
-                holder.liResSlumCommercialCBox.setVisibility(View.VISIBLE);
-                holder.liSlumCBox.setVisibility(View.VISIBLE);
-                holder.txtResSlumC.setText(workHistoryPojo.getResidentialSCollection());
-                holder.txtResCwC.setText(workHistoryPojo.getCommertialCollection());
-                holder.liHortCadCBox.setVisibility(View.VISIBLE);
-                holder.txtCandDC.setText(workHistoryPojo.getCADCollection());
-                holder.txtHortC.setText(workHistoryPojo.getHorticultureCollection());
-                holder.liLiqStreetCBox.setVisibility(View.GONE);
-                holder.liDumpHouseCBox.setVisibility(View.VISIBLE);
-                holder.liHouseColBox.setVisibility(View.VISIBLE);
-                holder.txtHouseC.setText(workHistoryPojo.getHouseCollection());
-                holder.liDumpColBox.setVisibility(View.VISIBLE);
-                holder.txtDumpC.setText(workHistoryPojo.getDumpYardCollection());
-                holder.liCtptSwmCBox.setVisibility(View.VISIBLE);
-                holder.txtCtptC.setText(workHistoryPojo.getCtptCollection());
-                holder.txtSlwmC.setText(workHistoryPojo.getSwmCollection());
+
+                if (Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE)) {
+                    if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).matches("CT")) {
+                        holder.liCtptSwmCBox.setVisibility(View.VISIBLE);
+                        holder.txtCtptC.setText(workHistoryPojo.getCtptCollection());
+                        holder.slwmLayout.setVisibility(View.GONE);
+                    } else {
+                        holder.liNormalBuildingCBox.setVisibility(View.VISIBLE);
+                        holder.txtResC.setText(workHistoryPojo.getResidentialCollection());
+                        holder.txtResBC.setText(workHistoryPojo.getResidentialBCollection());
+                        holder.liResSlumCommercialCBox.setVisibility(View.VISIBLE);
+                        holder.liSlumCBox.setVisibility(View.VISIBLE);
+                        holder.txtResSlumC.setText(workHistoryPojo.getResidentialSCollection());
+                        holder.txtResCwC.setText(workHistoryPojo.getCommertialCollection());
+                        holder.liHortCadCBox.setVisibility(View.VISIBLE);
+                        holder.txtCandDC.setText(workHistoryPojo.getCADCollection());
+                        holder.txtHortC.setText(workHistoryPojo.getHorticultureCollection());
+                        holder.liLiqStreetCBox.setVisibility(View.GONE);
+                        holder.liDumpHouseCBox.setVisibility(View.VISIBLE);
+                        holder.liHouseColBox.setVisibility(View.VISIBLE);
+                        holder.txtHouseC.setText(workHistoryPojo.getHouseCollection());
+                        holder.liDumpColBox.setVisibility(View.VISIBLE);
+                        holder.txtDumpC.setText(workHistoryPojo.getDumpYardCollection());
+                        holder.liCtptSwmCBox.setVisibility(View.VISIBLE);
+                        holder.txtCtptC.setText(workHistoryPojo.getCtptCollection());
+                        holder.txtSlwmC.setText(workHistoryPojo.getSwmCollection());
+                    }
+                } else {
+                    holder.liNormalBuildingCBox.setVisibility(View.VISIBLE);
+                    holder.txtResC.setText(workHistoryPojo.getResidentialCollection());
+                    holder.txtResBC.setText(workHistoryPojo.getResidentialBCollection());
+                    holder.liResSlumCommercialCBox.setVisibility(View.VISIBLE);
+                    holder.liSlumCBox.setVisibility(View.VISIBLE);
+                    holder.txtResSlumC.setText(workHistoryPojo.getResidentialSCollection());
+                    holder.txtResCwC.setText(workHistoryPojo.getCommertialCollection());
+                    holder.liHortCadCBox.setVisibility(View.VISIBLE);
+                    holder.txtCandDC.setText(workHistoryPojo.getCADCollection());
+                    holder.txtHortC.setText(workHistoryPojo.getHorticultureCollection());
+                    holder.liLiqStreetCBox.setVisibility(View.GONE);
+                    holder.liDumpHouseCBox.setVisibility(View.VISIBLE);
+                    holder.liHouseColBox.setVisibility(View.VISIBLE);
+                    holder.txtHouseC.setText(workHistoryPojo.getHouseCollection());
+                    holder.liDumpColBox.setVisibility(View.VISIBLE);
+                    holder.txtDumpC.setText(workHistoryPojo.getDumpYardCollection());
+                    holder.liCtptSwmCBox.setVisibility(View.VISIBLE);
+                    holder.txtCtptC.setText(workHistoryPojo.getCtptCollection());
+                    holder.txtSlwmC.setText(workHistoryPojo.getSwmCollection());
+                }
 
             } else if (empType.matches("L")) {
                 holder.liNormalBuildingCBox.setVisibility(View.GONE);
@@ -162,7 +192,7 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
         private TextView month;
         //box
         private LinearLayout liNormalBuildingCBox, liResSlumCommercialCBox, liLiqStreetCBox;
-        private LinearLayout liDumpHouseCBox, liCtptSwmCBox , liHortCadCBox;
+        private LinearLayout liDumpHouseCBox, liCtptSwmCBox, liHortCadCBox, slwmLayout, ctptLayout;
 
         //content
         private TextView txtResC, txtResBC;

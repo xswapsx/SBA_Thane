@@ -137,7 +137,6 @@
                 </LinearLayout>
 
 
-
                 <LinearLayout
                     android:id="@+id/li_hort_cad_box"
                     android:layout_width="match_parent"
@@ -207,6 +206,7 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/li_res_slum_cW_box"
                     android:layout_width="match_parent"
@@ -434,6 +434,7 @@
                     android:visibility="gone">
 
                     <LinearLayout
+                        android:id="@+id/ctptLayout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
@@ -464,6 +465,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/slwm_layout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
