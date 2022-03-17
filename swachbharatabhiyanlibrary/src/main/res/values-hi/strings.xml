@@ -271,4 +271,6 @@
     <string name="slwm_details_title">एसएलडब्ल्यूएम विवरण</string>
     <string name="txt_slwm_id">एसएलडब्लूएम  आयडी:</string>
     <string name="segregated_bifurcated_types">पृथक द्विभाजित प्रकार</string>
+    <string name="change_user_type">उपयोगकर्ता प्रकार बदलें</string>
+    <string name="saved_successfully">सफलतापूर्वक जमा</string>
 </resources>

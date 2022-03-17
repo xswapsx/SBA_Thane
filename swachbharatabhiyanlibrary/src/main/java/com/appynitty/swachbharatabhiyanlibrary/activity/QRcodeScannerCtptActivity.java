@@ -43,7 +43,6 @@ import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.AreaPointAdap
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.CollectionAreaAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.DumpYardAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.GarbageCollectionAdapterClass;
-import com.appynitty.swachbharatabhiyanlibrary.dialogs.EmpSWMTypePopUpDialog;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.GarbageTypePopUp;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.ToiletTypePopUp;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.CollectionAreaHousePojo;
@@ -75,8 +74,9 @@ import java.util.Objects;
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
+
 /******  Rahul Rokade 24/01/22 **************/
-public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler, GarbageTypePopUp.GarbagePopUpDialogListener, ToiletTypePopUp.ToiletTypePopUpDialogListener{
+public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler, GarbageTypePopUp.GarbagePopUpDialogListener, ToiletTypePopUp.ToiletTypePopUpDialogListener {
 
     private final static String TAG = "QRcodeScannerActivity";
     private final static int DUMP_YARD_DETAILS_REQUEST_CODE = 100;
@@ -110,7 +110,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
     private MyProgressDialog myProgressDialog;
     private ArrayList<Integer> mSelectedIndices;
     private ToiletTypePopUp toiletTypePopUp;
-
+    TextView collectionStatus;
     private String EmpType, gcType;
     private String areaType;
 
@@ -228,7 +228,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
         if (garbageType != -1) {
             gcType = "10";
             validateTypeOfCollection(houseID);
-         //   startSubmitQRAsyncTask(houseID, garbageType, gcType, comment);
+            //   startSubmitQRAsyncTask(houseID, garbageType, gcType, comment);
         } else {
             restartPreview();
         }
@@ -290,7 +290,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
         AUtils.currentContextConstant = mContext;
 
         EmpType = Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null); //added by Swapnil
-
+        collectionStatus = findViewById(R.id.collection_status);
         mAdapter = new GarbageCollectionAdapterClass();
         mDyAdapter = new DumpYardAdapterClass();
         mGpAdapter = new AreaPointAdapterClass();
@@ -633,7 +633,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
                     QRcodeScannerCtptActivity.this.finish();
                 } else {
 
-                    showPopup(getGarbageCollectionPojo().getId(), mAdapter.getResultPojo(),gcType);
+                    showPopup(getGarbageCollectionPojo().getId(), mAdapter.getResultPojo(), gcType);
 
                 }
             }
@@ -677,11 +677,11 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
         //Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null
         if (EmpType.matches("L")) {
 
-          //  gcType = "4";
+            //  gcType = "4";
             gcType = "10";
 
             if (houseid.substring(0, 2).matches("^[LlWw]+$")) {
-                startSubmitQRAsyncTask(houseid, -1, gcType, null,null, null);
+                startSubmitQRAsyncTask(houseid, -1, gcType, null, null, null);
             } else if (houseid.substring(0, 2).matches("^[HhPp]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.house_qr_alert), null);
             } else if (houseid.substring(0, 2).matches("^[GgPp]+$")) {
@@ -692,11 +692,11 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
             }
         } else if (EmpType.matches("S")) {
 
-           // gcType = "5";
+            // gcType = "5";
             gcType = "10";
 
             if (houseid.substring(0, 2).matches("^[SsSs]+$")) {
-                startSubmitQRAsyncTask(houseid, -1, gcType, null,null, null);
+                startSubmitQRAsyncTask(houseid, -1, gcType, null, null, null);
             } else if (houseid.substring(0, 2).matches("^[HhPp]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.house_qr_alert), null);
             } else if (houseid.substring(0, 2).matches("^[GgPp]+$")) {
@@ -705,16 +705,18 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
 //                AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.dy_qr_alert), null);
                 getDumpYardDetails(houseid);
             }
-        }else if (EmpType.matches("N")){
+        } else if (EmpType.matches("N")) {
             gcType = "10";
             toiletTypePopUp = new ToiletTypePopUp(mContext, houseid, this);
             if (houseid.substring(0, 2).matches("^[CcTtPpTt]+$")) {
-               // toiletTypePopUp.show();
-                startSubmitQRAsyncTask(houseid, -1, gcType, null, imagePojo.getTNS(),null);
-               // startSubmitQRAsyncTask(houseid, -1, gcType, null,0, null);
-            }else if (houseid.substring(0, 2).matches("^[DdYy]+$")) {
+                // toiletTypePopUp.show();
+                startSubmitQRAsyncTask(houseid, -1, gcType, null, imagePojo.getTNS(), null);
+                // startSubmitQRAsyncTask(houseid, -1, gcType, null,0, null);
+            } else if (houseid.substring(0, 3).matches("^[TtMmCc]+$")) {
+                startSubmitQRAsyncTask(houseid, -1, gcType, null, imagePojo.getTNS(), null);
+            } else if (houseid.substring(0, 2).matches("^[DdYy]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.dy_qr_alert), null);
-            }else if (houseid.substring(0, 2).matches("^[LlWw]+$")) {
+            } else if (houseid.substring(0, 2).matches("^[LlWw]+$")) {
 //                AUtils.warning(QRcodeScannerActivity.this, "For scanning Liquid Waste Collection QR,\nkindly login with liquid waste cleaning id", 16);
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.lwc_qr_alert), null);
             } else if (houseid.substring(0, 2).matches("^[SsSs]+$")) {
@@ -757,7 +759,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
         TextView ownerName = view.findViewById(R.id.house_owner_name);
         TextView ownerMobile = view.findViewById(R.id.house_owner_mobile);
         TextView houseId = view.findViewById(R.id.house_id);
-        TextView collectionStatus = view.findViewById(R.id.collection_status);
+
         ImageView statusImage = view.findViewById(R.id.response_image);
         Button doneBtn = view.findViewById(R.id.done_btn);
 
@@ -781,14 +783,15 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
 
             if (id.substring(0, 2).matches("^[HhPp]+$")) {
                 ownerMobile.setText(pojo.getMobile());
-            }else if (id.substring(0, 2).matches("^[CcTtPpTt]+$")) {
+            } else if (id.substring(0, 2).matches("^[CcTtPpTt]+$")) {
                 ownerMobile.setText(pojo.getMobile());
-            }
-            else if (id.substring(0, 2).matches("^[GgPp]+$")) {
+            } else if (id.substring(0, 2).matches("^[GgPp]+$")) {
                 ownerMobile.setVisibility(View.GONE);
             } else if (id.substring(0, 2).matches("^[DdYy]+$")) {
                 ownerMobile.setVisibility(View.GONE);
                 collectionStatus.setText(getResources().getString(R.string.garbage_deposit_completed));
+            } else if (id.substring(0, 3).matches("^[TtMmCc]+$")) {
+                ownerMobile.setText(pojo.getMobile());
             }
 
             houseId.setText(id);
@@ -822,7 +825,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
         });
 
         String valueOne = "";
-        switch (gcType){
+        switch (gcType) {
             case "1":
                 valueOne = "6";
                 break;
@@ -952,14 +955,14 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
             dialog.show();
         } else {
             gcType = "10";
-            startSubmitQRAsyncTask(houseid, 1, gcType, null,  imagePojo.getTNS(), null);
+            startSubmitQRAsyncTask(houseid, 1, gcType, null, imagePojo.getTNS(), null);
         }
     }
 
-    private void startSubmitQRAsyncTask(final String houseNo, @Nullable final int garbageType, @Nullable final String gcType, @Nullable final String comment,final String tns, final String toiletType) {
+    private void startSubmitQRAsyncTask(final String houseNo, @Nullable final int garbageType, @Nullable final String gcType, @Nullable final String comment, final String tns, final String toiletType) {
 
         stopCamera();
-        setGarbageCollectionPojo(houseNo, garbageType, gcType, comment, tns,toiletType);
+        setGarbageCollectionPojo(houseNo, garbageType, gcType, comment, tns, toiletType);
 
         Log.d(TAG, "startSubmitQRAsyncTask: " + new Gson().toJson(garbageCollectionPojo));
         insertToDB(garbageCollectionPojo);
@@ -1098,7 +1101,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
         return false;
     }
 
-    private void setGarbageCollectionPojo(String houseNo, @Nullable final int garbageType, final String gcType, @Nullable final String comment, final  String tns, final String toiletType) {
+    private void setGarbageCollectionPojo(String houseNo, @Nullable final int garbageType, final String gcType, @Nullable final String comment, final String tns, final String toiletType) {
         garbageCollectionPojo = new GarbageCollectionPojo();
         garbageCollectionPojo.setId(houseNo);
         garbageCollectionPojo.setGarbageType(garbageType);
@@ -1153,6 +1156,11 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
 
         entity.setReferenceID(garbageCollectionPojo.getId());
         if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcTtPpTt]+$")) {
+            if ((gcType.equalsIgnoreCase("10")) && gcType.matches("10")) {
+                getIntent().getStringArrayExtra("CTPT");
+                entity.setGcType(String.valueOf(AUtils.CTPT_GC_TYPE));
+            }
+        } else if (garbageCollectionPojo.getId().substring(0, 3).matches("^[TtMmCc]+$")) {
             if ((gcType.equalsIgnoreCase("10")) && gcType.matches("10")) {
                 getIntent().getStringArrayExtra("CTPT");
                 entity.setGcType(String.valueOf(AUtils.CTPT_GC_TYPE));
@@ -1222,6 +1230,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
 
         TextView ownerName = view.findViewById(R.id.house_owner_name);
         TextView houseTitle = view.findViewById(R.id.lbl_title);
+        collectionStatus = view.findViewById(R.id.collection_status);
         Button doneBtn = view.findViewById(R.id.done_btn);
 
         ownerName.setText(pojo);
@@ -1237,6 +1246,10 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
                 break;
             case "3":
                 value = "Dump yard Id  ";
+                break;
+            case "10":
+                value = "CT/PT Id  ";
+                collectionStatus.setText(R.string.saved_successfully);
                 break;
             case "-1":
                 if (EmpType.matches("L"))

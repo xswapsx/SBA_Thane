@@ -59,11 +59,11 @@ public class AUtils extends CommonUtils {
     //  Advanced Ghanta Gadi URL
 //    public static final String SERVER_URL = "http://202.65.157.253:6560";
     //ICTSBM Thane Live
-//    public static final String SERVER_URL = "http://202.65.157.253:5045/";
+    public static final String SERVER_URL = "http://202.65.157.253:5045/";
 
     //    Staging URL
 //    public static final String SERVER_URL = "http://115.115.153.117:4044/";
-     public static final String SERVER_URL = "http://202.65.157.254:7075";  //Thane staging
+//    public static final String SERVER_URL = "http://202.65.157.254:7075";  //Thane staging
 
 
     //Relese URL
@@ -216,6 +216,7 @@ public class AUtils extends CommonUtils {
         String LANGUAGE_POJO_LIST = "LanguagePullList";
 
         String EMPLOYEE_TYPE = "EmpType";
+        String EMP_SUB_TYPE = "EmpSubType";
         String CTYPE = "CType";
         String HOUSE_COUNT = "HouseCount";
     }

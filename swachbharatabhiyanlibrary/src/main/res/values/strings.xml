@@ -338,6 +338,8 @@
     <string name="cp_area_validation">Please Select Valid Area and Commercial Point.</string>
     <string name="segregated">Segregated</string>
     <string name="segregated_bifurcated_types">Segregated Bifurcated Types</string>
+    <string name="change_user_type">Change User Type</string>
+    <string name="saved_successfully">Submitted successfully</string>
 
 
 </resources>

@@ -5,12 +5,14 @@
         android:id="@+id/action_id_card"
         android:icon="@drawable/ic_id_card_menu"
         android:title=""
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/refresh"
         android:icon="@drawable/ic_id_card_menu"
         android:title=""
-        app:showAsAction="collapseActionView"
-        android:visible="false"/>
+        android:visible="false"
+        app:showAsAction="collapseActionView" />
+
+
 </menu>

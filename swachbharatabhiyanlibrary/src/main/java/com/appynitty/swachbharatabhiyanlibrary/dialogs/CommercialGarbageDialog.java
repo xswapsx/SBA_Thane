@@ -1,11 +1,13 @@
 package com.appynitty.swachbharatabhiyanlibrary.dialogs;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,10 +42,31 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
         this.cType = cType;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        return dialog;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.getDialog().setCanceledOnTouchOutside(false);
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+//        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         return inflater.inflate(R.layout.commercial_dialog_container, container, false);
     }
 
@@ -52,7 +75,7 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
         AppDatabase db = AppDatabase.getDbInstance(AUtils.mainApplicationConstant);
         innerCType = db.houseDao().getCtypeFromHouseID(mHouseId);
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        CommercialFirstDialog commercialFirstDialog = new  CommercialFirstDialog(mContext, mHouseId, cType, innerCType);
+        CommercialFirstDialog commercialFirstDialog = new CommercialFirstDialog(mContext, mHouseId, cType, innerCType);
         transaction.replace(R.id.commercialDialog_container, commercialFirstDialog);
         transaction.commit();
     }
@@ -69,6 +92,9 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
             transaction.replace(R.id.commercialDialog_container, multiSelectDialog);
             transaction.addToBackStack("segreMultiselectDialog");
             transaction.commit();
+        } else if (mGarbageType.equals("0")) {
+            mListener.onSubmitButtonSegregated(mHouseId, mGarbageType, "", "", sComment, "", "", "", "");
+            this.dismiss();
         } else {
             FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
             CommercialNextDialog commercialNextDialog = new CommercialNextDialog();

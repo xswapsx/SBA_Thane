@@ -49,6 +49,13 @@ public class OfflineAttendanceAdapterClass {
      * Add CurrentTime
      */
     public void SyncOfflineData() {
+        String EmpType = "";
+        if (Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE)) {
+            EmpType = Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null);
+        } else {
+            EmpType = Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null);
+        }
+
         if (!AUtils.isSyncOfflineDataRequestEnable) {
 
             setOfflineData();
@@ -60,7 +67,7 @@ public class OfflineAttendanceAdapterClass {
                 PunchWebService service = Connection.createService(PunchWebService.class, AUtils.SERVER_URL);
 
                 service.saveOfflineAttendanceDetails(Prefs.getString(AUtils.APP_ID, ""),
-                        AUtils.CONTENT_TYPE, AUtils.getServerDateTimeWithMilliesSecond(), Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null), syncOfflineList)
+                        AUtils.CONTENT_TYPE, AUtils.getServerDateTimeWithMilliesSecond(), EmpType, syncOfflineList)
                         .enqueue(new Callback<List<AttendanceResponsePojo>>() {
                             @Override
                             public void onResponse(@NonNull Call<List<AttendanceResponsePojo>> call,

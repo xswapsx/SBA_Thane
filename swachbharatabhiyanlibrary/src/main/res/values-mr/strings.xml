@@ -35,7 +35,7 @@
 
     <string name="select_area_hint">क्षेत्र निवडा</string>
     <!-- <string name="hp_gp_id_hint">घर आयडी/कचरा पॉइंट आयडी प्रविष्ट करा</string>-->
-    <string name="hp_gp_id_hint">घर आयडी/डंप यार्ड आयडी प्रविष्ट करा</string>
+    <string name="hp_gp_id_hint">घर आयडी/ व्यावसायिक आयडी प्रविष्ट करा</string>
     <string name="house_number_hint">घर क्रमांक प्रविष्ट करा</string>
     <string name="gp_id_hint">कचरा पॉइंट आयडी प्रविष्ट करा</string>
     <string name="dy_id_hint">डंप यार्ड आयडी प्रविष्ट करा</string>
@@ -300,6 +300,8 @@
     <string name="txt_slwm_id">एसएलडब्लूएम  आयडी:</string>
     <string name="segregated_bifurcated_types">विभक्त विभाजक प्रकार</string>
     <string name="segregated">वेगळे केले</string>
+    <string name="change_user_type">वापरकर्ता प्रकार बदला</string>
+    <string name="saved_successfully">यशस्वीरित्या सबमिट केले</string>
 
 
 </resources>

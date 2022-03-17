@@ -609,10 +609,10 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
             AUtils.warning(mContext, mContext.getString(R.string.plz_capture_after_img), Toast.LENGTH_SHORT);
             return false;
         }
-        else if (edtToiletSeatsCount.getText().toString().isEmpty()){
+        /*else if (edtToiletSeatsCount.getText().toString().isEmpty()){
             AUtils.warning(mContext, mContext.getString(R.string.str_hint_toilet_seats_count), Toast.LENGTH_SHORT);
             return false;
-        }
+        }*/
 
         return true;
     }

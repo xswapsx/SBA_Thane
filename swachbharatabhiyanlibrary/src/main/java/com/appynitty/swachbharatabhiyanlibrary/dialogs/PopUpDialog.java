@@ -4,25 +4,22 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-
-import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.UI.DialogAdapter;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class PopUpDialog extends Dialog {
 
@@ -76,8 +73,7 @@ public class PopUpDialog extends Dialog {
 
         hiddenView = findViewById(R.id.dialog_input_view);
 
-        if(mType.equals(AUtils.DIALOG_TYPE_VEHICLE))
-        {
+        if (mType.equals(AUtils.DIALOG_TYPE_VEHICLE)) {
 
             txtVehicleNo = findViewById(R.id.txt_vehicle_no);
             txtVehicleNo.setSingleLine(true);
@@ -86,12 +82,9 @@ public class PopUpDialog extends Dialog {
     }
 
     private void initData() {
-        if(mType.equals(AUtils.DIALOG_TYPE_VEHICLE))
-        {
+        if (mType.equals(AUtils.DIALOG_TYPE_VEHICLE)) {
             lblTitle.setText(mContext.getResources().getString(R.string.dialog_title_txt_vehicle));
-        }
-        else
-        {
+        } else {
             lblTitle.setText(mContext.getResources().getString(R.string.change_language));
         }
 
@@ -117,8 +110,7 @@ public class PopUpDialog extends Dialog {
                 itemSelected(position);
             }
         });
-        if(!AUtils.isNull(btnSubmit))
-        {
+        if (!AUtils.isNull(btnSubmit)) {
             btnSubmit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -128,53 +120,33 @@ public class PopUpDialog extends Dialog {
         }
     }
 
-    private void itemSelected(int postion)
-    {
-         mReturnData = mList.get(postion);
-         if(mType.equals(AUtils.DIALOG_TYPE_VEHICLE))
-         {
-             hiddenView.setVisibility(View.VISIBLE);
-             mItemList.setVisibility(View.GONE);
-         }
-         else {
-             this.dismiss();
-         }
+    private void itemSelected(int postion) {
+        mReturnData = mList.get(postion);
+        if (mType.equals(AUtils.DIALOG_TYPE_VEHICLE)) {
+            hiddenView.setVisibility(View.VISIBLE);
+            mItemList.setVisibility(View.GONE);
+        } else {
+            this.dismiss();
+        }
     }
 
-    private void onSubmitClick()
-    {
+    private void onSubmitClick() {
         mVehicleNo = txtVehicleNo.getText().toString();
-        if(!mVehicleNo.isEmpty()){
+        if (!mVehicleNo.isEmpty()) {
             this.dismiss();
-        }else {
+        } else {
             txtVehicleNo.setError(mContext.getString(R.string.noVehicleNo));
         }
     }
 
-    private void popUpDismiss()
-    {
-        if(mType.equals(AUtils.DIALOG_TYPE_VEHICLE))
-        {
-            /*if(!AUtils.isNull(mListener))
-            {
-                mListener.onPopUpDismissed(mType, mReturnData,mVehicleNo);
-            }*/
-
-         /****** Rahul**********/
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if(!AUtils.isNull(mListener))
-                    {
-                        mListener.onPopUpDismissed(mType, mReturnData,mVehicleNo);
-                    }
-                }
-            }, 1000*2);
-        }
-        else {
-            if(!AUtils.isNull(mListener))
-            {
-                mListener.onPopUpDismissed(mType, mReturnData,"");
+    private void popUpDismiss() {
+        if (mType.equals(AUtils.DIALOG_TYPE_VEHICLE)) {
+            if (!AUtils.isNull(mListener)) {
+                mListener.onPopUpDismissed(mType, mReturnData, mVehicleNo);
+            }
+        } else {
+            if (!AUtils.isNull(mListener)) {
+                mListener.onPopUpDismissed(mType, mReturnData, "");
             }
         }
     }

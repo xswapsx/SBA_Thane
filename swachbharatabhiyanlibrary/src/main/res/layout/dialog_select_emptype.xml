@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/dim_5_dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dim_10_dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lbl_title"
+            style="@style/MyTitle"
+            android:layout_margin="5dp"
+            android:paddingStart="@dimen/dim_10_dp"
+            android:paddingEnd="@dimen/dim_10_dp"
+            android:text="@string/select_employee_type"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/dim_20_sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorDivider" />
+
+        <RadioGroup
+            android:id="@+id/rg_emptype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_10_dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rb_garbageCollectionEmp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="Garbage Collection Employee"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp" />
+
+            <RadioButton
+                android:id="@+id/rb_ct_pt_Emp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dim_10_dp"
+                android:checked="false"
+                android:text="CT/PT Employee"
+                android:textColor="@color/colorGrayList"
+                android:textSize="@dimen/dim_14_sp" />
+        </RadioGroup>
+
+    </LinearLayout>
+</ScrollView>

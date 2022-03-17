@@ -44,6 +44,7 @@ import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.VehicleTypeAd
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.VerifyDataAdapterClass;
 import com.appynitty.swachbharatabhiyanlibrary.db.AppDatabase;
 import com.appynitty.swachbharatabhiyanlibrary.db.HouseEntity;
+import com.appynitty.swachbharatabhiyanlibrary.dialogs.GarbageAndCTPTEmpDialog;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.IdCardDialog;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.PopUpDialog;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.AttendancePojo;
@@ -97,7 +98,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class DashboardActivity extends AppCompatActivity implements PopUpDialog.PopUpDialogListener {
+public class DashboardActivity extends AppCompatActivity implements PopUpDialog.PopUpDialogListener, GarbageAndCTPTEmpDialog.EmpTypeDialogListener {
 
     private final static String TAG = "DashboardActivity";
 
@@ -135,11 +136,14 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
     private SyncOfflineAttendanceRepository syncOfflineAttendanceRepository;
     private boolean isFromAttendanceChecked = false;
     private boolean isDeviceMatch = false;
+    GarbageAndCTPTEmpDialog garbageAndCTPTEmpDialog;
 
     AppDatabase db;
     HouseEntity houseEntity;
     ArrayList<HouseCTypePojo> houseList;
     String houseCount = "";
+    String empType, empSubType;
+    MenuItem mi;
     ProgressDialog progressBar;
 
     @Override
@@ -358,6 +362,15 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 
     private void initComponents() {
         isView = true;
+        garbageAndCTPTEmpDialog = new GarbageAndCTPTEmpDialog(DashboardActivity.this, this);
+        garbageAndCTPTEmpDialog.setCancelable(true);
+        garbageAndCTPTEmpDialog.setCanceledOnTouchOutside(false);
+
+        empType = Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null);
+        if (empType.matches("N")) {
+            if (!Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE))
+                garbageAndCTPTEmpDialog.show();
+        }
 
         db = AppDatabase.getDbInstance(this.getApplicationContext());
 
@@ -600,6 +613,8 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         fab.addOnMenuItemClickListener(new FabSpeedDial.OnMenuItemClickListener() {
             @Override
             public void onMenuItemClick(FloatingActionButton miniFab, @Nullable TextView label, int itemId) {
+
+
                 if (itemId == R.id.action_change_language) {
                     changeLanguage();
                 } else if (itemId == R.id.action_setting) {
@@ -616,7 +631,10 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
                 } else if (itemId == R.id.privacy_policy) {
                     startActivity(new Intent(DashboardActivity.this, PrivacyPage.class));
 
+                } else if (itemId == R.id.changeUserType) {
+                    garbageAndCTPTEmpDialog.show();
                 }
+
             }
         });
 
@@ -672,34 +690,55 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 
     private void initData() {
         Log.e(TAG, "EmpType- " + Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null));
+
         lastLocationRepository.clearUnwantedRows();
         initUserDetails();
-
         mVehicleTypeAdapter.getVehicleType();
         mUserDetailAdapter.getUserDetail();
+        inflateDashboard();
 
+    }
+
+    private void inflateDashboard() {
         List<MenuListPojo> menuPojoList = new ArrayList<MenuListPojo>();
-        //added by Rahul
-        String empType = Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null);
-        if (empType.matches("N")){
-            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_qrcode_scanner), R.drawable.ic_qr_code, QRcodeScannerActivity.class, true));
-            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_take_photo), R.drawable.ic_photograph, TakePhotoActivity.class, true));
-            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_horticulture_waste), R.drawable.ic_hort_waste, HorticultureActivity.class, true));
-            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_c_and_d_waste), R.drawable.ic_cad_waste, CandDActivity.class, true));
-            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_ctpt_heading), R.drawable.ic_ctpt_toilet_new, CommunityAndPublicToiletActivity.class, true));
-            // menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_broadcast_page), R.drawable.ic_broadcast_icon, BroadcastActivity.class, true));
-            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_history_page), R.drawable.ic_history, HistoryPageActivity.class, false));
-            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_profile_page), R.drawable.ic_id_card, ProfilePageActivity.class, false));
-            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_sync_offline), R.drawable.ic_sync, SyncOfflineActivity.class, false));
+        if (empType.matches("N")) {
 
-        }else if (empType.matches("L")){
+//            garbageAndCTPTEmpDialog.show();
+
+
+           /* if (!Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE)) {
+                garbageAndCTPTEmpDialog.show();
+            } else */
+            if (Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE)) {
+                if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).matches("CT")) {
+                    menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_ctpt_heading), R.drawable.ic_ctpt_toilet_new, CommunityAndPublicToiletActivity.class, true));
+                    menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_history_page), R.drawable.ic_history, HistoryPageActivity.class, false));
+                    menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_profile_page), R.drawable.ic_id_card, ProfilePageActivity.class, false));
+                    menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_sync_offline), R.drawable.ic_sync, SyncOfflineActivity.class, false));
+                } else {
+                    menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_qrcode_scanner), R.drawable.ic_qr_code, QRcodeScannerActivity.class, true));
+                    menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_take_photo), R.drawable.ic_photograph, TakePhotoActivity.class, true));
+                    menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_horticulture_waste), R.drawable.ic_hort_waste, HorticultureActivity.class, true));
+                    menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_c_and_d_waste), R.drawable.ic_cad_waste, CandDActivity.class, true));
+//            menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_ctpt_heading), R.drawable.ic_ctpt_toilet_new, CommunityAndPublicToiletActivity.class, true));
+                    // menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_broadcast_page), R.drawable.ic_broadcast_icon, BroadcastActivity.class, true));
+                    menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_history_page), R.drawable.ic_history, HistoryPageActivity.class, false));
+                    menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_profile_page), R.drawable.ic_id_card, ProfilePageActivity.class, false));
+                    menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_sync_offline), R.drawable.ic_sync, SyncOfflineActivity.class, false));
+                }
+            } else {
+                garbageAndCTPTEmpDialog.show();
+            }
+
+
+        } else if (empType.matches("L")) {
             menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_qrcode_scanner), R.drawable.ic_qr_code, QRcodeScannerActivity.class, true));
             menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_take_photo), R.drawable.ic_photograph, TakePhotoActivity.class, true));
             // menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_broadcast_page), R.drawable.ic_broadcast_icon, BroadcastActivity.class, true));
             menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_history_page), R.drawable.ic_history, HistoryPageActivity.class, false));
             menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_profile_page), R.drawable.ic_id_card, ProfilePageActivity.class, false));
             menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_sync_offline), R.drawable.ic_sync, SyncOfflineActivity.class, false));
-        }else if (empType.matches("S")){
+        } else if (empType.matches("S")) {
             menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_qrcode_scanner), R.drawable.ic_qr_code, QRcodeScannerActivity.class, true));
             menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_take_photo), R.drawable.ic_photograph, TakePhotoActivity.class, true));
             // menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_broadcast_page), R.drawable.ic_broadcast_icon, BroadcastActivity.class, true));
@@ -709,16 +748,6 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 
         }
 
-     /*   menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_qrcode_scanner), R.drawable.ic_qr_code, QRcodeScannerActivity.class, true));
-        menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_take_photo), R.drawable.ic_photograph, TakePhotoActivity.class, true));
-        menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_horticulture_waste), R.drawable.ic_hort_waste, HorticultureActivity.class, true));
-        menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_c_and_d_waste), R.drawable.ic_cad_waste, CandDActivity.class, true));
-        menuPojoList.add(new MenuListPojo(getResources().getString(R.string.string_ctpt_heading), R.drawable.ic_ctpt_toilet, CommunityAndPublicToiletActivity.class, true));
-        // menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_broadcast_page), R.drawable.ic_broadcast_icon, BroadcastActivity.class, true));
-        menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_history_page), R.drawable.ic_history, HistoryPageActivity.class, false));
-        menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_profile_page), R.drawable.ic_id_card, ProfilePageActivity.class, false));
-        menuPojoList.add(new MenuListPojo(getResources().getString(R.string.title_activity_sync_offline), R.drawable.ic_sync, SyncOfflineActivity.class, false));
-*/
         DashboardMenuAdapter mainMenuAdaptor = new DashboardMenuAdapter(mContext);
         mainMenuAdaptor.setMenuList(menuPojoList);
         menuGridView.setAdapter(mainMenuAdaptor);
@@ -745,6 +774,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
                     AUtils.info(mContext, getResources().getString(R.string.off_duty_warning));
                 }
                 Prefs.remove(AUtils.PREFS.EMPLOYEE_TYPE);
+                Prefs.remove(AUtils.PREFS.EMP_SUB_TYPE);
 
             }
 
@@ -805,7 +835,6 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         } else {
             playsound();
             onSwitchOff();
-
         }
 
     }
@@ -848,21 +877,34 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 
         for (int i = 0; i < vehicleTypePojoList.size(); i++) {
             if (Prefs.getString(AUtils.VEHICLE_ID, "0").equals(vehicleTypePojoList.get(i).getVtId())) {
-//                if(Prefs.getString(AUtils.LANGUAGE_NAME,AUtils.DEFAULT_LANGUAGE_ID).equals(AUtils.LanguageConstants.MARATHI))
-//                    vehicleType = vehicleTypePojoList.get(intent).getDescriptionMar();
-//                else
+
                 vehicleType = vehicleTypePojoList.get(i).getDescription();
             }
         }
 
         if (!AUtils.isNullString(attendancePojo.getVehicleNumber())) {
+            /*if (Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE)) {
+                if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).equals("CT")) {
+                    vehicleStatus.setText("");
+                }
+            } else {*/
+            if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).equals("CT")) {
+                vehicleStatus.setText("");
+            } else {
+                vehicleStatus.setText(String.format("%s%s %s %s%s", this.getResources().getString(R.string.opening_round_bracket), vehicleType,
+                        this.getResources().getString(R.string.hyphen), attendancePojo.getVehicleNumber(),
+                        this.getResources().getString(R.string.closing_round_bracket)));
+            }
+//            }
 
-            vehicleStatus.setText(String.format("%s%s %s %s%s", this.getResources().getString(R.string.opening_round_bracket), vehicleType,
-                    this.getResources().getString(R.string.hyphen), attendancePojo.getVehicleNumber(),
-                    this.getResources().getString(R.string.closing_round_bracket)));
         } else {
-            vehicleStatus.setText(String.format("%s%s%s", this.getResources().getString(R.string.opening_round_bracket),
-                    vehicleType, this.getResources().getString(R.string.closing_round_bracket)));
+            if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).equals("CT")) {
+                vehicleStatus.setText("");
+            } else {
+                vehicleStatus.setText(String.format("%s%s%s", this.getResources().getString(R.string.opening_round_bracket),
+                        vehicleType, this.getResources().getString(R.string.closing_round_bracket)));
+            }
+//            vehicleStatus.setText("");
         }
 
         AUtils.setInPunchDate(Calendar.getInstance());
@@ -956,10 +998,23 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
             }
 
             if (!AUtils.isNullString(Prefs.getString(AUtils.VEHICLE_NO, ""))) {
-
-                vehicleStatus.setText(String.format("%s%s %s %s%s", this.getResources().getString(R.string.opening_round_bracket), vehicleName, this.getResources().getString(R.string.hyphen), Prefs.getString(AUtils.VEHICLE_NO, ""), this.getResources().getString(R.string.closing_round_bracket)));
+               /* if (Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE)) {
+                    if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).equals("CT")) {
+                        vehicleStatus.setText("");
+                    }
+                } else {*/
+                if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).equals("CT")) {
+                    vehicleStatus.setText("");
+                } else {
+                    vehicleStatus.setText(String.format("%s%s %s %s%s", this.getResources().getString(R.string.opening_round_bracket), vehicleName, this.getResources().getString(R.string.hyphen), Prefs.getString(AUtils.VEHICLE_NO, ""), this.getResources().getString(R.string.closing_round_bracket)));
+                }
             } else {
-                vehicleStatus.setText(String.format("%s%s%s", this.getResources().getString(R.string.opening_round_bracket), vehicleName, this.getResources().getString(R.string.closing_round_bracket)));
+                if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).equals("CT")) {
+                    vehicleStatus.setText("");
+                } else {
+                    vehicleStatus.setText(String.format("%s%s%s", this.getResources().getString(R.string.opening_round_bracket), vehicleName, this.getResources().getString(R.string.closing_round_bracket)));
+//                vehicleStatus.setText("");
+                }
             }
         } else {
             markAttendance.setChecked(false);
@@ -997,6 +1052,10 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 
     private void onSwitchOn() {
 
+        /*if (!AUtils.isIsOnduty()) {
+            garbageAndCTPTEmpDialog.show();
+        }
+*/
         if (isLocationPermission) {
 
             if (AUtils.isGPSEnable(AUtils.currentContextConstant)) {
@@ -1013,8 +1072,36 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
                         if (!AUtils.isIsOnduty()) {
                             ((MyApplication) AUtils.mainApplicationConstant).startLocationTracking();
 
-                            PopUpDialog dialog = new PopUpDialog(DashboardActivity.this, AUtils.DIALOG_TYPE_VEHICLE, mLanguage, this);
-                            dialog.show();
+                            if (Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE)) {
+                                if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).matches("CT")) {
+//                                    AUtils.info(mContext, "Your attendance will be done soon!");
+
+                                    if (AUtils.isNull(attendancePojo)) {
+                                        attendancePojo = new AttendancePojo();
+                                    }
+
+                                    try {
+                                        syncOfflineAttendanceRepository.insertCollection(attendancePojo, SyncOfflineAttendanceRepository.InAttendanceId);
+                                        onInPunchSuccess();
+                                        if (AUtils.isInternetAvailable()) {
+                                            if (!syncOfflineAttendanceRepository.checkIsInAttendanceSync())
+                                                mOfflineAttendanceAdapter.SyncOfflineData();
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                        markAttendance.setChecked(false);
+                                        AUtils.error(mContext, mContext.getString(R.string.something_error), Toast.LENGTH_SHORT);
+                                    }
+                                } else {
+                                    PopUpDialog dialog = new PopUpDialog(DashboardActivity.this, AUtils.DIALOG_TYPE_VEHICLE, mLanguage, this);
+                                    dialog.show();
+                                }
+
+                            } else {
+                                PopUpDialog dialog = new PopUpDialog(DashboardActivity.this, AUtils.DIALOG_TYPE_VEHICLE, mLanguage, this);
+                                dialog.show();
+                            }
+
                         }
                     } else {
                         mVehicleTypeAdapter.getVehicleType();
@@ -1160,10 +1247,10 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
     private void getHouseDetails(String house_Count) {
         houseList = new ArrayList<>();
 
-        progressBar = new ProgressDialog(DashboardActivity.this);
+        /*progressBar = new ProgressDialog(DashboardActivity.this);
         progressBar.setTitle("Loading...");
         progressBar.setMessage("Please wait.");
-        progressBar.show();
+        progressBar.show();*/
 
 
         GetHouseDetailService service = Connection.createService(GetHouseDetailService.class, AUtils.SERVER_URL);
@@ -1172,7 +1259,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         call.enqueue(new Callback<List<HouseCTypePojo>>() {
             @Override
             public void onResponse(Call<List<HouseCTypePojo>> call, Response<List<HouseCTypePojo>> response) {
-                progressBar.dismiss();
+//                progressBar.dismiss();
                 if (response.body() != null) {
                     for (int i = 0; i < response.body().size(); i++) {
                         saveNewHouse(response.body().get(i).getHouseid(), response.body().get(i).getCtype());
@@ -1197,4 +1284,13 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 
     }
 
+    @Override
+    public void onDismissEmpTypeDialog(String EmpType) {
+        Prefs.putString(AUtils.PREFS.EMP_SUB_TYPE, EmpType);
+        empSubType = EmpType;
+//        subEmpType = EmpType;
+//        Toast.makeText(mContext, empType, Toast.LENGTH_SHORT).show();
+        inflateDashboard();
+//        garbageAndCTPTEmpDialog.dismiss();
+    }
 }

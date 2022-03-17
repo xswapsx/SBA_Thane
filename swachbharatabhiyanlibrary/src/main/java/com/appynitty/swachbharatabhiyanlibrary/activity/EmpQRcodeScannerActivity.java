@@ -403,7 +403,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         empQrLocationAdapter.setEmpQrLocationListner(new EmpQrLocationAdapterClass.EmpQrLocationListner() {
             @Override
             public void onSuccessCallback(ResultPojo resultPojo) {
-                myProgressDialog.dismiss();
+//                myProgressDialog.dismiss();
                 String message = "";
 
                 if (Prefs.getString(AUtils.LANGUAGE_NAME, AUtils.DEFAULT_LANGUAGE_ID).equals("2")) {
@@ -473,6 +473,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
                 || id.matches("dysba[0-9]+$")
                 || id.matches("cpsba[0-9]+$")
                 || id.matches("ctptsba[0-9]+$")
+                || id.substring(0,3).matches("tmc")
                 || id.matches("swmsba[0-9]+$");
 //            return id.matches("hpsba[0-9]+$");
                 /*|| id.matches("gpsba[0-9]+$")
@@ -537,6 +538,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
     }
 
     public void handleResult(Result result) {
+        stopCamera();
         showActionPopUp(result.getContents());
 //        restartPreview();
     }
@@ -571,8 +573,8 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
             empGarbageTpyePopUp = new EmpGarbageTpyePopUp(mContext, id, this);
             //added by rahul
-           // empSWMTypePopUpDialog = new EmpSWMTypePopUpDialog(mContext, id, this);
-            toiletTypePopUp = new ToiletTypePopUp(mContext,id,this);
+            // empSWMTypePopUpDialog = new EmpSWMTypePopUpDialog(mContext, id, this);
+            toiletTypePopUp = new ToiletTypePopUp(mContext, id, this);
 //            chooseActionPopUp.setData(id);
             if (id.substring(0, 2).matches("^[HhPp]+$")) {
                 empGarbageTpyePopUp.show();
@@ -584,12 +586,11 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
                 submitOnSkip(id, "");
                 AUtils.success(mContext, "Uploaded successfully");
                 finish();
-            }
-            else if (id.substring(0, 2).matches("^[DdYy]+$")) {
+            } else if (id.substring(0, 2).matches("^[DdYy]+$")) {
                 submitOnSkip(id, "");
                 AUtils.success(mContext, "Uploaded successfully");
                 finish();
-            }else if (id.substring(0, 3).matches("^[CcTtPpTt]+$")) {
+            } else if (id.substring(0, 3).matches("^[TtMmCc]+$")) {
                 submitBtn.setVisibility(View.GONE);
                 collectionRadioGroup.setVisibility(View.GONE);
                 toiletTypePopUp.show();
@@ -648,6 +649,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
             e.printStackTrace();
         }
     }
+
     //Added by Rahul
     private void submitOnSkipToilet(String id) {
         try {
@@ -713,6 +715,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         }
         return areaType;
     }
+
     //Added by Rahul
     private String getGCType(String refId) {
         if (refId.substring(0, 2).toLowerCase().matches("^[hp]+$"))
@@ -728,6 +731,8 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         else if (refId.substring(0, 2).toLowerCase().matches("^[cp]+$"))
             return "9";
         else if (refId.substring(0, 2).toLowerCase().matches("^[ctpt]+$"))
+            return "10";
+        else if (refId.substring(0, 3).toLowerCase().matches("^[tmc]+$"))
             return "10";
         else if (refId.substring(0, 2).toLowerCase().matches("^[swm]+$"))
             return "11";

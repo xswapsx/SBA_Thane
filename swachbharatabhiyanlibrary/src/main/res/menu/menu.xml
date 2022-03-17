@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_change_language"
         android:icon="@drawable/ic_language_change"
@@ -14,7 +13,7 @@
     <item
         android:id="@+id/action_rate_app"
         android:icon="@drawable/ic_star_white_24dp"
-        android:title="@string/rate_this_app"/>
+        android:title="@string/rate_this_app" />
 
     <item
         android:id="@+id/action_setting"
@@ -30,5 +29,10 @@
         android:id="@+id/privacy_policy"
         android:icon="@drawable/privacyvector"
         android:title="@string/privacy_policy" />
+
+    <item
+        android:id="@+id/changeUserType"
+        android:icon="@drawable/ic_change_usertype"
+        android:title="@string/change_user_type" />
 
 </menu>

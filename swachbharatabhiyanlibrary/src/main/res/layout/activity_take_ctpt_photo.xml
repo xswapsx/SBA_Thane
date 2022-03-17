@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/tools"
-    android:id="@+id/parent">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -25,240 +24,245 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/dim_6_dp">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dim_6_dp">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="5"
-                android:paddingTop="@dimen/dim_10_dp"
-                android:paddingBottom="@dimen/dim_10_dp">
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="@string/take_before_photo"
-                    android:textSize="@dimen/dim_17_sp"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/dim_10_dp"
+                    android:paddingBottom="@dimen/dim_10_dp">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dim_200_dp"
-                    android:layout_marginTop="@dimen/dim_5_dp"
-                    android:layout_marginBottom="@dimen/dim_6_dp"
-                    android:layout_marginStart="@dimen/dim_6_dp"
-                    android:layout_marginEnd="@dimen/dim_6_dp"
-                    app:cardCornerRadius="@dimen/dim_6_dp"
-                    app:cardElevation="@dimen/dim_3_dp">
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/take_before_photo"
+                        android:textSize="@dimen/dim_17_sp" />
 
-                        <ImageView
-                            android:id="@+id/img_before_photo_ctpt"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:adjustViewBounds="false"
-                            android:contentDescription="@string/take_before_photo"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/dirty_toilet" />
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dim_200_dp"
+                        android:layout_marginStart="@dimen/dim_6_dp"
+                        android:layout_marginTop="@dimen/dim_5_dp"
+                        android:layout_marginEnd="@dimen/dim_6_dp"
+                        android:layout_marginBottom="@dimen/dim_6_dp"
+                        app:cardCornerRadius="@dimen/dim_6_dp"
+                        app:cardElevation="@dimen/dim_3_dp">
 
-                        <TextView
-                            android:id="@+id/txt_date_time_before"
+                        <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="@dimen/dim_5_dp"
-                            android:layout_marginTop="@dimen/dim_5_dp"
-                            android:layout_marginEnd="@dimen/dim_5_dp"
-                            android:layout_marginBottom="@dimen/dim_5_dp"
-                            android:text="@string/str_date_time_on_photo"
-                            android:visibility="gone"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/dim_14_sp" />
+                            android:layout_height="wrap_content">
 
-                    </RelativeLayout>
+                            <ImageView
+                                android:id="@+id/img_before_photo_ctpt"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="false"
+                                android:contentDescription="@string/take_before_photo"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/dirty_toilet" />
 
-                </androidx.cardview.widget.CardView>
+                            <TextView
+                                android:id="@+id/txt_date_time_before"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginStart="@dimen/dim_5_dp"
+                                android:layout_marginTop="@dimen/dim_5_dp"
+                                android:layout_marginEnd="@dimen/dim_5_dp"
+                                android:layout_marginBottom="@dimen/dim_5_dp"
+                                android:text="@string/str_date_time_on_photo"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dim_14_sp"
+                                android:visibility="gone" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/dim_10_dp"
+                    android:paddingBottom="@dimen/dim_10_dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/take_after_photo"
+                        android:textSize="@dimen/dim_17_sp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dim_200_dp"
+                        android:layout_marginStart="@dimen/dim_6_dp"
+                        android:layout_marginTop="@dimen/dim_5_dp"
+                        android:layout_marginEnd="@dimen/dim_6_dp"
+                        android:layout_marginBottom="@dimen/dim_6_dp"
+                        app:cardCornerRadius="@dimen/dim_6_dp"
+                        app:cardElevation="@dimen/dim_3_dp">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/img_after_photo_ctpt"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:contentDescription="@string/take_after_photo"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/clean_toilet" />
+
+                            <TextView
+                                android:id="@+id/txt_date_time_after"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginStart="@dimen/dim_5_dp"
+                                android:layout_marginTop="@dimen/dim_5_dp"
+                                android:layout_marginEnd="@dimen/dim_5_dp"
+                                android:layout_marginBottom="@dimen/dim_5_dp"
+                                android:text="@string/str_date_time_on_photo"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/dim_14_sp"
+                                android:visibility="gone" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="5"
-                android:paddingBottom="@dimen/dim_10_dp"
-                android:paddingTop="@dimen/dim_10_dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="@string/take_after_photo"
-                    android:textSize="@dimen/dim_17_sp"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dim_200_dp"
-                    android:layout_marginTop="@dimen/dim_5_dp"
-                    android:layout_marginBottom="@dimen/dim_6_dp"
-                    android:layout_marginStart="@dimen/dim_6_dp"
-                    android:layout_marginEnd="@dimen/dim_6_dp"
-                    app:cardCornerRadius="@dimen/dim_6_dp"
-                    app:cardElevation="@dimen/dim_3_dp">
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/img_after_photo_ctpt"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:contentDescription="@string/take_after_photo"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/clean_toilet" />
-
-                        <TextView
-                            android:id="@+id/txt_date_time_after"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="@dimen/dim_5_dp"
-                            android:layout_marginTop="@dimen/dim_5_dp"
-                            android:layout_marginEnd="@dimen/dim_5_dp"
-                            android:layout_marginBottom="@dimen/dim_5_dp"
-                            android:text="@string/str_date_time_on_photo"
-                            android:visibility="gone"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/dim_14_sp" />
-
-                    </RelativeLayout>
-
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/str_toilet_seats_count_heading"
-            android:layout_marginStart="@dimen/dim_6_dp"
-            android:layout_marginEnd="@dimen/dim_6_dp"
-            android:textSize="@dimen/dim_17_sp" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/dim_5_dp"
-            android:layout_marginVertical="@dimen/dim_5_dp"
-            app:cardCornerRadius="@dimen/dim_6_dp"
-            app:cardElevation="@dimen/dim_3_dp"
-            android:focusable="false"
-            android:focusableInTouchMode="false">
-
-            <EditText
-                android:id="@+id/edt_numberOf_seats"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:hint="@string/str_hint_toilet_seats_count"
-                android:textColorHint="@color/black_alpha_45"
-                android:maxLines="1"
-                android:maxLength="2"
-                android:background="@android:color/transparent"
-                android:paddingVertical="@dimen/dim_10_dp"
+                android:layout_marginStart="@dimen/dim_6_dp"
+                android:layout_marginEnd="@dimen/dim_6_dp"
+                android:text="@string/str_toilet_seats_count_heading"
+                android:textSize="@dimen/dim_17_sp"
+                android:visibility="gone" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dim_5_dp"
-                android:textSize="16sp"
-                android:textColor="@color/black"/>
+                android:layout_marginVertical="@dimen/dim_5_dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                app:cardCornerRadius="@dimen/dim_6_dp"
+                app:cardElevation="@dimen/dim_3_dp">
 
-        </androidx.cardview.widget.CardView>
+                <EditText
+                    android:id="@+id/edt_numberOf_seats"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dim_5_dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/str_hint_toilet_seats_count"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:maxLines="1"
+                    android:paddingVertical="@dimen/dim_10_dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black_alpha_45"
+                    android:textSize="16sp"
+                    android:visibility="gone" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/comments"
-            android:layout_marginStart="@dimen/dim_6_dp"
-            android:layout_marginEnd="@dimen/dim_6_dp"
-            android:textSize="@dimen/dim_17_sp" />
+            </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dim_100_dp"
-            android:layout_marginTop="@dimen/dim_5_dp"
-            android:layout_marginBottom="@dimen/dim_6_dp"
-            android:layout_marginStart="@dimen/dim_6_dp"
-            android:layout_marginEnd="@dimen/dim_6_dp"
-            app:cardCornerRadius="@dimen/dim_6_dp"
-            app:cardElevation="@dimen/dim_3_dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true">
-
-            <EditText
-                style="@style/MyEditTextStylelight.Dark"
-                android:id="@+id/txt_comments_ctpt"
-                android:maxLines="10"
-                android:gravity="top"
-                android:overScrollMode="always"
-                android:scrollbarStyle="insideInset"
-                android:scrollbars="vertical"
-                android:inputType="text"/>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/open_qr_ctpt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dim_100_dp"
-            android:layout_marginEnd="@dimen/dim_100_dp"
-            android:layout_marginTop="@dimen/dim_12_dp"
-            app:cardCornerRadius="@dimen/dim_5_dp"
-            app:cardElevation="@dimen/dim_12_dp"
-            android:layout_gravity="center">
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:paddingTop="@dimen/dim_12_dp"
-                android:paddingBottom="@dimen/dim_12_dp"
-                android:paddingStart="@dimen/dim_12_dp"
-                android:paddingEnd="@dimen/dim_12_dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/primary_border_background">
+                android:layout_marginStart="@dimen/dim_6_dp"
+                android:layout_marginEnd="@dimen/dim_6_dp"
+                android:text="@string/comments"
+                android:textSize="@dimen/dim_17_sp" />
 
-                <ImageView
-                    android:contentDescription="@string/app_name"
-                    android:id="@+id/menu_icon"
-                    android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_100_dp"
+                android:layout_marginStart="@dimen/dim_6_dp"
+                android:layout_marginTop="@dimen/dim_5_dp"
+                android:layout_marginEnd="@dimen/dim_6_dp"
+                android:layout_marginBottom="@dimen/dim_6_dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                app:cardCornerRadius="@dimen/dim_6_dp"
+                app:cardElevation="@dimen/dim_3_dp">
+
+                <EditText
+                    android:id="@+id/txt_comments_ctpt"
+                    style="@style/MyEditTextStylelight.Dark"
+                    android:gravity="top"
+                    android:inputType="text"
+                    android:maxLines="10"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/open_qr_ctpt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dim_100_dp"
+                android:layout_marginTop="@dimen/dim_12_dp"
+                android:layout_marginEnd="@dimen/dim_100_dp"
+                app:cardCornerRadius="@dimen/dim_5_dp"
+                app:cardElevation="@dimen/dim_12_dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_qr_code"/>
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/primary_border_background"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/dim_12_dp"
+                    android:paddingTop="@dimen/dim_12_dp"
+                    android:paddingEnd="@dimen/dim_12_dp"
+                    android:paddingBottom="@dimen/dim_12_dp">
 
-                <TextView
-                    android:id="@+id/menu_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorGrayList"
-                    android:layout_marginTop="@dimen/dim_12_dp"
-                    android:text="@string/title_activity_qrcode_scanner"/>
+                    <ImageView
+                        android:id="@+id/menu_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_qr_code" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/menu_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dim_12_dp"
+                        android:text="@string/title_activity_qrcode_scanner"
+                        android:textColor="@color/colorGrayList" />
 
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
