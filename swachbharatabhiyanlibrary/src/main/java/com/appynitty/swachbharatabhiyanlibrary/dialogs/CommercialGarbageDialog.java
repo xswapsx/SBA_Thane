@@ -92,7 +92,7 @@ public class CommercialGarbageDialog extends DialogFragment implements Commercia
             transaction.replace(R.id.commercialDialog_container, multiSelectDialog);
             transaction.addToBackStack("segreMultiselectDialog");
             transaction.commit();
-        } else if (mGarbageType.equals("0")) {
+        } else if (mGarbageType.equals("0") || mGarbageType.equals("2")) {
             mListener.onSubmitButtonSegregated(mHouseId, mGarbageType, "", "", sComment, "", "", "", "");
             this.dismiss();
         } else {

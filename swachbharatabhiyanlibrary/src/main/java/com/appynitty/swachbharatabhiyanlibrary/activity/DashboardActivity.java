@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.hardware.camera2.CameraCharacteristics;
@@ -66,15 +65,7 @@ import com.appynitty.swachbharatabhiyanlibrary.utils.MyApplication;
 import com.appynitty.swachbharatabhiyanlibrary.webservices.GetHouseDetailService;
 import com.appynitty.swachbharatabhiyanlibrary.webservices.IMEIWebService;
 import com.bumptech.glide.Glide;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStates;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -830,6 +821,8 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
             }
 
             PopUpDialog dialog = new PopUpDialog(DashboardActivity.this, AUtils.DIALOG_TYPE_LANGUAGE, mLanguage, this);
+            dialog.setCancelable(true);
+            dialog.setCanceledOnTouchOutside(false);
             dialog.show();
         }
     }
@@ -1109,11 +1102,15 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
                                     }
                                 } else {
                                     PopUpDialog dialog = new PopUpDialog(DashboardActivity.this, AUtils.DIALOG_TYPE_VEHICLE, mLanguage, this);
+                                    dialog.setCancelable(true);
+                                    dialog.setCanceledOnTouchOutside(false);
                                     dialog.show();
                                 }
 
                             } else {
                                 PopUpDialog dialog = new PopUpDialog(DashboardActivity.this, AUtils.DIALOG_TYPE_VEHICLE, mLanguage, this);
+                                dialog.setCancelable(true);
+                                dialog.setCanceledOnTouchOutside(false);
                                 dialog.show();
                             }
 
