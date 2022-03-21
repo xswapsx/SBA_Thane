@@ -341,6 +341,7 @@
     <string name="change_user_type">Change User Type</string>
     <string name="saved_successfully">Submitted successfully</string>
     <string name="turning_on_the_gps_n_please_wait">Turning on the GPS\n Please wait…</string>
+    <string name="validate_multiselection">At least one selection is mandatory!</string>
 
 
 </resources>

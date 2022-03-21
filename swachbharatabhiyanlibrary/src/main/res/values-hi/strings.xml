@@ -46,7 +46,7 @@
     <string name="house_number_hint">हाउस नंबर दर्ज करें</string>
     <string name="hp_area_validation">कृपया मान्य क्षेत्र और हाउस नंबर चुनें।</string>
     <string name="hp_area_validation_emp">कृपया हाउस नंबर दर्ज करें।</string>
-   <!-- <string name="hp_gp_id_hint">हाउस आईडी / कचरा प्वाइंट आईडी दर्ज करें</string>-->
+    <!-- <string name="hp_gp_id_hint">हाउस आईडी / कचरा प्वाइंट आईडी दर्ज करें</string>-->
     <string name="hp_gp_id_hint">हाउस आईडी/डंप यार्ड आईडी दर्ज करें</string>
     <string name="hp_validation">कृपया वेलिड हाउस नंबर चुनें</string>
     <string name="invalid_qr_error">अमान्य स्कॅनिफाय</string>
@@ -91,7 +91,6 @@
     <string name="setting">सेटिंग</string>
     <string name="share_the_app">ऐप साझा करें</string>
     <string name="privacy_policy">प्राइवेसी पॉलिसी</string>
-
 
 
     <string name="show_bifurcation_type">द्विभाजन प्रकार दिखाएं</string>
@@ -274,4 +273,5 @@
     <string name="change_user_type">उपयोगकर्ता प्रकार बदलें</string>
     <string name="saved_successfully">सफलतापूर्वक जमा</string>
     <string name="turning_on_the_gps_n_please_wait">जीपीएस चालू किया जा रहा है\n कृपया प्रतीक्षा करें…</string>
+    <string name="validate_multiselection">कम से कम एक चयन अनिवार्य है!</string>
 </resources>

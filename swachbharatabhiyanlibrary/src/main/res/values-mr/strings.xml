@@ -303,6 +303,8 @@
     <string name="change_user_type">वापरकर्ता प्रकार बदला</string>
     <string name="saved_successfully">यशस्वीरित्या सबमिट केले</string>
     <string name="turning_on_the_gps_n_please_wait">जीपीएस चालू करत आहे\nकृपया थांबा…</string>
+    <string name="validate_multiselection">किमान एक निवड अनिवार्य आहे!</string>
+
 
 
 </resources>

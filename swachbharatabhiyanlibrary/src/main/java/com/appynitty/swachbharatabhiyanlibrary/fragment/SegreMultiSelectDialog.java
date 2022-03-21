@@ -15,13 +15,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
+import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 
 public class SegreMultiSelectDialog extends Fragment {
     private static final String TAG = "SegreMultiSelectDialog";
     private final Context mContext;
     private final String mHouseId;
     private final String mGarbageType;
-
+    boolean isChecked = false;
     String Wet, Dry, Sanitary, Domestic, cType;
 
     CheckBox cbWetWaste, cbDryWaste, cbDomestic, cbSanitary;
@@ -72,9 +73,23 @@ public class SegreMultiSelectDialog extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.e(TAG, "onClick: Wet: " + Wet + ", Dry: " + Dry + ", Domestic: " + Domestic + ", Sanitary: " + Sanitary);
-                onNextbtnPressed(Wet, Dry, Domestic, Sanitary);
+
+                validateSelection();
+                if (isChecked) {
+                    onNextbtnPressed(Wet, Dry, Domestic, Sanitary);
+                } else {
+                    AUtils.info(mContext, getResources().getString(R.string.validate_multiselection));
+                }
+
             }
         });
+    }
+
+    private boolean validateSelection() {
+        if (cbWetWaste.isChecked() || cbDryWaste.isChecked() || cbSanitary.isChecked() || cbDomestic.isChecked()) {
+            isChecked = true;
+        }
+        return isChecked;
     }
 
     private void onNextbtnPressed(String wet, String dry, String domestic, String sanitary) {

@@ -9,7 +9,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -61,6 +60,7 @@ public class EmpGarbageTpyePopUp extends Dialog {
     private void generateID() {
 
         rb_resident = findViewById(R.id.rb_resident);
+        rb_resident.setVisibility(View.GONE);
         rb_resident_building_waste = findViewById(R.id.rb_resident_building_waste);
         rb_resident_slum_waste = findViewById(R.id.rb_resident_slum_waste);
         rb_commercial_waste = findViewById(R.id.rb_commercial_waste);

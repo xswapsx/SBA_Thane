@@ -377,11 +377,11 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         garbageAndCTPTEmpDialog.setCancelable(true);
         garbageAndCTPTEmpDialog.setCanceledOnTouchOutside(false);
 
-        empType = Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null);
+        /*empType = Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null);
         if (empType.matches("N")) {
             if (!Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE))
                 garbageAndCTPTEmpDialog.show();
-        }
+        }*/
 
         db = AppDatabase.getDbInstance(this.getApplicationContext());
 
@@ -701,7 +701,11 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 
     private void initData() {
         Log.e(TAG, "EmpType- " + Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null));
-
+        empType = Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null);
+        if (empType.matches("N")) {
+            if (!Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE))
+                garbageAndCTPTEmpDialog.show();
+        }
         lastLocationRepository.clearUnwantedRows();
         initUserDetails();
         mVehicleTypeAdapter.getVehicleType();
