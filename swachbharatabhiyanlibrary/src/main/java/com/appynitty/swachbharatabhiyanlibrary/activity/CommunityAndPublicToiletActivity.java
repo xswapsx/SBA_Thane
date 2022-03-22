@@ -351,13 +351,14 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
 
         if (Prefs.contains(AUtils.BEFORE_IMAGE)) {
             Bitmap myBitmap = BitmapFactory.decodeFile(Prefs.getString(AUtils.BEFORE_IMAGE, null));
+            Log.e(TAG, "initData: before Image:- "+ Prefs.getString(AUtils.BEFORE_IMAGE, null));
             beforeImage.setImageBitmap(myBitmap);
         }
 
-        if (Prefs.contains(AUtils.AFTER_IMAGE)) {
+        /*if (Prefs.contains(AUtils.AFTER_IMAGE)) {
             Bitmap myBitmap = BitmapFactory.decodeFile(Prefs.getString(AUtils.AFTER_IMAGE, null));
             afterImage.setImageBitmap(myBitmap);
-        }
+        }*/
     }
 
     private void openQRClicked() {
@@ -543,13 +544,13 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
 
                 break;
             case 2:
-               /* afterImage.setImageBitmap(thumbnail);
+                afterImage.setImageBitmap(thumbnail);
                 tempUri = getImageUri(getApplicationContext(), thumbnail);
 
                 finalPath = getRealPathFromURI(tempUri);
                 afterImageFilePath = finalPath; //setting image2 path that will be set in imageDTO.
 
-                Prefs.putString(AUtils.AFTER_IMAGE, afterImageFilePath);*/
+                Prefs.putString(AUtils.AFTER_IMAGE, afterImageFilePath);
 
 
                 afterImage.setImageBitmap(thumbnailT);

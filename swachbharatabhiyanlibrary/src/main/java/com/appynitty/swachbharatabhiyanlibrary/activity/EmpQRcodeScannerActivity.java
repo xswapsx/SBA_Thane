@@ -469,7 +469,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
         if (validSubmitId(houseid.toLowerCase())) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                takePhotoImageViewOnClick();
+                takeQRsPhoto();
             }
 //            showActionPopUp(houseid);
 
@@ -568,7 +568,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
         if (validSubmitId(result.getContents().toLowerCase())) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                takePhotoImageViewOnClick();
+                takeQRsPhoto();
             }
 //            showActionPopUp(houseid);
 
@@ -832,7 +832,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
     }
 
 
-    private void takePhotoImageViewOnClick() {
+    private void takeQRsPhoto() {
 //        hideQR();
 
         setContentView(R.layout.layout_blank);

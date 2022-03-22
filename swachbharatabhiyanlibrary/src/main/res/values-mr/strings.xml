@@ -301,7 +301,7 @@
     <string name="segregated_bifurcated_types">विभक्त विभाजक प्रकार</string>
     <string name="segregated">वेगळे केले</string>
     <string name="change_user_type">वापरकर्ता प्रकार बदला</string>
-    <string name="saved_successfully">यशस्वीरित्या सबमिट केले</string>
+    <string name="cleaned_successful">सफाई सफलतापूर्वक पूर्ण</string>
     <string name="turning_on_the_gps_n_please_wait">जीपीएस चालू करत आहे\nकृपया थांबा…</string>
     <string name="validate_multiselection">किमान एक निवड अनिवार्य आहे!</string>
 
