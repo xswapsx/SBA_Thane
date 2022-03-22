@@ -97,6 +97,7 @@ public class SyncOfflineAdapterClass {
         /*mod by swapnil*/
         String req_status = "";
         Log.e(SyncOfflineAdapterClass.class.getSimpleName(), results.get(0).getMessage());
+        AUtils.warning(mContext,results.get(0).getMessage(),1000*60);
         for (int i = 0; i < results.size(); i++) {
             req_status = results.get(i).getStatus();
             if (req_status.equals(AUtils.STATUS_ERROR)) {

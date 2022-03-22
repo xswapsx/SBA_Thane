@@ -20,6 +20,7 @@ import java.util.List;
 
 /**
  * Created by Ayan Dey on 25/10/18.
+ * Updated by Rahul on 08/02/22.
  */
 
 public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkHistory> {

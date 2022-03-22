@@ -1465,7 +1465,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
     private void showGarbageTypePopUp(String houseId, String CType) {  //Swapnil
 
-        Log.e(TAG, "showOfflinePopup: CType= " + CType + " HouseId: " + houseId);
+        Log.e(TAG, "showOfflinePopup: CType= " + CType + " HouseId: " + houseId );
 
         boolean b = CType.matches("RSW") || CType.matches("RBW") || CType.matches("R");
 
@@ -1551,7 +1551,14 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         }
 
         if (garbageType.equals("-1")) {
-            houseTitle.setText(getResources().getString(R.string.house_id_txt));
+            if (EmpType.matches("S")){
+                houseTitle.setText(getResources().getString(R.string.street_sweep_id_txt));
+            }else if (EmpType.matches("L")){
+                houseTitle.setText(getResources().getString(R.string.liquid_waste_id_txt));
+            }else {
+                houseTitle.setText(getResources().getString(R.string.house_id_txt));
+                //houseTitle.setText(value);
+            }
         } else {
             houseTitle.setText(value);
         }
