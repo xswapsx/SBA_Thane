@@ -49,7 +49,7 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
     private List<QrLocationPojo> locationPojoList;
     private Gson gson;
     private AlertDialog alertDialog;
-    private int houseCount, dyCount, ssCount, lwcCount, resNCollectionC, resBCollectionC, resSCollectionC, commercialCollectionC, cadCollectionC, hortCollectionC,ctptCollectionC,swmCollectionC;
+    private int houseCount, dyCount, ssCount, lwcCount, resNCollectionC, resBCollectionC, resSCollectionC, commercialCollectionC, cadCollectionC, hortCollectionC, ctptCollectionC, swmCollectionC;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -164,9 +164,11 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
                     ssCount++;
                 } else if (refId.substring(0, 2).matches("^[CcPp]+$")) {
                     commercialCollectionC++;
-                }else if (refId.substring(0, 3).matches("^[CcTtPpTt]+$")) {
+                } else if (refId.substring(0, 3).matches("^[CcTtPpTt]+$")) {
                     ctptCollectionC++;
-                }else if (refId.substring(0, 2).matches("^[SsWwMm]+$")) {
+                } else if (refId.substring(0, 3).matches("^[TtMmCc]+$")) {
+                    ctptCollectionC++;
+                } else if (refId.substring(0, 2).matches("^[SsWwMm]+$")) {
                     swmCollectionC++;
                 }
             }

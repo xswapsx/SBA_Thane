@@ -102,7 +102,7 @@ public class EmpInflateOfflineHistoryAdapter extends ArrayAdapter<EmpOfflineColl
         month.setText(AUtils.extractMonthEmp(item.getDate()));
 
         liNormalBuildingCBox.setVisibility(View.VISIBLE);
-        txtResC.setText(item.getResNCollection());
+        txtResC.setText(item.getHouseCount());
         txtResBC.setText(item.getResBCollection());
         liResSlumCommercialCBox.setVisibility(View.VISIBLE);
         liSlumCBox.setVisibility(View.VISIBLE);

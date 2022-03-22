@@ -229,7 +229,8 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         if (AUtils.isInternetAvailable()) {
             AUtils.hideSnackBar();
         } else {
-            AUtils.showSnackBar(findViewById(R.id.parent));
+//            AUtils.showSnackBar(findViewById(R.id.parent));
+            Toast.makeText(mContext, getResources().getString(R.string.no_internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 
