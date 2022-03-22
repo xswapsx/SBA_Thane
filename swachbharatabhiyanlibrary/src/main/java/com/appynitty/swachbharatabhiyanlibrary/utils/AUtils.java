@@ -9,7 +9,10 @@ import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ImageDecoder;
+import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -819,6 +822,37 @@ public class AUtils extends CommonUtils {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return telephonyManager.getDeviceId();
     }
+
+    public static Bitmap writeOnImage(String mDate, String mId, String mPath) {
+
+        Bitmap bm = BitmapFactory.decodeFile(mPath);
+        Bitmap mutableBitmap = bm.copy(Bitmap.Config.ARGB_8888, true);
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setColor(Color.CYAN);
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setTextSize(10);
+
+
+        Canvas canvas = new Canvas(mutableBitmap);
+
+        canvas.drawText(mDate, 100, 245, paint);
+        canvas.drawText("ID: " + mId, 100, 225, paint);
+//        canvas.drawCircle(50, 50, 10, paint);
+
+        return mutableBitmap;
+    }
+
+    public static String getDateAndTime() {
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm", Locale.getDefault());
+        String formattedDate = df.format(c);
+
+        return formattedDate;
+    }
+
 
     /** Created by Swapnil */
     public static void gpsStatusCheck(Context ctx) {

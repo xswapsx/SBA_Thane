@@ -3,14 +3,24 @@ package com.appynitty.swachbharatabhiyanlibrary.activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.hardware.Camera;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.provider.Settings;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +40,7 @@ import androidx.core.app.ActivityCompat;
 import com.appynitty.retrofitconnectionlibrary.pojos.ResultPojo;
 import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.connection.EmpQrLocationAdapterClass;
+import com.appynitty.swachbharatabhiyanlibrary.dialogs.ChooseActionPopUp;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.EmpGarbageTpyePopUp;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.EmpSWMTypePopUpDialog;
 import com.appynitty.swachbharatabhiyanlibrary.dialogs.ToiletTypePopUp;
@@ -43,8 +54,13 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.riaylibrary.custom_component.MyProgressDialog;
 import com.riaylibrary.utils.LocaleHelper;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Objects;
 
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
@@ -62,12 +78,12 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
     private TextInputLayout idIpLayout;
     private AutoCompleteTextView idAutoComplete;
     private RadioGroup collectionRadioGroup;
-    private String radioSelection, cType, swmType, toiletType;
+    private String radioSelection, cType, swmType, toiletType, mHouse_id, mImagePath, encodedImage;
     private Button submitBtn, permissionBtn;
     private View contentView;
     private Boolean isScanQr;
-//    private ChooseActionPopUp chooseActionPopUp;
-
+    private ChooseActionPopUp chooseActionPopUp;
+    private static final int REQUEST_CAMERA = 22;
     private EmpGarbageTpyePopUp empGarbageTpyePopUp;
     /******** Rahul Rokade 02-21_22 ********/
     private EmpSWMTypePopUpDialog empSWMTypePopUpDialog;
@@ -77,7 +93,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
     private EmpSyncServerRepository empSyncServerRepository;
     private Gson gson;
-
+    Camera mCamera;
     private MyProgressDialog myProgressDialog;
     private ArrayList<Integer> mSelectedIndices;
 
@@ -227,11 +243,11 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
     protected void generateId() {
         setContentView(R.layout.emp_activity_qrcode_scanner);
         toolbar = findViewById(R.id.toolbar);
-
+        mHouse_id = "";
         mContext = EmpQRcodeScannerActivity.this;
         AUtils.currentContextConstant = mContext;
         myProgressDialog = new MyProgressDialog(mContext, R.drawable.progress_bar, false);
-
+        chooseActionPopUp = new ChooseActionPopUp(mContext);
         empSyncServerRepository = new EmpSyncServerRepository(mContext);
         gson = new Gson();
 
@@ -375,10 +391,10 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
             }
         });
 
-       /* chooseActionPopUp.setChooseActionPopUpDialogListener(new ChooseActionPopUp.ChooseActionPopUpDialogListener() {
+        chooseActionPopUp.setChooseActionPopUpDialogListener(new ChooseActionPopUp.ChooseActionPopUpDialogListener() {
             @Override
-            public void onChooseActionPopUpDismissed(@Nullable Object data, int actionType) {
-                String mId = (String) data;
+            public void onChooseActionPopUpDismissed(String data, int actionType) {
+                String mId = data;
                 switch (actionType) {
                     case ChooseActionPopUp.ADD_DETAILS_BUTTON_CLICKED:
                         if (AUtils.isInternetAvailable() && AUtils.isConnectedFast(mContext)) {
@@ -394,11 +410,13 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
                         }
                         break;
                     case ChooseActionPopUp.SKIP_BUTTON_CLICKED:
-                        submitOnSkip(mId);
+//                        submitOnSkip(mId, cType);
+                        showActionPopUp(mId);
+                        Log.e(TAG, "onChooseActionPopUpDismissed: " + mId);
                         break;
                 }
             }
-        });*/
+        });
 
         empQrLocationAdapter.setEmpQrLocationListner(new EmpQrLocationAdapterClass.EmpQrLocationListner() {
             @Override
@@ -445,11 +463,14 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
     }
 
     private void submitQRcode(String houseid) {
-
+        Log.e(TAG, "submitQRcode: " + houseid);
+        mHouse_id = houseid;
 
         if (validSubmitId(houseid.toLowerCase())) {
-
-            showActionPopUp(houseid);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                takePhotoImageViewOnClick();
+            }
+//            showActionPopUp(houseid);
 
         } else {
             AUtils.warning(EmpQRcodeScannerActivity.this, mContext.getResources().getString(R.string.qr_error));
@@ -473,7 +494,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
                 || id.matches("dysba[0-9]+$")
                 || id.matches("cpsba[0-9]+$")
                 || id.matches("ctptsba[0-9]+$")
-                || id.substring(0,3).matches("tmc")
+                || id.substring(0, 3).matches("tmc")
                 || id.matches("swmsba[0-9]+$");
 //            return id.matches("hpsba[0-9]+$");
                 /*|| id.matches("gpsba[0-9]+$")
@@ -539,7 +560,21 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
     public void handleResult(Result result) {
         stopCamera();
-        showActionPopUp(result.getContents());
+//        showActionPopUp(result.getContents());
+
+        Log.e(TAG, "submitQRcode: " + result.getContents());
+        mHouse_id = result.getContents();
+
+        if (validSubmitId(result.getContents().toLowerCase())) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                takePhotoImageViewOnClick();
+            }
+//            showActionPopUp(houseid);
+
+        } else {
+            AUtils.warning(EmpQRcodeScannerActivity.this, mContext.getResources().getString(R.string.qr_error));
+            restartPreview();
+        }
 //        restartPreview();
     }
 
@@ -643,7 +678,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
             qrLocationPojo.setGcType(getGCType(id));
             qrLocationPojo.setDate(AUtils.getServerDateTime());
-
+            qrLocationPojo.setQRCodeImage("data:image/jpeg;base64," + encodedImage);
             startSubmitQRAsyncTask(qrLocationPojo);
         } catch (Exception e) {
             e.printStackTrace();
@@ -700,6 +735,11 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
         if (requestCode == AUtils.ADD_DETAILS_REQUEST_KEY && resultCode == RESULT_OK) {
             finish();
+        } else if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REQUEST_CAMERA) {
+                mCamera = Camera.open(0);
+                onCaptureImageResult(data);
+            }
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -777,4 +817,133 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         AUtils.success(mContext, "Uploaded successfully");
         finish();
     }
+
+    private void showImagePopUp(String id) {
+
+        if (validSubmitId(id.toLowerCase())) {
+            chooseActionPopUp.setData(id, mImagePath);
+            chooseActionPopUp.setCanceledOnTouchOutside(false);
+            chooseActionPopUp.show();
+
+
+        } else
+            AUtils.error(mContext, getResources().getString(R.string.invalid_qr_error));
+    }
+
+
+    private void takePhotoImageViewOnClick() {
+//        hideQR();
+
+        setContentView(R.layout.layout_blank);
+        /*Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
+        Camera.open(0);*/
+
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra("android.intent.extras.CAMERA_FACING", 0);
+        /*intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+        intent.putExtra(MediaStore.QUERY_ARG_RELATED_URI, 1);*/
+        startActivityForResult(intent, REQUEST_CAMERA);
+    }
+
+    private void onCaptureImageResult(Intent data) {
+
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        File destination;
+
+        OutputStream fos;
+        try {
+
+            final File dir;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {  //added by swapnil for android version 10 and above
+
+                ContentResolver resolver = mContext.getContentResolver();
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, System.currentTimeMillis() + ".jpg");
+                contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
+                contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "Gram Panchayat");
+                Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+                fos = resolver.openOutputStream(imageUri);
+
+                thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                destination = new File(String.valueOf(contentValues), System.currentTimeMillis() + ".jpg");
+
+            } else {
+
+                dir = new File(Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_DCIM), "Gram Panchayat");
+
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+                destination = new File(dir, System.currentTimeMillis() + ".jpg");
+                fos = new FileOutputStream(destination);
+                thumbnail.compress(Bitmap.CompressFormat.PNG, 500, fos);
+            }
+
+            fos.flush();
+            fos.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            AUtils.error(mContext, "Unable to add image", Toast.LENGTH_SHORT);
+
+        }
+
+        Uri tempUri;
+        String finalPath;
+        tempUri = getImageUri(getApplicationContext(), thumbnail);
+        finalPath = getRealPathFromURI(tempUri);
+        Log.e(TAG, "onCaptureImageResult: imagePath:- " + finalPath);
+        mImagePath = finalPath;
+        showImagePopUp(mHouse_id);
+
+        Bitmap bm = BitmapFactory.decodeFile(finalPath);
+
+        Bitmap newBitmap = AUtils.writeOnImage(AUtils.getDateAndTime(), mHouse_id, mImagePath);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        newBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos); // bm is the bitmap object
+        byte[] byteArrayImage = baos.toByteArray();
+
+        //Bitmap sizeImage = AUtils.resizeImage(newBitmap, 500,true);
+      /* Bitmap sizeImage = AUtils.getResizedBitmapNew(newBitmap, 300,466);
+        Bitmap shadowImage32 = sizeImage.copy(ARGB_8888, true);*/
+        encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+
+//        encodedImage = BitMapToString(shadowImage32);
+
+        Log.d(TAG, "onCaptureImageResult: encodedImage:- " + encodedImage);
+
+    }
+
+    /**
+     * Added by swapnil 22-12-21
+     */
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "IMG_" + Calendar.getInstance().getTime(), null);
+        return Uri.parse(path);
+    }
+
+    public String getRealPathFromURI(Uri uri) {
+        String path = "";
+        if (getContentResolver() != null) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                path = cursor.getString(idx);
+                cursor.close();
+            }
+        }
+        return path;
+    }
+
+    /**
+     * End of addition
+     */
 }

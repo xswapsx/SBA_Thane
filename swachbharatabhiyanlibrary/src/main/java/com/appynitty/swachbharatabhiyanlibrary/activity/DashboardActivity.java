@@ -896,13 +896,21 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
                     vehicleStatus.setText("");
                 }
             } else {*/
-            if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).equals("CT")) {
-                vehicleStatus.setText("");
+
+            if (Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE)) {
+                if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).equals("CT")) {
+                    vehicleStatus.setText("");
+                } else {
+                    vehicleStatus.setText(String.format("%s%s %s %s%s", this.getResources().getString(R.string.opening_round_bracket), vehicleType,
+                            this.getResources().getString(R.string.hyphen), attendancePojo.getVehicleNumber(),
+                            this.getResources().getString(R.string.closing_round_bracket)));
+                }
             } else {
                 vehicleStatus.setText(String.format("%s%s %s %s%s", this.getResources().getString(R.string.opening_round_bracket), vehicleType,
                         this.getResources().getString(R.string.hyphen), attendancePojo.getVehicleNumber(),
                         this.getResources().getString(R.string.closing_round_bracket)));
             }
+
 //            }
 
         } else {
@@ -1006,13 +1014,17 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
             }
 
             if (!AUtils.isNullString(Prefs.getString(AUtils.VEHICLE_NO, ""))) {
-               /* if (Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE)) {
+                /*if (Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE)) {
                     if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).equals("CT")) {
                         vehicleStatus.setText("");
                     }
                 } else {*/
-                if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).equals("CT")) {
-                    vehicleStatus.setText("");
+                if (Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE)) {
+                    if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).equals("CT")) {
+                        vehicleStatus.setText("");
+                    } else {
+                        vehicleStatus.setText(String.format("%s%s %s %s%s", this.getResources().getString(R.string.opening_round_bracket), vehicleName, this.getResources().getString(R.string.hyphen), Prefs.getString(AUtils.VEHICLE_NO, ""), this.getResources().getString(R.string.closing_round_bracket)));
+                    }
                 } else {
                     vehicleStatus.setText(String.format("%s%s %s %s%s", this.getResources().getString(R.string.opening_round_bracket), vehicleName, this.getResources().getString(R.string.hyphen), Prefs.getString(AUtils.VEHICLE_NO, ""), this.getResources().getString(R.string.closing_round_bracket)));
                 }

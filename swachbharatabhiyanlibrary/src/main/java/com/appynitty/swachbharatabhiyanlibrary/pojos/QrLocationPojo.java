@@ -22,6 +22,15 @@ public class QrLocationPojo {
     private String mobileno;
     private String date;
     private String OfflineID;
+    private String QRCodeImage;
+
+    public String getQRCodeImage() {
+        return QRCodeImage;
+    }
+
+    public void setQRCodeImage(String QRCodeImage) {
+        this.QRCodeImage = QRCodeImage;
+    }
 
     public String getAppId() {
         return appId;
