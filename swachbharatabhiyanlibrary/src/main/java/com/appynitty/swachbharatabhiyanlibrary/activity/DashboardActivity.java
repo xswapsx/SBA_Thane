@@ -374,14 +374,14 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
                 garbageAndCTPTEmpDialog.show();
         }*/
 
-        db = AppDatabase.getDbInstance(this.getApplicationContext());
+        /*db = AppDatabase.getDbInstance(this.getApplicationContext());
 
         if (AUtils.isNetworkAvailable(AUtils.mainApplicationConstant)) {
             db.houseDao().deleteAllHouse();
             houseEntity = new HouseEntity();
             houseCount = Prefs.getString(AUtils.PREFS.HOUSE_COUNT, null);
             getHouseDetails(houseCount);
-        }
+        }*/
 
         getPermission();
         generateId();
