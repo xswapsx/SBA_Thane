@@ -712,6 +712,10 @@ public class QRcodeScannerDemoActivity extends AppCompatActivity implements ZBar
             } else if (houseid.substring(0, 2).matches("^[SsSs]+$")) {
 //                AUtils.warning(QRcodeScannerActivity.this, "For scanning Liquid Waste Collection QR,\nkindly login with liquid waste cleaning id", 16);
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.ssc_qr_warning), null);
+            } else if (houseid.substring(0, 2).matches("^[CcPp]+$")) {
+//                AUtils.warning(QRcodeScannerActivity.this, "For scanning Liquid Waste Collection QR,\nkindly login with liquid waste cleaning id", 16);
+//                AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.ssc_qr_warning), null);
+                startSubmitQRAsyncTask(houseid, -1, "12", null);
             } else {
                 AUtils.warning(QRcodeScannerDemoActivity.this, mContext.getResources().getString(R.string.qr_error));
                 restartPreview();
@@ -1158,6 +1162,8 @@ public class QRcodeScannerDemoActivity extends AppCompatActivity implements ZBar
             entity.setGcType("4");
         } else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[SsSs]+$")) {
             entity.setGcType("5");
+        } else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
+            entity.setGcType("12");
         }
         entity.setNote(garbageCollectionPojo.getComment());
         entity.setGarbageType(String.valueOf(garbageCollectionPojo.getGarbageType()));
