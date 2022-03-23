@@ -318,9 +318,9 @@ public class CandDActivity extends AppCompatActivity {
         imagePojo = new Gson().fromJson(
                 Prefs.getString(AUtils.PREFS.IMAGE_POJO, null), type);
 
-        if (Prefs.contains(AUtils.BEFORE_IMAGE)) {
-            Bitmap myBitmap = BitmapFactory.decodeFile(Prefs.getString(AUtils.BEFORE_IMAGE, null));
-            Log.e(TAG, "initData: before Image:- " + Prefs.getString(AUtils.BEFORE_IMAGE, null));
+        if (Prefs.contains(AUtils.C_AND_D_BEFORE_IMAGE)) {
+            Bitmap myBitmap = BitmapFactory.decodeFile(Prefs.getString(AUtils.C_AND_D_BEFORE_IMAGE, null));
+            Log.e(TAG, "initData: before Image:- " + Prefs.getString(AUtils.C_AND_D_BEFORE_IMAGE, null));
             beforeImage.setImageBitmap(myBitmap);
         }
 //        if (!AUtils.isNull(imagePojo)) {
@@ -477,7 +477,7 @@ public class CandDActivity extends AppCompatActivity {
                 finalPath = getRealPathFromURI(tempUri);
                 beforeImageFilePath = finalPath; //setting image1 path that will be set in imageDTO.
 
-                Prefs.putString(AUtils.BEFORE_IMAGE, beforeImageFilePath);
+                Prefs.putString(AUtils.C_AND_D_BEFORE_IMAGE, beforeImageFilePath);
                 AUtils.success(mContext, "Before image saved successfully, please complete your work then upload after photos, thank you.", Toast.LENGTH_SHORT);
 
                 break;
@@ -488,7 +488,7 @@ public class CandDActivity extends AppCompatActivity {
                 finalPath = getRealPathFromURI(tempUri);
                 afterImageFilePath = finalPath; //setting image2 path that will be set in imageDTO.
 
-                Prefs.putString(AUtils.AFTER_IMAGE, afterImageFilePath);
+                Prefs.putString(AUtils.C_AND_D_AFTER_IMAGE, afterImageFilePath);
 
 
                 afterImage.setImageBitmap(thumbnailT);

@@ -79,7 +79,7 @@ public class EmpInflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.Wo
             viewHolder.liDumpHouseCBox.setVisibility(View.GONE);
 
             viewHolder.liDumpColBox = view.findViewById(R.id.liDumpColBox);
-            viewHolder.liDumpColBox.setVisibility(View.INVISIBLE);
+            viewHolder.liDumpColBox.setVisibility(View.GONE);
             viewHolder.txtDumpC = view.findViewById(R.id.dy_collection);
 
             viewHolder.liHouseColBox = view.findViewById(R.id.liHouseColBox);

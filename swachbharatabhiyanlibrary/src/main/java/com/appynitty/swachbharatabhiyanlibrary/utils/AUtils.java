@@ -182,6 +182,9 @@ public class AUtils extends CommonUtils {
     public static final String AFTER_IMAGE = "imageA";
     public static final String C_AND_D_BEFORE_IMAGE = "candd_imageB";
     public static final String C_AND_D_AFTER_IMAGE = "candd_imageA";
+    public static final String HORTI_BEFORE_IMAGE = "horti_imageB";
+    public static final String HORTI_AFTER_IMAGE = "horti_imageA";
+
 
     private static SyncServerAdapterClass syncServer;
     private static ShareLocationAdapterClass shareLocationAdapterClass;

@@ -2,14 +2,20 @@ package com.appynitty.swachbharatabhiyanlibrary.activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
@@ -35,9 +41,12 @@ import com.google.gson.reflect.TypeToken;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.riaylibrary.utils.LocaleHelper;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Type;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class TakePhotoActivity extends AppCompatActivity {
@@ -308,7 +317,11 @@ public class TakePhotoActivity extends AppCompatActivity {
         imagePojo = new Gson().fromJson(
                 Prefs.getString(AUtils.PREFS.IMAGE_POJO, null), type);
 
-
+        if (Prefs.contains(AUtils.BEFORE_IMAGE)) {
+            Bitmap myBitmap = BitmapFactory.decodeFile(Prefs.getString(AUtils.BEFORE_IMAGE, null));
+            Log.e(TAG, "initData: before Image:- " + Prefs.getString(AUtils.BEFORE_IMAGE, null));
+            beforeImage.setImageBitmap(myBitmap);
+        }
 //        if (!AUtils.isNull(imagePojo)) {
 //
 //            if(!AUtils.isNullString(imagePojo.getImage1())) {
@@ -384,7 +397,7 @@ public class TakePhotoActivity extends AppCompatActivity {
 
     private void onCaptureImageResult(Intent data) {
 
-        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        /*Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
         File destination = null;
         try {
 
@@ -405,15 +418,84 @@ public class TakePhotoActivity extends AppCompatActivity {
 
             e.printStackTrace();
             AUtils.error(mContext, "Unable to add image", Toast.LENGTH_SHORT);
+        }*/
+
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        File destination = null;
+
+        OutputStream fos;
+        try {
+
+            final File dir;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {  //added by swapnil for android version 10 and above
+
+                ContentResolver resolver = mContext.getContentResolver();
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, System.currentTimeMillis() + ".jpg");
+                contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
+                contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "Gram Panchayat");
+                Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+                fos = resolver.openOutputStream(imageUri);
+                thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                destination = new File(String.valueOf(contentValues), System.currentTimeMillis() + ".jpg");
+                Log.e(TAG, "onCaptureImageResult: thumbnail" + thumbnail);
+
+            } else {
+
+                dir = new File(Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_DCIM), "Gram Panchayat");
+
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+                destination = new File(dir, System.currentTimeMillis() + ".jpg");
+                fos = new FileOutputStream(destination);
+                thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                Log.e(TAG, "onCaptureImageResult: thumbnail" + thumbnail);
+            }
+
+            fos.flush();
+            fos.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            AUtils.error(mContext, "Unable to add image", Toast.LENGTH_SHORT);
+
         }
 
         switch (imageViewNo) {
 
             case 1:
+                /*beforeImage.setImageBitmap(thumbnail);
+                beforeImageFilePath = destination.getAbsolutePath();*/
+
+                Uri tempUri;
+                String finalPath;
+
                 beforeImage.setImageBitmap(thumbnail);
-                beforeImageFilePath = destination.getAbsolutePath();
+                tempUri = getImageUri(getApplicationContext(), thumbnail);
+
+                finalPath = getRealPathFromURI(tempUri);
+                beforeImageFilePath = finalPath; //setting image1 path that will be set in imageDTO.
+
+                Prefs.putString(AUtils.BEFORE_IMAGE, beforeImageFilePath);
+//                AUtils.success(mContext, "Before image saved successfully, please complete your work then upload after photos, thank you.", Toast.LENGTH_SHORT);
                 break;
             case 2:
+                /*afterImage.setImageBitmap(thumbnail);
+                afterImageFilePath = destination.getAbsolutePath();*/
+
+                afterImage.setImageBitmap(thumbnail);
+                tempUri = getImageUri(getApplicationContext(), thumbnail);
+
+                finalPath = getRealPathFromURI(tempUri);
+                afterImageFilePath = finalPath; //setting image2 path that will be set in imageDTO.
+
+                Prefs.putString(AUtils.AFTER_IMAGE, afterImageFilePath);
+
+
                 afterImage.setImageBitmap(thumbnail);
                 afterImageFilePath = destination.getAbsolutePath();
                 break;
@@ -459,5 +541,26 @@ public class TakePhotoActivity extends AppCompatActivity {
         } else {
             return false;
         }
+    }
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "IMG_" + Calendar.getInstance().getTime(), null);
+        return Uri.parse(path);
+    }
+
+    public String getRealPathFromURI(Uri uri) {
+        String path = "";
+        if (getContentResolver() != null) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                path = cursor.getString(idx);
+                cursor.close();
+            }
+        }
+        return path;
     }
 }

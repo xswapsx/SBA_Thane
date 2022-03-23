@@ -1447,6 +1447,9 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                     entity.setGpBeforImage(AUtils.getEncodedImage(imagePojo.getImage1(), this));
                     entity.setGpAfterImage(AUtils.getEncodedImage(imagePojo.getImage2(), this));
                     Log.e(TAG, "Images are there!");
+                } else if (!Prefs.getString(AUtils.BEFORE_IMAGE, null).isEmpty() || !AUtils.isNullString(Prefs.getString(AUtils.BEFORE_IMAGE, null))) {
+                    entity.setGpBeforImage(AUtils.getEncodedImage(Prefs.getString(AUtils.BEFORE_IMAGE, null), this));
+                    entity.setGpAfterImage(AUtils.getEncodedImage(Prefs.getString(AUtils.AFTER_IMAGE, null), this));
                 } else {
                     entity.setGpBeforImage("");
                     entity.setGpAfterImage("");
@@ -1459,13 +1462,14 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         }
 
         syncOfflineRepository.insertCollection(entity);
-
+        Prefs.remove(AUtils.BEFORE_IMAGE);
+        Prefs.remove(AUtils.AFTER_IMAGE);
         confirmationDialog(garbageCollectionPojo.getId(), String.valueOf(garbageCollectionPojo.getGarbageType()), "", "");
     }
 
     private void showGarbageTypePopUp(String houseId, String CType) {  //Swapnil
 
-        Log.e(TAG, "showOfflinePopup: CType= " + CType + " HouseId: " + houseId );
+        Log.e(TAG, "showOfflinePopup: CType= " + CType + " HouseId: " + houseId);
 
         boolean b = CType.matches("RSW") || CType.matches("RBW") || CType.matches("R");
 
@@ -1551,11 +1555,11 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         }
 
         if (garbageType.equals("-1")) {
-            if (EmpType.matches("S")){
+            if (EmpType.matches("S")) {
                 houseTitle.setText(getResources().getString(R.string.street_sweep_id_txt));
-            }else if (EmpType.matches("L")){
+            } else if (EmpType.matches("L")) {
                 houseTitle.setText(getResources().getString(R.string.liquid_waste_id_txt));
-            }else {
+            } else {
                 houseTitle.setText(getResources().getString(R.string.house_id_txt));
                 //houseTitle.setText(value);
             }
