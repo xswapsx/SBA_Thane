@@ -1560,7 +1560,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
             } else if (EmpType.matches("L")) {
                 houseTitle.setText(getResources().getString(R.string.liquid_waste_id_txt));
             } else {
-                houseTitle.setText(getResources().getString(R.string.house_id_txt));
+               // houseTitle.setText(getResources().getString(R.string.house_id_txt));  // removed by rahul : swl overlap
                 //houseTitle.setText(value);
             }
         } else {

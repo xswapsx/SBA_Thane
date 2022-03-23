@@ -636,14 +636,15 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
                     startActivity(new Intent(DashboardActivity.this, PrivacyPage.class));
 
                 } else if (itemId == R.id.changeUserType) {
-                    if (empType.matches("R")){
-                        garbageAndCTPTEmpDialog.show();
-                    }else if (empType.matches("S")){
-                        AUtils.error(mContext,"Sorry this feature not available street mode",1000*60);
+                    // added by rahul
+                    if (empType.matches("S")){
+                        AUtils.error(mContext,"Sorry this feature not available street mode",1000*120);
                     }else if (empType.matches("L")){
-                        AUtils.error(mContext,"Sorry this feature not available liquid mode",1000*60);
+                        AUtils.error(mContext,"Sorry this feature not available liquid mode",1000*120);
+                    }else {
+                        garbageAndCTPTEmpDialog.show();
                     }
-                   // garbageAndCTPTEmpDialog.show();
+                    //garbageAndCTPTEmpDialog.show();
                 }
 
             }
