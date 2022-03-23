@@ -133,6 +133,8 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
     private boolean isDeviceMatch = false;
     GarbageAndCTPTEmpDialog garbageAndCTPTEmpDialog;
 
+    private boolean isFabChecked = true;
+
     AppDatabase db;
     HouseEntity houseEntity;
     ArrayList<HouseCTypePojo> houseList;
@@ -615,7 +617,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
         fab.addOnMenuItemClickListener(new FabSpeedDial.OnMenuItemClickListener() {
             @Override
             public void onMenuItemClick(FloatingActionButton miniFab, @Nullable TextView label, int itemId) {
-
+                Menu myMenu = null;
 
                 if (itemId == R.id.action_change_language) {
                     changeLanguage();
@@ -634,7 +636,14 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
                     startActivity(new Intent(DashboardActivity.this, PrivacyPage.class));
 
                 } else if (itemId == R.id.changeUserType) {
-                    garbageAndCTPTEmpDialog.show();
+                    if (empType.matches("R")){
+                        garbageAndCTPTEmpDialog.show();
+                    }else if (empType.matches("S")){
+                        AUtils.error(mContext,"Sorry this feature not available street mode",1000*60);
+                    }else if (empType.matches("L")){
+                        AUtils.error(mContext,"Sorry this feature not available liquid mode",1000*60);
+                    }
+                   // garbageAndCTPTEmpDialog.show();
                 }
 
             }
