@@ -73,6 +73,7 @@ import java.util.Objects;
 import io.github.kobakei.materialfabspeeddial.FabSpeedDial;
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
+
 /******  Rahul Rokade 24/01/22 **************/
 public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler, GarbageTypePopUp.GarbagePopUpDialogListener {
 
@@ -1183,6 +1184,9 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
                     entity.setGpBeforImage(AUtils.getEncodedImage(imagePojo.getImage1(), this));
                     entity.setGpAfterImage(AUtils.getEncodedImage(imagePojo.getImage2(), this));
                     Log.e(TAG, "Images are there!");
+                } else if (!Prefs.getString(AUtils.BEFORE_IMAGE, null).isEmpty() || !AUtils.isNullString(Prefs.getString(AUtils.BEFORE_IMAGE, null))) {
+                    entity.setGpBeforImage(AUtils.getEncodedImage(Prefs.getString(AUtils.BEFORE_IMAGE, null), this));
+                    entity.setGpAfterImage(AUtils.getEncodedImage(Prefs.getString(AUtils.AFTER_IMAGE, null), this));
                 } else {
                     entity.setGpBeforImage("");
                     entity.setGpAfterImage("");
@@ -1203,7 +1207,8 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
 //        mSyncServerRepository.insertSyncServerEntity(new Gson().toJson(entity, type)); //TODO
 
         syncOfflineRepository.insertCollection(entity);
-
+        Prefs.remove(AUtils.BEFORE_IMAGE);
+        Prefs.remove(AUtils.AFTER_IMAGE);
         showOfflinePopup(garbageCollectionPojo.getId(), entity.getGcType());
     }
 

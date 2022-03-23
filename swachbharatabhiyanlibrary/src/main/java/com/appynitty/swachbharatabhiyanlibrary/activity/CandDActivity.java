@@ -48,6 +48,7 @@ import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.util.Calendar;
 import java.util.Objects;
+
 /******  Rahul Rokade 24/01/22 **************/
 public class CandDActivity extends AppCompatActivity {
 
@@ -319,7 +320,7 @@ public class CandDActivity extends AppCompatActivity {
 
         if (Prefs.contains(AUtils.BEFORE_IMAGE)) {
             Bitmap myBitmap = BitmapFactory.decodeFile(Prefs.getString(AUtils.BEFORE_IMAGE, null));
-            Log.e(TAG, "initData: before Image:- "+ Prefs.getString(AUtils.BEFORE_IMAGE, null));
+            Log.e(TAG, "initData: before Image:- " + Prefs.getString(AUtils.BEFORE_IMAGE, null));
             beforeImage.setImageBitmap(myBitmap);
         }
 //        if (!AUtils.isNull(imagePojo)) {
@@ -396,41 +397,6 @@ public class CandDActivity extends AppCompatActivity {
     }
 
     private void onCaptureImageResult(Intent data) {
-
-        /*Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-        File destination = null;
-        try {
-
-//changes made by swapnil for android 11 image upload
-            File dir = new File(
-                    getExternalFilesDir(null).getAbsolutePath()
-                            + "/Gram Panchayat");
-
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-            destination = new File(dir, System.currentTimeMillis() + ".jpg");
-
-            FileOutputStream fOut = new FileOutputStream(destination);
-            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fOut);
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-            AUtils.error(mContext, "Unable to add image", Toast.LENGTH_SHORT);
-        }
-
-        switch (imageViewNo) {
-
-            case 1:
-                beforeImage.setImageBitmap(thumbnail);
-                beforeImageFilePath = destination.getAbsolutePath();
-                break;
-            case 2:
-                afterImage.setImageBitmap(thumbnail);
-                afterImageFilePath = destination.getAbsolutePath();
-                break;
-        }*/
 
         File destinationT = null;
         Bitmap thumbnailT = (Bitmap) data.getExtras().get("data");
