@@ -180,6 +180,8 @@ public class AUtils extends CommonUtils {
     public static final String WET_IMAGE = "image2";
     public static final String BEFORE_IMAGE = "imageB";
     public static final String AFTER_IMAGE = "imageA";
+    public static final String C_AND_D_BEFORE_IMAGE = "candd_imageB";
+    public static final String C_AND_D_AFTER_IMAGE = "candd_imageA";
 
     private static SyncServerAdapterClass syncServer;
     private static ShareLocationAdapterClass shareLocationAdapterClass;
