@@ -1240,7 +1240,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
         ownerName.setText(pojo);
         String value = "";
 
-        switch (garbageType) {
+        /*switch (garbageType) {
             case "1":
                 value = "House Id";
                 break;
@@ -1263,14 +1263,15 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
                 else if (EmpType.matches("N"))
                     value = "House Id";
                 break;
-            /*case "4":
+            *//*case "4":
                 value = "Liquid waste Id  ";
                 break;
             case "5":
                 value = "Street waste Id  ";
-                break;*/
-        }
-
+                break;*//*
+        }*/
+        value = getResources().getString(R.string.string_ctpt_waste_id);
+collectionStatus.setText(getResources().getString(R.string.cleaned_successful));
         houseTitle.setText(value);
 
         doneBtn.setOnClickListener(new View.OnClickListener() {

@@ -994,7 +994,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         return id.matches("swmsba[0-9]+$");
     }
 
-    private void showActionPopUp(String id, String cType, @Nullable final int garbageType, final String gcType) {
+    private void showActionPopUp(String id, String cType, @Nullable final int garbageType) {
 
         if (validSubmitId(id.toLowerCase())) {
             if (id.substring(0, 3).matches("^[SsWwMm]+$")) {
@@ -1010,7 +1010,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
     private void validateSubmitSWM(String houseid, String cType) {
         if (Prefs.getBoolean(AUtils.PREFS.IS_GT_FEATURE, false)) {
-            showActionPopUp(houseid, cType, -1, "SW");
+            showActionPopUp(houseid, cType, -1);
 
         } else {
             gcType = "1";
@@ -1464,6 +1464,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         syncOfflineRepository.insertCollection(entity);
         Prefs.remove(AUtils.BEFORE_IMAGE);
         Prefs.remove(AUtils.AFTER_IMAGE);
+        this.gcType = entity.getGcType();
         confirmationDialog(garbageCollectionPojo.getId(), String.valueOf(garbageCollectionPojo.getGarbageType()), "", "");
     }
 
@@ -1516,6 +1517,8 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
 
             case "1":
                 value = "House Id";
+                collectionStatus.setText(getResources().getString(R.string.garbage_collection_completed));
+
                 break;
 
             case "2":
@@ -1554,13 +1557,17 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
                 value = "Scanned Id  ";
         }
 
+        if (this.gcType.matches("9")){
+            value="Commercial id";
+        }
+        
         if (garbageType.equals("-1")) {
             if (EmpType.matches("S")) {
                 houseTitle.setText(getResources().getString(R.string.street_sweep_id_txt));
             } else if (EmpType.matches("L")) {
                 houseTitle.setText(getResources().getString(R.string.liquid_waste_id_txt));
             } else {
-               // houseTitle.setText(getResources().getString(R.string.house_id_txt));  // removed by rahul : swl overlap
+                // houseTitle.setText(getResources().getString(R.string.house_id_txt));  // removed by rahul : swl overlap
                 //houseTitle.setText(value);
             }
         } else {
