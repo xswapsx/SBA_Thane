@@ -440,7 +440,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
                         android:orientation="vertical"
-                        android:visibility="invisible">
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/dy_collection_lbl"
@@ -471,7 +471,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
                         android:orientation="vertical"
-                        android:visibility="invisible">
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/house_collection_lbl"

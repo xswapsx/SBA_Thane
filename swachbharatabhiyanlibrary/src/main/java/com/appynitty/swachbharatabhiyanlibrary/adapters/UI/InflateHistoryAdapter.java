@@ -92,10 +92,15 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
             //Ctpt and SLWM collection
             viewHolder.liCtptSwmCBox = view.findViewById(R.id.li_ctpt_swm_box);
             viewHolder.liCtptSwmCBox.setVisibility(View.GONE);
-            viewHolder.txtCtptC = view.findViewById(R.id.ctpt_collection);
-            viewHolder.txtSlwmC = view.findViewById(R.id.swm_collection);
-            viewHolder.slwmLayout = view.findViewById(R.id.slwm_layout);
+
             viewHolder.ctptLayout = view.findViewById(R.id.ctptLayout);
+            viewHolder.ctptLayout.setVisibility(View.GONE);
+            viewHolder.txtCtptC = view.findViewById(R.id.ctpt_collection);
+
+            viewHolder.slwmLayout = view.findViewById(R.id.slwm_layout);
+            viewHolder.slwmLayout.setVisibility(View.GONE);
+            viewHolder.txtSlwmC = view.findViewById(R.id.swm_collection);
+
             view.setTag(viewHolder);
 
         } else {

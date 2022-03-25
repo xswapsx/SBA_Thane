@@ -848,6 +848,50 @@ public class AUtils extends CommonUtils {
         return mutableBitmap;
     }
 
+    final static int COMPRESSED_RATIO = 13;
+    final static int perPixelDataSize = 4;
+    public byte[] getJPGLessThanMaxSize(Bitmap image, int maxSize){
+        int maxPixelCount = maxSize *1024 * COMPRESSED_RATIO / perPixelDataSize;
+        int imagePixelCount = image.getWidth() * image.getHeight();
+        Bitmap reducedBitmap;
+        // Adjust Bitmap Dimensions if necessary.
+        if(imagePixelCount > maxPixelCount) reducedBitmap = getResizedBitmapLessThanMaxSize(image, maxSize);
+        else reducedBitmap = image;
+
+        float compressedRatio = 1;
+        byte[] resultBitmap;
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        int jpgQuality = 100;
+        // Adjust Quality until file size is less than maxSize.
+        do{
+            reducedBitmap.compress(Bitmap.CompressFormat.JPEG, jpgQuality, outStream);
+            resultBitmap = outStream.toByteArray();
+            compressedRatio = resultBitmap.length / (reducedBitmap.getWidth() * reducedBitmap.getHeight() * perPixelDataSize);
+            if(compressedRatio > (COMPRESSED_RATIO-1)){
+                jpgQuality -= 1;
+            }else if(compressedRatio > (COMPRESSED_RATIO*0.8)){
+                jpgQuality -= 5;
+            }else{
+                jpgQuality -= 10;
+            }
+        }while(resultBitmap.length > (maxSize * 1024));
+        return resultBitmap;
+    }
+
+    public Bitmap getResizedBitmapLessThanMaxSize(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+        float bitmapRatio = (float)width / (float) height;
+
+        // For uncompressed bitmap, the data size is:
+        // H * W * perPixelDataSize = H * H * bitmapRatio * perPixelDataSize
+        //
+        height = (int) Math.sqrt(maxSize * 1024 * COMPRESSED_RATIO / perPixelDataSize / bitmapRatio);
+        width = (int) (height * bitmapRatio);
+        Bitmap reduced_bitmap = Bitmap.createScaledBitmap(image, width, height, true);
+        return reduced_bitmap;
+    }
+
     public static String getDateAndTime() {
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);

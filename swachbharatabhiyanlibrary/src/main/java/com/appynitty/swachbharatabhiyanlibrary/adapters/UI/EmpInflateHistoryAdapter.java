@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * Created by Ayan Dey on 25/10/18.
+ * update UI and this file :
  */
 
 public class EmpInflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkHistory> {
@@ -83,14 +84,19 @@ public class EmpInflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.Wo
             viewHolder.txtDumpC = view.findViewById(R.id.dy_collection);
 
             viewHolder.liHouseColBox = view.findViewById(R.id.liHouseColBox);
-            viewHolder.liHouseColBox.setVisibility(View.INVISIBLE);
+            viewHolder.liHouseColBox.setVisibility(View.GONE);
             viewHolder.txtHouseC = view.findViewById(R.id.house_collection);
             //Ctpt and SLWM collection
             viewHolder.liCtptSwmCBox = view.findViewById(R.id.li_ctpt_swm_box);
             viewHolder.liCtptSwmCBox.setVisibility(View.GONE);
-            viewHolder.txtCtptC = view.findViewById(R.id.ctpt_collection);
-            viewHolder.txtSlwmC = view.findViewById(R.id.swm_collection);
 
+            viewHolder.ctptLayout = view.findViewById(R.id.ctptLayout);
+            viewHolder.ctptLayout.setVisibility(View.GONE);
+            viewHolder.txtCtptC = view.findViewById(R.id.ctpt_collection);
+
+            viewHolder.slwmLayout = view.findViewById(R.id.slwm_layout);
+            viewHolder.slwmLayout.setVisibility(View.GONE);
+            viewHolder.txtSlwmC = view.findViewById(R.id.swm_collection);
             view.setTag(viewHolder);
 
         } else {
@@ -118,13 +124,15 @@ public class EmpInflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.Wo
             holder.liStreetColBox.setVisibility(View.VISIBLE);
             holder.txtLiquidC.setText(workHistoryPojo.getLiquidCollection());
             holder.txtStreetC.setText(workHistoryPojo.getStreetCollection());
-            holder.liDumpHouseCBox.setVisibility(View.GONE);
+            holder.liDumpHouseCBox.setVisibility(View.VISIBLE);
             holder.liHouseColBox.setVisibility(View.GONE);
             holder.txtHouseC.setText(workHistoryPojo.getHouseCollection());
             holder.liDumpColBox.setVisibility(View.VISIBLE);
             holder.txtDumpC.setText(workHistoryPojo.getDumpYardCollection());
             holder.liCtptSwmCBox.setVisibility(View.VISIBLE);
+            holder.ctptLayout.setVisibility(View.VISIBLE);
             holder.txtCtptC.setText(workHistoryPojo.getCtptCollection());
+            holder.slwmLayout.setVisibility(View.VISIBLE);
             holder.txtSlwmC.setText(workHistoryPojo.getSwmCollection());
         }
 
@@ -148,7 +156,7 @@ public class EmpInflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.Wo
         private TextView txtCtptC, txtSlwmC;
 
         // liquid and street column
-        private LinearLayout liLiquidColBox, liStreetColBox;
+        private LinearLayout liLiquidColBox, liStreetColBox, slwmLayout, ctptLayout;
         //dump and house collection
         private LinearLayout liDumpColBox, liHouseColBox;
         private LinearLayout liSlumCBox;
