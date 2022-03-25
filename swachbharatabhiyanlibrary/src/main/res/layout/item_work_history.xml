@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menu_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dim_10_dp"
+    android:layout_marginVertical="@dimen/dim_5_dp"
+    android:layout_marginBottom="@dimen/dim_6_dp"
+    app:cardCornerRadius="@dimen/dim_5_dp"
+    app:cardElevation="@dimen/dim_3_dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dim_12_dp"
+        android:paddingBottom="@dimen/dim_12_dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/history_date_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hyphen"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/dim_20_sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/history_month_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dim_10_dp"
+                android:text="@string/hyphen"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/dim_20_sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/dim_5_dp"
+            android:background="@color/colorAccent"
+            android:visibility="visible" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dim_10_dp">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2">
+             <!--1-->
+            <RelativeLayout
+                android:id="@+id/rl_normal_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/dim_5_dp"
+                android:layout_marginBottom="@dimen/dim_5_dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/res_normal_collection_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_6_dp"
+                    android:gravity="left"
+                    android:text="@string/string_residential_collection"
+                    android:textColor="@color/black_alpha_45"
+                    android:textSize="@dimen/dim_12_sp" />
+
+                <TextView
+                    android:id="@+id/res_normal_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/res_normal_collection_lbl"
+                    android:gravity="left"
+                    android:text="@string/hyphen"
+                    android:textColor="@color/black_alpha_170"
+                    android:textSize="@dimen/dim_17_sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+            <!--2-->
+            <RelativeLayout
+                android:id="@+id/rl_res_b_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dim_3_dp"
+                android:layout_marginBottom="@dimen/dim_5_dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/res_b_collection_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_6_dp"
+                    android:gravity="left"
+                    android:text="@string/string_residential_b_collection"
+                    android:textColor="@color/black_alpha_45"
+                    android:textSize="@dimen/dim_12_sp" />
+
+                <TextView
+                    android:id="@+id/res_b_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/res_b_collection_lbl"
+                    android:gravity="left"
+                    android:text="@string/hyphen"
+                    android:textColor="@color/black_alpha_170"
+                    android:textSize="@dimen/dim_17_sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+            <!--3-->
+            <RelativeLayout
+                android:id="@+id/rl_res_s_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/dim_5_dp"
+                android:layout_marginBottom="@dimen/dim_5_dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/res_s_collection_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_6_dp"
+                    android:gravity="left"
+                    android:text="@string/string_residential_slum_collection"
+                    android:textColor="@color/black_alpha_45"
+                    android:textSize="@dimen/dim_12_sp" />
+
+                <TextView
+                    android:id="@+id/res_s_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/res_s_collection_lbl"
+                    android:gravity="left"
+                    android:text="@string/hyphen"
+                    android:textColor="@color/black_alpha_170"
+                    android:textSize="@dimen/dim_17_sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+            <!--4-->
+            <RelativeLayout
+                android:id="@+id/rl_commercial_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dim_5_dp"
+                android:layout_marginBottom="@dimen/dim_5_dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/commer_collection_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_6_dp"
+                    android:gravity="left"
+                    android:text="@string/string_commercial_collection"
+                    android:textColor="@color/black_alpha_45"
+                    android:textSize="@dimen/dim_12_sp" />
+
+                <TextView
+                    android:id="@+id/commer_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/commer_collection_lbl"
+                    android:gravity="left"
+                    android:text="@string/hyphen"
+                    android:textColor="@color/black_alpha_170"
+                    android:textSize="@dimen/dim_17_sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+            <!--5-->
+            <RelativeLayout
+                android:id="@+id/rl_cad_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/dim_5_dp"
+                android:layout_marginBottom="@dimen/dim_5_dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/cad_collection_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_6_dp"
+                    android:gravity="left"
+                    android:text="@string/string_cad_collection"
+                    android:textColor="@color/colorDefault"
+                    android:textSize="@dimen/dim_12_sp" />
+
+                <TextView
+                    android:id="@+id/cad_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cad_collection_lbl"
+                    android:gravity="left"
+                    android:text="@string/hyphen"
+                    android:textColor="@color/black_alpha_170"
+                    android:textSize="@dimen/dim_17_sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+            <!--6-->
+            <RelativeLayout
+                android:id="@+id/rl_horticulture_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dim_5_dp"
+                android:layout_marginBottom="@dimen/dim_5_dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/hort_collection_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_6_dp"
+                    android:gravity="left"
+                    android:text="@string/string_hort_collection"
+                    android:textColor="@color/colorDefault"
+                    android:textSize="@dimen/dim_12_sp" />
+
+                <TextView
+                    android:id="@+id/hort_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hort_collection_lbl"
+                    android:gravity="left"
+                    android:text="@string/hyphen"
+                    android:textColor="@color/black_alpha_170"
+                    android:textSize="@dimen/dim_17_sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+            <!--7-->
+            <RelativeLayout
+                android:id="@+id/rl_liquid_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/dim_5_dp"
+                android:layout_marginBottom="@dimen/dim_5_dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/lwc_collection_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_6_dp"
+                    android:gravity="left"
+                    android:text="@string/lwc_title"
+                    android:textColor="@color/black_alpha_45"
+                    android:textSize="@dimen/dim_12_sp" />
+
+                <TextView
+                    android:id="@+id/lwc_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/lwc_collection_lbl"
+                    android:gravity="left"
+                    android:text="@string/hyphen"
+                    android:textColor="@color/black_alpha_170"
+                    android:textSize="@dimen/dim_17_sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+            <!--8-->
+            <RelativeLayout
+                android:id="@+id/rl_street_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dim_5_dp"
+                android:layout_marginBottom="@dimen/dim_5_dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/ss_collection_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_6_dp"
+                    android:gravity="left"
+                    android:text="@string/street_collection"
+                    android:textColor="@color/black_alpha_45"
+                    android:textSize="@dimen/dim_12_sp" />
+
+                <TextView
+                    android:id="@+id/ss_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ss_collection_lbl"
+                    android:gravity="left"
+                    android:text="@string/hyphen"
+                    android:textColor="@color/black_alpha_170"
+                    android:textSize="@dimen/dim_17_sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+            <!--9-->
+            <RelativeLayout
+                android:id="@+id/rl_dump_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/dim_5_dp"
+                android:layout_marginBottom="@dimen/dim_5_dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/dy_collection_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/dump_yard_txt"
+                    android:textColor="@color/black_alpha_45"
+                    android:textSize="@dimen/dim_12_sp" />
+
+                <TextView
+                    android:id="@+id/dy_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dy_collection_lbl"
+                    android:gravity="left"
+                    android:text="@string/hyphen"
+                    android:textColor="@color/black_alpha_170"
+                    android:textSize="@dimen/dim_17_sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+            <!--10-->
+            <RelativeLayout
+                android:id="@+id/rl_house_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dim_5_dp"
+                android:layout_marginBottom="@dimen/dim_5_dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/house_collection_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/house_collection_txt"
+                    android:textColor="@color/black_alpha_45"
+                    android:textSize="@dimen/dim_12_sp" />
+
+                <TextView
+                    android:id="@+id/house_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/house_collection_lbl"
+                    android:layout_marginBottom="@dimen/dim_6_dp"
+                    android:gravity="left"
+                    android:text="@string/hyphen"
+                    android:textColor="@color/black_alpha_170"
+                    android:textSize="@dimen/dim_17_sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+            <!--11-->
+            <RelativeLayout
+                android:id="@+id/rl_ctpt_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/dim_5_dp"
+                android:layout_marginBottom="@dimen/dim_5_dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/ctpt_collection_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_6_dp"
+                    android:gravity="left"
+                    android:text="@string/string_ctpt_collection"
+                    android:textColor="@color/colorDefault"
+                    android:textSize="@dimen/dim_12_sp" />
+
+                <TextView
+                    android:id="@+id/ctpt_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ctpt_collection_lbl"
+                    android:gravity="left"
+                    android:text="@string/hyphen"
+                    android:textColor="@color/black_alpha_170"
+                    android:textSize="@dimen/dim_17_sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+            <!--12-->
+            <RelativeLayout
+                android:id="@+id/rl_swm_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dim_5_dp"
+                android:layout_marginBottom="@dimen/dim_5_dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/swm_collection_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_6_dp"
+                    android:gravity="left"
+                    android:text="@string/string_swm_collection"
+                    android:textColor="@color/colorDefault"
+                    android:textSize="@dimen/dim_12_sp" />
+
+                <TextView
+                    android:id="@+id/swm_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/swm_collection_lbl"
+                    android:gravity="left"
+                    android:text="@string/hyphen"
+                    android:textColor="@color/black_alpha_170"
+                    android:textSize="@dimen/dim_17_sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </GridLayout>
+
+
+    </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

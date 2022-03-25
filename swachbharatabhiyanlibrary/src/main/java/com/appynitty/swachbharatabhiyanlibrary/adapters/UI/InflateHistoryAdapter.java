@@ -114,6 +114,7 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
                 if (Prefs.contains(AUtils.PREFS.EMP_SUB_TYPE)) {
                     if (Prefs.getString(AUtils.PREFS.EMP_SUB_TYPE, null).matches("CT")) {
                         holder.liCtptSwmCBox.setVisibility(View.VISIBLE);
+                        holder.ctptLayout.setVisibility(View.VISIBLE);
                         holder.txtCtptC.setText(workHistoryPojo.getCtptCollection());
                         holder.slwmLayout.setVisibility(View.GONE);
                     } else {
@@ -128,13 +129,15 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
                         holder.txtCandDC.setText(workHistoryPojo.getCADCollection());
                         holder.txtHortC.setText(workHistoryPojo.getHorticultureCollection());
                         holder.liLiqStreetCBox.setVisibility(View.GONE);
-                        holder.liDumpHouseCBox.setVisibility(View.VISIBLE);
+                        holder.liDumpHouseCBox.setVisibility(View.GONE);
                         holder.liHouseColBox.setVisibility(View.VISIBLE);
                         holder.txtHouseC.setText(workHistoryPojo.getHouseCollection());
                         holder.liDumpColBox.setVisibility(View.VISIBLE);
                         holder.txtDumpC.setText(workHistoryPojo.getDumpYardCollection());
                         holder.liCtptSwmCBox.setVisibility(View.VISIBLE);
+                        holder.ctptLayout.setVisibility(View.GONE);
                         holder.txtCtptC.setText(workHistoryPojo.getCtptCollection());
+                        holder.slwmLayout.setVisibility(View.VISIBLE);
                         holder.txtSlwmC.setText(workHistoryPojo.getSwmCollection());
                     }
                 } else {
@@ -149,7 +152,7 @@ public class InflateHistoryAdapter extends ArrayAdapter<TableDataCountPojo.WorkH
                     holder.txtCandDC.setText(workHistoryPojo.getCADCollection());
                     holder.txtHortC.setText(workHistoryPojo.getHorticultureCollection());
                     holder.liLiqStreetCBox.setVisibility(View.GONE);
-                    holder.liDumpHouseCBox.setVisibility(View.VISIBLE);
+                    holder.liDumpHouseCBox.setVisibility(View.GONE);
                     holder.liHouseColBox.setVisibility(View.VISIBLE);
                     holder.txtHouseC.setText(workHistoryPojo.getHouseCollection());
                     holder.liDumpColBox.setVisibility(View.VISIBLE);

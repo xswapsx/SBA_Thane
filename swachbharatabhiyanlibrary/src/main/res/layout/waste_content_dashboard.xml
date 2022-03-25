@@ -118,6 +118,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/user_details_card"
-        android:layout_marginTop="@dimen/dim_6_dp"/>
+        android:layout_marginTop="@dimen/dim_6_dp" />
 
 </RelativeLayout>

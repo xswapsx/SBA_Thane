@@ -638,9 +638,9 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
                 } else if (itemId == R.id.changeUserType) {
                     // added by rahul
                     if (empType.matches("S")){
-                        AUtils.error(mContext,"Sorry this feature not available street mode",1000*120);
+                        AUtils.error(mContext,"Sorry this feature not available street mode",1000*250);
                     }else if (empType.matches("L")){
-                        AUtils.error(mContext,"Sorry this feature not available liquid mode",1000*120);
+                        AUtils.error(mContext,"Sorry this feature not available liquid mode",1000*250);
                     }else {
                         garbageAndCTPTEmpDialog.show();
                     }

@@ -136,77 +136,6 @@
 
                 </LinearLayout>
 
-
-                <LinearLayout
-                    android:id="@+id/li_hort_cad_box"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dim_5_dp"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/cad_collection_lbl"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/commer_collection"
-                            android:layout_marginTop="@dimen/dim_6_dp"
-                            android:gravity="left"
-                            android:text="@string/string_cad_collection"
-                            android:textColor="@color/colorDefault"
-                            android:textSize="@dimen/dim_12_sp" />
-
-                        <TextView
-                            android:id="@+id/cad_collection"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/cad_collection_lbl"
-                            android:gravity="left"
-                            android:text="@string/hyphen"
-                            android:textColor="@color/black_alpha_170"
-                            android:textSize="@dimen/dim_17_sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/hort_collection_lbl"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/cad_collection"
-                            android:layout_marginTop="@dimen/dim_6_dp"
-                            android:gravity="left"
-                            android:text="@string/string_hort_collection"
-                            android:textColor="@color/colorDefault"
-                            android:textSize="@dimen/dim_12_sp" />
-
-                        <TextView
-                            android:id="@+id/hort_collection"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/hort_collection_lbl"
-                            android:gravity="left"
-                            android:text="@string/hyphen"
-                            android:textColor="@color/black_alpha_170"
-                            android:textSize="@dimen/dim_17_sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
                 <LinearLayout
                     android:id="@+id/li_res_slum_cW_box"
                     android:layout_width="match_parent"
@@ -269,6 +198,150 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/commer_collection_lbl"
+                            android:gravity="left"
+                            android:text="@string/hyphen"
+                            android:textColor="@color/black_alpha_170"
+                            android:textSize="@dimen/dim_17_sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_hort_cad_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dim_5_dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/hort_collection_lbl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/cad_collection"
+                            android:layout_marginTop="@dimen/dim_6_dp"
+                            android:gravity="left"
+                            android:text="@string/string_hort_collection"
+                            android:textColor="@color/colorDefault"
+                            android:textSize="@dimen/dim_12_sp" />
+
+                        <TextView
+                            android:id="@+id/hort_collection"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/hort_collection_lbl"
+                            android:gravity="left"
+                            android:text="@string/hyphen"
+                            android:textColor="@color/black_alpha_170"
+                            android:textSize="@dimen/dim_17_sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/cad_collection_lbl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/commer_collection"
+                            android:layout_marginTop="@dimen/dim_6_dp"
+                            android:gravity="left"
+                            android:text="@string/string_cad_collection"
+                            android:textColor="@color/colorDefault"
+                            android:textSize="@dimen/dim_12_sp" />
+
+                        <TextView
+                            android:id="@+id/cad_collection"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/cad_collection_lbl"
+                            android:gravity="left"
+                            android:text="@string/hyphen"
+                            android:textColor="@color/black_alpha_170"
+                            android:textSize="@dimen/dim_17_sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/li_ctpt_swm_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dim_5_dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/slwm_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/swm_collection_lbl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/cad_collection"
+                            android:layout_marginTop="@dimen/dim_6_dp"
+                            android:gravity="left"
+                            android:text="@string/string_swm_collection"
+                            android:textColor="@color/colorDefault"
+                            android:textSize="@dimen/dim_12_sp" />
+
+                        <TextView
+                            android:id="@+id/swm_collection"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/swm_collection_lbl"
+                            android:gravity="left"
+                            android:text="@string/hyphen"
+                            android:textColor="@color/black_alpha_170"
+                            android:textSize="@dimen/dim_17_sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ctptLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/ctpt_collection_lbl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/commer_collection"
+                            android:layout_marginTop="@dimen/dim_6_dp"
+                            android:gravity="left"
+                            android:text="@string/string_ctpt_collection"
+                            android:textColor="@color/colorDefault"
+                            android:textSize="@dimen/dim_12_sp" />
+
+                        <TextView
+                            android:id="@+id/ctpt_collection"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/ctpt_collection_lbl"
                             android:gravity="left"
                             android:text="@string/hyphen"
                             android:textColor="@color/black_alpha_170"
@@ -415,78 +488,6 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/house_collection_lbl"
                             android:layout_marginBottom="@dimen/dim_6_dp"
-                            android:gravity="left"
-                            android:text="@string/hyphen"
-                            android:textColor="@color/black_alpha_170"
-                            android:textSize="@dimen/dim_17_sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/li_ctpt_swm_box"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dim_5_dp"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <LinearLayout
-                        android:id="@+id/ctptLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/ctpt_collection_lbl"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/commer_collection"
-                            android:layout_marginTop="@dimen/dim_6_dp"
-                            android:gravity="left"
-                            android:text="@string/string_ctpt_collection"
-                            android:textColor="@color/colorDefault"
-                            android:textSize="@dimen/dim_12_sp" />
-
-                        <TextView
-                            android:id="@+id/ctpt_collection"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/ctpt_collection_lbl"
-                            android:gravity="left"
-                            android:text="@string/hyphen"
-                            android:textColor="@color/black_alpha_170"
-                            android:textSize="@dimen/dim_17_sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/slwm_layout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/swm_collection_lbl"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/cad_collection"
-                            android:layout_marginTop="@dimen/dim_6_dp"
-                            android:gravity="left"
-                            android:text="@string/string_swm_collection"
-                            android:textColor="@color/colorDefault"
-                            android:textSize="@dimen/dim_12_sp" />
-
-                        <TextView
-                            android:id="@+id/swm_collection"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/swm_collection_lbl"
                             android:gravity="left"
                             android:text="@string/hyphen"
                             android:textColor="@color/black_alpha_170"
