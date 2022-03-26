@@ -80,7 +80,7 @@ public class MyProgressDialog extends Dialog {
     }
 
     public void show() {
-        super.show();
+//        super.show();
         RotateAnimation anim = new RotateAnimation(0.0F, 360.0F, 1, 0.5F, 1, 0.5F);
         anim.setInterpolator(new LinearInterpolator());
         anim.setRepeatCount(-1);

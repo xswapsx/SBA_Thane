@@ -13,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ImageDecoder;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -830,10 +831,14 @@ public class AUtils extends CommonUtils {
 
     public static Bitmap writeOnImage(String mDate, String mId, String mPath) {
 
+        final String lat = Prefs.getString(AUtils.LAT, "");
+        final String lon = Prefs.getString(AUtils.LONG, "");
+
         Bitmap bm = BitmapFactory.decodeFile(mPath);
         Bitmap mutableBitmap = bm.copy(Bitmap.Config.ARGB_8888, true);
         Paint paint = new Paint();
-        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         paint.setColor(Color.CYAN);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setTextSize(10);
@@ -841,8 +846,10 @@ public class AUtils extends CommonUtils {
 
         Canvas canvas = new Canvas(mutableBitmap);
 
-        canvas.drawText(mDate, 100, 245, paint);
+        canvas.drawText(mDate, 100, 235, paint);
         canvas.drawText("ID: " + mId, 100, 225, paint);
+        canvas.drawText("Lat: " + lat , 100, 215, paint);
+        canvas.drawText("Long: " + lon , 100, 205, paint);
 //        canvas.drawCircle(50, 50, 10, paint);
 
         return mutableBitmap;

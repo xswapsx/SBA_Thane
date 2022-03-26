@@ -464,7 +464,7 @@ public class EmpDashboardActivity extends AppCompatActivity implements EmpPopUpD
                     }
                 } else {
                     markAttendance.setChecked(false);
-                    AUtils.showGPSSettingsAlert(mContext);
+                    AUtils.gpsStatusCheck(mContext);
                 }
             } else {
                 isLocationPermission = AUtils.isLocationPermissionGiven(EmpDashboardActivity.this);

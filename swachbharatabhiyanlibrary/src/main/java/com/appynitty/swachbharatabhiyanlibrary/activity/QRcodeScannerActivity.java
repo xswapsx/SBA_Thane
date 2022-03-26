@@ -1501,7 +1501,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         TextView houseTitleSwm = view.findViewById(R.id.lbl_title_swm);
         TextView collectionStatus = view.findViewById(R.id.collection_status);
         collectionStatus.setVisibility(View.VISIBLE);
-        collectionStatus.setText(qrStatus);
+//        collectionStatus.setText(qrStatus);
         Button doneBtn = view.findViewById(R.id.done_btn);
         houseTitleSwm.setVisibility(View.VISIBLE);
         houseTitle.setVisibility(View.VISIBLE);

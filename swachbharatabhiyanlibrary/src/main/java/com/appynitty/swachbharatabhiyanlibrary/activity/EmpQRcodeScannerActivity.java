@@ -1,5 +1,7 @@
 package com.appynitty.swachbharatabhiyanlibrary.activity;
 
+import static android.graphics.Bitmap.Config.ARGB_8888;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -150,6 +152,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
             if (allgranted) {
                 checkCameraPermission();
+                isStoragePermissionGiven();
             } else if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) mContext, Manifest.permission.CAMERA)) {
 
                 AUtils.showPermissionDialog(mContext, "CAMERA", new DialogInterface.OnClickListener() {
@@ -161,8 +164,51 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
                         }
                     }
                 });
+            }else if (ActivityCompat.shouldShowRequestPermissionRationale(EmpQRcodeScannerActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                AUtils.showPermissionDialog(mContext, "EXTERNAL STORAGE", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, AUtils.MY_PERMISSIONS_REQUEST_CAMERA);
+                        }
+                    }
+                });
+            } else {
+//                Toast.makeText(getActivity(), "Unable to get Permission", Toast.LENGTH_LONG).show();
             }
-        } else if (requestCode == AUtils.MY_PERMISSIONS_REQUEST_LOCATION) {
+        } else if (requestCode == AUtils.MY_PERMISSIONS_REQUEST_STORAGE) {
+            //check if all permissions are granted
+            boolean allgranted = false;
+            for (int i = 0; i < grantResults.length; i++) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    allgranted = true;
+                } else {
+                    allgranted = false;
+                    break;
+                }
+            }
+
+            if (allgranted) {
+                checkLocationPermission();
+            } else if (ActivityCompat.shouldShowRequestPermissionRationale(EmpQRcodeScannerActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                AUtils.showPermissionDialog(mContext, "EXTERNAL STORAGE", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, AUtils.MY_PERMISSIONS_REQUEST_STORAGE);
+                        }
+                    }
+                });
+            } else {
+//                Toast.makeText(getActivity(), "Unable to get Permission", Toast.LENGTH_LONG).show();
+            }
+
+        }
+        else if (requestCode == AUtils.MY_PERMISSIONS_REQUEST_LOCATION) {
             //check if all permissions are granted
             boolean allgranted = false;
             for (int i = 0; i < grantResults.length; i++) {
@@ -547,6 +593,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
         if (AUtils.isLocationPermissionGiven(mContext)) {
             //You already have the permission, just go ahead.
+            isStoragePermissionGiven();
             LocationManager locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
 
             boolean GpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -559,6 +606,13 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         }
     }
 
+    private void isStoragePermissionGiven() {
+        if (AUtils.isStoragePermissionGiven(mContext)) {
+            //You already have the permission, just go ahead.
+//            isLocationPermissionGiven();
+        }
+    }
+
     public void handleResult(Result result) {
         stopCamera();
 //        showActionPopUp(result.getContents());
@@ -567,9 +621,9 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         mHouse_id = result.getContents();
 
         if (validSubmitId(result.getContents().toLowerCase())) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 takeQRsPhoto();
-            }
+//            }
 //            showActionPopUp(houseid);
 
         } else {
@@ -724,8 +778,10 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         if (AUtils.isInternetAvailable() && AUtils.isConnectedFast(mContext)) {
             empQrLocationAdapter.saveQrLocation(pojo);
             stopCamera();
+            myProgressDialog.hide();
         } else {
             insertToDB(pojo);
+            myProgressDialog.hide();
         }
     }
 
@@ -879,7 +935,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
                 }
                 destination = new File(dir, System.currentTimeMillis() + ".jpg");
                 fos = new FileOutputStream(destination);
-                thumbnail.compress(Bitmap.CompressFormat.PNG, 500, fos);
+                thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fos);
             }
 
             fos.flush();
