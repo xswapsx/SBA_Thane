@@ -110,7 +110,9 @@ public class AUtils extends CommonUtils {
     public static final int MY_RESULT_REQUEST_QR = 55;
 
     public static final int HORT_GC_TYPE = 7;
+    public static final int HORT_CW_GC_TYPE = 13;
     public static final int CD_GC_TYPE = 6;
+    public static final int CD_CW_GC_TYPE = 12;
     public static final int CTPT_GC_TYPE = 10;
 
     public static final String REQUEST_CODE = "RequestCode";

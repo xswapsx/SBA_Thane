@@ -137,13 +137,11 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
                     houseCount++;
                     Log.e(TAG, "getDatabaseList: houseId:-" + refId);
                     //added by rahul
-                    /*if (cType.matches("")){
-                        resNCollectionC++;
-                    }else if (cType.matches("RBW")){
+                     if (cType.matches("RBW")){
                         resBCollectionC++;
                     }else if (cType.matches("RSW")){
                         resSCollectionC++;
-                    }else if (cType.matches("CW")){
+                    }/*else if (cType.matches("CW")){
                         commercialCollectionC++;
                     }else {
                         houseCount++;
@@ -158,9 +156,9 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
 
                 } else if (refId.substring(0, 2).matches("^[LlWw]+$")) {
                     lwcCount++;
-                } else if (refId.substring(0, 2).matches("^[DdYy]+$")) {
+                } /*else if (refId.substring(0, 2).matches("^[DdYy]+$")) {
                     dyCount++;
-                } else if (refId.substring(0, 2).matches("^[SsSs]+$")) {
+                }*/ else if (refId.substring(0, 2).matches("^[SsSs]+$")) {
                     ssCount++;
                 } else if (refId.substring(0, 2).matches("^[CcPp]+$")) {
                     commercialCollectionC++;
@@ -173,10 +171,10 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
                 }
             }
             Log.e(TAG, "House count: " + houseCount
-                    + ", dyCount: " + dyCount
+                    /*+ ", dyCount: " + dyCount*/
                     + ", ssCount: " + ssCount
                     + ", lwcCount: " + lwcCount
-                    + ", resNCollectionC: " + resNCollectionC
+                   /* + ", resNCollectionC: " + resNCollectionC*/
                     + ", resBCollectionC: " + resBCollectionC
                     + ", resSCollectionC: " + resSCollectionC
                     + ", commercialCollectionC: " + commercialCollectionC

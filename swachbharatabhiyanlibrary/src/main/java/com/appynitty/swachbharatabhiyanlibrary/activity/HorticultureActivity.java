@@ -335,13 +335,14 @@ public class HorticultureActivity extends AppCompatActivity {
     }
 
     private void openQRClicked() {
+            Integer HR_CW = AUtils.HORT_GC_TYPE + AUtils.HORT_CW_GC_TYPE;
 
         if (validateForm()) {
 
             if (getFormData()) {
 
                 startActivity(new Intent(HorticultureActivity.this,
-                        QRcodeScannerNewActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra("HR", AUtils.HORT_GC_TYPE));
+                        QRcodeScannerNewActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra("HR", AUtils.HORT_GC_TYPE).putExtra("HR_CW",AUtils.HORT_CW_GC_TYPE));
                 HorticultureActivity.this.finish();
             }
         }

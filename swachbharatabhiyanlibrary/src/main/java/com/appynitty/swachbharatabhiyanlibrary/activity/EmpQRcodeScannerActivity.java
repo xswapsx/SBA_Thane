@@ -538,7 +538,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
                 || id.matches("gpsba[0-9]+$")
                 || id.matches("lwsba[0-9]+$")
                 || id.matches("sssba[0-9]+$")
-                || id.matches("dysba[0-9]+$")
+                /*|| id.matches("dysba[0-9]+$")*/
                 || id.matches("cpsba[0-9]+$")
                 || id.matches("ctptsba[0-9]+$")
                 || id.substring(0, 3).matches("tmc")
