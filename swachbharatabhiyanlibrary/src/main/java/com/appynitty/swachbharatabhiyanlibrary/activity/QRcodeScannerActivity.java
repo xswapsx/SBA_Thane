@@ -1338,7 +1338,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         if (isActivityData) {
             garbageCollectionPojo.setAfterImage(imagePojo.getAfterImage());
             garbageCollectionPojo.setBeforeImage(imagePojo.getBeforeImage());
-//            garbageCollectionPojo.setComment(imagePojo.getComment());
+            garbageCollectionPojo.setComment(imagePojo.getComment());
             garbageCollectionPojo.setImage1(imagePojo.getImage1());
             garbageCollectionPojo.setImage2(imagePojo.getImage2());
         }
@@ -1385,7 +1385,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
             if (isActivityData) {
                 garbageCollectionPojo.setAfterImage(imagePojo.getAfterImage());
                 garbageCollectionPojo.setBeforeImage(imagePojo.getBeforeImage());
-//                garbageCollectionPojo.setComment(imagePojo.getComment());
+                garbageCollectionPojo.setComment(imagePojo.getComment());
                 garbageCollectionPojo.setImage1(imagePojo.getImage1());
                 garbageCollectionPojo.setImage2(imagePojo.getImage2());
             }
@@ -1438,6 +1438,8 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         entity.setDry(garbageCollectionPojo.getDry());
         entity.setDomestic(garbageCollectionPojo.getDomestic());
         entity.setSanitary(garbageCollectionPojo.getSanitary());
+        entity.setGpBeforImage(garbageCollectionPojo.getBeforeImage());
+        entity.setGpAfterImage(garbageCollectionPojo.getAfterImage());
 
         if (isActivityData) {
 

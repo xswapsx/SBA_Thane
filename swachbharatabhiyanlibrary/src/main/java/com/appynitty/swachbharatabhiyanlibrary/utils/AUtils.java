@@ -9,10 +9,13 @@ import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ImageDecoder;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -833,7 +836,7 @@ public class AUtils extends CommonUtils {
 
     public static Bitmap writeOnImage(String mDate, String mId, String mPath) {
 
-        final String lat = Prefs.getString(AUtils.LAT, "");
+       /* final String lat = Prefs.getString(AUtils.LAT, "");
         final String lon = Prefs.getString(AUtils.LONG, "");
 
         Bitmap bm = BitmapFactory.decodeFile(mPath);
@@ -853,6 +856,61 @@ public class AUtils extends CommonUtils {
         canvas.drawText("Lat: " + lat , 100, 215, paint);
         canvas.drawText("Long: " + lon , 100, 205, paint);
 //        canvas.drawCircle(50, 50, 10, paint);
+
+        return mutableBitmap;*/
+
+        Context context;
+        final String latitude = Prefs.getString(AUtils.LAT,"");
+        final String longitude = Prefs.getString(AUtils.LONG,"");
+        Bitmap bm = BitmapFactory.decodeFile(mPath);
+        Bitmap mutableBitmap = bm.copy(Bitmap.Config.ARGB_8888, true);
+        BlurMaskFilter blurFilter = new BlurMaskFilter(2, BlurMaskFilter.Blur.OUTER);
+
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.LINEAR_TEXT_FLAG);
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setMaskFilter(blurFilter);
+        paint.setTextSize(8f);
+        paint.setMaskFilter(null);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER));
+        paint.setFakeBoldText(true);
+        Canvas canvas = new Canvas(mutableBitmap);
+        canvas.drawBitmap(bm, 0, 0, paint);
+        paint.setColor(Color.WHITE);
+
+        Paint paintRect = new Paint();
+        paintRect.setColor(Color.DKGRAY );
+        paintRect.setStyle(Paint.Style.FILL_AND_STROKE);
+        paintRect.setStrokeWidth(2);
+        float leftx = 160;
+        float topy = 210;
+        float rightx = 0;
+        float bottomy = 100;
+
+        int rectWidth = 50;
+        int rectHeight = 30;
+
+        canvas.drawRect(leftx+rectWidth, topy+rectHeight, rightx, bottomy, paintRect);
+        canvas.drawText("Date - " +mDate, 80, 110, paint);
+        canvas.drawText("House Id - " + mId, 72, 120, paint);
+        canvas.drawText("Lat - "+latitude, 60, 130, paint);
+        canvas.drawText("Long - "+longitude, 63, 140, paint);
+
+        /*Paint paintRect = new Paint();
+        paintRect.setColor(Color.DKGRAY );
+        paintRect.setStyle(Paint.Style.FILL_AND_STROKE);
+        paintRect.setStrokeWidth(5);
+        float leftx = 160;
+        float topy = 210;
+        float rightx = 0;
+        float bottomy = 100;
+
+        canvas.drawRect(leftx, topy, rightx, bottomy, paintRect);
+        canvas.drawText("Date - " +mDate, 80, 110, paint);
+        canvas.drawText("House Id - " + mId, 72, 120, paint);
+        canvas.drawText("Lat - "+latitude, 60, 130, paint);
+        canvas.drawText("Long - "+longitude, 63, 140, paint);*/
 
         return mutableBitmap;
     }
@@ -905,7 +963,7 @@ public class AUtils extends CommonUtils {
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
 
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm", Locale.getDefault());
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.ENGLISH);
         String formattedDate = df.format(c);
 
         return formattedDate;

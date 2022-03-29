@@ -972,7 +972,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         Bitmap shadowImage32 = sizeImage.copy(ARGB_8888, true);*/
         encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
 
-//        encodedImage = BitMapToString(shadowImage32);
+//        encodedImage = BitMapToString(sizeImage);
 
         Log.d(TAG, "onCaptureImageResult: encodedImage:- " + encodedImage);
 

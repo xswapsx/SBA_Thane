@@ -112,6 +112,9 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
     private String EmpType, gcType;
     private String areaType;
 
+    String  gcTypeHortCw = "13";
+    String  gcTypeHort = "7";
+
     @Override
     protected void attachBaseContext(Context newBase) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -705,7 +708,24 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
 
           //  gcType = "13"; //changes
            // gcType = "7"; //changes
-            if (houseid.substring(0, 2).matches("^[HhPp]+$")) {
+
+          if (gcTypeHort.matches("7")){
+              gcType = gcTypeHort;
+              if (houseid.substring(0, 2).matches("^[HhPp]+$")) {
+                  startSubmitQRAsyncTask(houseid, -1, gcType, null);
+              }
+          }else if (gcTypeHortCw.matches("13")){
+              gcType = gcTypeHortCw;
+              if (houseid.substring(0, 2).matches("^[CcPp]+$")) {
+                  startSubmitQRAsyncTask(houseid, -1, gcType, null);
+              }
+          }else {
+              AUtils.warning(QRcodeScannerNewActivity.this, mContext.getResources().getString(R.string.qr_error));
+              restartPreview();
+          }
+
+
+            /*if (houseid.substring(0, 2).matches("^[HhPp]+$")) {
                 startSubmitQRAsyncTask(houseid, -1, "7", null);
             } else if (houseid.substring(0, 2).matches("^[DdYy]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.dy_qr_alert), null);
@@ -722,7 +742,7 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
             } else {
                 AUtils.warning(QRcodeScannerNewActivity.this, mContext.getResources().getString(R.string.qr_error));
                 restartPreview();
-            }
+            }*/
         }
 
     }
@@ -1152,17 +1172,37 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
 
         entity.setReferenceID(garbageCollectionPojo.getId());
         //changes
-        if (garbageCollectionPojo.getId().substring(0, 2).matches("^[HhPp]+$")) {
+
+        if (gcTypeHort.matches("7")){
+            gcType = gcTypeHort;
+            if (garbageCollectionPojo.getId().substring(0, 2).matches("^[HhPp]+$")) {
+                if ((gcType.equalsIgnoreCase("7")) && gcType.matches("7")) {
+                    getIntent().getStringArrayExtra("Hort");
+                    entity.setGcType("7");
+                }
+            }
+        } else if (gcTypeHortCw.matches("13")){
+            gcType = gcTypeHortCw;
+            if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
+                if ((gcType.equalsIgnoreCase("13")) && gcType.matches("13")) {
+                    getIntent().getStringArrayExtra("HR_CW");
+                    entity.setGcType("13");
+                }
+            }
+        }
+
+       /* if (garbageCollectionPojo.getId().substring(0, 2).matches("^[HhPp]+$")) {
             if ((gcType.equalsIgnoreCase("7")) && gcType.matches("7")) {
                 getIntent().getStringArrayExtra("Hort");
                 entity.setGcType("7");
             }
-        }else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
+        }*//*else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
             if ((gcType.equalsIgnoreCase("13")) && gcType.matches("13")) {
                 getIntent().getStringArrayExtra("HR_CW");
                 entity.setGcType("13");
             }
-        }
+        }*//*
+        */
 
         else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[GgPp]+$")) {
             entity.setGcType("2");
