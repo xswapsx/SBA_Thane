@@ -796,7 +796,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
             finish();
         } else if (resultCode == Activity.RESULT_OK) {
             if (requestCode == REQUEST_CAMERA) {
-                mCamera = Camera.open(0);
+//                mCamera = Camera.open(0);
                 onCaptureImageResult(data);
             }
         }
