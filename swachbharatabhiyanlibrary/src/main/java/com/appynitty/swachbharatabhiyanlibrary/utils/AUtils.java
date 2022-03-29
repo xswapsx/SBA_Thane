@@ -838,7 +838,7 @@ public class AUtils extends CommonUtils {
 
         Bitmap bm = BitmapFactory.decodeFile(mPath);
         Bitmap mutableBitmap = bm.copy(Bitmap.Config.ARGB_8888, true);
-        Paint paint = new Paint();
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setStyle(Paint.Style.FILL);
         paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         paint.setColor(Color.CYAN);
