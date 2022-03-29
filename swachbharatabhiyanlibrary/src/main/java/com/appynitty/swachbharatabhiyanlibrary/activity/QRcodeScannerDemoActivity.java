@@ -701,7 +701,8 @@ public class QRcodeScannerDemoActivity extends AppCompatActivity implements ZBar
                 getDumpYardDetails(houseid);
             }
         } else if (EmpType.matches("N")) {
-            gcType = "6";
+            //gcType = "6";
+            gcType = "12";
             if (houseid.substring(0, 2).matches("^[HhPp]+$")) {
                 startSubmitQRAsyncTask(houseid, -1, gcType, null);
             } else if (houseid.substring(0, 2).matches("^[DdYy]+$")) {
@@ -715,7 +716,7 @@ public class QRcodeScannerDemoActivity extends AppCompatActivity implements ZBar
             } else if (houseid.substring(0, 2).matches("^[CcPp]+$")) {
 //                AUtils.warning(QRcodeScannerActivity.this, "For scanning Liquid Waste Collection QR,\nkindly login with liquid waste cleaning id", 16);
 //                AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.ssc_qr_warning), null);
-                startSubmitQRAsyncTask(houseid, -1, "12", null);
+                startSubmitQRAsyncTask(houseid, -1, gcType, null);
             } else {
                 AUtils.warning(QRcodeScannerDemoActivity.this, mContext.getResources().getString(R.string.qr_error));
                 restartPreview();
@@ -820,7 +821,7 @@ public class QRcodeScannerDemoActivity extends AppCompatActivity implements ZBar
                 valueOne = "6";
                 break;
             case "2":
-                valueOne = "7";
+                valueOne = "12";  //change
                 break;
         }
         gcType.equals(valueOne);
@@ -1148,12 +1149,19 @@ public class QRcodeScannerDemoActivity extends AppCompatActivity implements ZBar
         OfflineGarbageColectionPojo entity = new OfflineGarbageColectionPojo();
 
         entity.setReferenceID(garbageCollectionPojo.getId());
-        if (garbageCollectionPojo.getId().substring(0, 2).matches("^[HhPp]+$")) {
+       /* if (garbageCollectionPojo.getId().substring(0, 2).matches("^[HhPp]+$")) {
             if ((gcType.equalsIgnoreCase("6")) && gcType.matches("6")) {
                 getIntent().getStringArrayExtra("CD");
                 entity.setGcType("6");
             }
-        } else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[GgPp]+$")) {
+        } else*/ if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
+            if ((gcType.equalsIgnoreCase("12")) && gcType.matches("12")) {
+                getIntent().getStringArrayExtra("CDCW");
+                entity.setGcType("12");
+            }
+        }
+
+        else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[GgPp]+$")) {
             entity.setGcType("2");
         } else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[DdYy]+$")) {
             entity.setGcType("3");
@@ -1162,9 +1170,9 @@ public class QRcodeScannerDemoActivity extends AppCompatActivity implements ZBar
             entity.setGcType("4");
         } else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[SsSs]+$")) {
             entity.setGcType("5");
-        } else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
+        } /*else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
             entity.setGcType("12");
-        }
+        }*/
         entity.setNote(garbageCollectionPojo.getComment());
         entity.setGarbageType(String.valueOf(garbageCollectionPojo.getGarbageType()));
         entity.setTotalGcWeight(String.valueOf(garbageCollectionPojo.getWeightTotal()));

@@ -111,6 +111,7 @@ public class InflateHistoryDetailsAdapter extends ArrayAdapter<WorkHistoryDetail
                         holder.area.setText(workHistoryDetailPojo.getAreaName());
                         holder.name.setText(workHistoryDetailPojo.getName());
                     }else if (workHistoryDetailPojo.getType().equals("6")) {
+                        holder.liHistoryDetail.setVisibility(View.VISIBLE);
                         holder.time.setBackgroundResource(R.drawable.rounded_gray_button);
                         holder.time.setPadding(0, 0, 0, 0);
                         holder.id.setText(String.format("%s %s", context.getResources().getString(R.string.string_CandD_id), workHistoryDetailPojo.getRefid()));
@@ -119,6 +120,7 @@ public class InflateHistoryDetailsAdapter extends ArrayAdapter<WorkHistoryDetail
                         holder.area.setText(workHistoryDetailPojo.getAreaName());
                         holder.name.setText(workHistoryDetailPojo.getName());
                     }else if (workHistoryDetailPojo.getType().equals("12")) {
+                        holder.liHistoryDetail.setVisibility(View.VISIBLE);
                         holder.time.setBackgroundResource(R.drawable.rounded_gray_button);
                         holder.time.setPadding(0, 0, 0, 0);
                         holder.id.setText(String.format("%s %s", context.getResources().getString(R.string.string_CandD_id), workHistoryDetailPojo.getRefid()));
