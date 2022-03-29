@@ -22,7 +22,25 @@ public class TableDataCountPojo {
         private String HorticultureCollection;
         private String CTPTCollection;
         private String SLWMCollection;
+        private String CdcwCollection;
+        private String HrcwCollection;
         private String HouseCType;
+
+        public String getCdcwCollection() {
+            return CdcwCollection;
+        }
+
+        public void setCdcwCollection(String cdcwCollection) {
+            CdcwCollection = cdcwCollection;
+        }
+
+        public String getHrcwCollection() {
+            return HrcwCollection;
+        }
+
+        public void setHrcwCollection(String hrcwCollection) {
+            HrcwCollection = hrcwCollection;
+        }
 
         public String getCtptCollection() {
             return CTPTCollection;

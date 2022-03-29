@@ -342,7 +342,7 @@ public class CandDActivity extends AppCompatActivity {
             if (getFormData()) {
 
                 startActivity(new Intent(CandDActivity.this,
-                        QRcodeScannerDemoActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra("CD", AUtils.CD_GC_TYPE));
+                        QRcodeScannerDemoActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra("CD", AUtils.CD_GC_TYPE).putExtra("CDCW", AUtils.CD_CW_GC_TYPE));
                 CandDActivity.this.finish();
             }
         }

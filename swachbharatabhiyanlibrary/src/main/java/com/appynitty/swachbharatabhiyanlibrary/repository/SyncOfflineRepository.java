@@ -37,7 +37,9 @@ public class SyncOfflineRepository {
     private static final int liquidCollectionId = 4;// added by swapnil
     private static final int streetCollectionId = 5;// added by swapnil
     private static final int candDCollectionId = 6;//added by rahul
+    private static final int candD_CWId = 12;//added by rahul
     private static final int hortCollectionId = 7;//added by rahul
+    private static final int hortCWId = 13;//added by rahul
     private static final int commercialCollectionId = 9;// added by swapnil
     private static final int ctptCollectionId = 10;// added by rahul
     private static final int swmCollectionId = 11;// added by rahul
@@ -445,9 +447,19 @@ public class SyncOfflineRepository {
                 " where " + COLUMN_GC_TYPE + " = " + candDCollectionId +
                 " group by date(tableSyncOffline.offlineSyncDate))," +
 
+                "cteCdcw as(" +
+                " select count(*) as cdcw, date(" + COLUMN_DATE + ") as gcdateCdcw from " + SYNC_OFFLINE_TABLE +
+                " where " + COLUMN_GC_TYPE + " = " + candD_CWId +
+                " group by date(tableSyncOffline.offlineSyncDate))," +
+
                 "cteHr as(" +
                 " select count(*) as hr, date(" + COLUMN_DATE + ") as gcdateHr from " + SYNC_OFFLINE_TABLE +
                 " where " + COLUMN_GC_TYPE + " = " + hortCollectionId +
+                " group by date(tableSyncOffline.offlineSyncDate))," +
+
+                "cteHrcw as(" +
+                " select count(*) as hrcw, date(" + COLUMN_DATE + ") as gcdateHrcw from " + SYNC_OFFLINE_TABLE +
+                " where " + COLUMN_GC_TYPE + " = " + hortCWId +
                 " group by date(tableSyncOffline.offlineSyncDate))," +
 
                 "cteRnc as(" +
@@ -500,7 +512,9 @@ public class SyncOfflineRepository {
                 " case when k.rsc is null then 0 else k.rsc end as rsc," +
                 " case when l.cc is null then 0 else l.cc end as cc, " +
                 " case when m.ctpt is null then 0 else m.ctpt end as ctpt, " +
-                " case when n.swm is null then 0 else n.swm end as swm " +
+                " case when n.swm is null then 0 else n.swm end as swm, " +
+                " case when o.cdcw is null then 0 else o.cdcw end as cdcw, " +
+                " case when p.hrcw is null then 0 else p.hrcw end as hrcw " +
 
                 " from cte a " +
                 " left join cteHp b on b.gcdateHp = a.dte " +
@@ -517,6 +531,8 @@ public class SyncOfflineRepository {
                 " left join cteCc l on l.gcdateCc = a.dte " +
                 " left join cteCtpt m on m.gcdateCtpt = a.dte " +
                 " left join cteSwm n on n.gcdateSwm = a.dte " +
+                " left join cteCdcw o on o.gcdateCdcw = a.dte " +
+                " left join cteHrcw p on p.gcdateHrcw = a.dte " +
 
                 " order by dte desc)" +
                 "select * from ctef";
@@ -542,6 +558,8 @@ public class SyncOfflineRepository {
                     entity.setCommertialCollection(cursor.getString(cursor.getColumnIndex("cc")));
                     entity.setCtptCollection(cursor.getString(cursor.getColumnIndex("ctpt")));
                     entity.setSwmCollection(cursor.getString(cursor.getColumnIndex("swm")));
+                    entity.setCdcwCollection(cursor.getString(cursor.getColumnIndex("cdcw")));
+                    entity.setHrcwCollection(cursor.getString(cursor.getColumnIndex("hrcw")));
 
                     mList.add(entity);
                 } while (cursor.moveToNext());

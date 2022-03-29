@@ -668,6 +668,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 //            chooseActionPopUp.setData(id);
             if (id.substring(0, 2).matches("^[HhPp]+$")) {
                 empGarbageTpyePopUp.show();
+                empGarbageTpyePopUp.setCancelable(false);
             } else if (id.substring(0, 2).matches("^[SsSs]+$")) {
                 submitOnSkip(id, "");
                 AUtils.success(mContext, "Uploaded successfully");
@@ -684,6 +685,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
                 submitBtn.setVisibility(View.GONE);
                 collectionRadioGroup.setVisibility(View.GONE);
                 toiletTypePopUp.show();
+                toiletTypePopUp.setCancelable(false);
                 /*submitOnSkipToilet(id);
                 AUtils.success(mContext, "Uploaded successfully");
                 finish();*/
