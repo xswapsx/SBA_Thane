@@ -706,27 +706,10 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
             }
         } else if (EmpType.matches("N")) {
 
-          //  gcType = "13"; //changes
-           // gcType = "7"; //changes
+            gcType = "7"; //changes
 
-          if (gcTypeHort.matches("7")){
-              gcType = gcTypeHort;
-              if (houseid.substring(0, 2).matches("^[HhPp]+$")) {
-                  startSubmitQRAsyncTask(houseid, -1, gcType, null);
-              }
-          }else if (gcTypeHortCw.matches("13")){
-              gcType = gcTypeHortCw;
-              if (houseid.substring(0, 2).matches("^[CcPp]+$")) {
-                  startSubmitQRAsyncTask(houseid, -1, gcType, null);
-              }
-          }else {
-              AUtils.warning(QRcodeScannerNewActivity.this, mContext.getResources().getString(R.string.qr_error));
-              restartPreview();
-          }
-
-
-            /*if (houseid.substring(0, 2).matches("^[HhPp]+$")) {
-                startSubmitQRAsyncTask(houseid, -1, "7", null);
+            if (houseid.substring(0, 2).matches("^[HhPp]+$")) {
+                startSubmitQRAsyncTask(houseid, -1, gcType, null);
             } else if (houseid.substring(0, 2).matches("^[DdYy]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.dy_qr_alert), null);
             } else if (houseid.substring(0, 2).matches("^[LlWw]+$")) {
@@ -742,7 +725,7 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
             } else {
                 AUtils.warning(QRcodeScannerNewActivity.this, mContext.getResources().getString(R.string.qr_error));
                 restartPreview();
-            }*/
+            }
         }
 
     }
@@ -1173,36 +1156,17 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
         entity.setReferenceID(garbageCollectionPojo.getId());
         //changes
 
-        if (gcTypeHort.matches("7")){
-            gcType = gcTypeHort;
-            if (garbageCollectionPojo.getId().substring(0, 2).matches("^[HhPp]+$")) {
-                if ((gcType.equalsIgnoreCase("7")) && gcType.matches("7")) {
-                    getIntent().getStringArrayExtra("Hort");
-                    entity.setGcType("7");
-                }
-            }
-        } else if (gcTypeHortCw.matches("13")){
-            gcType = gcTypeHortCw;
-            if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
-                if ((gcType.equalsIgnoreCase("13")) && gcType.matches("13")) {
-                    getIntent().getStringArrayExtra("HR_CW");
-                    entity.setGcType("13");
-                }
-            }
-        }
-
-       /* if (garbageCollectionPojo.getId().substring(0, 2).matches("^[HhPp]+$")) {
+        if (garbageCollectionPojo.getId().substring(0, 2).matches("^[HhPp]+$")) {
             if ((gcType.equalsIgnoreCase("7")) && gcType.matches("7")) {
                 getIntent().getStringArrayExtra("Hort");
                 entity.setGcType("7");
             }
-        }*//*else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
+        }/*else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
             if ((gcType.equalsIgnoreCase("13")) && gcType.matches("13")) {
                 getIntent().getStringArrayExtra("HR_CW");
                 entity.setGcType("13");
             }
-        }*//*
-        */
+        }*/
 
         else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[GgPp]+$")) {
             entity.setGcType("2");
@@ -1213,9 +1177,9 @@ public class QRcodeScannerNewActivity extends AppCompatActivity implements ZBarS
             entity.setGcType("4");
         } else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[SsSs]+$")) {
             entity.setGcType("5");
-        }/*else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
+        }else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
             entity.setGcType("13");
-        }*/
+        }
         entity.setNote(garbageCollectionPojo.getComment());
         entity.setGarbageType(String.valueOf(garbageCollectionPojo.getGarbageType()));
         entity.setTotalGcWeight(String.valueOf(garbageCollectionPojo.getWeightTotal()));

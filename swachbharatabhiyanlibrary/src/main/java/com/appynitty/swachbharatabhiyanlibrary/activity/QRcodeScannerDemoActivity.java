@@ -1170,9 +1170,9 @@ public class QRcodeScannerDemoActivity extends AppCompatActivity implements ZBar
             entity.setGcType("4");
         } else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[SsSs]+$")) {
             entity.setGcType("5");
-        } /*else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
+        } else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
             entity.setGcType("12");
-        }*/
+        }
         entity.setNote(garbageCollectionPojo.getComment());
         entity.setGarbageType(String.valueOf(garbageCollectionPojo.getGarbageType()));
         entity.setTotalGcWeight(String.valueOf(garbageCollectionPojo.getWeightTotal()));

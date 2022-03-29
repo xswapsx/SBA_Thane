@@ -1321,10 +1321,9 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         garbageCollectionPojo = new GarbageCollectionPojo();
         garbageCollectionPojo.setId(houseNo);
         garbageCollectionPojo.setGarbageType(garbageType);
-        garbageCollectionPojo.setComment(null);
+        garbageCollectionPojo.setComment(imagePojo.getComment());
         garbageCollectionPojo.setGcType(gcType);
         garbageCollectionPojo.setLevelOS(segregatnLevel);
-        garbageCollectionPojo.setComment(comment);
 
         double newlat = Double.parseDouble(Prefs.getString(AUtils.LAT, "0"));
         double newlng = Double.parseDouble(Prefs.getString(AUtils.LONG, "0"));
