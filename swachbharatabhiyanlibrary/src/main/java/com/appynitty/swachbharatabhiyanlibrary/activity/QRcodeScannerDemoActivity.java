@@ -702,9 +702,9 @@ public class QRcodeScannerDemoActivity extends AppCompatActivity implements ZBar
             }
         } else if (EmpType.matches("N")) {
             //gcType = "6";
-            gcType = "12";
+            //gcType = "12";
             if (houseid.substring(0, 2).matches("^[HhPp]+$")) {
-                startSubmitQRAsyncTask(houseid, -1, gcType, null);
+                startSubmitQRAsyncTask(houseid, -1, "6", null);
             } else if (houseid.substring(0, 2).matches("^[DdYy]+$")) {
                 AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.dy_qr_alert), null);
             } else if (houseid.substring(0, 2).matches("^[LlWw]+$")) {
@@ -716,7 +716,7 @@ public class QRcodeScannerDemoActivity extends AppCompatActivity implements ZBar
             } else if (houseid.substring(0, 2).matches("^[CcPp]+$")) {
 //                AUtils.warning(QRcodeScannerActivity.this, "For scanning Liquid Waste Collection QR,\nkindly login with liquid waste cleaning id", 16);
 //                AUtils.showDialog(mContext, getResources().getString(R.string.alert), getResources().getString(R.string.ssc_qr_warning), null);
-                startSubmitQRAsyncTask(houseid, -1, gcType, null);
+                startSubmitQRAsyncTask(houseid, -1, "12", null);
             } else {
                 AUtils.warning(QRcodeScannerDemoActivity.this, mContext.getResources().getString(R.string.qr_error));
                 restartPreview();
@@ -1149,12 +1149,12 @@ public class QRcodeScannerDemoActivity extends AppCompatActivity implements ZBar
         OfflineGarbageColectionPojo entity = new OfflineGarbageColectionPojo();
 
         entity.setReferenceID(garbageCollectionPojo.getId());
-       /* if (garbageCollectionPojo.getId().substring(0, 2).matches("^[HhPp]+$")) {
+        if (garbageCollectionPojo.getId().substring(0, 2).matches("^[HhPp]+$")) {
             if ((gcType.equalsIgnoreCase("6")) && gcType.matches("6")) {
                 getIntent().getStringArrayExtra("CD");
                 entity.setGcType("6");
             }
-        } else*/ if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
+        } else if (garbageCollectionPojo.getId().substring(0, 2).matches("^[CcPp]+$")) {
             if ((gcType.equalsIgnoreCase("12")) && gcType.matches("12")) {
                 getIntent().getStringArrayExtra("CDCW");
                 entity.setGcType("12");

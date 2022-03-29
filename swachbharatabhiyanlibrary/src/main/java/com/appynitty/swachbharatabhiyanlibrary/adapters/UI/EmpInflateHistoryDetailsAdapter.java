@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * Created by Ayan Dey on 25/10/18.
+ * updated UI and this file on 22/03/22.
  */
 
 public class EmpInflateHistoryDetailsAdapter extends ArrayAdapter<EmpWorkHistoryDetailPojo> {
@@ -71,7 +72,7 @@ public class EmpInflateHistoryDetailsAdapter extends ArrayAdapter<EmpWorkHistory
             EmpWorkHistoryDetailPojo workHistoryDetailPojo = workHistoryDetailPojoList.get(position);
 
             if (workHistoryDetailPojo.getType().equals("2")) {
-                holder.time.setVisibility(View.VISIBLE);
+                holder.time.setVisibility(View.GONE);
                 holder.time.setBackgroundResource(R.drawable.rounded_pink_button);
                 holder.time.setPadding(0, 0, 0, 0);
                 holder.time.setText(AUtils.getEmpTimeLineFormat(workHistoryDetailPojo.getTime()));
@@ -97,7 +98,7 @@ public class EmpInflateHistoryDetailsAdapter extends ArrayAdapter<EmpWorkHistory
                 holder.id.setText( context.getResources().getString(R.string.string_street_sweep_id));
                 holder.house_num.setText(workHistoryDetailPojo.getStreetWasteNo());
             } else if (workHistoryDetailPojo.getType().equals("3")) {
-                holder.time.setVisibility(View.VISIBLE);
+                holder.time.setVisibility(View.GONE);
                 holder.time.setBackgroundResource(R.drawable.rounded_orange_button);
                 holder.time.setPadding(0, 0, 0, 0);
                 holder.time.setText(AUtils.getEmpTimeLineFormat(workHistoryDetailPojo.getTime()));
