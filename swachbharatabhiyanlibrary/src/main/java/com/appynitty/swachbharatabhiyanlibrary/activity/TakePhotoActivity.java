@@ -496,8 +496,8 @@ public class TakePhotoActivity extends AppCompatActivity {
                 Prefs.putString(AUtils.AFTER_IMAGE, afterImageFilePath);
 
 
-                afterImage.setImageBitmap(thumbnail);
-                afterImageFilePath = destination.getAbsolutePath();
+                /*afterImage.setImageBitmap(thumbnail);
+                afterImageFilePath = destination.getAbsolutePath();*/
                 break;
         }
 
