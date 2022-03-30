@@ -113,11 +113,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/comments"
+            android:visibility="gone"
             android:layout_marginStart="@dimen/dim_6_dp"
             android:layout_marginEnd="@dimen/dim_6_dp"
             android:textSize="@dimen/dim_17_sp" />
 
         <androidx.cardview.widget.CardView
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dim_100_dp"
             android:layout_marginTop="@dimen/dim_5_dp"
