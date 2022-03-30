@@ -1321,7 +1321,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         garbageCollectionPojo = new GarbageCollectionPojo();
         garbageCollectionPojo.setId(houseNo);
         garbageCollectionPojo.setGarbageType(garbageType);
-        garbageCollectionPojo.setComment(imagePojo.getComment());
+        garbageCollectionPojo.setComment(comment);
         garbageCollectionPojo.setGcType(gcType);
         garbageCollectionPojo.setLevelOS(segregatnLevel);
 
@@ -1625,7 +1625,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZBarScan
         mDry = Dry;
         mDomestic = Domestic;
         mSanitary = Sanitary;
-        startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "1", segregationLevel, mComment);
+        startSubmitQRAsyncTask(houseId, Integer.parseInt(garbageType), "1", segregationLevel, comment);
         confirmationDialog(houseId, garbageType, "", "");
     }
 
