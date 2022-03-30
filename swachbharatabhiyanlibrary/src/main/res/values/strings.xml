@@ -342,6 +342,7 @@
     <string name="cleaned_successful">Cleaning completed successfully</string>
     <string name="turning_on_the_gps_n_please_wait">Turning on the GPS\n Please wait…</string>
     <string name="validate_multiselection">At least one selection is mandatory!</string>
+    <string name="double_exit_msg">Please click back again to exit this app.</string>
 
 
 </resources>

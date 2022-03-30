@@ -13,6 +13,7 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -1326,5 +1327,30 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
 //        Toast.makeText(mContext, empType, Toast.LENGTH_SHORT).show();
         inflateDashboard();
 //        garbageAndCTPTEmpDialog.dismiss();
+    }
+
+    /*******************************
+     * Dashboard added double press exit button
+     * Rahul Rokade 30/03/2022
+     * ********/
+    boolean doubleBackToExitPressedOnce = false;
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        AUtils.error(mContext,getResources().getString(R.string.double_exit_msg), 1000*300);
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }

@@ -304,7 +304,8 @@
     <string name="cleaned_successful">सफाई सफलतापूर्वक पूर्ण</string>
     <string name="turning_on_the_gps_n_please_wait">जीपीएस चालू करत आहे\nकृपया थांबा…</string>
     <string name="validate_multiselection">किमान एक निवड अनिवार्य आहे!</string>
-
+    <!--added by Rahul-->
+    <string name="double_exit_msg">कृपया या अॅपमधून बाहेर पडण्यासाठी पुन्हा क्लिक करा.</string>
 
 
 </resources>
