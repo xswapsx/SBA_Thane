@@ -512,9 +512,9 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         mHouse_id = houseid;
 
         if (validSubmitId(houseid.toLowerCase())) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 takeQRsPhoto();
-            }
+//            }
 //            showActionPopUp(houseid);
 
         } else {
