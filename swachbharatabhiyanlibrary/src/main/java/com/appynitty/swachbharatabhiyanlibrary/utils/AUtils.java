@@ -864,18 +864,14 @@ public class AUtils extends CommonUtils {
         final String longitude = Prefs.getString(AUtils.LONG,"");
         Bitmap bm = BitmapFactory.decodeFile(mPath);
         Bitmap mutableBitmap = bm.copy(Bitmap.Config.ARGB_8888, true);
-
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.LINEAR_TEXT_FLAG);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint.setTextSize(8f);
-        paint.setMaskFilter(null);
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setStyle(Paint.Style.FILL);
         paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER));
-        paint.setFakeBoldText(true);
+        paint.setColor(Color.CYAN);
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setTextSize(10);
         Canvas canvas = new Canvas(mutableBitmap);
         canvas.drawBitmap(bm, 0, 0, paint);
-        paint.setColor(Color.CYAN);
 
         /*Paint paintRect = new Paint();
         paintRect.setColor(Color.DKGRAY );
