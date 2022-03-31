@@ -37,12 +37,12 @@ public class SyncOfflineRepository {
     private static final int liquidCollectionId = 4;// added by swapnil
     private static final int streetCollectionId = 5;// added by swapnil
     private static final int candDCollectionId = 6;//added by rahul
-    private static final int candD_CWId = 12;//added by rahul
     private static final int hortCollectionId = 7;//added by rahul
-    private static final int hortCWId = 13;//added by rahul
     private static final int commercialCollectionId = 9;// added by swapnil
     private static final int ctptCollectionId = 10;// added by rahul
     private static final int swmCollectionId = 11;// added by rahul
+    private static final int candDcwId = 12;//added by rahul
+    private static final int hortCWId = 13;//added by rahul
 
     private static final String C_TYPE_RNC = "R";
     private static final String C_TYPE_RBC = "RBW";
@@ -445,16 +445,18 @@ public class SyncOfflineRepository {
                 "cteCd as(" +
                 " select count(*) as cd, date(" + COLUMN_DATE + ") as gcdateCd from " + SYNC_OFFLINE_TABLE +
                 " where " + COLUMN_GC_TYPE + " = " + candDCollectionId +
+                " or "  + COLUMN_GC_TYPE + "= " + candDcwId +
                 " group by date(tableSyncOffline.offlineSyncDate))," +
 
                 "cteCdcw as(" +
                 " select count(*) as cdcw, date(" + COLUMN_DATE + ") as gcdateCdcw from " + SYNC_OFFLINE_TABLE +
-                " where " + COLUMN_GC_TYPE + " = " + candD_CWId +
+                " where " + COLUMN_GC_TYPE + " = " + candDcwId +
                 " group by date(tableSyncOffline.offlineSyncDate))," +
 
                 "cteHr as(" +
                 " select count(*) as hr, date(" + COLUMN_DATE + ") as gcdateHr from " + SYNC_OFFLINE_TABLE +
                 " where " + COLUMN_GC_TYPE + " = " + hortCollectionId +
+                " or "  + COLUMN_GC_TYPE + "= " + hortCWId +
                 " group by date(tableSyncOffline.offlineSyncDate))," +
 
                 "cteHrcw as(" +
