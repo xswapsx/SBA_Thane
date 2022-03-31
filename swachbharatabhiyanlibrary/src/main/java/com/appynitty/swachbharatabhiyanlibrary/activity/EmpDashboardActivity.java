@@ -1,14 +1,17 @@
 package com.appynitty.swachbharatabhiyanlibrary.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -19,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -69,7 +73,7 @@ public class EmpDashboardActivity extends AppCompatActivity implements EmpPopUpD
     private TextView userName;
     private TextView empId;
     private ImageView profilePic;
-
+    CardView pb;
     private EmpInPunchPojo empInPunchPojo = null;
 
     private UserDetailPojo userDetailPojo;
@@ -247,7 +251,7 @@ public class EmpDashboardActivity extends AppCompatActivity implements EmpPopUpD
         mCheckAttendanceAdapter = new EmpCheckAttendanceAdapterClass();
         mAttendanceAdapter = new EmpAttendanceAdapterClass();
         mUserDetailAdapter = new EmpUserDetailAdapterClass();
-
+        pb = findViewById(R.id.empProgress_layout);
         fab = findViewById(R.id.fab_setting);
         menuGridView = findViewById(R.id.menu_grid);
         menuGridView.setLayoutManager(new GridLayoutManager(mContext, 2));
@@ -635,5 +639,31 @@ public class EmpDashboardActivity extends AppCompatActivity implements EmpPopUpD
     protected void onPause() {
         super.onPause();
         getIntent().removeExtra(AUtils.isFromLogin);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 101) {
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                    // All required changes were successfully made
+                    pb.setVisibility(View.VISIBLE);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            pb.setVisibility(View.GONE);
+                        }
+                    }, 5000);
+                    break;
+                case Activity.RESULT_CANCELED:
+                    // The user was asked to change settings, but chose not to
+                    Toast.makeText(EmpDashboardActivity.this, "Canceled", Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

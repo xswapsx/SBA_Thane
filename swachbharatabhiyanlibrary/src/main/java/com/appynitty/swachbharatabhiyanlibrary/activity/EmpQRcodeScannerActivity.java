@@ -1,7 +1,5 @@
 package com.appynitty.swachbharatabhiyanlibrary.activity;
 
-import static android.graphics.Bitmap.Config.ARGB_8888;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -97,6 +95,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
     private Gson gson;
     Camera mCamera;
     private MyProgressDialog myProgressDialog;
+
     private ArrayList<Integer> mSelectedIndices;
 
     @Override
@@ -164,7 +163,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
                         }
                     }
                 });
-            }else if (ActivityCompat.shouldShowRequestPermissionRationale(EmpQRcodeScannerActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            } else if (ActivityCompat.shouldShowRequestPermissionRationale(EmpQRcodeScannerActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
                 AUtils.showPermissionDialog(mContext, "EXTERNAL STORAGE", new DialogInterface.OnClickListener() {
                     @Override
@@ -207,8 +206,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 //                Toast.makeText(getActivity(), "Unable to get Permission", Toast.LENGTH_LONG).show();
             }
 
-        }
-        else if (requestCode == AUtils.MY_PERMISSIONS_REQUEST_LOCATION) {
+        } else if (requestCode == AUtils.MY_PERMISSIONS_REQUEST_LOCATION) {
             //check if all permissions are granted
             boolean allgranted = false;
             for (int i = 0; i < grantResults.length; i++) {
@@ -614,7 +612,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
     }
 
     public void handleResult(Result result) {
-        stopCamera();
+
 //        showActionPopUp(result.getContents());
 
         Log.e(TAG, "submitQRcode: " + result.getContents());
@@ -622,7 +620,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
         if (validSubmitId(result.getContents().toLowerCase())) {
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                takeQRsPhoto();
+            takeQRsPhoto();
 //            }
 //            showActionPopUp(houseid);
 
@@ -789,9 +787,9 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
         AUtils.currentContextConstant = mContext;
-
         if (requestCode == AUtils.ADD_DETAILS_REQUEST_KEY && resultCode == RESULT_OK) {
             finish();
         } else if (resultCode == Activity.RESULT_OK) {
@@ -800,8 +798,6 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
                 onCaptureImageResult(data);
             }
         }
-
-        super.onActivityResult(requestCode, resultCode, data);
 
     }
 
@@ -892,8 +888,8 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
     private void takeQRsPhoto() {
 //        hideQR();
-
-        setContentView(R.layout.layout_blank);
+//        scannerView.stopCamera();
+//        setContentView(R.layout.layout_blank);
         /*Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, REQUEST_CAMERA);
         Camera.open(0);*/

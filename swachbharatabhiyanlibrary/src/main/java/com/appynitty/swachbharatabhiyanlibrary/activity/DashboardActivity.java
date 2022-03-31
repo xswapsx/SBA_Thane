@@ -31,6 +31,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -112,7 +113,7 @@ public class DashboardActivity extends AppCompatActivity implements PopUpDialog.
     private Switch markAttendance;
     private ImageView profilePic;
     private TextView userName;
-    FrameLayout pb;
+    CardView pb;
     private TextView empId, txtEmpId;
     private AttendancePojo attendancePojo = null;
     private List<VehicleTypePojo> vehicleTypePojoList;

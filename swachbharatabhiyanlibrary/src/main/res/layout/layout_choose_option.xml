@@ -33,7 +33,6 @@
             style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dim_10_dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:text="@string/add_details_txt"
@@ -45,11 +44,12 @@
             android:layout_width="@dimen/dim_120_dp"
             android:layout_height="@dimen/dim_120_dp"
             android:layout_marginStart="@dimen/dim_10_dp"
+            android:layout_marginTop="@dimen/dim_20_dp"
             android:layout_marginEnd="@dimen/dim_10_dp"
-            android:layout_marginBottom="@dimen/dim_20_dp"
+            android:layout_marginBottom="@dimen/dim_10_dp"
+            android:adjustViewBounds="true"
             android:background="@color/colorDivider"
             android:contentDescription="@string/title_activity_dump_yard_weight"
-            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_photo_camera_light_gray_50dp" />
 
@@ -73,6 +73,8 @@
             android:text="@string/skip_txt"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_18_sp" />
+        <!--android:background="@drawable/circular_button"-->
+
         <!--android:background="@android:color/transparent"
         style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"-->
 

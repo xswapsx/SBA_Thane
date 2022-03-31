@@ -8,12 +8,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
@@ -22,7 +22,7 @@ public class ChooseActionPopUp extends Dialog {
 
     private static final String TAG = "ChooseActionPopUp";
     private ChooseActionPopUpDialogListener chooseActionPopUpDialogListener;
-
+    private TextView tvHouseId;
     private Button addDetailsBtn, skipBtn;
     ImageView ivQR_image;
     private Object data;
@@ -70,19 +70,20 @@ public class ChooseActionPopUp extends Dialog {
         skipBtn = findViewById(R.id.btn_skip);
         addDetailsBtn = findViewById(R.id.btn_add_details);
         ivQR_image = findViewById(R.id.imgQRimg);
+        tvHouseId = findViewById(R.id.txt_houseId);
     }
 
     private void initData() {
 
 //        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            bmp = AUtils.writeOnImage(AUtils.getDateAndTime(), mId, mPath);
+        bmp = AUtils.writeOnImage(AUtils.getDateAndTime(), mId, mPath);
 
-            // result =  AUtils.resizeImage(bmp, 800,true);
-            // result1 =  AUtils.scaleBitmapAndKeepRation(bmp, 480,560);
+        // result =  AUtils.resizeImage(bmp, 800,true);
+        // result1 =  AUtils.scaleBitmapAndKeepRation(bmp, 480,560);
 //        }
         Bitmap shadowImage32 = bmp.copy(ARGB_8888, true);
         ivQR_image.setImageBitmap(shadowImage32);
-
+        tvHouseId.setText(mId);
 
     }
 
@@ -128,8 +129,7 @@ public class ChooseActionPopUp extends Dialog {
 
     }
 
-    private void dismissPopup()
-    {
+    private void dismissPopup() {
         this.dismiss();
     }
 
