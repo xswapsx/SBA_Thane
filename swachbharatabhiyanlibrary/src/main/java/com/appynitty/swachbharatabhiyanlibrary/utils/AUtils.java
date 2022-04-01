@@ -9,13 +9,10 @@ import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ImageDecoder;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -860,8 +857,8 @@ public class AUtils extends CommonUtils {
         return mutableBitmap;*/
 
         Context context;
-        final String latitude = Prefs.getString(AUtils.LAT,"");
-        final String longitude = Prefs.getString(AUtils.LONG,"");
+        final String latitude = Prefs.getString(AUtils.LAT, "");
+        final String longitude = Prefs.getString(AUtils.LONG, "");
         Bitmap bm = BitmapFactory.decodeFile(mPath);
         Bitmap mutableBitmap = bm.copy(Bitmap.Config.ARGB_8888, true);
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -885,11 +882,23 @@ public class AUtils extends CommonUtils {
         int rectWidth = 50;
         int rectHeight = 30;
 
+
+
         canvas.drawRect(leftx+rectWidth, topy+rectHeight, rightx, bottomy, paintRect);*/
-        canvas.drawText("Date - " +mDate, 80, 110, paint);
-        canvas.drawText("House Id - " + mId, 72, 120, paint);
-        canvas.drawText("Lat - "+latitude, 60, 130, paint);
-        canvas.drawText("Long - "+longitude, 63, 140, paint);
+
+        int xPos = (canvas.getWidth() / 2);
+        int yPos = (int) ((canvas.getHeight() / 2) - ((paint.descent() + paint.ascent()) / 2));
+        //((textPaint.descent() + textPaint.ascent()) / 2) is the distance from the baseline to the center.
+
+
+        canvas.drawText("House Id - " + mId, xPos, yPos + 80, paint);
+        canvas.drawText("Lat - " + latitude, xPos, yPos + 90, paint);
+        canvas.drawText("Long - " + longitude, xPos, yPos + 100, paint);
+        canvas.drawText("Date - " + mDate, xPos, yPos + 110, paint);
+//        canvas.drawText("Date - " +mDate, 80, 110, paint);
+       /* canvas.drawText("House Id - " + mId, xPos - 100, yPos - 225, paint);
+        canvas.drawText("Lat - " + latitude, xPos - 100, yPos - 215, paint);
+        canvas.drawText("Long - " + longitude, xPos - 100, yPos - 205, paint);*/
 
         /*Paint paintRect = new Paint();
         paintRect.setColor(Color.DKGRAY );
@@ -911,12 +920,14 @@ public class AUtils extends CommonUtils {
 
     final static int COMPRESSED_RATIO = 13;
     final static int perPixelDataSize = 4;
-    public byte[] getJPGLessThanMaxSize(Bitmap image, int maxSize){
-        int maxPixelCount = maxSize *1024 * COMPRESSED_RATIO / perPixelDataSize;
+
+    public byte[] getJPGLessThanMaxSize(Bitmap image, int maxSize) {
+        int maxPixelCount = maxSize * 1024 * COMPRESSED_RATIO / perPixelDataSize;
         int imagePixelCount = image.getWidth() * image.getHeight();
         Bitmap reducedBitmap;
         // Adjust Bitmap Dimensions if necessary.
-        if(imagePixelCount > maxPixelCount) reducedBitmap = getResizedBitmapLessThanMaxSize(image, maxSize);
+        if (imagePixelCount > maxPixelCount)
+            reducedBitmap = getResizedBitmapLessThanMaxSize(image, maxSize);
         else reducedBitmap = image;
 
         float compressedRatio = 1;
@@ -924,25 +935,25 @@ public class AUtils extends CommonUtils {
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         int jpgQuality = 100;
         // Adjust Quality until file size is less than maxSize.
-        do{
+        do {
             reducedBitmap.compress(Bitmap.CompressFormat.JPEG, jpgQuality, outStream);
             resultBitmap = outStream.toByteArray();
             compressedRatio = resultBitmap.length / (reducedBitmap.getWidth() * reducedBitmap.getHeight() * perPixelDataSize);
-            if(compressedRatio > (COMPRESSED_RATIO-1)){
+            if (compressedRatio > (COMPRESSED_RATIO - 1)) {
                 jpgQuality -= 1;
-            }else if(compressedRatio > (COMPRESSED_RATIO*0.8)){
+            } else if (compressedRatio > (COMPRESSED_RATIO * 0.8)) {
                 jpgQuality -= 5;
-            }else{
+            } else {
                 jpgQuality -= 10;
             }
-        }while(resultBitmap.length > (maxSize * 1024));
+        } while (resultBitmap.length > (maxSize * 1024));
         return resultBitmap;
     }
 
     public Bitmap getResizedBitmapLessThanMaxSize(Bitmap image, int maxSize) {
         int width = image.getWidth();
         int height = image.getHeight();
-        float bitmapRatio = (float)width / (float) height;
+        float bitmapRatio = (float) width / (float) height;
 
         // For uncompressed bitmap, the data size is:
         // H * W * perPixelDataSize = H * H * bitmapRatio * perPixelDataSize
@@ -964,7 +975,9 @@ public class AUtils extends CommonUtils {
     }
 
 
-    /** Created by Swapnil */
+    /**
+     * Created by Swapnil
+     */
     public static void gpsStatusCheck(Context ctx) {
 
         LocationRequest mLocationRequest = new LocationRequest();
