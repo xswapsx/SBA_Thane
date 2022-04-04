@@ -69,6 +69,7 @@ public class ChooseActionPopUp extends Dialog {
     private void generateID() {
         skipBtn = findViewById(R.id.btn_skip);
         addDetailsBtn = findViewById(R.id.btn_add_details);
+        addDetailsBtn.setVisibility(View.GONE);
         ivQR_image = findViewById(R.id.imgQRimg);
         tvHouseId = findViewById(R.id.txt_houseId);
     }
@@ -107,7 +108,7 @@ public class ChooseActionPopUp extends Dialog {
         addDetailsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                chooseActionPopUpDialogListener.onChooseActionPopUpDismissed(mId, ADD_DETAILS_BUTTON_CLICKED);
+               // chooseActionPopUpDialogListener.onChooseActionPopUpDismissed(mId, ADD_DETAILS_BUTTON_CLICKED);
                 dismissPopup();
             }
         });

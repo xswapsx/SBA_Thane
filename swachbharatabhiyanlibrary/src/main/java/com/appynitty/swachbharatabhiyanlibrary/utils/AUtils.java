@@ -73,11 +73,19 @@ public class AUtils extends CommonUtils {
     //  Advanced Ghanta Gadi URL
 //    public static final String SERVER_URL = "http://202.65.157.253:6560";
     //ICTSBM Thane Live
-    public static final String SERVER_URL = "http://202.65.157.253:5045/";
+    //public static final String SERVER_URL = "http://202.65.157.253:5045/";
 
     //    Staging URL
 //    public static final String SERVER_URL = "http://115.115.153.117:4044/";
 //    public static final String SERVER_URL = "http://202.65.157.254:7075";  //Thane staging
+       public static final String SERVER_URL = "http://183.177.126.33:7075";  //Thane staging new
+
+            /*
+            *  CMS URL : http://183.177.126.33:5808
+            * Local Url      :  http://192.168.200.3:7075
+             *   Staging Url  :  http://183.177.126.33:7075/
+             *    Live Url  :        http://202.65.157.253:5045/
+            * */
 
 
     //Relese URL

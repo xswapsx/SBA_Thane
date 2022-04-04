@@ -84,6 +84,8 @@ public class InflateHistoryDetailsAdapter extends ArrayAdapter<WorkHistoryDetail
                        holder.time.setPadding(0, 0, 0, 0);
                        holder.id.setText(String.format("%s %s", context.getResources().getString(R.string.string_ctpt_waste_id), workHistoryDetailPojo.getRefid()));
                        holder.time.setText(workHistoryDetailPojo.getTime());
+
+                       holder.vehicleNo.setVisibility(View.GONE);
                        holder.vehicleNo.setText(String.format("%s %s", context.getResources().getString(R.string.vehicle_number_txt), workHistoryDetailPojo.getVehicleNumber()));
                        holder.area.setText(workHistoryDetailPojo.getAreaName());
                        holder.name.setText(workHistoryDetailPojo.getName());

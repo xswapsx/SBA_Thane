@@ -37,7 +37,8 @@
             android:background="@android:color/transparent"
             android:text="@string/add_details_txt"
             android:textColor="@color/colorBlue"
-            android:textSize="@dimen/dim_18_sp" />
+            android:textSize="@dimen/dim_18_sp"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/imgQRimg"
