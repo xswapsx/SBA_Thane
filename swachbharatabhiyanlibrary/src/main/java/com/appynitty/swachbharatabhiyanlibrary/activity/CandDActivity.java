@@ -239,7 +239,7 @@ public class CandDActivity extends AppCompatActivity {
 
     private void generateId() {
 
-        setContentView(R.layout.activity_take_photo);
+        setContentView(R.layout.activity_take_photo_cd);
         toolbar = findViewById(R.id.toolbar);
 
         mContext = CandDActivity.this;

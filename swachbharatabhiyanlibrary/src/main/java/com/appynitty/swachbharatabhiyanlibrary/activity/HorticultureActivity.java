@@ -238,7 +238,7 @@ public class HorticultureActivity extends AppCompatActivity {
 
     private void generateId() {
 
-        setContentView(R.layout.activity_take_photo);
+        setContentView(R.layout.activity_take_photo_hr);
         toolbar = findViewById(R.id.toolbar);
 
         mContext = HorticultureActivity.this;
