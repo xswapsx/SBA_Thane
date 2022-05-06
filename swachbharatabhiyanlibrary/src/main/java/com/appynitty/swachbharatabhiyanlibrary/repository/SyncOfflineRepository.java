@@ -282,6 +282,7 @@ public class SyncOfflineRepository {
         offlinePojo.setVehicleNumber(pojo.getVehicleNumber());
         offlinePojo.setBatteryStatus(String.valueOf(AUtils.getBatteryStatus()));
         offlinePojo.setGpAfterImage(pojo.getGpAfterImage());
+        offlinePojo.setGpBeforImageTime(pojo.getGpBeforImageTime());
         offlinePojo.setGpBeforImage(pojo.getGpBeforImage());
         offlinePojo.setDistance(pojo.getDistance());
         offlinePojo.setIsOffline(pojo.getIsOffline());

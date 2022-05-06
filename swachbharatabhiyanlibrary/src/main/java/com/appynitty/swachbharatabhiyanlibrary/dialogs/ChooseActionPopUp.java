@@ -1,12 +1,11 @@
 package com.appynitty.swachbharatabhiyanlibrary.dialogs;
 
 
-import static android.graphics.Bitmap.Config.ARGB_8888;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -17,6 +16,8 @@ import android.widget.TextView;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
+
+import java.io.File;
 
 public class ChooseActionPopUp extends Dialog {
 
@@ -29,15 +30,17 @@ public class ChooseActionPopUp extends Dialog {
     private String mId, mPath;
     public static final int SKIP_BUTTON_CLICKED = 0;
     public static final int ADD_DETAILS_BUTTON_CLICKED = 1;
-
+    Context mContext;
     Bitmap bmp = null;
     Bitmap result = null;
     Bitmap result1 = null;
+    Uri uri;
 
     boolean isImageFitToScreen;
 
     public ChooseActionPopUp(Context context) {
         super(context);
+        mContext = context;
     }
 
     public void setChooseActionPopUpDialogListener(ChooseActionPopUpDialogListener chooseActionPopUpDialogListener) {
@@ -76,15 +79,11 @@ public class ChooseActionPopUp extends Dialog {
 
     private void initData() {
 
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-        bmp = AUtils.writeOnImage(AUtils.getDateAndTime(), mId, mPath);
-
-        // result =  AUtils.resizeImage(bmp, 800,true);
-        // result1 =  AUtils.scaleBitmapAndKeepRation(bmp, 480,560);
-//        }
-        Bitmap shadowImage32 = bmp.copy(ARGB_8888, true);
-        ivQR_image.setImageBitmap(shadowImage32);
-        tvHouseId.setText(mId);
+        if (mPath != null && !mPath.trim().isEmpty()) {
+            uri = Uri.fromFile(new File(mPath));
+            ivQR_image.setImageBitmap(AUtils.loadFromUri(uri, mContext));
+            tvHouseId.setText(mId);
+        }
 
     }
 
@@ -108,7 +107,7 @@ public class ChooseActionPopUp extends Dialog {
         addDetailsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // chooseActionPopUpDialogListener.onChooseActionPopUpDismissed(mId, ADD_DETAILS_BUTTON_CLICKED);
+                // chooseActionPopUpDialogListener.onChooseActionPopUpDismissed(mId, ADD_DETAILS_BUTTON_CLICKED);
                 dismissPopup();
             }
         });

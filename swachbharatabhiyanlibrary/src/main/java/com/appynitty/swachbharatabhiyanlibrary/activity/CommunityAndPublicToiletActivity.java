@@ -16,8 +16,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
@@ -38,7 +36,6 @@ import androidx.core.app.ActivityCompat;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.pojos.ImagePojo;
-import com.appynitty.swachbharatabhiyanlibrary.services.GeocodingLocation;
 import com.appynitty.swachbharatabhiyanlibrary.utils.AUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -78,7 +75,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
     private String beforeImageFilePath = "";
     private String afterImageFilePath = "";
 
-    private String dateTime = AUtils.getServerDate() + " "+ AUtils.getServerTime();
+    private String dateTime = AUtils.getServerDate() + " " + AUtils.getServerTime();
 
     private ImagePojo imagePojo;
 
@@ -273,15 +270,6 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
         initToolbar();
     }
 
-    private void address(){
-        String address = " ";
-
-        GeocodingLocation locationAddress = new GeocodingLocation();
-        locationAddress.getAddressFromLocation(address,
-                getApplicationContext(), new GeocoderHandler());
-
-    }
-
     private void registerEvents() {
         beforeImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -351,14 +339,10 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
 
         if (Prefs.contains(AUtils.BEFORE_IMAGE)) {
             Bitmap myBitmap = BitmapFactory.decodeFile(Prefs.getString(AUtils.BEFORE_IMAGE, null));
-            Log.e(TAG, "initData: before Image:- "+ Prefs.getString(AUtils.BEFORE_IMAGE, null));
+            Log.e(TAG, "initData: before Image:- " + Prefs.getString(AUtils.BEFORE_IMAGE, null));
             beforeImage.setImageBitmap(myBitmap);
         }
 
-        /*if (Prefs.contains(AUtils.AFTER_IMAGE)) {
-            Bitmap myBitmap = BitmapFactory.decodeFile(Prefs.getString(AUtils.AFTER_IMAGE, null));
-            afterImage.setImageBitmap(myBitmap);
-        }*/
     }
 
     private void openQRClicked() {
@@ -368,7 +352,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
             if (getFormData()) {
 
                 startActivity(new Intent(CommunityAndPublicToiletActivity.this,
-                        QRcodeScannerCtptActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra( "CTPT",AUtils.CTPT_GC_TYPE));
+                        QRcodeScannerCtptActivity.class).putExtra(AUtils.REQUEST_CODE, AUtils.MY_RESULT_REQUEST_QR).putExtra("CTPT", AUtils.CTPT_GC_TYPE));
                 CommunityAndPublicToiletActivity.this.finish();
             }
         }
@@ -461,7 +445,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, System.currentTimeMillis() + ".jpg");
                 contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
-                contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "Gram Panchayat");
+                contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/SBA Thane");
                 Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
                 fos = resolver.openOutputStream(imageUri);
                 thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fos);
@@ -506,7 +490,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
                 beforeImageFilePath = finalPath; //setting image1 path that will be set in imageDTO.
 
                 Prefs.putString(AUtils.BEFORE_IMAGE, beforeImageFilePath);
-                AUtils.success(mContext, "Before image saved successfully, please complete your work then upload after photos, thank you.", Toast.LENGTH_SHORT);
+                Prefs.putString(AUtils.BEFORE_IMAGE_TIME, AUtils.getServerDateTimeLocal());
 
                 break;
             case 2:
@@ -525,11 +509,6 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
 
         }
 
-    }
-
-    private void autoRefresh(){
-        beforeImage.setImageDrawable(getResources().getDrawable(R.drawable.dirty_toilet));
-        afterImage.setImageDrawable(getResources().getDrawable(R.drawable.clean_toilet));
     }
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {
@@ -553,33 +532,13 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
         return path;
     }
 
-   /* private boolean validateForm() {
-
-        if (AUtils.isNullString(beforeImageFilePath) && AUtils.isNullString(afterImageFilePath)) {
-            AUtils.warning(mContext, mContext.getString(R.string.plz_capture_img), Toast.LENGTH_SHORT);
-            return false;
-        }
-        else if (edtToiletSeatsCount.getText().toString().isEmpty()){
-            AUtils.warning(mContext, mContext.getString(R.string.str_hint_toilet_seats_count), Toast.LENGTH_SHORT);
-            return false;
-        }
-
-        return true;
-    }*/
-
     private boolean validateForm() {
-         /*if (AUtils.isNullString(beforeImageFilePath)) {
-            AUtils.warning(mContext, mContext.getString(R.string.plz_capture_before_img), Toast.LENGTH_SHORT);
-            return false;
-        }
-        else*/ if (AUtils.isNullString(afterImageFilePath)) {
+
+        if (AUtils.isNullString(afterImageFilePath)) {
             AUtils.warning(mContext, mContext.getString(R.string.plz_capture_after_img), Toast.LENGTH_SHORT);
             return false;
         }
-        /*else if (edtToiletSeatsCount.getText().toString().isEmpty()){
-            AUtils.warning(mContext, mContext.getString(R.string.str_hint_toilet_seats_count), Toast.LENGTH_SHORT);
-            return false;
-        }*/
+
 
         return true;
     }
@@ -601,7 +560,7 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
             imagePojo.setComment(comments.getText().toString());
             Log.e(TAG, "ImageComment: " + imagePojo.getComment());
         }
-        if (!AUtils.isNullString(edtToiletSeatsCount.getText().toString())){
+        if (!AUtils.isNullString(edtToiletSeatsCount.getText().toString())) {
             imagePojo.setTNS(edtToiletSeatsCount.getText().toString());
             Log.e(TAG, "Toilet Seats Count: " + imagePojo.getTNS());
         }
@@ -619,23 +578,4 @@ public class CommunityAndPublicToiletActivity extends AppCompatActivity {
         }
     }
 
-    private class GeocoderHandler extends Handler {
-        @Override
-        public void handleMessage(Message message) {
-            String address;
-            switch (message.what) {
-                case 1:
-                    Bundle bundle = message.getData();
-                    address = bundle.getString("address");
-                    break;
-                default:
-                    address = null;
-            }
-            String latLongAddress = null;
-            if (latLongAddress != null) {
-                latLongAddress = address;
-                Log.e("Address", latLongAddress);
-            }
-        }
-    }
 }

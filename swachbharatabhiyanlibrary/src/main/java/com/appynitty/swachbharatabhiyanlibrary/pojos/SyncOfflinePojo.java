@@ -25,7 +25,9 @@ public class SyncOfflinePojo {
     private String empType;         //added by swapnil
 
     private String gpBeforImage;
+    private String gpBeforImageTime;
     private String gpAfterImage;
+    private String gpAfterImageTime;
 
     private String LevelOS;
     private String TNS;
@@ -36,6 +38,23 @@ public class SyncOfflinePojo {
     private String Dry;
     private String Domestic;
     private String Sanitary;
+
+
+    public String getGpBeforImageTime() {
+        return gpBeforImageTime;
+    }
+
+    public void setGpBeforImageTime(String gpBeforImageTime) {
+        this.gpBeforImageTime = gpBeforImageTime;
+    }
+
+    public String getGpAfterImageTime() {
+        return gpAfterImageTime;
+    }
+
+    public void setGpAfterImageTime(String gpAfterImageTime) {
+        this.gpAfterImageTime = gpAfterImageTime;
+    }
 
     public String getWet() {
         return Wet;

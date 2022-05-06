@@ -12,8 +12,12 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.hardware.Camera;
 import android.location.LocationManager;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -56,7 +60,9 @@ import com.riaylibrary.utils.LocaleHelper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -274,7 +280,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
             AUtils.hideSnackBar();
         } else {
 //            AUtils.showSnackBar(findViewById(R.id.parent));
-            Toast.makeText(mContext, getResources().getString(R.string.no_internet_error), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(mContext, getResources().getString(R.string.no_internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -513,7 +519,7 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
         if (validSubmitId(houseid.toLowerCase())) {
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                takeQRsPhoto();
+            takeQRsPhoto();
 //            }
 //            showActionPopUp(houseid);
 
@@ -792,10 +798,11 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         AUtils.currentContextConstant = mContext;
         if (requestCode == AUtils.ADD_DETAILS_REQUEST_KEY && resultCode == RESULT_OK) {
             finish();
-        } else if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == REQUEST_CAMERA) {
-//                mCamera = Camera.open(0);
+        } else if (requestCode == REQUEST_CAMERA) {
+            try {
                 onCaptureImageResult(data);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 
@@ -887,93 +894,215 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
 
 
     private void takeQRsPhoto() {
-//        hideQR();
-//        scannerView.stopCamera();
-//        setContentView(R.layout.layout_blank);
-        /*Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, REQUEST_CAMERA);
-        Camera.open(0);*/
 
-        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra("android.intent.extras.CAMERA_FACING", 0);
-        /*intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-        intent.putExtra(MediaStore.QUERY_ARG_RELATED_URI, 1);*/
+        Intent intent = new Intent(EmpQRcodeScannerActivity.this, CameraActivity.class);
         startActivityForResult(intent, REQUEST_CAMERA);
     }
 
-    private void onCaptureImageResult(Intent data) {
+    private void onCaptureImageResult(Intent data) throws IOException {
+        String imagePath = data.getStringExtra("image_path");
+        String compressedImagePath = compressImage(imagePath); // important code for compressing an image
 
-        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-        File destination;
-
-        OutputStream fos;
-        try {
-
-            final File dir;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {  //added by swapnil for android version 10 and above
-
-                ContentResolver resolver = mContext.getContentResolver();
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, System.currentTimeMillis() + ".jpg");
-                contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
-                contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "Gram Panchayat");
-                Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-                fos = resolver.openOutputStream(imageUri);
-
-                thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fos);
-                destination = new File(String.valueOf(contentValues), System.currentTimeMillis() + ".jpg");
-
-            } else {
-
-                dir = new File(Environment.getExternalStoragePublicDirectory(
-                        Environment.DIRECTORY_DCIM), "Gram Panchayat");
-
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-                destination = new File(dir, System.currentTimeMillis() + ".jpg");
-                fos = new FileOutputStream(destination);
-                thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fos);
-            }
-
-            fos.flush();
-            fos.close();
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-            AUtils.error(mContext, "Unable to add image", Toast.LENGTH_SHORT);
-
-        }
-
-        Uri tempUri;
-        String finalPath;
-        tempUri = getImageUri(getApplicationContext(), thumbnail);
-        finalPath = getRealPathFromURI(tempUri);
-        Log.e(TAG, "onCaptureImageResult: imagePath:- " + finalPath);
-        mImagePath = finalPath;
+        Log.e(TAG, "onCaptureImageResult: compressedImagePath:- " + compressedImagePath);
+        mImagePath = compressedImagePath;
+//        showActionPopUp(mHouse_id);
         showImagePopUp(mHouse_id);
+        Bitmap bm = BitmapFactory.decodeFile(mImagePath);
+        Bitmap newBitmap = AUtils.writeOnImage(mContext, AUtils.getDateAndTime(), mHouse_id, mImagePath);
 
-        Bitmap bm = BitmapFactory.decodeFile(finalPath);
 
-        Bitmap newBitmap = AUtils.writeOnImage(AUtils.getDateAndTime(), mHouse_id, mImagePath);
+        Uri uri = getImageUri(mContext, newBitmap);
+        String str = getRealPathFromURI(String.valueOf(uri));
+        compressedImagePath = compressImage(str);
+
+        Log.e(TAG, "onCaptureImageResult: realPath: " + str);
+        newBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.fromFile(new File(compressedImagePath)));
+
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        newBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos); // bm is the bitmap object
+        newBitmap.compress(Bitmap.CompressFormat.JPEG, 25, baos); // bm is the bitmap object
         byte[] byteArrayImage = baos.toByteArray();
 
-        //Bitmap sizeImage = AUtils.resizeImage(newBitmap, 500,true);
-      /* Bitmap sizeImage = AUtils.getResizedBitmapNew(newBitmap, 300,466);
-        Bitmap shadowImage32 = sizeImage.copy(ARGB_8888, true);*/
+        // dpi set by rahul
+        setDpi(byteArrayImage, 160);
+
+        long lengthbmp = byteArrayImage.length;
+        Log.e(TAG, "onCaptureImageResult: Final-size: " + lengthbmp);
+
         encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
-
-//        encodedImage = BitMapToString(sizeImage);
-
-        Log.d(TAG, "onCaptureImageResult: encodedImage:- " + encodedImage);
+        Log.d(TAG, "onCaptureImageResult: Base64:- " + encodedImage);
 
     }
 
+    public String compressImage(String imageUri) {
+
+        String filePath = imageUri;
+        Bitmap scaledBitmap = null;
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+
+//      by setting this field as true, the actual bitmap pixels are not loaded in the memory. Just the bounds are loaded. If
+//      you try the use the bitmap here, you will get null.
+        options.inJustDecodeBounds = true;
+        Bitmap bmp = BitmapFactory.decodeFile(filePath, options);
+
+        int actualHeight = options.outHeight;
+        int actualWidth = options.outWidth;
+
+//      max Height and width values of the compressed image is taken as 816x612
+
+        /*float maxHeight = 816.0f;
+        float maxWidth = 612.0f;*/
+        /*
+         * added by rahul to dim image size
+         * //1020*807 720*1080  or 770 * 1024
+         * */
+        /*float maxHeight = 800.0f;
+        float maxWidth = 640.0f;*/
+
+        float maxHeight = 1280.0f;
+        float maxWidth = 1707.0f;
+
+        int bounding = dpToPx(250);
+        Log.i("Test", "bounding = " + Integer.toString(bounding));
+        float imgRatio = actualWidth / actualHeight;
+        float maxRatio = maxWidth / maxHeight;
+
+//      width and height values are set maintaining the aspect ratio of the image
+
+        if (actualHeight > maxHeight || actualWidth > maxWidth) {
+            if (imgRatio < maxRatio) {
+                imgRatio = maxHeight / actualHeight;
+                actualWidth = (int) (imgRatio * actualWidth);
+                actualHeight = (int) maxHeight;
+            } else if (imgRatio > maxRatio) {
+                imgRatio = maxWidth / actualWidth;
+                actualHeight = (int) (imgRatio * actualHeight);
+                actualWidth = (int) maxWidth;
+            } else {
+                actualHeight = (int) maxHeight;
+                actualWidth = (int) maxWidth;
+
+            }
+        }
+
+//      setting inSampleSize value allows to load a scaled down version of the original image
+
+        options.inSampleSize = calculateInSampleSize(options, actualWidth, actualHeight);
+
+//      inJustDecodeBounds set to false to load the actual bitmap
+        options.inJustDecodeBounds = false;
+
+//      this options allow android to claim the bitmap memory if it runs low on memory
+        options.inPurgeable = true;
+        options.inInputShareable = true;
+        options.inTempStorage = new byte[16 * 1024];
+
+        try {
+//          load the bitmap from its path
+            bmp = BitmapFactory.decodeFile(filePath, options);
+        } catch (OutOfMemoryError exception) {
+            exception.printStackTrace();
+
+        }
+        try {
+            scaledBitmap = Bitmap.createBitmap(actualWidth, actualHeight, Bitmap.Config.ARGB_8888);
+        } catch (OutOfMemoryError exception) {
+            exception.printStackTrace();
+        }
+
+        float ratioX = actualWidth / (float) options.outWidth;
+        float ratioY = actualHeight / (float) options.outHeight;
+        float middleX = actualWidth / 2.0f;
+        float middleY = actualHeight / 2.0f;
+
+        Matrix scaleMatrix = new Matrix();
+        scaleMatrix.setScale(ratioX, ratioY, middleX, middleY);
+
+        Canvas canvas = new Canvas(scaledBitmap);
+        canvas.setMatrix(scaleMatrix);
+        canvas.drawBitmap(bmp, middleX - bmp.getWidth() / 2, middleY - bmp.getHeight() / 2, new Paint(Paint.FILTER_BITMAP_FLAG));
+
+//      check the rotation of the image and display it properly
+        ExifInterface exif;
+        try {
+            exif = new ExifInterface(filePath);
+
+            int orientation = exif.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION, 0);
+            Log.d("EXIF", "Exif: " + orientation);
+            Matrix matrix = new Matrix();
+            if (orientation == 6) {
+                matrix.postRotate(90);
+                Log.d("EXIF", "Exif: " + orientation);
+            } else if (orientation == 3) {
+                matrix.postRotate(180);
+                Log.d("EXIF", "Exif: " + orientation);
+            } else if (orientation == 8) {
+                matrix.postRotate(270);
+                Log.d("EXIF", "Exif: " + orientation);
+            }
+            scaledBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0,
+                    scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix,
+                    true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        FileOutputStream out = null;
+        String filename = imageUri;
+        try {
+            out = new FileOutputStream(filename);
+
+//          write the compressed bitmap at the destination specified by filename.
+            scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 80, out);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return filename;
+
+    }
+
+    public int setDpi(byte[] imageData, int dpi) {
+        imageData[13] = 1;
+        imageData[14] = (byte) (dpi >> 8);
+        imageData[15] = (byte) (dpi & 0xff);
+        imageData[16] = (byte) (dpi >> 8);
+        imageData[17] = (byte) (dpi & 0xff);
+
+        /*DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int dpiClassification = dm.densityDpi;
+        float xDpi = dm.xdpi;
+        float yDpi = dm.ydpi;*/
+        return dpi;
+    }
+
+    public int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+            final int heightRatio = Math.round((float) height / (float) reqHeight);
+            final int widthRatio = Math.round((float) width / (float) reqWidth);
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+        final float totalPixels = width * height;
+        final float totalReqPixelsCap = reqWidth * reqHeight * 2;
+        while (totalPixels / (inSampleSize * inSampleSize) > totalReqPixelsCap) {
+            inSampleSize++;
+        }
+
+        return inSampleSize;
+    }
+
+    private int dpToPx(int dp) {
+        float density = getApplicationContext().getResources().getDisplayMetrics().density;
+        return Math.round((float)dp * density);
+    }
     /**
      * Added by swapnil 22-12-21
      */
@@ -984,18 +1113,16 @@ public class EmpQRcodeScannerActivity extends AppCompatActivity implements ZBarS
         return Uri.parse(path);
     }
 
-    public String getRealPathFromURI(Uri uri) {
-        String path = "";
-        if (getContentResolver() != null) {
-            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-            if (cursor != null) {
-                cursor.moveToFirst();
-                int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-                path = cursor.getString(idx);
-                cursor.close();
-            }
+    public String getRealPathFromURI(String contentURI) {
+        Uri contentUri = Uri.parse(contentURI);
+        Cursor cursor = getContentResolver().query(contentUri, null, null, null, null);
+        if (cursor == null) {
+            return contentUri.getPath();
+        } else {
+            cursor.moveToFirst();
+            int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            return cursor.getString(index);
         }
-        return path;
     }
 
     /**

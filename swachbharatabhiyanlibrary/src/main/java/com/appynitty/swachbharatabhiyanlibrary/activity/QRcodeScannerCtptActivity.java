@@ -1118,6 +1118,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
             garbageCollectionPojo.setComment(imagePojo.getComment());
             garbageCollectionPojo.setImage1(imagePojo.getImage1());
             garbageCollectionPojo.setImage2(imagePojo.getImage2());
+            garbageCollectionPojo.setBeforeImageTime("11:11 am");
             garbageCollectionPojo.setTNS(imagePojo.getTNS());
         }
 
@@ -1191,10 +1192,13 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
                 if (imagePojo.getImage1() != null && imagePojo.getImage2() != null) {
                     entity.setGpBeforImage(AUtils.getEncodedImage(imagePojo.getImage1(), this));
                     entity.setGpAfterImage(AUtils.getEncodedImage(imagePojo.getImage2(), this));
+                    entity.setGpBeforImageTime("11:11:55 am");
+                    entity.setGpBeforImageTime(Prefs.getString(AUtils.BEFORE_IMAGE_TIME, null));
                     Log.e(TAG, "Images are there!");
                 } else if (!Prefs.getString(AUtils.BEFORE_IMAGE, null).isEmpty() || !AUtils.isNullString(Prefs.getString(AUtils.BEFORE_IMAGE, null))) {
                     entity.setGpBeforImage(AUtils.getEncodedImage(Prefs.getString(AUtils.BEFORE_IMAGE, null), this));
                     entity.setGpAfterImage(AUtils.getEncodedImage(Prefs.getString(AUtils.AFTER_IMAGE, null), this));
+                    entity.setGpBeforImageTime(Prefs.getString(AUtils.BEFORE_IMAGE_TIME, null));
                 } else {
                     entity.setGpBeforImage("");
                     entity.setGpAfterImage("");
@@ -1217,6 +1221,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
         syncOfflineRepository.insertCollection(entity);
         Prefs.remove(AUtils.BEFORE_IMAGE);
         Prefs.remove(AUtils.AFTER_IMAGE);
+        Prefs.remove(AUtils.BEFORE_IMAGE_TIME);
         showOfflinePopup(garbageCollectionPojo.getId(), entity.getGcType());
     }
 
@@ -1271,7 +1276,7 @@ public class QRcodeScannerCtptActivity extends AppCompatActivity implements ZBar
                 break;*//*
         }*/
         value = getResources().getString(R.string.string_ctpt_waste_id);
-collectionStatus.setText(getResources().getString(R.string.cleaned_successful));
+        collectionStatus.setText(getResources().getString(R.string.cleaned_successful));
         houseTitle.setText(value);
 
         doneBtn.setOnClickListener(new View.OnClickListener() {

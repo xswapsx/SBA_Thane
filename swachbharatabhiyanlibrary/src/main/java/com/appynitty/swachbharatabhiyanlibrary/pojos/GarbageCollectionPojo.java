@@ -7,8 +7,11 @@ public class GarbageCollectionPojo {
     private String image1;
 
     private String AfterImage;
+    private String gpAfterImageTime;
 
     private String beforeImage;
+    private String gpBeforImageTime;
+
 
     private String id;
 
@@ -36,6 +39,23 @@ public class GarbageCollectionPojo {
     private String Dry;
     private String Domestic;
     private String Sanitary;
+
+
+    public String getAfterImageTime() {
+        return gpAfterImageTime;
+    }
+
+    public void setAfterImageTime(String afterImageTime) {
+        gpAfterImageTime = afterImageTime;
+    }
+
+    public String getBeforeImageTime() {
+        return gpBeforImageTime;
+    }
+
+    public void setBeforeImageTime(String beforeImageTime) {
+        gpBeforImageTime = beforeImageTime;
+    }
 
     public String getWet() {
         return Wet;

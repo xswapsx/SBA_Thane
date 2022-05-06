@@ -73,12 +73,13 @@ public class AUtils extends CommonUtils {
     //  Advanced Ghanta Gadi URL
 //    public static final String SERVER_URL = "http://202.65.157.253:6560";
     //ICTSBM Thane Live
-    //public static final String SERVER_URL = "http://202.65.157.253:5045/";
+//    public static final String SERVER_URL = "http://202.65.157.253:5045/";
+    public static final String SERVER_URL = "http://202.65.157.254:5045/";
 
     //    Staging URL
 //    public static final String SERVER_URL = "http://115.115.153.117:4044/";
 //    public static final String SERVER_URL = "http://202.65.157.254:7075";  //Thane staging
-       public static final String SERVER_URL = "http://183.177.126.33:7075";  //Thane staging new
+//       public static final String SERVER_URL = "http://183.177.126.33:7075";  //Thane staging new
 
             /*
             *  CMS URL : http://183.177.126.33:5808
@@ -190,6 +191,7 @@ public class AUtils extends CommonUtils {
     public static final String DRY_IMAGE = "image1";
     public static final String WET_IMAGE = "image2";
     public static final String BEFORE_IMAGE = "imageB";
+    public static final String BEFORE_IMAGE_TIME = "b4ImageTime";
     public static final String AFTER_IMAGE = "imageA";
     public static final String C_AND_D_BEFORE_IMAGE = "candd_imageB";
     public static final String C_AND_D_AFTER_IMAGE = "candd_imageA";
@@ -839,91 +841,78 @@ public class AUtils extends CommonUtils {
         return telephonyManager.getDeviceId();
     }
 
-    public static Bitmap writeOnImage(String mDate, String mId, String mPath) {
+    public static Bitmap writeOnImage(Context mContext, String mDate, String mId, String mPath) {
 
-      /*  final String lat = Prefs.getString(AUtils.LAT, "");
+        Uri uri = Uri.fromFile(new File(mPath));
+        final String lat = Prefs.getString(AUtils.LAT, "");
         final String lon = Prefs.getString(AUtils.LONG, "");
 
-        Bitmap bm = BitmapFactory.decodeFile(mPath);
+        Bitmap bm = loadFromUri(uri, mContext);
         Bitmap mutableBitmap = bm.copy(Bitmap.Config.ARGB_8888, true);
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-        paint.setColor(Color.CYAN);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(10);
+//        paint.setStrokeWidth(2.0f);
+        Typeface plain = Typeface.createFromAsset(mainApplicationConstant.getAssets(), "bebasneuebold.ttf");
+        Typeface bold = Typeface.create(plain, Typeface.NORMAL);
+        paint.setTypeface(bold);
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(50);
+
+
+        Paint stkPaint = new Paint();
+        paint.setAntiAlias(true);
+        stkPaint.setStyle(Paint.Style.STROKE);
+        stkPaint.setStrokeWidth(4);
+        stkPaint.setColor(Color.BLACK);
+        stkPaint.setTypeface(bold);
+        stkPaint.setTextSize(50);
 
 
         Canvas canvas = new Canvas(mutableBitmap);
-
-        canvas.drawText(mDate, 100, 235, paint);
-        canvas.drawText("ID: " + mId, 100, 225, paint);
-        canvas.drawText("Lat: " + lat , 100, 215, paint);
-        canvas.drawText("Long: " + lon , 100, 205, paint);
-//        canvas.drawCircle(50, 50, 10, paint);
-
-        return mutableBitmap;*/
-
-        Context context;
-        final String latitude = Prefs.getString(AUtils.LAT, "");
-        final String longitude = Prefs.getString(AUtils.LONG, "");
-        Bitmap bm = BitmapFactory.decodeFile(mPath);
-        Bitmap mutableBitmap = bm.copy(Bitmap.Config.ARGB_8888, true);
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-        paint.setColor(Color.CYAN);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(10);
-        Canvas canvas = new Canvas(mutableBitmap);
-        canvas.drawBitmap(bm, 0, 0, paint);
-
-        /*Paint paintRect = new Paint();
-        paintRect.setColor(Color.DKGRAY );
-        paintRect.setStyle(Paint.Style.FILL_AND_STROKE);
-        paintRect.setStrokeWidth(2);
-        float leftx = 160;
-        float topy = 210;
-        float rightx = 0;
-        float bottomy = 100;
-
-        int rectWidth = 50;
-        int rectHeight = 30;
-
-
-
-        canvas.drawRect(leftx+rectWidth, topy+rectHeight, rightx, bottomy, paintRect);*/
 
         int xPos = (canvas.getWidth() / 2);
         int yPos = (int) ((canvas.getHeight() / 2) - ((paint.descent() + paint.ascent()) / 2));
-        //((textPaint.descent() + textPaint.ascent()) / 2) is the distance from the baseline to the center.
 
+        /*canvas.drawText("ID: " + mId, 25, yPos + 230, stkPaint);    //difference of 25
+        canvas.drawText("ID: " + mId, 25, yPos + 230, paint);
+        canvas.drawText("Lat: " + lat, 25, yPos + 255, stkPaint);
+        canvas.drawText("Lat: " + lat, 25, yPos + 255, paint);
+        canvas.drawText("Long: " + lon, 25, yPos + 280, stkPaint);
+        canvas.drawText("Long: " + lon, 25, yPos + 280, paint);
+        canvas.drawText(mDate, 25, yPos + 305, stkPaint);
+        canvas.drawText(mDate, 25, yPos + 305, paint);*/
 
-        canvas.drawText("House Id - " + mId, xPos, yPos + 80, paint);
-        canvas.drawText("Lat - " + latitude, xPos, yPos + 90, paint);
-        canvas.drawText("Long - " + longitude, xPos, yPos + 100, paint);
-        canvas.drawText("Date - " + mDate, xPos, yPos + 110, paint);
-//        canvas.drawText("Date - " +mDate, 80, 110, paint);
-       /* canvas.drawText("House Id - " + mId, xPos - 100, yPos - 225, paint);
-        canvas.drawText("Lat - " + latitude, xPos - 100, yPos - 215, paint);
-        canvas.drawText("Long - " + longitude, xPos - 100, yPos - 205, paint);*/
+        canvas.drawText("ID: " + mId, 26, yPos + 340, stkPaint);    //difference of 40
+        canvas.drawText("ID: " + mId, 25, yPos + 340, paint);
+        canvas.drawText("Lat: " + lat, 28, yPos + 380, stkPaint);
+        canvas.drawText("Lat: " + lat, 27, yPos + 380, paint);
+        canvas.drawText("Long: " + lon, 30, yPos + 420, stkPaint);
+        canvas.drawText("Long: " + lon, 29, yPos + 420, paint);
+        canvas.drawText(mDate, 32, yPos + 460, stkPaint);
+        canvas.drawText(mDate, 31, yPos + 460, paint);
 
-        /*Paint paintRect = new Paint();
-        paintRect.setColor(Color.DKGRAY );
-        paintRect.setStyle(Paint.Style.FILL_AND_STROKE);
-        paintRect.setStrokeWidth(5);
-        float leftx = 160;
-        float topy = 210;
-        float rightx = 0;
-        float bottomy = 100;
-
-        canvas.drawRect(leftx, topy, rightx, bottomy, paintRect);
-        canvas.drawText("Date - " +mDate, 80, 110, paint);
-        canvas.drawText("House Id - " + mId, 72, 120, paint);
-        canvas.drawText("Lat - "+latitude, 60, 130, paint);
-        canvas.drawText("Long - "+longitude, 63, 140, paint);*/
 
         return mutableBitmap;
+    }
+
+    public static Bitmap loadFromUri(Uri photoUri, Context ctx) {
+        Bitmap image = null;
+        try {
+            // check version of Android on device
+            if (Build.VERSION.SDK_INT > 27) {
+                // on newer versions of Android, use the new decodeBitmap method
+                ImageDecoder.Source source = ImageDecoder.createSource(ctx.getContentResolver(), photoUri);
+                image = ImageDecoder.decodeBitmap(source);
+            } else {
+                // support older versions of Android by using getBitmap
+                image = MediaStore.Images.Media.getBitmap(ctx.getContentResolver(), photoUri);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
     }
 
     final static int COMPRESSED_RATIO = 13;

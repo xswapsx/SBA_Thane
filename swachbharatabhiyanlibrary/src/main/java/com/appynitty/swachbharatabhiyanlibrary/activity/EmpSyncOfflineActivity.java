@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import com.appynitty.swachbharatabhiyanlibrary.R;
 import com.appynitty.swachbharatabhiyanlibrary.adapters.UI.EmpInflateOfflineHistoryAdapter;
@@ -45,10 +46,12 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
     private LinearLayout layoutNoOfflineData;
     private Button btnSyncOfflineData;
     private GridView gridOfflineData;
+    CardView uploadDialog;
     private EmpSyncServerRepository empSyncServerRepository;
     private List<QrLocationPojo> locationPojoList;
     private Gson gson;
     private AlertDialog alertDialog;
+    EmpInflateOfflineHistoryAdapter historyAdapter;
     private int houseCount, dyCount, ssCount, lwcCount, resNCollectionC, resBCollectionC, resSCollectionC, commercialCollectionC, cadCollectionC, hortCollectionC, ctptCollectionC, swmCollectionC;
 
     @Override
@@ -86,7 +89,7 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
         btnSyncOfflineData = findViewById(R.id.btn_sync_data);
         gridOfflineData = findViewById(R.id.grid_offline_data);
         alertDialog = AUtils.getUploadingAlertDialog(mContext);
-
+        uploadDialog = findViewById(R.id.upload_progressBar);
         empSyncServerRepository = new EmpSyncServerRepository(AUtils.mainApplicationConstant.getApplicationContext());
         locationPojoList = new ArrayList<>();
         gson = new Gson();
@@ -109,9 +112,10 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
     }
 
     private void getDatabaseList() {
-
+        clearCount();
         List<EmpSyncServerEntity> entityList = empSyncServerRepository.getAllEmpSyncServerEntity();
         locationPojoList.clear();
+        clearCount();
         for (EmpSyncServerEntity entity : entityList) {
             Type type = new TypeToken<QrLocationPojo>() {
             }.getType();
@@ -137,9 +141,9 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
                     houseCount++;
                     Log.e(TAG, "getDatabaseList: houseId:-" + refId);
                     //added by rahul
-                     if (cType.matches("RBW")){
+                    if (cType.matches("RBW")) {
                         resBCollectionC++;
-                    }else if (cType.matches("RSW")){
+                    } else if (cType.matches("RSW")) {
                         resSCollectionC++;
                     }/*else if (cType.matches("CW")){
                         commercialCollectionC++;
@@ -174,7 +178,7 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
                     /*+ ", dyCount: " + dyCount*/
                     + ", ssCount: " + ssCount
                     + ", lwcCount: " + lwcCount
-                   /* + ", resNCollectionC: " + resNCollectionC*/
+                    /* + ", resNCollectionC: " + resNCollectionC*/
                     + ", resBCollectionC: " + resBCollectionC
                     + ", resSCollectionC: " + resSCollectionC
                     + ", commercialCollectionC: " + commercialCollectionC
@@ -205,48 +209,87 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
 
     private void registerEvents() {
 
-        final EmpSyncServerAdapterClass empSyncAdapter = new EmpSyncServerAdapterClass();
+//        final EmpSyncServerAdapterClass empSyncAdapter = new EmpSyncServerAdapterClass();
         btnSyncOfflineData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                uploadToServer();
+                /*if (!alertDialog.isShowing())
+                    alertDialog.show();*/
 
-                if (!alertDialog.isShowing())
-                    alertDialog.show();
-
-                empSyncAdapter.syncServer();
+                /*empSyncAdapter.syncServer();
 
                 empSyncAdapter.setSyncOfflineListener(new EmpSyncServerAdapterClass.EmpSyncOfflineListener() {
                     @Override
                     public void onSuccessCallback() {
-
-                        if (alertDialog.isShowing())
-                            alertDialog.hide();
+                        uploadDialog.setVisibility(View.GONE);
+                        *//*if (alertDialog.isShowing())
+                            alertDialog.hide();*//*
                         AUtils.success(mContext, getString(R.string.success_offline_sync), Toast.LENGTH_LONG);
                         locationPojoList.clear();
+                        countList.clear();
+                        getDatabaseList();
+                        historyAdapter.setNotifyOnChange(true);
                         inflateData();
                     }
 
                     @Override
                     public void onFailureCallback() {
-                        if (alertDialog.isShowing())
-                            alertDialog.hide();
+                        *//*if (alertDialog.isShowing())
+                            alertDialog.hide();*//*
+                        uploadDialog.setVisibility(View.GONE);
                         AUtils.warning(mContext, getResources().getString(R.string.try_after_sometime));
                     }
 
                     @Override
                     public void onErrorCallback() {
-                        if (alertDialog.isShowing())
-                            alertDialog.hide();
+                        *//*if (alertDialog.isShowing())
+                            alertDialog.hide();*//*
+                        uploadDialog.setVisibility(View.GONE);
                         AUtils.warning(mContext, getResources().getString(R.string.serverError));
                     }
                 });
 
                 ShareLocationAdapterClass shareLocationAdapterClass = new ShareLocationAdapterClass();
-                shareLocationAdapterClass.shareLocation();
+                shareLocationAdapterClass.shareLocation();*/
             }
         });
 
 
+    }
+
+    private void uploadToServer() {
+        final EmpSyncServerAdapterClass empSyncAdapter = new EmpSyncServerAdapterClass();
+        uploadDialog.setVisibility(View.VISIBLE);
+        empSyncAdapter.syncServer();
+
+        empSyncAdapter.setSyncOfflineListener(new EmpSyncServerAdapterClass.EmpSyncOfflineListener() {
+            @Override
+            public void onSuccessCallback() {
+                uploadDialog.setVisibility(View.GONE);
+                AUtils.success(mContext, getString(R.string.success_offline_sync), Toast.LENGTH_LONG);
+                locationPojoList.clear();
+                countList.clear();
+                getDatabaseList();
+                historyAdapter.setNotifyOnChange(true);
+                inflateData();
+            }
+
+            @Override
+            public void onFailureCallback() {
+                uploadDialog.setVisibility(View.GONE);
+                AUtils.warning(mContext, getResources().getString(R.string.try_after_sometime));
+            }
+
+            @Override
+            public void onErrorCallback() {
+                uploadDialog.setVisibility(View.GONE);
+                AUtils.warning(mContext, getResources().getString(R.string.serverError));
+            }
+        });
+
+        ShareLocationAdapterClass shareLocationAdapterClass = new ShareLocationAdapterClass();
+        shareLocationAdapterClass.shareLocation();
     }
 
     private void initData() {
@@ -260,7 +303,7 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
             btnSyncOfflineData.setVisibility(View.VISIBLE);
             layoutNoOfflineData.setVisibility(View.GONE);
             Log.e(TAG, "inflateData: countList" + countList.toString());
-            EmpInflateOfflineHistoryAdapter historyAdapter = new EmpInflateOfflineHistoryAdapter(mContext, R.layout.layout_history_card, countList);
+            historyAdapter = new EmpInflateOfflineHistoryAdapter(mContext, R.layout.layout_history_card, countList);
             gridOfflineData.setAdapter(historyAdapter);
         } else {
             gridOfflineData.setVisibility(View.GONE);
@@ -275,6 +318,9 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
         super.onPostResume();
         if (AUtils.isInternetAvailable()) {
             AUtils.hideSnackBar();
+            if (empSyncServerRepository.getOfflineCount() > 0) {
+                uploadToServer();
+            }
         } else {
             AUtils.showSnackBar(findViewById(R.id.parent));
         }
@@ -288,6 +334,21 @@ public class EmpSyncOfflineActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void clearCount() {
+        houseCount = 0;
+        dyCount = 0;
+        ssCount = 0;
+        lwcCount = 0;
+        resNCollectionC = 0;
+        resBCollectionC = 0;
+        resSCollectionC = 0;
+        commercialCollectionC = 0;
+        cadCollectionC = 0;
+        hortCollectionC = 0;
+        ctptCollectionC = 0;
+        swmCollectionC = 0;
     }
 
 }

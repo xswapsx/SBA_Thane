@@ -36,6 +36,8 @@ public class OfflineGarbageColectionPojo {
 
     private String gpBeforImage;
     private String gpAfterImage;
+    private String gpBeforImageTime;
+    private String gpAfterImageTime;
 
     private String CType;
     private String LevelOS;
@@ -47,6 +49,23 @@ public class OfflineGarbageColectionPojo {
     private String Dry;
     private String Domestic;
     private String Sanitary;
+
+
+    public String getGpBeforImageTime() {
+        return gpBeforImageTime;
+    }
+
+    public void setGpBeforImageTime(String gpBeforImageTime) {
+        this.gpBeforImageTime = gpBeforImageTime;
+    }
+
+    public String getGpAfterImageTime() {
+        return gpAfterImageTime;
+    }
+
+    public void setGpAfterImageTime(String gpAfterImageTime) {
+        this.gpAfterImageTime = gpAfterImageTime;
+    }
 
     public String getWet() {
         return Wet;

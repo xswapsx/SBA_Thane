@@ -97,16 +97,16 @@ public class SyncOfflineAdapterClass {
         /*mod by swapnil*/
         String req_status = "";
         Log.e(SyncOfflineAdapterClass.class.getSimpleName(), results.get(0).getMessage());
-        AUtils.warning(mContext,results.get(0).getMessage(),1000*60);
+        AUtils.warning(mContext, results.get(0).getMessage(), 1000 * 60);
         for (int i = 0; i < results.size(); i++) {
             req_status = results.get(i).getStatus();
             if (req_status.equals(AUtils.STATUS_ERROR)) {
                 String msg = results.get(i).getMessage();
                 if (msg.equals("Your duty is currently off, please start again.. ")) {
                     AUtils.warning(mContext, msg);
-                }else if (msg.matches("Something is wrong,Try Again.. ")){
+                } else if (msg.matches("Something is wrong,Try Again.. ")) {
 
-                }else{
+                } else {
                     AUtils.warning(mContext, msg);
                 }
 
@@ -165,6 +165,7 @@ public class SyncOfflineAdapterClass {
             offlinePojo.setOfflineID(String.valueOf(entity.getOfflineId()));
             offlinePojo.setIsLocation(entity.getOfflineIsLocation());
             offlinePojo.setEmpType(Prefs.getString(AUtils.PREFS.EMPLOYEE_TYPE, null));
+//            offlinePojo.setGpBeforImageTime("11:12 pm");
 //            offlinePojo.setLevelOS("");
             Log.d(TAG, "setOfflineData: " + new Gson().toJson(offlinePojo));
             syncOfflineList.add(offlinePojo);

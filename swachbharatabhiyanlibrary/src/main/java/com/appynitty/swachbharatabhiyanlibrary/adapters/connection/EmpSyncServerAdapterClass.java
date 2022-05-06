@@ -94,7 +94,7 @@ public class EmpSyncServerAdapterClass {
 
     private void getDatabaseList() {
 
-        List<EmpSyncServerEntity> entityList = empSyncServerRepository.getAllEmpSyncServerEntity();
+        List<EmpSyncServerEntity> entityList = empSyncServerRepository.get10EmpSyncServerEntity();
         locationPojoList.clear();
         for (EmpSyncServerEntity entity : entityList) {
             Type type = new TypeToken<QrLocationPojo>() {

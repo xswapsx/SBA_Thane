@@ -53,6 +53,29 @@ public class EmpSyncServerRepository {
         return list;
     }
 
+    public List<EmpSyncServerEntity> get10EmpSyncServerEntity() {
+
+        SQLiteDatabase database = AUtils.sqlDBInstance(mContext);
+        List<EmpSyncServerEntity> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM " + AUtils.QR_TABLE_NAME + " ORDER BY " + EmpSyncServerEntity.COLUMN_ID + " DESC" + " LIMIT 10";
+
+        Cursor cursor = database.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            do {
+                EmpSyncServerEntity empSyncServerEntity = new EmpSyncServerEntity();
+                empSyncServerEntity.setIndex_id(cursor.getInt(cursor.getColumnIndex(EmpSyncServerEntity.COLUMN_ID)));
+                empSyncServerEntity.setPojo(cursor.getString(cursor.getColumnIndex(EmpSyncServerEntity.COLUMN_DATA)));
+
+                list.add(empSyncServerEntity);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        database.close();
+        return list;
+    }
+
     public void deleteEmpSyncServerEntity(int id) {
 
         SQLiteDatabase database = AUtils.sqlDBInstance(mContext);
@@ -70,5 +93,14 @@ public class EmpSyncServerRepository {
 
         database.delete(AUtils.QR_TABLE_NAME, null, null);
         database.close();
+    }
+
+    public int getOfflineCount() {
+        String countQuery = "SELECT  * FROM " + AUtils.QR_TABLE_NAME;
+        SQLiteDatabase db = AUtils.sqlDBInstance(mContext);
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
     }
 }
